@@ -10,8 +10,9 @@ module.exports = function(board){
 		'west',
 	];
 
-
 	board.on('requestMove', function(map){
+		console.log(map)
+
 		board.emit('move', _.sample(moves))
 	})
 

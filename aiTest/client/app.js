@@ -45,4 +45,4 @@ bot(board);
 
 setTimeout(function(){
 	board.requestMove();
-}, 5000)
+}, 4000)

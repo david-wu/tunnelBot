@@ -67,6 +67,10 @@ class Board extends Renderable{
 		return this.grid[loc.y][loc.x]
 	}
 
+	setTile(loc, obj){
+		this.grid[loc.y][loc.x] = obj
+	}
+
 	getPos(loc){
 
 		const width = this.renderer.width;
@@ -145,7 +149,24 @@ class Board extends Renderable{
 
 	requestMove(){
 		this.once('move', this.moveHandler.bind(this))
-		this.emit('requestMove', this.grid);
+		this.emit('requestMove', this.getSimpleGrid());
+	}
+
+	getSimpleGrid(){
+		const simpleGrid = []
+		_.each(this.grid, function(row){
+			const simpleRow = [];
+			_.each(row, function(cell){
+				simpleRow.push({
+					type: cell.type,
+					x: cell.loc.x,
+					y: cell.loc.y,
+					size: cell.size
+				});
+			})
+			simpleGrid.push(simpleRow)
+		})
+		return simpleGrid;
 	}
 
 	movePlayer(moveKey){
@@ -192,12 +213,17 @@ class Board extends Renderable{
 		if(target.type==='berry'){
 			this.player.spentSize += target.size;
 			target.size = 0;
-			setTimeout(function(){
+			setTimeout(()=>{
 				target.removeMesh();
-			},800)
+				this.setTile(newLoc, {
+					type: 'empty',
+					size: 0,
+					loc: newLoc
+				})
+			}, 800)
 			console.log(this.player.spentSize);
 		}else if(target.type==='target'){
-			console.log('winner!');
+			alert("winner! score: " + this.player.spentSize);
 		}
 
 		_.extend(this.player.loc, newLoc);
