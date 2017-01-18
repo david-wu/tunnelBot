@@ -59,11 +59,13 @@ class Tweenable extends Placeable{
 	tweenToWithHalfPoint(halfPoint){
 		return this.tweenTo({
 				end: halfPoint,
-				easing: 'Sinusoidal.In'
+				easing: 'Sinusoidal.In',
+				tweenTime: 200
 			})
 			.then(()=>{
 				return this.tweenTo({
-					easing: 'Sinusoidal.Out'
+					easing: 'Sinusoidal.Out',
+					tweenTime: 200
 				})
 			})
 	}

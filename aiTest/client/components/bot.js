@@ -1,22 +1,22 @@
 
 module.exports = function(board){
 
-	const moves = [
-		'north',
-		'east',
-		'south',
-		'west',
-	];
 
 	board.on('requestMove', function(map){
+
+		// return board.emit('move', _.sample([
+		// 	'north',
+		// 	'east',
+		// 	'south',
+		// 	'west',
+		// ]));
 
 		function setFront(front, cell){
 
 			if(cell.type === 'target'){
 				front.cost = 0;
-			}else if(cell.type === 'empty'){
-				front.cost+=0.01
 			}else{
+				front.cost += 0.001
 				front.cost += cell.size;
 			}
 
@@ -75,7 +75,7 @@ module.exports = function(board){
 
 		}
 
-		_.times(20, setCosts)
+		_.times(40, setCosts)
 
 		function getNeighbors(loc, key){
 			const fronts = [
@@ -127,15 +127,10 @@ module.exports = function(board){
 		}
 
 		const player = getCell(map, 'player');
-
 		const neighbors = getNeighbors(player);
 		const bestNeighbor = _.minBy(neighbors, 'minCost');
 
-		const direction = bestNeighbor.key;
-
-
-
-		board.emit('move', direction)
+		board.emit('move', bestNeighbor.key)
 	})
 
 }
