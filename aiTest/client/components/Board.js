@@ -14,8 +14,8 @@ class Board extends Renderable{
 		_.extend(this, options);
 		_.defaults(this, {
 			turn: 0,
-			width: 10,
-			height: 10
+			width: 25,
+			height: 25
 		});
 
 	}
@@ -42,11 +42,15 @@ class Board extends Renderable{
 		this.setChildren(_.flatten(this.grid))
 	}
 
+	generateSize(){
+		return _.ceil(Math.pow(_.random(1,100), 3)/10000);
+	}
+
 	createGrid(){
 		this.grid = _.times(this.height, (y)=>{
 			return _.times(this.width, (x)=>{
 				return new Berry({
-					size: _.random(1, 100),
+					size: this.generateSize(),//_.random(1, 100),
 					loc: {
 						x: x,
 						y: y,
@@ -73,8 +77,11 @@ class Board extends Renderable{
 
 	getPos(loc){
 
-		const width = this.renderer.width;
-		const height = this.renderer.height;
+		// const width = this.renderer.width;
+		// const height = this.renderer.height;
+
+		const width = (this.width*300)-150
+		const height = (this.height*300)-150
 
 		// return {
 		// 	x: 0,
@@ -82,16 +89,16 @@ class Board extends Renderable{
 		// }
 
 		return {
-			x: (loc.x*300) - (width/2) - 800,
-			y: -((loc.y*300) - (width/2) - 800),
+			x: (loc.x*300) - width/2,
+			y: -((loc.y*300) - height/2),
  		}
 	}
 
 
 	seedPlayer(){
 		const loc = {
-			x: _.random(0, 9),
-			y: _.random(0, 9)
+			x: _.random(0, this.width-1),
+			y: _.random(0, this.height-1)
 		}
 
 		const player = new Player({
@@ -106,8 +113,8 @@ class Board extends Renderable{
 
 	seedTarget(){
 		const loc = {
-			x: _.random(0, 9),
-			y: _.random(0, 9)
+			x: _.random(0, this.width-1),
+			y: _.random(0, this.height-1)
 		}
 
 		if(this.grid[loc.y][loc.x].type === 'player'){
@@ -130,7 +137,7 @@ class Board extends Renderable{
 		const camera = this.renderer.components.camera
 
 		camera.position.x = 0
-		camera.position.z = 10000
+		camera.position.z = 30000
 		camera.position.y = 0
 
 		// camera.up.set(0, 0, 1);
@@ -139,7 +146,7 @@ class Board extends Renderable{
 				.to({
 					x: 0,
 					y: 0,
-					z: 5000,
+					z: 10000,
 				}, 3000)
 				.easing(TWEEN.Easing.Cubic.InOut)
 				.onComplete(resolve)
@@ -220,10 +227,11 @@ class Board extends Renderable{
 					size: 0,
 					loc: newLoc
 				})
-			}, 800)
-			console.log(this.player.spentSize);
+			}, 500)
 		}else if(target.type==='target'){
-			alert("winner! score: " + this.player.spentSize);
+			this.gameOver = {
+				state: 'playerWin'
+			};
 		}
 
 		_.extend(this.player.loc, newLoc);
@@ -241,11 +249,27 @@ class Board extends Renderable{
 		this.turn++;
 		this.removeAllListeners('move');
 
+		if(this.gameOver){
+			_.each(this.grid, function(row){
+				_.each(row, function(cell){
+					if(cell.removeMesh){
+						cell.removeMesh();
+					}
+				})
+			})
+			this.createGrid();
+			this.gameOver = undefined;
+			this.setMeshPositionDeep()
+			setTimeout(()=>{
+				this.requestMove();
+			}, 2000)
+			return;
+		}
 
 		this.setMeshPositionDeep()
 		setTimeout(()=>{
 			this.requestMove();
-		},1000)
+		},500)
 	}
 
 }

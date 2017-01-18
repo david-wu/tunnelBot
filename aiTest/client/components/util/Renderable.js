@@ -19,6 +19,11 @@ class Renderable extends Tweenable{
 	}
 	setMeshPosition(){}
 
+	removeMesh(){
+		const board = this.getRoot('Board');
+		board.emit('removeMesh', this.mesh)
+	}
+
 }
 
 module.exports = Renderable;

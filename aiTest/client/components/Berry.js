@@ -46,11 +46,6 @@ class Berry extends Renderable{
 		return mesh;
 	}
 
-	removeMesh(){
-		const board = this.getRoot('Board');
-		board.emit('removeMesh', this.mesh)
-	}
-
 	setMeshPosition(){
 		this.mesh = this.mesh || this.makeMesh();
 		this.tweenToAbsPos();

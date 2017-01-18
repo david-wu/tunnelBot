@@ -5,26 +5,20 @@ require('./lib/CSS3DRenderer.js')(THREE);
 require('./lib/TrackBallControls.js')(THREE);
 
 
-
-
-
 const Board = require('./components/Board.js');
+const Renderer = require('./components/Renderer.js');
+const bot = require('./components/bot.js');
+
+
 
 const board = new Board();
 
-
-
-
-const Renderer = require('./components/Renderer.js');
 const renderer = new Renderer({
 	width: window.innerWidth,
 	height: window.innerHeight,
 	context: document.getElementById('root'),
 	board: board,
 })
-
-
-
 
 
 // board.createSimpleGrid();
@@ -38,11 +32,7 @@ board.setMeshPositionDeep();
 
 
 
-const bot = require('./components/bot.js');
-
 bot(board);
-
-
 setTimeout(function(){
 	board.requestMove();
 }, 4000)
