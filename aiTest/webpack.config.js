@@ -8,7 +8,7 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.tpl.html$/,
+                test: /(\.tpl.html|\.txt)$/,
                 exclude: /(node_modules|dist)/,
                 loader: 'raw-loader'
             },

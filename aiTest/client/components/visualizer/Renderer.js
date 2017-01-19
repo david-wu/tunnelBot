@@ -80,7 +80,7 @@ class Renderer{
 	dramaticEntry(){
 		const camera = this.components.camera
 		camera.position.x = 0
-		camera.position.z = 30000
+		camera.position.z = 50000
 		camera.position.y = 0
 
 		// camera.up.set(0, 0, 1);
@@ -89,7 +89,7 @@ class Renderer{
 				.to({
 					x: 0,
 					y: 0,
-					z: 10000,
+					z: 15000,
 				}, 3000)
 				.easing(TWEEN.Easing.Cubic.InOut)
 				.onComplete(resolve)

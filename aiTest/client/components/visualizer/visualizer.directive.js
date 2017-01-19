@@ -6,7 +6,9 @@ angular.module('Main')
 
 function NoteEditor($timeout){
     return {
-        scope: {},
+        scope: {
+            customBot: '=?',
+        },
         template: '',
         link: linkFunc.bind(null, $timeout),
     };
@@ -21,27 +23,22 @@ function linkFunc($timeout, scope, element, attrs){
     const Renderer = require('./Renderer.js');
     const Board = require('./models/Board.js');
     const bot = require('./bot.js');
+    const myBot = require('./myBot.js');
 
-
-    const rootEl = element[0];//document.getElementById('root')
-
-    // var style = window.getComputedStyle(rootEl, null);
-    // const width = parseInt(style.getPropertyValue('width'))
-    // const height = parseInt(style.getPropertyValue('height'))
 
     const renderer = new Renderer({
-        // width: width,
-        // height: height,
-        context: rootEl,
+        width: element.innerWidth(),
+        height: element.innerHeight(),
+        context: element[0],
     })
     const board1 = new Board({
         pos: {
-            x: -4500,
+            x: -4000,
         }
     });
     const board2 = new Board({
         pos: {
-            x: 4500,
+            x: 4000,
         }
     });
 
@@ -56,7 +53,7 @@ function linkFunc($timeout, scope, element, attrs){
     board2.setMeshPositionDeep();
 
     bot(board1);
-    bot(board2);
+    myBot(board2);
 
     renderer.dramaticEntry()
         .then(function(){
@@ -69,6 +66,24 @@ function linkFunc($timeout, scope, element, attrs){
     }, 4000)
 
 
+    // function useBot(board, bot){
+    //     board.removeAllListeners('requestMove');
+    //     bot(board)
+    // }
+
+
+    // scope.$watch('customBot', function(customBot){
+    //     if(!customBot){return;}
+    //     try{
+    //         const userBot = eval('('+customBot+')')
+    //         console.log(userBot)
+    //         if(userBot){
+    //             useBot(board2, userBot);
+    //         }
+    //     }catch (e){
+    //         console.log('Bad code', e)
+    //     }
+    // })
 
 
 

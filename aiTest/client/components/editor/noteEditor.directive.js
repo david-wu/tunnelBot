@@ -2,23 +2,26 @@
 angular.module('Main')
     .directive('noteEditor', [
         '$timeout',
+        '$interval',
         NoteEditor
     ]);
 
-function NoteEditor($timeout){
+function NoteEditor($timeout, $interval){
     return {
         scope: {
             note: '=?',
         },
         template: require('./noteEditor.tpl.html'),
-        link: linkFunc.bind(null, $timeout),
+        link: linkFunc.bind(null, $timeout, $interval),
     };
 }
 
-function linkFunc($timeout, scope, element, attrs){
+function linkFunc($timeout, $interval, scope, element, attrs){
 
-    var editor = ace.edit(element[0]);
-    editor.$blockScrolling = Infinity;
+    const context = element[0];
+
+    var editor = ace.edit(context);
+    // editor.$blockScrolling = Infinity;
 
     editor.setOptions({
         theme: 'ace/theme/monokai',
@@ -27,13 +30,13 @@ function linkFunc($timeout, scope, element, attrs){
         showPrintMargin: false,
     });
 
-        console.log(scope.note)
     if(scope.note){
         editor.setValue(scope.note.content);
         editor.clearSelection();
     }
 
     var editSession = editor.getSession();
+    editSession.setMode('ace/mode/javascript');
     editSession.on('change', function(){
         if(scope.note){
             scope.note.setContent(editor.getValue());
@@ -49,6 +52,23 @@ function linkFunc($timeout, scope, element, attrs){
         }
     });
 
+
+
+    function getDimensions(){
+        return {
+            width: element.innerWidth(),
+            height: element.innerHeight(),
+        }
+    }
+
+    const dimensions = getDimensions();
+    $interval(function(){
+        const newDimensions = getDimensions();
+        if(!_.isMatch(dimensions, newDimensions)){
+            editor.resize(true);
+            _.extend(dimensions, newDimensions)
+        }
+    }, 200)
 
     // Selects the textEl when enter key is pressed
     // $('body').on('keydown', changeSelection);
