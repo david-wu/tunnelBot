@@ -63,11 +63,21 @@ class Board extends Renderable{
 		this.setTile(loc, player);
 	}
 
+	locDist(loc1, loc2){
+		return Math.abs(loc1.x-loc2.x) + Math.abs(loc1.y-loc2.y);
+	}
+
+	// Need to first seedPlayer
 	seedTarget(){
 		const loc = this.randomLoc();
+		const minDist = (this.width+this.height)/4
+		if(this.locDist(loc, this.player.loc) < minDist){
+			return this.seedTarget();
+		}
 		if(this.getTile(loc).type === 'player'){
 			return this.seedTarget();
 		}
+
 		const target = new Target({
 			size: 100,
 			loc: loc,
