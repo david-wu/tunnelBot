@@ -1,4 +1,4 @@
-const Renderable = require('./util/Renderable.js');
+const Renderable = require('../util/Renderable.js');
 const THREE = require('three-js')();
 
 
@@ -19,11 +19,8 @@ class Player extends Renderable{
 		_.extend(this, {
 			tweenStyle: 'normal',
 		});
-		_.defaults(this.pos, {
-			x: 0,
-			y: 0,
+		_.extend(this.pos, {
 			z: 10,
-			angle: 0,
 		})
 	}
 

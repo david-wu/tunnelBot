@@ -6,17 +6,19 @@ class Placeable extends TreeNode{
 		super(options);
 		_.extend(this, options)
 		_.defaults(this, {
-			pos: {
-				x: 0,
-				y: 0,
-				z: 0,
-				angle: 0,
-			},
-			absPos: {
-				x: 0,
-				y: 0,
-				z: 0,
-			}
+			pos: {},
+			absPos: {}
+		})
+		_.defaults(this.pos, {
+			x: 0,
+			y: 0,
+			z: 0,
+			angle: 0,
+		})
+		_.defaults(this.absPos, {
+			x: 0,
+			y: 0,
+			z: 0,
 		})
 	}
 

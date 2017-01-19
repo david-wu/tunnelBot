@@ -5,7 +5,7 @@ const Placeable = require('./Placeable.js')
 // Tweenable should extend renderable
 class Tweenable extends Placeable{
 	constructor(options){
-		super();
+		super(options);
 		_.extend(this, options);
 		_.defaults(this, {
 			tweenStyle: 'dramatic'
@@ -79,6 +79,9 @@ class Tweenable extends Placeable{
 			delay: 0,
 			randomFactor: 50
 		})
+		if(_.isMatch(options.start, options.end)){
+			return;
+		}
 		return new Promise((resolve, reject)=>{
 			setTimeout(function(){
 				new TWEEN.Tween(options.start)

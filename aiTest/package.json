@@ -12,5 +12,8 @@
     "merge-stream": "^1.0.1",
     "three-js": "^79.0.0",
     "tween.js": "^16.3.5"
+  },
+  "devDependencies": {
+    "raw-loader": "^0.5.1"
   }
 }

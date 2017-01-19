@@ -1,12 +1,17 @@
 module.exports = {
     context: __dirname,
-    entry: __dirname + '/client/app.js',
+    entry: __dirname + '/client/main.js',
     output: {
         path: __dirname + '/client/dist',
         filename: 'bundle.js'
     },
     module: {
         loaders: [
+            {
+                test: /\.tpl.html$/,
+                exclude: /(node_modules|dist)/,
+                loader: 'raw-loader'
+            },
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|dist)/,

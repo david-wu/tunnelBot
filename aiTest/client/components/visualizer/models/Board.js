@@ -1,4 +1,4 @@
-const Renderable = require('./util/Renderable.js');
+const Renderable = require('../util/Renderable.js');
 const TWEEN = require('tween.js');
 const THREE = require('three-js')();
 
@@ -8,13 +8,28 @@ const Target = require('./Target.js')
 
 class Board extends Renderable{
 
+	static createSimpleGrid(dimensions){
+
+	}
+
+	mountSimpleGrid(simpleGrid){
+
+	}
+
+	runSimulation(){
+		return new Promise(function(res, rej){
+
+		});
+	}
+
+
 	constructor(options){
-		super()
+		super(options)
 		_.extend(this, options);
 		_.defaults(this, {
 			turn: 0,
-			width: 25,
-			height: 25
+			width: 20,
+			height: 20
 		});
 	}
 
@@ -60,26 +75,6 @@ class Board extends Renderable{
 		});
 		this.target = target;
 		this.setTile(loc, target);
-	}
-
-	dramaticEntry(){
-		const camera = this.renderer.components.camera
-		camera.position.x = 0
-		camera.position.z = 30000
-		camera.position.y = 0
-
-		// camera.up.set(0, 0, 1);
-		return new Promise((resolve)=>{
-			new TWEEN.Tween(camera.position)
-				.to({
-					x: 0,
-					y: 0,
-					z: 10000,
-				}, 3000)
-				.easing(TWEEN.Easing.Cubic.InOut)
-				.onComplete(resolve)
-				.start();
-		});
 	}
 
 	requestMove(){
@@ -134,42 +129,19 @@ class Board extends Renderable{
 
 	}
 
+	isOutOfBounds(loc){
+		return loc.x > this.width-1 || loc.x < 0 || loc.y > this.height-1 || loc.y < 0
+	}
+
 	movePlayer(moveKey){
-		const allMoves = {
-			north: {
-				x: 0,
-				y: -1
-			},
-			east: {
-				x: 1,
-				y: 0
-			},
-			south: {
-				x: 0,
-				y: 1
-			},
-			west: {
-				x: -1,
-				y: 0
-			}
-		}
 
 		const move = allMoves[moveKey]
-
-		if(!move){
-			return;
-		}
+		if(!move){return;}
 
 		const newLoc = _.clone(this.player.loc);
-
 		newLoc.x += move.x
 		newLoc.y += move.y
-
-		if(newLoc.x > this.width-1 || newLoc.x < 0){
-			console.log('out of bounds, can not move to ', newLoc);
-			return;
-		}
-		if(newLoc.y > this.height-1 || newLoc.y < 0){
+		if(this.isOutOfBounds(newLoc)){
 			console.log('out of bounds, can not move to ', newLoc);
 			return;
 		}
@@ -177,14 +149,13 @@ class Board extends Renderable{
 		const target = this.getTile(newLoc)
 		if(target.type==='berry'){
 			this.player.spentSize += target.size;
-			target.size = 0;
+			this.setTile(newLoc, {
+				type: 'empty',
+				size: 0,
+				loc: newLoc
+			})
 			setTimeout(()=>{
 				target.removeMesh();
-				this.setTile(newLoc, {
-					type: 'empty',
-					size: 0,
-					loc: newLoc
-				})
 			}, 500)
 		}else if(target.type==='target'){
 			this.gameOver = {
@@ -195,19 +166,7 @@ class Board extends Renderable{
 		_.extend(this.player.loc, newLoc);
 		this.player.moveTo(this.getPos(newLoc));
 
-
 		return newLoc;
-	}
-
-	randomBerrySize(){
-		return _.ceil(Math.pow(_.random(1,100), 3)/10000);
-	}
-
-	randomLoc(){
-		return {
-			x: _.random(0, this.width-1),
-			y: _.random(0, this.height-1)
-		};
 	}
 
 	getTile(loc){
@@ -227,6 +186,36 @@ class Board extends Renderable{
  		}
 	}
 
+	randomBerrySize(){
+		return _.ceil(Math.pow(_.random(1,100), 3)/10000);
+	}
+
+	randomLoc(){
+		return {
+			x: _.random(0, this.width-1),
+			y: _.random(0, this.height-1)
+		};
+	}
+
 }
+
+const allMoves = {
+	north: {
+		x: 0,
+		y: -1
+	},
+	east: {
+		x: 1,
+		y: 0
+	},
+	south: {
+		x: 0,
+		y: 1
+	},
+	west: {
+		x: -1,
+		y: 0
+	}
+};
 
 module.exports = Board

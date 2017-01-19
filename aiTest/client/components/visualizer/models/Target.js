@@ -1,4 +1,4 @@
-const Renderable = require('./util/Renderable.js');
+const Renderable = require('../util/Renderable.js');
 const THREE = require('three-js')();
 
 
