@@ -33,12 +33,12 @@ function linkFunc($timeout, scope, element, attrs){
     })
     const board1 = new Board({
         pos: {
-            x: -4000,
+            x: -3500,
         }
     });
     const board2 = new Board({
         pos: {
-            x: 4000,
+            x: 3500,
         }
     });
 

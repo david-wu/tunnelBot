@@ -89,7 +89,7 @@ class Renderer{
 				.to({
 					x: 0,
 					y: 0,
-					z: 15000,
+					z: 12500,
 				}, 3000)
 				.easing(TWEEN.Easing.Cubic.InOut)
 				.onComplete(resolve)
