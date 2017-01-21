@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "cookie-parser": "^1.4.1",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "lodash": "^4.3.0",
+    "mongodb": "^2.2.19",
+    "request": "^2.69.0",
+    "request-promise": "^4.1.1"
+  }
+}
