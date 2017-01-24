@@ -8,7 +8,7 @@ RUN apt-get install -y nodejs
 RUN apt-get install -y nodejs-legacy
 RUN apt-get install -y npm
 
-ADD workerApp .
+ADD . .
 RUN npm install
 
 CMD npm run start
