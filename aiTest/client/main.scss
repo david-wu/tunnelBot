@@ -1,0 +1,46 @@
+[visualizer] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.right-bar {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 80%;
+	transition-duration: 0.3s;
+}
+
+.right-bar.expanded {
+	left: 100px;
+}
+
+.toggle-button {
+	background-color: blue;
+}
+
+#editor {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.clickable {
+	cursor: pointer;
+}
+.clickable:hover {
+	opacity: 0.85;
+}

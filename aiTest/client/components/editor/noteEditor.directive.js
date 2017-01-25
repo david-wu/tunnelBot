@@ -70,20 +70,5 @@ function linkFunc($timeout, $interval, scope, element, attrs){
         }
     }, 200)
 
-    // Selects the textEl when enter key is pressed
-    // $('body').on('keydown', changeSelection);
-    // scope.$on('$destroy', function(){
-    //     $('body').off('keydown', changeSelection);
-    // });
-    // function changeSelection(e){
-    //     if(e.keyCode===13){
-    //         var textEl = element.find('textarea')
-    //         if(!textEl.is(':focus')){
-    //             textEl.focus();
-    //             e.preventDefault();
-    //         }
-    //     }
-    // }
-
 
 }

@@ -12,18 +12,24 @@
     "d3": "^4.4.1",
     "dockerode": "^2.3.1",
     "express": "^4.13.4",
+    "guid": "0.0.12",
     "gulp": "^3.9.1",
     "gulp-webpack": "^1.5.0",
     "jquery": "^3.1.1",
     "lodash": "^4.3.0",
     "merge-stream": "^1.0.1",
     "mongodb": "^2.2.19",
+    "redis": "^2.6.5",
     "request": "^2.69.0",
     "request-promise": "^4.1.1",
     "three-js": "^79.0.0",
     "tween.js": "^16.3.5"
   },
   "devDependencies": {
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.0",
     "raw-loader": "^0.5.1"
   }
 }

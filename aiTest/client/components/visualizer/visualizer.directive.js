@@ -1,10 +1,10 @@
 angular.module('Main')
     .directive('visualizer', [
         '$timeout',
-        NoteEditor
+        Visualizer
     ]);
 
-function NoteEditor($timeout){
+function Visualizer($timeout){
     return {
         scope: {
             customBot: '=?',
@@ -64,30 +64,5 @@ function linkFunc($timeout, scope, element, attrs){
         board1.requestMove();
         board2.requestMove();
     }, 4000)
-
-
-    // function useBot(board, bot){
-    //     board.removeAllListeners('requestMove');
-    //     bot(board)
-    // }
-
-
-    // scope.$watch('customBot', function(customBot){
-    //     if(!customBot){return;}
-    //     try{
-    //         const userBot = eval('('+customBot+')')
-    //         console.log(userBot)
-    //         if(userBot){
-    //             useBot(board2, userBot);
-    //         }
-    //     }catch (e){
-    //         console.log('Bad code', e)
-    //     }
-    // })
-
-
-
-
-
 
 }

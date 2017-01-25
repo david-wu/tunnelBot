@@ -2,7 +2,6 @@ const express = require('express');
 
 class Router{
 
-	// Each instance overwrites getRoutes
 	constructor(options){
 		_.extend(this, options)
 	}
@@ -14,6 +13,7 @@ class Router{
 		}, parentRouter)
 	}
 
+	// overwride this
 	getRoutes(app){
 		return [];
 	}

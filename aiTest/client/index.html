@@ -2,70 +2,20 @@
 	<head>
 		<title>Go to red dot</title>
 		<link rel="stylesheet" type="text/css" href="reset.css">
-		<style type="text/css" media="screen">
-
-		    [visualizer] {
-		    	position: absolute;
-		    	top: 0;
-		    	right: 0;
-		    	bottom: 0;
-		    	left: 0;
-		    }
-
-		    .right-bar {
-		    	position: absolute;
-		    	top: 0;
-		    	right: 0;
-		    	bottom: 0;
-		    	left: 80%;
-		    	transition-duration: 0.3s;
-		    }
-
-		    .right-bar.expanded {
-		    	left: 100px;
-		    }
-
-		    .toggle-button {
-		    	background-color: blue;
-		    }
-
-		    #editor {
-		        position: absolute;
-		        top: 0;
-		        right: 0;
-		        bottom: 0;
-		        left: 0;
-		    }
-
-		    .flex {
-			  display: -webkit-box;
-			  display: -moz-box;
-			  display: -ms-flexbox;
-			  display: flex;
-		    }
-
-		    .clickable {
-		    	cursor: pointer;
-		    }
-		    .clickable:hover {
-		    	opacity: 0.85;
-		    }
-
-		</style>
+		<link rel="stylesheet" type="text/css" href="bundle.css">
 	</head>
 	<body ng-app="Main" ng-controller="mainController" ng-jq="$">
 
 		<div visualizer custom-bot="note.content"></div>
 
-<!-- 		<div class="flex right-bar" ng-class="{'expanded': noteExpanded}" style="flex-direction: column; height: 100%;">
-
+		<div class="flex right-bar" ng-class="{'expanded': noteExpanded}" style="flex-direction: column; height: 100%;">
 			<div class="flex" style="justify-content:space-around; min-height:50px; align-items: center;">
 				<div class="clickable" ng-click="noteExpanded=!noteExpanded" style="background-color: beige">Expand</div>
 				<div class="clickable" ng-click="console.log('rerun')" style="background-color: whitesmoke">Run</div>
 			</div>
 			<div note-editor note="note" style="flex: 1 1 0;"></div>
 		</div>
- -->
+
 
 		<script src="/ace.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/bundle.js"></script>
