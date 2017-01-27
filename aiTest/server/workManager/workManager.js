@@ -46,6 +46,7 @@ class WorkManager{
 		_.defaults(this, {
 			jobs: [],
 			idleWorkerIds: [],
+			ioConnections: [],
 		});
 	}
 
@@ -87,15 +88,22 @@ class WorkManager{
 	    console.log(message.type, 'channel: ' + channel + ', id: ' + message.id);
 
 	    if(message.type === 'requestWork'){
-	    	if(this.jobs.length){
-		    	this.sendJob(message.id)
-	    	}else{
-	    		this.idleWorkerIds.push(message.id);
-	    	}
+	    	this.requestWorkHandler(message);
+	    }else if(message.type === 'update'){
+	    	this.updateHandler(message);
+	    }else{
+
 	    }
 	}
 
-	addJob(job){
+	requestWorkHandler(message){
+    	if(this.jobs.length){
+	    	this.sendJob(message.id)
+    	}else{
+    		this.idleWorkerIds.push(message.id);
+    	}
+	}
+	addJob(job, ioConnection){
 		if(this.jobs.length > 100){
 			console.log('WARN: over 100 jobs!');
 		}
@@ -104,19 +112,38 @@ class WorkManager{
 			this.sendJob(this.idleWorkerIds.pop())
 		}
 	}
-
-	sendJob(workerId, IO){
-		const channelId = guid.raw();
-
+	sendJob(workerId, handle){
+		// const channelId = guid.raw();
     	this.pub.publish('all', JSON.stringify({
     		id: workerId,
     		type: 'doWork',
-    		payload: this.jobs.shift(),
-    		channelId: channelId
+    		payload: this.jobs.shift()
+    		// channelId: channelId
     	}))
+
     	// this.sub.subscribe(channelId);
 	}
 
+	updateHandler(message){
+		const ioConnection = _.find(this.ioConnections, {
+			workerId: message.id
+		});
+		ioConnection.emit('update', message.payload);
+	}
+
+}
+
+class Job{
+
+	constructor(data){
+		this.data = data
+	}
+
+
+
+	toString(){
+		return JSON.stringify(this.data)
+	}
 }
 
 

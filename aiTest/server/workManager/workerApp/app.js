@@ -12,9 +12,11 @@ function requestWork(){
 	}));
 }
 
+
 sub.on('subscribe', function(){
 	requestWork();
 });
+
 
 sub.on('message', function(channel, message){
 	message = JSON.parse(message);
