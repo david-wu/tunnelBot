@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "gulp build; http-server;"
+  },
   "dependencies": {
     "angular": "^1.6.1",
     "babel": "^6.5.2",

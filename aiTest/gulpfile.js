@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const gulp = require('gulp');
 const webpack = require('gulp-webpack');
 const mergeStream = require('merge-stream');
@@ -19,6 +20,10 @@ gulp.task('default', ['watchHtml', 'watchAssets', 'watchSass'], function() {
         .pipe(gulp.dest(configs.dist));
 });
 
+gulp.task('build', ['sass', 'html', 'assets'], function(){
+    return appPack({watch: false})
+        .pipe(gulp.dest(configs.dist));
+})
 
 gulp.task('watchSass', ['sass'], function(){
     gulp.watch(configs.sass, function(event) {
@@ -60,8 +65,9 @@ gulp.task('assets', function(){
 })
 
 
-function appPack(){
-    const webpackConfig = require('./webpack.config.js');
+const webpackConfig = require('./webpack.config.js');
+function appPack(options){
+    const config = _.extend(_.cloneDeep(webpackConfig), options)
     return gulp.src(configs.client)
-        .pipe(webpack(webpackConfig));
+        .pipe(webpack(config));
 }
