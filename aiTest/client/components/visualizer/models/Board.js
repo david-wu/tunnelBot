@@ -8,21 +8,6 @@ const Target = require('./Target.js')
 
 class Board extends Renderable{
 
-	static createSimpleGrid(dimensions){
-
-	}
-
-	mountSimpleGrid(simpleGrid){
-
-	}
-
-	runSimulation(){
-		return new Promise(function(res, rej){
-
-		});
-	}
-
-
 	constructor(options){
 		super(options)
 		_.extend(this, options);
@@ -41,7 +26,7 @@ class Board extends Renderable{
 					y: y,
 				};
 				return new Berry({
-					size: this.randomBerrySize(),
+					size: (_.random(1)*_.random(1)*_.random(1))*50,
 					loc: loc,
 					pos: this.getPos(loc),
 				});
@@ -51,6 +36,25 @@ class Board extends Renderable{
 		this.seedTarget();
 		this.setChildren(_.flatten(this.grid));
 	}
+
+	// createGrid(){
+	// 	this.grid = _.times(this.height, (y)=>{
+	// 		return _.times(this.width, (x)=>{
+	// 			const loc = {
+	// 				x: x,
+	// 				y: y,
+	// 			};
+	// 			return new Berry({
+	// 				size: this.randomBerrySize(),
+	// 				loc: loc,
+	// 				pos: this.getPos(loc),
+	// 			});
+	// 		});
+	// 	});
+	// 	this.seedPlayer();
+	// 	this.seedTarget();
+	// 	this.setChildren(_.flatten(this.grid));
+	// }
 
 	seedPlayer(){
 		const loc = this.randomLoc();
