@@ -156,25 +156,24 @@ class Board extends Renderable{
 		newLoc.x += move.x
 		newLoc.y += move.y
 		if(this.isOutOfBounds(newLoc)){
-			console.log('out of bounds, can not move to ', newLoc);
-			return;
+			return console.log('out of bounds, can not move to ', newLoc);
 		}
 
 		const target = this.getTile(newLoc)
-		if(target.type==='berry'){
-			this.player.spentSize += target.size;
-			this.setTile(newLoc, {
-				type: 'empty',
-				size: 0,
-				loc: newLoc
-			})
-			setTimeout(()=>{
-				target.removeMesh();
-			}, 500)
-		}else if(target.type==='target'){
+		if(target.type==='target'){
 			this.gameOver = {
 				state: 'playerWin'
 			};
+			return;
+		}
+		if(target.type==='berry'){
+			this.player.spentSize += target.size;
+			target.size = 0;
+
+			this.swapTiles(target, this.player);
+			setTimeout(()=>{
+				target.removeMesh();
+			}, 500)
 		}
 
 		_.extend(this.player.loc, newLoc);
@@ -185,6 +184,17 @@ class Board extends Renderable{
 
 	getTile(loc){
 		return this.grid[loc.y][loc.x];
+	}
+
+	swapTiles(obj1, obj2){
+		var loc1 = _.clone(obj1.loc);
+		var loc2 = _.clone(obj2.loc);
+
+		_.extend(obj2.loc, loc1);
+		_.extend(obj1.loc, loc2);
+
+		this.setTile(obj2.loc, obj2);
+		this.setTile(obj1.loc, obj1);
 	}
 
 	setTile(loc, obj){

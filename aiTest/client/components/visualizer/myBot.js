@@ -12,7 +12,6 @@ module.exports = function(board){
             'south',
             'west',
         ]));
-        board.emit('move', bestNeighbor.key)
-    })
+    });
 
 }
