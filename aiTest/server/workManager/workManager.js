@@ -7,19 +7,24 @@ const guid = require('guid');
 const dockerContext = __dirname + '/workerApp/';
 const dockerFilePath = dockerContext + 'Dockerfile';
 
+const options = {
+	redisDomain: 'redisDomainName',
+	redisPort: 6388,
+	// redisContainerPort: 6379
+}
+
 const images = {
 	redis: {
 		build: _.partial(exec, `docker pull redis`),
-		// --net "redisDomain" declares the name of the network that the containers will share
-		// -p 6379:6379 binds this container's exposed port to the outside port
-		start: _.partial(exec, `docker run -d --net "redisDomain" -p 6379:6379 --name redis-container redis`),
+		// --net "${options.redisDomain}" declares the name of the network that the containers will share
+		// -p ____:6379 exposes this container's redis port to the outside port
+		start: _.partial(exec, `docker run -d --net "${options.redisDomain}" -p ${options.redisPort}:6379 --name redis-container redis`),
 	},
 	worker: {
 		build: _.partial(exec, `docker build -t worker_image -f ${dockerFilePath} ${dockerContext}`),
-		// --net "redisDomain" declares the name of the network that the containers will share
-		// --link redis-container:redis makes the two containers share the "redis" domain?
+		// --link redis-container:redis makes the two containers share the domain
 		start: function(i){
-			return exec(`docker run -d --net "redisDomain" --link redis-container:redis --restart=always --name worker_${i} worker_image`)
+			return exec(`docker run -d --net "${options.redisDomain}" --link redis-container:redis --restart=always --name worker_${i} worker_image`)
 		}
 	},
 };
@@ -33,9 +38,9 @@ const docker = {
 			});
 	},
 	prepareNetwork: function(){
-		return exec('docker network create redisDomain')
+		return exec(`docker network create ${options.redisDomain}`)
 			.catch(function(err){
-				console.log('failed or skipped prepareNetwork')
+				console.log('failed or skipped prepareNetwork step')
 			});
 	}
 }
@@ -58,14 +63,6 @@ class WorkManager{
 			.then(this.addWorkers.bind(this))
 	}
 
-	addWorkers(workerCount=2){
-		return images.worker.build()
-			.then(function(){
-				const startingWorkersPromises = _.times(workerCount, images.worker.start);
-				return Promise.all(startingWorkersPromises)
-			})
-	}
-
 	initDocker(){
 		return docker.purgeContainers()
 			.then(docker.prepareNetwork)
@@ -73,8 +70,8 @@ class WorkManager{
 
 	attachRedisHandler(){
 		_.extend(this, {
-			sub: redis.createClient(),
-			pub: redis.createClient(),
+			sub: redis.createClient(options.redisPort, 'localhost'),
+			pub: redis.createClient(options.redisPort, 'localhost'),
 		})
 
 		this.sub.on('subscribe', (channel)=>{
@@ -85,10 +82,10 @@ class WorkManager{
 
 	messageHandler(channel, message){
 		message = JSON.parse(message);
-	    console.log(message.type, 'channel: ' + channel + ', id: ' + message.id);
+	    console.log(message.type, 'channel: ' + channel + ', id: ' + message.id, ', payload: ' + message.payload);
 
-	    if(message.type === 'requestWork'){
-	    	this.requestWorkHandler(message);
+	    if(message.type === 'ready'){
+	    	this.readyHandler(message);
 	    }else if(message.type === 'update'){
 	    	this.updateHandler(message);
 	    }else{
@@ -96,13 +93,22 @@ class WorkManager{
 	    }
 	}
 
-	requestWorkHandler(message){
+	readyHandler(message){
     	if(this.jobs.length){
 	    	this.sendJob(message.id)
     	}else{
     		this.idleWorkerIds.push(message.id);
     	}
 	}
+
+	addWorkers(workerCount=2){
+		return images.worker.build()
+			.then(function(){
+				const startingWorkersPromises = _.times(workerCount, images.worker.start);
+				return Promise.all(startingWorkersPromises)
+			})
+	}
+
 	addJob(job, ioConnection){
 		if(this.jobs.length > 100){
 			console.log('WARN: over 100 jobs!');
@@ -113,15 +119,12 @@ class WorkManager{
 		}
 	}
 	sendJob(workerId, handle){
-		// const channelId = guid.raw();
+		console.log('publishing:', workerId)
     	this.pub.publish('all', JSON.stringify({
     		id: workerId,
-    		type: 'doWork',
-    		payload: this.jobs.shift()
-    		// channelId: channelId
+    		type: 'stdIn',
+    		payload: 'console.log(Math.random());'
     	}))
-
-    	// this.sub.subscribe(channelId);
 	}
 
 	updateHandler(message){
@@ -166,36 +169,36 @@ workManager.setup()
 			const jobCount = _.random(5)
 			console.log(`adding ${jobCount} jobs`)
 			_.times(jobCount, function(){
-				workManager.addJob(getFakeJob())
+				workManager.addJob({})
 			})
 		}, 5000)
 	})
 
 
-function getFakeJob(){
-	return {
-		map: {
-			grid: [
-				[{},{},{},{},{},{},{},{},],
-				[{},{},{},{},{},{},{},{},],
-				[{},{},{},{},{},{},{},{},],
-			]
-		},
-		players: [
-			{
-				id: 'i1j21-20d',
-				scripts: {
-					getMove: `console.log('cat');`,
-				}
-			},
-			{
-				id: 'fa9102i3',
-				scripts: {
-					getMove: `console.log('dog')`,
-				}
-			}
-		]
-	};
-}
+// function getFakeJob(){
+// 	return {
+// 		map: {
+// 			grid: [
+// 				[{},{},{},{},{},{},{},{},],
+// 				[{},{},{},{},{},{},{},{},],
+// 				[{},{},{},{},{},{},{},{},],
+// 			]
+// 		},
+// 		players: [
+// 			{
+// 				id: 'i1j21-20d',
+// 				scripts: {
+// 					getMove: `console.log('cat');`,
+// 				}
+// 			},
+// 			{
+// 				id: 'fa9102i3',
+// 				scripts: {
+// 					getMove: `console.log('dog')`,
+// 				}
+// 			}
+// 		]
+// 	};
+// }
 
 module.exports = WorkManager;
