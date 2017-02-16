@@ -8,7 +8,7 @@ const dockerContext = __dirname + '/workerApp/';
 const dockerFilePath = dockerContext + 'Dockerfile';
 
 const options = {
-	redisDomain: 'redisDomainName',
+	redisDomain: 'redis',
 	redisPort: 6388,
 	// redisContainerPort: 6379
 }
@@ -23,8 +23,8 @@ const images = {
 	worker: {
 		build: _.partial(exec, `docker build -t worker_image -f ${dockerFilePath} ${dockerContext}`),
 		// --link redis-container:redis makes the two containers share the domain
-		start: function(i){
-			return exec(`docker run -d --net "${options.redisDomain}" --link redis-container:redis --restart=always --name worker_${i} worker_image`)
+		start: function(guid){
+			return exec(`docker run -d -e "INSTANCE_ID=${guid}" --net "${options.redisDomain}" --link redis-container:redis --restart=always --name worker_${guid} worker_image`)
 		}
 	},
 };
@@ -32,7 +32,13 @@ const images = {
 
 const docker = {
 	purgeContainers: function(){
-		return exec('docker rm -f $(docker ps -a -q)')
+		return exec('docker ps -a -q')
+			.then(function(processes){
+				processes = processes.replace('\n', ' ')
+				console.log(processes)
+				return exec(`docker rm -f ${processes}`)
+			})
+		// return exec('docker rm -f $(docker ps -a -q)')
 			.catch(function(err){
 				console.log('failed or skipped purgingContainers')
 			});
@@ -45,160 +51,70 @@ const docker = {
 	}
 }
 
-class WorkManager{
-
-	constructor(){
-		_.defaults(this, {
-			jobs: [],
-			idleWorkerIds: [],
-			ioConnections: [],
-		});
-	}
-
-	setup(){
-		return this.initDocker()
-			.then(images.redis.build)
-			.then(images.redis.start)
-			.then(this.attachRedisHandler.bind(this))
-			.then(this.addWorkers.bind(this))
-	}
-
-	initDocker(){
-		return docker.purgeContainers()
-			.then(docker.prepareNetwork)
-	}
-
-	attachRedisHandler(){
-		_.extend(this, {
-			sub: redis.createClient(options.redisPort, 'localhost'),
-			pub: redis.createClient(options.redisPort, 'localhost'),
-		})
-
-		this.sub.on('subscribe', (channel)=>{
-			this.sub.on('message', this.messageHandler.bind(this));
-		});
-		this.sub.subscribe('all');
-	}
-
-	messageHandler(channel, message){
-		message = JSON.parse(message);
-	    console.log(message.type, 'channel: ' + channel + ', id: ' + message.id, ', payload: ' + message.payload);
-
-	    if(message.type === 'ready'){
-	    	this.readyHandler(message);
-	    }else if(message.type === 'update'){
-	    	this.updateHandler(message);
-	    }else{
-
-	    }
-	}
-
-	readyHandler(message){
-    	if(this.jobs.length){
-	    	this.sendJob(message.id)
-    	}else{
-    		this.idleWorkerIds.push(message.id);
-    	}
-	}
-
-	addWorkers(workerCount=2){
-		return images.worker.build()
-			.then(function(){
-				const startingWorkersPromises = _.times(workerCount, images.worker.start);
-				return Promise.all(startingWorkersPromises)
-			})
-	}
-
-	addJob(job, ioConnection){
-		if(this.jobs.length > 100){
-			console.log('WARN: over 100 jobs!');
-		}
-		this.jobs.push(job);
-		if(this.idleWorkerIds.length){
-			this.sendJob(this.idleWorkerIds.pop())
-		}
-	}
-	sendJob(workerId, handle){
-		console.log('publishing:', workerId)
-    	this.pub.publish('all', JSON.stringify({
-    		id: workerId,
-    		type: 'stdIn',
-    		payload: 'console.log(Math.random());'
-    	}))
-	}
-
-	updateHandler(message){
-		const ioConnection = _.find(this.ioConnections, {
-			workerId: message.id
-		});
-		ioConnection.emit('update', message.payload);
-	}
-
-}
-
-class Job{
-
-	constructor(data){
-		this.data = data
-	}
 
 
-
-	toString(){
-		return JSON.stringify(this.data)
-	}
-}
+const spawner = Spawner()
+spawner.init()
 
 
-class Worker{
-	constructor(options){
-		_.extend(this, options);
-		_.defaults(this, {
+setTimeout(function(){
+	const pub = redis.createClient(options.redisPort, 'localhost')
+	const sub = redis.createClient(options.redisPort, 'localhost')
+	const containerId = guid.raw()
 
-		})
-	}
-
-}
-
-
-const workManager = new WorkManager();
-
-workManager.setup()
-	.then(function(){
-		setInterval(function(){
-			const jobCount = _.random(5)
-			console.log(`adding ${jobCount} jobs`)
-			_.times(jobCount, function(){
-				workManager.addJob({})
-			})
-		}, 5000)
+	pub.publish('spawnRequest', JSON.stringify({
+		spawnId: containerId
+	}))
+	sub.on('message', function(channel, message){
+		console.log(message);
 	})
+	sub.subscribe(containerId)
+
+	setTimeout(function(){
+		pub.publish(containerId, JSON.stringify({
+			payload: 'console.log(\'cat\')'
+		}))
+	}, 5000)
+}, 5000)
 
 
-// function getFakeJob(){
-// 	return {
-// 		map: {
-// 			grid: [
-// 				[{},{},{},{},{},{},{},{},],
-// 				[{},{},{},{},{},{},{},{},],
-// 				[{},{},{},{},{},{},{},{},],
-// 			]
-// 		},
-// 		players: [
-// 			{
-// 				id: 'i1j21-20d',
-// 				scripts: {
-// 					getMove: `console.log('cat');`,
-// 				}
-// 			},
-// 			{
-// 				id: 'fa9102i3',
-// 				scripts: {
-// 					getMove: `console.log('dog')`,
-// 				}
-// 			}
-// 		]
-// 	};
-// }
+function Spawner(spawner={}){
 
-module.exports = WorkManager;
+	_.defaults(spawner, {
+
+		init(){
+			return spawner.initDocker()
+				.then(images.redis.start)
+				.then(spawner.attachRedisHandler)
+		},
+
+		initDocker(){
+			return docker.purgeContainers()
+				.then(docker.prepareNetwork)
+				.then(images.redis.build)
+				.then(images.worker.build)
+		},
+
+		attachRedisHandler(){
+			spawner.redisConnection = {
+				sub: redis.createClient(options.redisPort, 'localhost')
+				// pub: redis.createClient(options.redisPort, 'localhost'),
+			}
+			spawner.redisConnection.sub.on('message', spawner.messageHandler);
+			spawner.redisConnection.sub.subscribe('spawnRequest');
+		},
+
+		messageHandler: function(channel, messageStr){
+			console.log('got', channel, messageStr)
+			const message = JSON.parse(messageStr);
+			return images.worker.build()
+				.then(function(){
+					return images.worker.start(message.spawnId)
+				});
+		},
+
+	});
+
+	return spawner;
+}
+
