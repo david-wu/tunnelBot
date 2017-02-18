@@ -45,6 +45,7 @@ function CpSpawner(cpSpawner={}){
 				cpSpawner.cp.stdout.on('data', cpSpawner.cpOutHandler);
 				cpSpawner.cp.stderr.on('data', cpSpawner.cpErrHandler);
 				cpSpawner.cp.on('close', cpSpawner.cpCloseHandler);
+				cpSpawner.cp.on('exit', cpSpawner.cpExitHandler);
 				resolve();
 			})
 		},
@@ -67,6 +68,10 @@ function CpSpawner(cpSpawner={}){
 
 		cpCloseHandler(payload){
 			cpSpawner.publishPayload('close', payload);
+		},
+
+		cpExitHandler(payload){
+			cpSpawner.publishPayload('exit', payload);
 		},
 
 	});
