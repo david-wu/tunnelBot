@@ -9,6 +9,7 @@ RUN apt-get install -y nodejs-legacy
 RUN apt-get install -y npm
 
 ADD . .
+
 RUN npm install
 
 CMD npm run start

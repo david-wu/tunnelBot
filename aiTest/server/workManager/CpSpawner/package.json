@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node app.js"
+    "start": "npm install;node app.js"
   },
   "dependencies": {
     "lodash": "^4.17.4",

@@ -16,18 +16,16 @@ function CpSpawner(cpSpawner={}){
 	_.defaults(cpSpawner, {
 
 		init(){
-			return cpSpawner.attachRedisHandler()
-				.then(_.partial(cpSpawner.spawnCp, 'node'));
+			return cpSpawner.spawnCp('node')
+				.then(cpSpawner.attachRedisHandler)
 		},
 
 		attachRedisHandler(){
 			return new Promise(function(resolve, reject){
-				cpSpawner.redisConnection = {
-					sub: redis.createClient(redisOptions.port, redisOptions.domain),
-					pub: redis.createClient(redisOptions.port, redisOptions.domain),
-				}
-				cpSpawner.redisConnection.sub.on('message', cpSpawner.messageHandler)
-				cpSpawner.redisConnection.sub.subscribe(channelIn)
+				cpSpawner.redisPub = redis.createClient(redisOptions.port, redisOptions.domain);
+				cpSpawner.redisSub = redis.createClient(redisOptions.port, redisOptions.domain);
+				cpSpawner.redisSub.on('message', cpSpawner.messageHandler)
+				cpSpawner.redisSub.subscribe(channelIn)
 				resolve();
 			})
 		},
@@ -55,7 +53,7 @@ function CpSpawner(cpSpawner={}){
 				type: type,
 				payload: payload.toString()
 			};
-			cpSpawner.redisConnection.pub.publish(channelOut, JSON.stringify(message));
+			cpSpawner.redisPub.publish(channelOut, JSON.stringify(message));
 		},
 
 		cpOutHandler(payload){

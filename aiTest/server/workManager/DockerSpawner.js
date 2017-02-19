@@ -13,51 +13,11 @@ const redisOptions = {
 	containerPort: 6379
 }
 
-const docker = {
-
-	// --net "${redisOptions.domain}" declares the name of the network that the containers will share
-	// -p 6388:6379 exposes this container's redis port to the outside port
-	// --link redis-container:redis makes the two containers share the domain
-	images: {
-		redis: {
-			build: _.partial(exec, `docker pull redis`),
-			start: _.partial(exec, `docker run -d --net "${redisOptions.domain}" -p ${redisOptions.port}:6379 --name redis-container redis`),
-		},
-		worker: {
-			build: _.partial(exec, `docker build -t worker_image -f ${dockerFilePath} ${dockerContext}`),
-			start: function(instanceId){
-				return exec(`docker run -d -e "INSTANCE_ID=${instanceId}" --net "${redisOptions.domain}" --link redis-container:redis --restart=always --name worker_${instanceId} worker_image`)
-			}
-		},
-	},
-
-	purgeContainers: function(){
-		return exec('docker ps -a -q')
-			.then(function(instanceIds){
-				instanceIds = instanceIds.replace('\n', ' ')
-				if(!instanceIds.length){
-					return Promise.resolve()
-				}else{
-					return exec(`docker rm -f ${instanceIds}`)
-				}
-			})
-			.catch(function(err){
-				console.log('failed or skipped purgingContainers')
-			});
-	},
-
-	prepareNetwork: function(){
-		return exec(`docker network create ${redisOptions.domain}`)
-			.catch(function(err){
-				console.log('failed or skipped prepareNetwork step')
-			});
-	}
-}
+// const docker = {
+// }
 
 
 
-const dockerSpawner = DockerSpawner()
-dockerSpawner.init()
 
 
 // setTimeout(function(){
@@ -86,17 +46,85 @@ function DockerSpawner(dockerSpawner={}){
 
 	_.defaults(dockerSpawner, {
 
+
+		// --net "${redisOptions.domain}" declares the name of the network that the containers will share
+		// -p 6388:6379 exposes this container's redis port to the outside port
+		// --link redis-container:redis makes the two containers share the domain
+		images: {
+			redis: {
+				build: _.partial(exec, `docker pull redis`),
+				start: _.partial(exec, `docker run -d --net "${redisOptions.domain}" -p ${redisOptions.port}:6379 --name redis-container redis`),
+			},
+			worker: {
+				build: _.partial(exec, `docker build -t worker_image -f ${dockerFilePath} ${dockerContext}`),
+				start: function(instanceId){
+					return exec(`docker run -d -e "INSTANCE_ID=${instanceId}" --net "${redisOptions.domain}" --link redis-container:redis --restart=always --name worker_${instanceId} worker_image`)
+				}
+			},
+		},
+
+
+		purgeContainers: function(){
+			// return exec('docker ps -a -q')
+			return dockerSpawner.getDockerIds()
+				.then(function(instanceIds){
+					if(!instanceIds.length){
+						return Promise.resolve()
+					}else{
+						return exec(`docker rm -f ${instanceIds}`)
+					}
+				})
+				.then(dockerSpawner.ensurePurge)
+				.catch(function(err){
+					console.log('failed or skipped purgingContainers', err)
+				});
+		},
+
+		getDockerIds: function(){
+			return exec('docker ps -a -q')
+				.then(function(instanceIds){
+					return instanceIds.replace('\n', ' ')
+				})
+		},
+
+		ensurePurge: function(){
+			return new Promise(function(resolve, reject){
+				setInterval(function(){
+					dockerSpawner.getDockerIds()
+						.then(function(dockerIds){
+							if(dockerIds.length===0){
+								console.log('Docker instances purged.')
+								resolve();
+
+							}
+						});
+				}, 1000)
+			});
+		},
+
+		prepareNetwork: function(){
+			return exec(`docker network create ${redisOptions.domain}`)
+				.catch(function(err){
+					console.log('failed or skipped prepareNetwork step')
+				});
+		},
+
 		init(){
 			return dockerSpawner.initDocker()
-				.then(docker.images.redis.start)
+				.then(dockerSpawner.images.redis.start)
 				.then(dockerSpawner.attachRedisHandler)
 		},
 
+
+
+
+
+
 		initDocker(){
-			return docker.purgeContainers()
-				.then(docker.prepareNetwork)
-				.then(docker.images.redis.build)
-				.then(docker.images.worker.build)
+			return dockerSpawner.purgeContainers()
+				.then(dockerSpawner.prepareNetwork)
+				.then(dockerSpawner.images.redis.build)
+				.then(dockerSpawner.images.worker.build)
 		},
 
 		attachRedisHandler(){
@@ -110,9 +138,9 @@ function DockerSpawner(dockerSpawner={}){
 		messageHandler: function(channel, messageStr){
 			console.log('got', channel, messageStr)
 			const message = JSON.parse(messageStr);
-			return docker.images.worker.build()
+			return dockerSpawner.images.worker.build()
 				.then(function(){
-					return docker.images.worker.start(message.spawnId)
+					return dockerSpawner.images.worker.start(message.spawnId)
 				});
 		},
 
