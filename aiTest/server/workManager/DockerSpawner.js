@@ -17,7 +17,11 @@ const redisOptions = {
 // }
 
 
-
+// async function test(){
+// 	await new Promise(function(){})
+// 	console.log('cat')
+// 	return 'test'
+// }
 
 
 // setTimeout(function(){
