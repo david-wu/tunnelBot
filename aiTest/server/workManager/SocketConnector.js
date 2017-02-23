@@ -10,7 +10,6 @@ const redisOptions = {
 }
 
 
-
 function SocketConnector(socketConnector={}){
 
 	_.defaults(socketConnector, {
