@@ -49,7 +49,7 @@ function DockerSpawner(dockerSpawner={}){
 		purgeContainers: async function(){
 			const dockerIds = await dockerSpawner.getDockerIds()
 			if(dockerIds){
-				console.log('purging docker instances:', dockerIds)
+				console.log('purging docker instances:', dockerIds, '..')
 				await execp(`docker rm -f ${dockerIds}`)
 				await dockerSpawner.ensurePurge()
 				console.log('docker instance purged')
@@ -96,9 +96,12 @@ function DockerSpawner(dockerSpawner={}){
 		},
 
 		attachRedisHandler(){
-			return redis.createClient(redisOptions.port, 'localhost')
-				.on('message', dockerSpawner.messageHandler)
-				.subscribe('spawnRequest');
+			return new Promise(function(resolve, reject){
+				redis.createClient(redisOptions.port, 'localhost')
+					.on('message', dockerSpawner.messageHandler)
+					.on('subscribe', resolve)
+					.subscribe('spawnRequest');
+			})
 		},
 
 		messageHandler: async function(channel, messageStr){
