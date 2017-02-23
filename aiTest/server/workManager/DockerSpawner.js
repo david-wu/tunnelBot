@@ -31,19 +31,23 @@ function DockerSpawner(dockerSpawner={}){
 			},
 		},
 
-		init(){
-			return dockerSpawner.initDocker()
+		init(options={}){
+			return dockerSpawner.initDocker(options.rebuild)
 				.then(dockerSpawner.images.redis.start)
 				.then(dockerSpawner.attachRedisHandler)
+				.catch(_.partial(console.log, 'failed to init dockerSpawner:'))
 		},
 
-		initDocker(){
-			return dockerSpawner.purgeContainers()
-				.then(dockerSpawner.prepareNetwork)
-				.then(dockerSpawner.images.redis.build)
-				.then(dockerSpawner.images.worker.build)
-				.catch(_.partial(console.log, 'failed to init docker:'))
-
+		async initDocker(rebuild=false){
+			await dockerSpawner.purgeContainers()
+			await dockerSpawner.prepareNetwork()
+			if(rebuild){
+				await dockerSpawner.deleteDockerImages()
+			}
+			console.log('building docker images..')
+			await dockerSpawner.images.redis.build()
+			await dockerSpawner.images.worker.build()
+			console.log('built docker images')
 		},
 
 		purgeContainers: async function(){
@@ -52,7 +56,7 @@ function DockerSpawner(dockerSpawner={}){
 				console.log('purging docker instances:', dockerIds, '..')
 				await execp(`docker rm -f ${dockerIds}`)
 				await dockerSpawner.ensurePurge()
-				console.log('docker instance purged')
+				console.log('purged docker instances')
 			}
 		},
 
@@ -63,6 +67,15 @@ function DockerSpawner(dockerSpawner={}){
 				await execp(`docker network create ${redisOptions.domain}`)
 			}
 			console.log('created docker network', redisOptions.domain);
+		},
+
+		deleteDockerImages: async function(){
+			console.log('deleting docker images..')
+			await [
+				execp('docker rmi -f worker_image;'),
+				execp('docker rmi -f redis;')
+			];
+			console.log('deleted docker images')
 		},
 
 		getDockerIds: async function(){

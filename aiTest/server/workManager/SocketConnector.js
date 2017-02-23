@@ -32,8 +32,9 @@ function SocketConnector(socketConnector={}){
 
 			setInterval(function(){
 				pub.publish(channelIn, JSON.stringify({
-					payload: 'console.log(\'cat\', Math.random())'
+					payload: 'console.log(\'cat\', Math.random())\n'
 				}))
+				console.log('sending payload', Date.now())
 			}, 5000)
 
 		}

@@ -12,11 +12,18 @@ const redisOptions = {
 	domain: 'redis',
 }
 
+const cpCommands = {
+	node: {
+		command: 'node',
+		options: ['-i']
+	}
+}
+
 function CpSpawner(cpSpawner={}){
 	_.defaults(cpSpawner, {
 
 		init(){
-			return cpSpawner.spawnCp('node')
+			return cpSpawner.spawnCp(cpCommands.node)
 				.then(cpSpawner.attachRedisHandler)
 		},
 
@@ -25,20 +32,23 @@ function CpSpawner(cpSpawner={}){
 				cpSpawner.redisPub = redis.createClient(redisOptions.port, redisOptions.domain);
 				cpSpawner.redisSub = redis.createClient(redisOptions.port, redisOptions.domain);
 				cpSpawner.redisSub.on('message', cpSpawner.messageHandler)
+				cpSpawner.redisSub.on('subscribe', resolve)
 				cpSpawner.redisSub.subscribe(channelIn)
-				resolve();
 			})
 		},
 
 		messageHandler(channel, messageStr){
+			console.log('get message', Date.now())
 			const message = JSON.parse(messageStr);
 			cpSpawner.cp.stdin.write(message.payload);
-			cpSpawner.cp.stdin.end();
+			if(message.end){
+				cpSpawner.cp.stdin.end();
+			}
 		},
 
-		spawnCp(command){
+		spawnCp(cpCommand){
 			return new Promise(function(resolve, reject){
-				cpSpawner.cp = spawn(command);
+				cpSpawner.cp = spawn(cpCommand.command, cpCommand.options);
 				cpSpawner.cp.stdin.setEncoding('utf-8');
 				cpSpawner.cp.stdout.on('data', cpSpawner.cpOutHandler);
 				cpSpawner.cp.stderr.on('data', cpSpawner.cpErrHandler);

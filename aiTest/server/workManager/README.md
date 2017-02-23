@@ -18,7 +18,8 @@ docker rm -f $(docker ps -a -q);
 # Delete all images
 docker rmi -f $(docker images -q);
 
-
+# Delete worker image
+docker rmi -f worker_image;
 
 docker pull redis
 docker run --name some-redis -d redis

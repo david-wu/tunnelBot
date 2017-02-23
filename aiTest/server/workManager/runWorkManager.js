@@ -8,6 +8,9 @@ const SocketConnector = require('./SocketConnector.js');
 const dockerSpawner = DockerSpawner();
 const socketConnector = SocketConnector();
 
-dockerSpawner.init()
+dockerSpawner
+	.init({
+		// rebuild: true
+	})
 	.then(socketConnector.init);
 
