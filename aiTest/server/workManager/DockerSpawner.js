@@ -25,8 +25,8 @@ function DockerSpawner(dockerSpawner={}){
 			},
 			worker: {
 				build: _.partial(execp, `docker build -t worker_image -f ${dockerFilePath} ${dockerContext}`),
-				start: function(instanceId){
-					return execp(`docker run -d -e "INSTANCE_ID=${instanceId}" --net "${redisOptions.domain}" --link redis-container:redis --restart=always --name worker_${instanceId} worker_image`)
+				start: function(instanceId, cpType){
+					return execp(`docker run -d -e "INSTANCE_ID=${instanceId}" -e "CP_TYPE=${cpType}" --net "${redisOptions.domain}" --link redis-container:redis --restart=always --name worker_${instanceId} worker_image`)
 				}
 			},
 		},
@@ -42,12 +42,12 @@ function DockerSpawner(dockerSpawner={}){
 			await dockerSpawner.purgeContainers()
 			await dockerSpawner.prepareNetwork()
 			if(rebuild){
+				console.log('rebuilding docker images..')
 				await dockerSpawner.deleteDockerImages()
+				await dockerSpawner.images.redis.build()
+				await dockerSpawner.images.worker.build()
+				console.log('rebuilt docker images')
 			}
-			console.log('building docker images..')
-			await dockerSpawner.images.redis.build()
-			await dockerSpawner.images.worker.build()
-			console.log('built docker images')
 		},
 
 		purgeContainers: async function(){
@@ -70,12 +70,11 @@ function DockerSpawner(dockerSpawner={}){
 		},
 
 		deleteDockerImages: async function(){
-			console.log('deleting docker images..')
-			await [
+			return Promise.all([
 				execp('docker rmi -f worker_image;'),
 				execp('docker rmi -f redis;')
-			];
-			console.log('deleted docker images')
+			])
+				.catch(_.noop);
 		},
 
 		getDockerIds: async function(){
@@ -120,7 +119,7 @@ function DockerSpawner(dockerSpawner={}){
 		messageHandler: async function(channel, messageStr){
 			console.log('dockerSpawner got:', channel, messageStr)
 			const message = JSON.parse(messageStr);
-			await dockerSpawner.images.worker.start(message.spawnId);
+			await dockerSpawner.images.worker.start(message.spawnId, message.cpType);
 		},
 
 	});

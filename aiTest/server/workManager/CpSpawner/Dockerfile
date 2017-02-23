@@ -8,6 +8,9 @@ RUN apt-get install -y nodejs
 RUN apt-get install -y nodejs-legacy
 RUN apt-get install -y npm
 
+RUN apt-get install -y ruby
+RUN apt-get install -y irb
+
 ADD . .
 
 RUN npm install

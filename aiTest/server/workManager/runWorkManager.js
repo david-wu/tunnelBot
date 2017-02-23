@@ -10,7 +10,7 @@ const socketConnector = SocketConnector();
 
 dockerSpawner
 	.init({
-		// rebuild: true
+		rebuild: true
 	})
 	.then(socketConnector.init);
 

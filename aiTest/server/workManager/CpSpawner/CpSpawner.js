@@ -3,6 +3,7 @@ const redis = require('redis')
 const spawn = require('child_process').spawn
 const guid = require('guid')
 
+const cpType = process.env.CP_TYPE
 const instanceId = process.env.INSTANCE_ID;
 const channelIn = instanceId+'_IN'
 const channelOut = instanceId+'_OUT'
@@ -16,6 +17,9 @@ const cpCommands = {
 	node: {
 		command: 'node',
 		options: ['-i']
+	},
+	ruby: {
+		command: 'irb'
 	}
 }
 
@@ -23,14 +27,14 @@ function CpSpawner(cpSpawner={}){
 	_.defaults(cpSpawner, {
 
 		init(){
-			return cpSpawner.spawnCp(cpCommands.node)
+			cpSpawner.redisPub = redis.createClient(redisOptions.port, redisOptions.domain);
+			cpSpawner.redisSub = redis.createClient(redisOptions.port, redisOptions.domain);
+			return cpSpawner.spawnCp(cpCommands[cpType])
 				.then(cpSpawner.attachRedisHandler)
 		},
 
 		attachRedisHandler(){
 			return new Promise(function(resolve, reject){
-				cpSpawner.redisPub = redis.createClient(redisOptions.port, redisOptions.domain);
-				cpSpawner.redisSub = redis.createClient(redisOptions.port, redisOptions.domain);
 				cpSpawner.redisSub.on('message', cpSpawner.messageHandler)
 				cpSpawner.redisSub.on('subscribe', resolve)
 				cpSpawner.redisSub.subscribe(channelIn)
@@ -38,7 +42,6 @@ function CpSpawner(cpSpawner={}){
 		},
 
 		messageHandler(channel, messageStr){
-			console.log('get message', Date.now())
 			const message = JSON.parse(messageStr);
 			cpSpawner.cp.stdin.write(message.payload);
 			if(message.end){
@@ -48,6 +51,7 @@ function CpSpawner(cpSpawner={}){
 
 		spawnCp(cpCommand){
 			return new Promise(function(resolve, reject){
+				cpSpawner.ready = false;
 				cpSpawner.cp = spawn(cpCommand.command, cpCommand.options);
 				cpSpawner.cp.stdin.setEncoding('utf-8');
 				cpSpawner.cp.stdout.on('data', cpSpawner.cpOutHandler);
@@ -58,7 +62,7 @@ function CpSpawner(cpSpawner={}){
 			})
 		},
 
-		publishPayload(type, payload){
+		publishPayload(type, payload={}){
 			const message = {
 				type: type,
 				payload: payload.toString()
@@ -67,6 +71,10 @@ function CpSpawner(cpSpawner={}){
 		},
 
 		cpOutHandler(payload){
+			if(!cpSpawner.ready){
+				cpSpawner.publishPayload('ready', payload);
+				cpSpawner.ready = true;
+			}
 			cpSpawner.publishPayload('stdOut', payload);
 		},
 
