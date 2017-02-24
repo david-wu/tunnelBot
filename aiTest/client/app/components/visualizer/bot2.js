@@ -1,6 +1,6 @@
-// types: 'berries', 'target', 'player'
+// types: 'target', 'player', 'berries'
+// position: {x,y}
 // size: 0
-// position: x,y
 
 module.exports = function(board){
 

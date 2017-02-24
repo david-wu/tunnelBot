@@ -22,9 +22,8 @@ function linkFunc($timeout, scope, element, attrs){
 
     const Renderer = require('./Renderer.js');
     const Board = require('./models/Board.js');
-    const bot = require('./bot.js');
-    const myBot = require('./myBot.js');
-
+    const bot1 = require('./bot1.js');
+    const bot2 = require('./bot2.js');
 
     const renderer = new Renderer({
         width: element.innerWidth(),
@@ -35,34 +34,24 @@ function linkFunc($timeout, scope, element, attrs){
         pos: {
             x: -3500,
         }
-    });
+    })
     const board2 = new Board({
         pos: {
             x: 3500,
         }
-    });
-
+    })
 
     renderer.setBoard(board1)
     renderer.setBoard(board2)
 
-    board1.createGrid();
-    board1.setMeshPositionDeep();
+    bot1(board1)
+    bot2(board2)
 
-    board2.createGrid();
-    board2.setMeshPositionDeep();
-
-    bot(board1);
-    myBot(board2);
+    board1.restartGame()
+    board2.restartGame()
 
     renderer.dramaticEntry()
         .then(function(){
-            renderer.attachControls();
+            renderer.attachControls()
         })
-
-    setTimeout(function(){
-        board1.requestMove();
-        board2.requestMove();
-    }, 4000)
-
 }

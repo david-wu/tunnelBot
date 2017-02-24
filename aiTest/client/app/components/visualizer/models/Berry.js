@@ -27,7 +27,6 @@ class Berry extends Renderable{
 
 		const radius = Math.pow(this.size, 0.5)*20;
 
-
 		_.extend(element.style, {
 			'width': radius+'px',
 			'height': radius+'px',
@@ -35,9 +34,6 @@ class Berry extends Renderable{
 			'background-color': this.color
 		})
 
-		var number = document.createElement( 'div' );
-		number.textContent = this.name;
-		element.appendChild(number);
 		const mesh = this.mesh = new THREE.CSS3DObject(element)
 
 		const board = this.getRoot('Board');

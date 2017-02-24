@@ -15,12 +15,6 @@ class Board extends Renderable{
 			turn: 0,
 			width: 20,
 			height: 20,
-			loc: {
-				x: 0,
-				y: 0,
-				z: 0,
-				angel: 0
-			},
 		});
 	}
 
@@ -32,7 +26,7 @@ class Board extends Renderable{
 					y: y,
 				};
 				return new Berry({
-					size: (_.random(1)*_.random(1)*_.random(1))*50,
+					size: this.randomBerrySize(),
 					loc: loc,
 					pos: this.getPos(loc),
 				});
@@ -43,25 +37,6 @@ class Board extends Renderable{
 		this.setChildren(_.flatten(this.grid));
 	}
 
-	// createGrid(){
-	// 	this.grid = _.times(this.height, (y)=>{
-	// 		return _.times(this.width, (x)=>{
-	// 			const loc = {
-	// 				x: x,
-	// 				y: y,
-	// 			};
-	// 			return new Berry({
-	// 				size: this.randomBerrySize(),
-	// 				loc: loc,
-	// 				pos: this.getPos(loc),
-	// 			});
-	// 		});
-	// 	});
-	// 	this.seedPlayer();
-	// 	this.seedTarget();
-	// 	this.setChildren(_.flatten(this.grid));
-	// }
-
 	seedPlayer(){
 		const loc = this.randomLoc();
 		const player = new Player({
@@ -70,11 +45,7 @@ class Board extends Renderable{
 			pos: this.getPos(loc)
 		});
 		this.player = player;
-		this.setTile(loc, player);
-	}
-
-	locDist(loc1, loc2){
-		return Math.abs(loc1.x-loc2.x) + Math.abs(loc1.y-loc2.y);
+		this.setCell(loc, player);
 	}
 
 	// Need to first seedPlayer
@@ -84,25 +55,21 @@ class Board extends Renderable{
 		if(this.locDist(loc, this.player.loc) < minDist){
 			return this.seedTarget();
 		}
-		if(this.getTile(loc).type === 'player'){
-			return this.seedTarget();
-		}
-
 		const target = new Target({
 			size: 100,
 			loc: loc,
 			pos: this.getPos(loc)
 		});
 		this.target = target;
-		this.setTile(loc, target);
+		this.setCell(loc, target);
 	}
 
 	requestMove(){
 		this.once('move', this.moveHandler.bind(this))
-		this.emit('requestMove', this.getSimpleGrid());
+		this.emit('requestMove', this.getGridData());
 	}
 
-	getSimpleGrid(){
+	getGridData(){
 		return _.map(this.grid, function(row){
 			return _.map(row, function(cell){
 				return {
@@ -117,8 +84,9 @@ class Board extends Renderable{
 
 	moveHandler(moveKey){
 		if(!moveKey){return;}
-		this.movePlayer(moveKey);
 		this.removeAllListeners('move');
+
+		this.movePlayer(moveKey);
 
 		if(this.gameOver){
 			this.restartGame();
@@ -146,7 +114,6 @@ class Board extends Renderable{
 			this.requestMove();
 		}, 3000)
 		return;
-
 	}
 
 	isOutOfBounds(loc){
@@ -156,27 +123,28 @@ class Board extends Renderable{
 	movePlayer(moveKey){
 
 		const move = allMoves[moveKey]
-		if(!move){return;}
+		if(!move){return console.log('invalid key', moveKey);}
 
-		const newLoc = _.clone(this.player.loc);
-		newLoc.x += move.x
-		newLoc.y += move.y
+		const newLoc = {
+			x: this.player.loc.x + move.x,
+			y: this.player.loc.y + move.y,
+		}
+
 		if(this.isOutOfBounds(newLoc)){
 			return console.log('out of bounds, can not move to ', newLoc);
 		}
 
 		const target = this.getTile(newLoc)
 		if(target.type==='target'){
-			this.gameOver = {
+			return this.gameOver = {
 				state: 'playerWin'
 			};
-			return;
 		}
 		if(target.type==='berry'){
 			this.player.spentSize += target.size;
 			target.size = 0;
+			this.swapCells(target, this.player);
 
-			this.swapTiles(target, this.player);
 			setTimeout(()=>{
 				target.removeMesh();
 			}, 500)
@@ -192,18 +160,7 @@ class Board extends Renderable{
 		return this.grid[loc.y][loc.x];
 	}
 
-	swapTiles(obj1, obj2){
-		var loc1 = _.clone(obj1.loc);
-		var loc2 = _.clone(obj2.loc);
-
-		_.extend(obj2.loc, loc1);
-		_.extend(obj1.loc, loc2);
-
-		this.setTile(obj2.loc, obj2);
-		this.setTile(obj1.loc, obj1);
-	}
-
-	setTile(loc, obj){
+	setCell(loc, obj){
 		this.grid[loc.y][loc.x] = obj;
 	}
 
@@ -216,8 +173,20 @@ class Board extends Renderable{
  		}
 	}
 
+	swapCells(obj1, obj2){
+		var loc1 = _.clone(obj1.loc);
+		var loc2 = _.clone(obj2.loc);
+
+		_.extend(obj2.loc, loc1);
+		_.extend(obj1.loc, loc2);
+
+		this.setCell(obj2.loc, obj2);
+		this.setCell(obj1.loc, obj1);
+	}
+
 	randomBerrySize(){
-		return _.ceil(Math.pow(_.random(1,100), 3)/10000);
+		return _.random(1)*_.random(1)*_.random(1)*50;
+		// return _.ceil(Math.pow(_.random(1,100), 3)/10000);
 	}
 
 	randomLoc(){
@@ -227,36 +196,9 @@ class Board extends Renderable{
 		};
 	}
 
-	makeMesh(){
-		const element = document.createElement('div');
-
-		const radius = 5*20;
-
-
-		_.extend(element.style, {
-			'width': radius+'px',
-			'height': radius+'px',
-			'border-radius': radius+'px',
-			'background-color': this.color
-		})
-
-		var number = document.createElement( 'div' );
-		number.textContent = this.name;
-		element.appendChild(number);
-		const mesh = this.mesh = new THREE.CSS3DObject(element)
-
-		const board = this.getRoot('Board');
-		board.emit('newMesh', mesh);
-
-		return mesh;
+	locDist(loc1, loc2){
+		return Math.abs(loc1.x-loc2.x) + Math.abs(loc1.y-loc2.y);
 	}
-
-	setMeshPosition(){
-		this.mesh = this.mesh || this.makeMesh();
-		this.tweenToAbsPos();
-		this.tweenRotation();
-	}
-
 
 }
 

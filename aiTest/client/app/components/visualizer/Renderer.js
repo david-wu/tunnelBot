@@ -26,23 +26,6 @@ class Renderer{
 
 	}
 
-	setBoard(board){
-
-		board.renderer = this;
-		board.on('newMesh', (mesh)=>{
-			this.components.scene.add(mesh);
-		});
-		board.on('removeMesh', (mesh)=>{
-			this.components.scene.remove(mesh);
-		});
-		board.depthFirstTraverse((renderable)=>{
-			if(!renderable || !renderable.mesh){return;}
-			this.components.scene.add(renderable.mesh);
-		});
-
-		this.startRendering();
-	}
-
 	initComponents(){
 
 		const components = this.components = {
@@ -56,6 +39,24 @@ class Renderer{
 		components.renderer.setSize(this.width, this.height)
 		components.scene.add(components.camera)
 		return components;
+	}
+
+	setBoard(board){
+
+		board.renderer = this;
+		board.on('newMesh', (mesh)=>{
+			this.components.scene.add(mesh);
+		});
+		board.on('removeMesh', (mesh)=>{
+			this.components.scene.remove(mesh);
+		});
+		board.depthFirstTraverse((renderable)=>{
+			if(renderable && renderable.mesh){
+				this.components.scene.add(renderable.mesh);
+			}
+		});
+
+		this.startRendering();
 	}
 
 	attachControls(){
