@@ -14,7 +14,13 @@ class Board extends Renderable{
 		_.defaults(this, {
 			turn: 0,
 			width: 20,
-			height: 20
+			height: 20,
+			loc: {
+				x: 0,
+				y: 0,
+				z: 0,
+				angel: 0
+			},
 		});
 	}
 
@@ -220,6 +226,37 @@ class Board extends Renderable{
 			y: _.random(0, this.height-1)
 		};
 	}
+
+	makeMesh(){
+		const element = document.createElement('div');
+
+		const radius = 5*20;
+
+
+		_.extend(element.style, {
+			'width': radius+'px',
+			'height': radius+'px',
+			'border-radius': radius+'px',
+			'background-color': this.color
+		})
+
+		var number = document.createElement( 'div' );
+		number.textContent = this.name;
+		element.appendChild(number);
+		const mesh = this.mesh = new THREE.CSS3DObject(element)
+
+		const board = this.getRoot('Board');
+		board.emit('newMesh', mesh);
+
+		return mesh;
+	}
+
+	setMeshPosition(){
+		this.mesh = this.mesh || this.makeMesh();
+		this.tweenToAbsPos();
+		this.tweenRotation();
+	}
+
 
 }
 

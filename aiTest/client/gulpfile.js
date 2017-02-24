@@ -8,10 +8,10 @@ const concat = require('gulp-concat');
 const autoprefixer = require('gulp-autoprefixer');
 
 const configs = {
-    client: './**/*.*',
-    sass: './**/*.{css,scss}',
-    index: './index.html',
-    assets: './assets/**/*.*',
+    client: './app/**/*.*',
+    sass: './app/**/*.{css,scss}',
+    index: './app/index.html',
+    assets: './app/assets/**/*.*',
     dist: './dist',
 };
 
