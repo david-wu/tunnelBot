@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const redis = require('redis')
 const spawn = require('child_process').spawn
-const guid = require('guid')
 
 const cpType = process.env.CP_TYPE
 const instanceId = process.env.INSTANCE_ID;
@@ -43,10 +42,18 @@ function CpSpawner(cpSpawner={}){
 
 		messageHandler(channel, messageStr){
 			const message = JSON.parse(messageStr);
-			cpSpawner.cp.stdin.write(message.payload);
-			if(message.end){
-				cpSpawner.cp.stdin.end();
+
+			if(message.type === 'kill'){
+				return cpSpawner.destroy();
 			}
+
+			cpSpawner.cp.stdin.write(message.payload);
+		},
+
+		destroy(){
+			cpSpawner.cp.kill();
+	        cpSpawner.redisSub.quit();
+	        cpSpawner.redisPub.quit();
 		},
 
 		spawnCp(cpCommand){
@@ -65,7 +72,7 @@ function CpSpawner(cpSpawner={}){
 		publishPayload(type, payload={}){
 			const message = {
 				type: type,
-				payload: payload.toString()
+				payload: payload && payload.toString()
 			};
 			cpSpawner.redisPub.publish(channelOut, JSON.stringify(message));
 		},
@@ -82,12 +89,12 @@ function CpSpawner(cpSpawner={}){
 			cpSpawner.publishPayload('stdErr', payload);
 		},
 
-		cpCloseHandler(payload){
-			cpSpawner.publishPayload('close', payload);
+		cpCloseHandler(){
+			console.log('close event');
 		},
 
-		cpExitHandler(payload){
-			cpSpawner.publishPayload('exit', payload);
+		cpExitHandler(){
+			console.log('exit event');
 		},
 
 	});

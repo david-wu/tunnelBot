@@ -7,10 +7,7 @@ docker exec -i -t worker_0 /bin/bash
 
 
 
-1.  install docker
-
-
-#!/bin/bash
+1.  install docker (curl -sSL https://get.docker.com/ | sh)
 
 # Delete all containers
 docker rm -f $(docker ps -a -q);

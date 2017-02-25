@@ -26,7 +26,7 @@ function DockerSpawner(dockerSpawner={}){
 			worker: {
 				build: _.partial(execp, `docker build -t worker_image -f ${dockerFilePath} ${dockerContext}`),
 				start: function(instanceId, cpType){
-					return execp(`docker run -d -e "INSTANCE_ID=${instanceId}" -e "CP_TYPE=${cpType}" --net "${redisOptions.domain}" --link redis-container:redis --restart=always --name worker_${instanceId} worker_image`)
+					return execp(`docker run -d -e "INSTANCE_ID=${instanceId}" -e "CP_TYPE=${cpType}" --net "${redisOptions.domain}" --link redis-container:redis --name worker_${instanceId} worker_image`)
 				}
 			},
 		},
@@ -112,13 +112,13 @@ function DockerSpawner(dockerSpawner={}){
 		attachRedisHandler(){
 			return new Promise(function(resolve, reject){
 				redis.createClient(redisOptions.port, 'localhost')
-					.on('message', dockerSpawner.messageHandler)
+					.on('message', dockerSpawner.redisMessageHandler)
 					.on('subscribe', resolve)
 					.subscribe('spawnRequest');
 			})
 		},
 
-		messageHandler: async function(channel, messageStr){
+		redisMessageHandler: async function(channel, messageStr){
 			console.log('dockerSpawner got:', channel, messageStr)
 			const message = JSON.parse(messageStr);
 			await dockerSpawner.images.worker.start(message.spawnId, message.cpType);

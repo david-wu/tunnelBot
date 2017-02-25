@@ -1,22 +1,22 @@
-const http = require('http');
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const MongoClient = require('mongodb').MongoClient;
+const http = require('http')
+const express = require('express')
+const cors = require('cors')
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const MongoClient = require('mongodb').MongoClient
+const Io = require('socket.io')
 
-const api = require('./api');
-const Router = require('./Router.js');
-const DockerSpawner = require('./CpManager/DockerSpawner.js');
-const SocketConnector = require('./CpManager/SocketConnector.js');
+const api = require('./api')
+const DockerSpawner = require('./CpManager/DockerSpawner.js')
+const SocketConnector = require('./CpManager/SocketConnector.js')
 
 function App(app={}){
 
 	_.defaults(app, {
+		mongo: {},
 		port: 10001,
 		express: express(),
-		mongo: {}
-	});
+	})
 
 	_.defaults(app.mongo, {
 		domain: 'localhost',
@@ -26,17 +26,17 @@ function App(app={}){
 		getUrl: function(){
 			return `mongodb://${this.domain}:${this.port}/${this.dbName}`
 		},
-	});
+	})
 
 	_.defaults(app, {
 
 		async init(){
-			app.mongo.db = await app.connectMongo();
-			app.strapMiddleware();
-			app.mount(app.express);
-			app.server = http.createServer(app.express);
-			await app.attachSocketConnector();
-			await app.serve(app.port);
+			app.mongo.db = await app.connectMongo()
+			app.strapMiddleware()
+			app.mount(app.express)
+			app.server = http.createServer(app.express)
+			await app.attachSocketConnector()
+			await app.serve(app.port)
 			console.log('serving on', app.port)
 		},
 
@@ -82,62 +82,43 @@ function App(app={}){
 		},
 
 		async attachSocketConnector(){
-
-
 			await DockerSpawner().init({
 				// rebuild: true
 			})
+			const io = Io(app.server);
+			io.on('connection', app.spawnConnection)
+		},
 
-			// const SocketIo = require('socket.io');
-			const io = require('socket.io')(app.server);
-			io.on('connection', function(connection){
+		spawnConnection(connection){
+			const socketConnector = SocketConnector()
 
-				const socketConnector = SocketConnector();
-				let spawnPromise = socketConnector.init();
-
-				connection.on('message', function(message){
+			let spawnPromise = Promise.resolve();
+			connection.on('message', function(message){
+				if(message.type === 'spawn'){
+					spawnPromise = socketConnector.init(message.payload.cpType)
+				}else{
 					spawnPromise = spawnPromise.then(function(){
-						console.log('sending to cp:', message);
 						socketConnector.sendMessage(message);
 					})
-				});
-
-				socketConnector.messageHandler = function(message){
-					console.log('returning', message)
-					connection.send(message)
 				}
+			});
 
+			socketConnector.messageHandler = function(message){
+				connection.send(message)
+			}
+
+			connection.on('disconnect', function(){
+				spawnPromise.then(function(){
+					socketConnector.sendMessage({
+						type: 'kill',
+					})
+				})
 			})
-
-			// const Ws = require('ws');
-			// app.wss = new Ws.Server({
-			// 	server: app.server,
-			// 	path: '/ws'
-			// });
-
-			// app.wss.on('connection', function(connection){
-
-			// 	const socketConnector = SocketConnector();
-			// 	let spawnPromise = socketConnector.init();
-
-			// 	ws.on('message', function incoming(message) {
-			// 		console.log('received:', message);
-			// 		spawnPromise = spawnPromise.then(function(){
-			// 			socketConnector.sendInput(message.payload);
-			// 		})
-			// 	});
-
-			// 	socketConnector.messageHandler = function(messageStr){
-			// 		const message = JSON.parse(messageStr);
-			// 		ws.send(message)
-			// 	}
-			// })
 
 		},
 
 		serve(port=app.port){
 			return new Promise((res, rej)=>{
-				// app.server = http.createServer(app.express);
 				app.server.listen(port, (err, response)=>{
 					if(err){
 						rej(err)
@@ -153,6 +134,4 @@ function App(app={}){
 	return app;
 }
 
-
-App().init();
-
+module.exports = App;

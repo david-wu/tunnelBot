@@ -11,44 +11,35 @@ require('./components/visualizer/visualizer.directive.js');
 
 
 
-var socket = require('socket.io-client')('http://localhost:10001');
+var socket = require('socket.io-client')();
+
+var sendInterval
 
 socket.on('connect', function(){
-	console.log('connection')
-	setInterval(function(){
-		console.log("emitting")
+	console.log('server connected!')
+
+	socket.send({
+		type: 'spawn',
+		payload: {
+			cpType: 'ruby',
+		},
+	})
+
+	sendInterval = setInterval(function(){
 		socket.send({
 			type: 'stdIn',
-			time: _.round((Date.now()-1487972972793)/1000),
-			payload: 'console.log(\'yess\')\n'
+			payload: 'p rand(0...10)\n'
 		});
-	},3000)
+	}, 3000)
 
 });
 
-socket.on('event', function(data){
-	console.log('got', data)
+socket.on('message', function(message){
+	console.log('message', message)
 });
 
-socket.on('message', function(data){
-	console.log('message', data)
+socket.on('disconnect', function(){
+	console.log('server down!')
+	clearInterval(sendInterval);
 });
 
-console.log('na')
-
-socket.on('disconnect', function(){});
-
-
-
-// const WebSocket = require('ws');
-
-// const ws = new WebSocket('ws://localhost:10001/ws');
-
-// ws.on('open', function open() {
-//   ws.send('something');
-// });
-
-// ws.on('message', function incoming(data, flags) {
-//   // flags.binary will be set if a binary data is received.
-//   // flags.masked will be set if the data was masked.
-// });
