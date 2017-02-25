@@ -1,8 +1,7 @@
 const _ = require('lodash');
 const redis = require('redis');
 const guid = require('guid');
-const socketIo = require('socket.io');
-
+const SocketIo = require('socket.io');
 
 const redisOptions = {
 	domain: 'redis',
@@ -17,17 +16,16 @@ function SocketConnector(socketConnector={}){
 
 		init: async function(){
 			await socketConnector.spawn('node');
-			// socketConnector.sendInput('console.log(\'first\', Math.random())\n');
-			setInterval(function(){
-				socketConnector.sendInput('console.log(\'cat\', Math.random())\n');
-				// socketConnector.sendInput('p 34\n');
-
-			}, 5000)
+			// socketConnector.sendMessage('console.log(\'first\', Math.random())\n');
+			// setInterval(function(){
+			// 	socketConnector.sendMessage('console.log(\'cat\', Math.random())\n');
+			// 	// socketConnector.sendMessage('p 34\n');
+			// }, 5000)
 		},
 
-		sendInput: function(payload){
+		sendMessage: function(message){
 			socketConnector.pub.publish(socketConnector.channelIn, JSON.stringify({
-				payload: payload
+				payload: message.payload
 			}))
 		},
 

@@ -1,13 +1,3 @@
-
-global._ = require('lodash');
-global.rootRequire = function(path){
-	return require(__dirname+'/'+path);
-};
-require.extensions['.txt'] = function(module, filename){
-    module.exports = fs.readFileSync(filename, 'utf8');
-};
-
-const fs = require('fs');
 const http = require('http');
 const express = require('express');
 const cors = require('cors');
@@ -17,87 +7,152 @@ const MongoClient = require('mongodb').MongoClient;
 
 const api = require('./api');
 const Router = require('./Router.js');
+const DockerSpawner = require('./CpManager/DockerSpawner.js');
+const SocketConnector = require('./CpManager/SocketConnector.js');
 
-class App extends Router{
+function App(app={}){
 
-	constructor(options){
-		super(options);
-		_.extend(this, options);
-		_.defaults(this, {
-			port: 10001,
-			express: express(),
-			mongo: {}
-		});
+	_.defaults(app, {
+		port: 10001,
+		express: express(),
+		mongo: {}
+	});
 
-		_.defaults(this.mongo, {
-			domain: 'localhost',
-			port: '27017',
-			dbName: 'myproject',
-			getUrl: function(){
-				return `mongodb://${this.domain}:${this.port}/${this.dbName}`
-			},
-			db: undefined,
-		});
-	}
+	_.defaults(app.mongo, {
+		domain: 'localhost',
+		port: '27017',
+		dbName: 'myproject',
+		db: undefined,
+		getUrl: function(){
+			return `mongodb://${this.domain}:${this.port}/${this.dbName}`
+		},
+	});
 
-	init(){
-		return this.connectMongo()
-			.then((app, db)=>{
-				this.strapMiddleware();
-				this.mount(this, this.express);
-				return this.serve();
-			})
-			.then(console.log)
-			.catch(console.log);
-	}
+	_.defaults(app, {
 
-	connectMongo(){
-		return new Promise((resolve, reject)=>{
-			MongoClient.connect(this.mongo.getUrl(), (err, db)=>{
-				if(err){
-					return reject(err);
-				}
-				this.mongo.db = db;
-				resolve(this, db);
+		async init(){
+			app.mongo.db = await app.connectMongo();
+			app.strapMiddleware();
+			app.mount(app.express);
+			app.server = http.createServer(app.express);
+			await app.attachSocketConnector();
+			await app.serve(app.port);
+			console.log('serving on', app.port)
+		},
+
+		connectMongo(){
+			return new Promise((resolve, reject)=>{
+				MongoClient.connect(app.mongo.getUrl(), function(err, db){
+					if(err){
+						reject(err)
+					}else{
+						resolve(db);
+					}
+				});
 			});
-		});
-	}
+		},
 
-	strapMiddleware(){
-	    this.express.use(bodyParser.urlencoded({extended:true}));
-	    this.express.use(bodyParser.json());
-	    this.express.use(cookieParser());
-	    this.express.use(cors());
-	}
+		strapMiddleware(){
+		    app.express.use(bodyParser.urlencoded({extended:true}));
+		    app.express.use(bodyParser.json());
+		    app.express.use(cookieParser());
+		    app.express.use(cors());
+		},
 
-	getRoutes(app){
-		return [
-			{
-				method: 'use',
-				endPoint: '/',
-				handler: express.static('../client/dist')
-			},
-			{
-				method: 'use',
-				endPoint: '/api',
-				handler: api.mount(app)
-			}
-		]
-	}
+		// Returns an express router
+		mount(parentRouter = express()){
+			return _.reduce(app.getRoutes(app), function(router, route){
+				return router[route.method](route.endPoint, route.handler)
+			}, parentRouter)
+		},
 
-	serve(port=this.port){
-		return new Promise((res, rej)=>{
-			const server = http.createServer(this.express);
-			server.listen(port, (err, response)=>{
-				if(err){
-					rej(err)
-				}else{
-					res('listening on '+this.port, response);
+		getRoutes(app){
+			return [
+				{
+					method: 'use',
+					endPoint: '/',
+					handler: express.static('../client/dist')
+				},
+				{
+					method: 'use',
+					endPoint: '/api',
+					handler: api.mount(app)
 				}
+			]
+		},
+
+		async attachSocketConnector(){
+
+
+			await DockerSpawner().init({
+				// rebuild: true
 			})
-		})
-	}
+
+			// const SocketIo = require('socket.io');
+			const io = require('socket.io')(app.server);
+			io.on('connection', function(connection){
+
+				const socketConnector = SocketConnector();
+				let spawnPromise = socketConnector.init();
+
+				connection.on('message', function(message){
+					spawnPromise = spawnPromise.then(function(){
+						console.log('sending to cp:', message);
+						socketConnector.sendMessage(message);
+					})
+				});
+
+				socketConnector.messageHandler = function(message){
+					console.log('returning', message)
+					connection.send(message)
+				}
+
+			})
+
+			// const Ws = require('ws');
+			// app.wss = new Ws.Server({
+			// 	server: app.server,
+			// 	path: '/ws'
+			// });
+
+			// app.wss.on('connection', function(connection){
+
+			// 	const socketConnector = SocketConnector();
+			// 	let spawnPromise = socketConnector.init();
+
+			// 	ws.on('message', function incoming(message) {
+			// 		console.log('received:', message);
+			// 		spawnPromise = spawnPromise.then(function(){
+			// 			socketConnector.sendInput(message.payload);
+			// 		})
+			// 	});
+
+			// 	socketConnector.messageHandler = function(messageStr){
+			// 		const message = JSON.parse(messageStr);
+			// 		ws.send(message)
+			// 	}
+			// })
+
+		},
+
+		serve(port=app.port){
+			return new Promise((res, rej)=>{
+				// app.server = http.createServer(app.express);
+				app.server.listen(port, (err, response)=>{
+					if(err){
+						rej(err)
+					}else{
+						res(response);
+					}
+				})
+			})
+		},
+
+	})
+
+	return app;
 }
 
-new App().init();
+
+App().init();
 

@@ -78,9 +78,11 @@ function DockerSpawner(dockerSpawner={}){
 		},
 
 		getDockerIds: async function(){
-			const dockerIds = await execp('docker ps -a -q')
+			let dockerIds = await execp('docker ps -a -q')
 			if(dockerIds){
-				return dockerIds.replace('\n', ' ')
+				dockerIds = dockerIds.split('\n');
+				dockerIds = dockerIds.join(' ');
+				return dockerIds
 			}
 		},
 
