@@ -83,13 +83,13 @@ function App(app={}){
 
 		async attachSocketConnector(){
 			await DockerSpawner().init({
-				// rebuild: true
+				rebuild: true
 			})
 			const io = Io(app.server);
-			io.on('connection', app.spawnConnection)
+			io.on('connection', app.spawnConnector)
 		},
 
-		spawnConnection(connection){
+		spawnConnector(connection){
 			const socketConnector = SocketConnector()
 
 			let spawnPromise = Promise.resolve();

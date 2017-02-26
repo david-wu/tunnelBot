@@ -185,8 +185,8 @@ class Board extends Renderable{
 	}
 
 	randomBerrySize(){
-		return _.random(1)*_.random(1)*_.random(1)*50;
-		// return _.ceil(Math.pow(_.random(1,100), 3)/10000);
+		// return _.random(1)*_.random(1)*_.random(1)*50;
+		return _.ceil(Math.pow(_.random(1,100), 3)/10000);
 	}
 
 	randomLoc(){
