@@ -6,8 +6,9 @@
 	</head>
 	<body ng-app="Main" ng-controller="mainController" ng-jq="$">
 
-		<div visualizer custom-bot="note.content"></div>
-			<div note-editor note="note"></div>
+		<!-- <div visualizer custom-bot="note.content"></div> -->
+			<!-- <div note-editor note="note"></div> -->
+			<div terminal></div>
 
 <!-- 		<div class="flex right-bar" ng-class="{'expanded': noteExpanded}" style="flex-direction: column; height: 100%;">
 			<div class="flex" style="justify-content:space-around; min-height:50px; align-items: center;">
@@ -20,5 +21,9 @@
 
 		<script src="/ace.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/bundle.js"></script>
+
+		<script src="jquery.terminal.min.js"></script>
+		<link href="jquery.terminal.min.css" rel="stylesheet"/>
+
 	</body>
 </html>
