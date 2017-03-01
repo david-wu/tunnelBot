@@ -13,6 +13,7 @@ docker exec -i -t worker_0 /bin/bash
 2.  install mongo
 	`brew install mongodb`
 	http://treehouse.github.io/installation-guides/mac/mongo-mac.html
+	https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 
 # Delete all containers
 docker rm -f $(docker ps -a -q);

@@ -44,9 +44,12 @@ function DockerSpawner(dockerSpawner={}){
 			await dockerSpawner.purgeContainers()
 			await dockerSpawner.prepareNetwork()
 			if(rebuild){
-				console.log('rebuilding worker image..')
-				await dockerSpawner.rebuildWorkerImage()
-				console.log('rebuilt worker image')
+				console.log('rebuilding docker images..')
+				await [
+					dockerSpawner.rebuildWorkerImage(),
+					dockerSpawner.rebuildRedisImage(),
+				]
+				console.log('rebuilt docker images')
 			}
 		},
 
@@ -73,6 +76,12 @@ function DockerSpawner(dockerSpawner={}){
 			return dockerSpawner.images.worker.delete()
 				.catch(_.noop)
 				.then(dockerSpawner.images.worker.build)
+		},
+
+		rebuildRedisImage: async function(){
+			return dockerSpawner.images.redis.delete()
+				.catch(_.noop)
+				.then(dockerSpawner.images.redis.build)
 		},
 
 		getDockerIds: async function(){
