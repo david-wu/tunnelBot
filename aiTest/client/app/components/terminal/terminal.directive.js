@@ -1,29 +1,81 @@
-function TerminalController(scope, $q){
+function linkFunc($q, scope, element){
 
-	var socket = require('socket.io-client')();
-
-	var sendInterval
-
+	var Io = require('socket.io-client');
 
 	_.defaults(scope, {
 
-		loaded: function(){
-			return false;
+		cpType: 'node',
+		socket: undefined,
+		termContainer: element.find('.terminal-container'),
+
+		cpTypes: {
+			node: {
+				greetings: 'Interactive JavaScript',
+				prompt: 'js> ',
+			},
+			ruby: {
+				greetings: 'Interactive Ruby',
+				prompt: 'ruby> '
+			},
+			python: {
+				greetings: 'python',
+				prompt: 'python> '
+			}
 		},
 
-		connectHandler: function(){
+		connect: function(){
+			if(scope.socket){
+				return $q.resolve(scope.socket)
+			}
+			return $q(function(resolve, reject){
+				var socket = Io();
+				socket.on('connect', function(){
+					scope.attachHandlers(socket);
+					resolve(scope.socket = socket)
+				})
+			})
+		},
 
+		attachHandlers: function(socket){
+			socket.on('message', scope.messageHandler)
+			socket.on('disconnect', scope.disconnectHandler);
+			return socket;
+		},
+
+		spawn: function(socket){
 			socket.send({
 				type: 'spawn',
 				payload: {
-					cpType: 'ruby',
+					cpType: scope.cpType,
 				},
 			})
-			scope.showTerminal();
+			return socket;
+		},
+
+		showTerminal: function(socket){
+			if(!scope.cpType){return;}
+			var terminalOptions = scope.cpTypes[scope.cpType];
+			_.defaults(terminalOptions, {
+				height: 400
+			})
+
+			scope.termContainer.empty();
+			scope.termEl = $('<div/>');
+			scope.termContainer.append(scope.termEl);
+
+			scope.termEl.terminal(function(command, terminal) {
+				if(command === ''){
+					return terminal.echo('');
+				}
+				scope.currentTerminal = terminal
+	        	socket.send({
+	        		type: 'stdIn',
+	        		payload: command+'\n'
+	        	});
+		    }, terminalOptions);
 		},
 
 		messageHandler: function(message){
-			console.log('message', message)
 			if(!scope.currentTerminal){return;}
 			if(message.type === 'stdOut'){
 				scope.currentTerminal.echo(message.payload);
@@ -34,51 +86,34 @@ function TerminalController(scope, $q){
 			console.log('server down!')
 		},
 
-		showTerminal: function(){
-
-			var terminal = $('.terminal').terminal(function(command, terminal) {
-				if(command === ''){
-					return terminal.echo('');
-				}
-				scope.currentTerminal = terminal
-	        	socket.send({
-	        		type: 'stdIn',
-	        		payload: command+'\n'
-	        	});
-		    }, {
-		        greetings: 'Ruby Interpreter',
-		        name: 'ruby_demo',
-		        height: 400,
-		        prompt: 'ruby> '
-		    });
-		}
-
 	})
 
-	var currentEntry = Promise.resolve()
-	socket.on('connect', scope.connectHandler)
-	socket.on('message', scope.messageHandler)
-	socket.on('disconnect', scope.disconnectHandler);
-
+	scope.$watch('cpType', function(cpType){
+		scope.connect()
+			.then(scope.spawn)
+			.then(scope.showTerminal)
+			.catch(console.log)
+	})
 }
-TerminalController.$inject = ['$scope', '$q'];
 
-function linkFunc(){
+// TerminalController.$inject = ['$scope', '$q'];
 
-}
+// function linkFunc(){
+
+// }
 
 angular.module('Main')
-	.controller('TerminalController', TerminalController)
-	.directive('terminal', function(){
-		return {
-            scope: {
-                onDone: '=',
-                wizardName: '=',
-                data: '='
-            },
-            link: linkFunc,
-            controller: TerminalController,
-            template: require('./terminal.tpl.html')
+	// .controller('TerminalController', TerminalController)
+	.directive('terminal', [
+		'$q',
+		function($q){
+			return {
+	            scope: {
+	                cpType: '=?',
+	            },
+	            link: _.partial(linkFunc, $q),
+	            template: require('./terminal.tpl.html')
+			}
 		}
-	});
+	]);
 

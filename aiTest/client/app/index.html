@@ -8,7 +8,12 @@
 
 		<!-- <div visualizer custom-bot="note.content"></div> -->
 			<!-- <div note-editor note="note"></div> -->
-			<div terminal></div>
+			<select ng-model="cpType">
+				<option value="node">Node</option>
+				<option value="ruby">Ruby</option>
+				<option value="python">Python</option>
+			</select>
+			<div terminal cp-type="cpType"></div>
 
 <!-- 		<div class="flex right-bar" ng-class="{'expanded': noteExpanded}" style="flex-direction: column; height: 100%;">
 			<div class="flex" style="justify-content:space-around; min-height:50px; align-items: center;">
