@@ -21,10 +21,12 @@ function DockerSpawner(dockerSpawner={}){
 		images: {
 			redis: {
 				build: _.partial(execp, `docker pull redis`),
+				delete: _.partial(execp, 'docker rmi -f redis;'),
 				start: _.partial(execp, `docker run -d --net "${redisOptions.domain}" -p ${redisOptions.port}:6379 --name redis-container redis`),
 			},
 			worker: {
 				build: _.partial(execp, `docker build -t worker_image -f ${dockerFilePath} ${dockerContext}`),
+				delete: _.partial(execp, 'docker rmi -f worker_image;'),
 				start: function(instanceId, cpType){
 					return execp(`docker run -d -e "INSTANCE_ID=${instanceId}" -e "CP_TYPE=${cpType}" --net "${redisOptions.domain}" --link redis-container:redis --name worker_${instanceId} worker_image`)
 				}
@@ -42,11 +44,9 @@ function DockerSpawner(dockerSpawner={}){
 			await dockerSpawner.purgeContainers()
 			await dockerSpawner.prepareNetwork()
 			if(rebuild){
-				console.log('rebuilding docker images..')
-				await dockerSpawner.deleteDockerImages()
-				await dockerSpawner.images.redis.build()
-				await dockerSpawner.images.worker.build()
-				console.log('rebuilt docker images')
+				console.log('rebuilding worker image..')
+				await dockerSpawner.rebuildWorkerImage()
+				console.log('rebuilt worker image')
 			}
 		},
 
@@ -69,12 +69,10 @@ function DockerSpawner(dockerSpawner={}){
 			console.log('created docker network', redisOptions.domain);
 		},
 
-		deleteDockerImages: async function(){
-			return Promise.all([
-				execp('docker rmi -f worker_image;'),
-				execp('docker rmi -f redis;')
-			])
-				.catch(_.noop);
+		rebuildWorkerImage: async function(){
+			return dockerSpawner.images.worker.delete()
+				.catch(_.noop)
+				.then(dockerSpawner.images.worker.build)
 		},
 
 		getDockerIds: async function(){

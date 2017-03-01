@@ -83,7 +83,7 @@ function App(app={}){
 
 		async attachSocketConnector(){
 			await DockerSpawner().init({
-				// rebuild: true
+				rebuild: true
 			})
 			const io = Io(app.server);
 			io.on('connection', app.spawnConnector)
@@ -114,7 +114,6 @@ function App(app={}){
 					})
 				})
 			})
-
 		},
 
 		serve(port=app.port){

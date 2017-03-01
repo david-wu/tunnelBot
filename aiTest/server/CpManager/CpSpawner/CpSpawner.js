@@ -2,7 +2,7 @@ const _ = require('lodash')
 const redis = require('redis')
 const spawn = require('child_process').spawn
 
-const cpType = process.env.CP_TYPE || 'node'
+const cpType = process.env.CP_TYPE || 'python'
 const instanceId = process.env.INSTANCE_ID;
 const channelIn = instanceId+'_IN'
 const channelOut = instanceId+'_OUT'
@@ -12,17 +12,23 @@ const redisOptions = {
 	domain: 'redis',
 }
 
+// // used for testing locally
+// const redisOptions = {
+// 	port: 6388,
+// 	domain: 'localhost',
+// }
+
 const cpCommands = {
 	node: {
 		command: 'node',
 		options: ['-i']
 	},
 	ruby: {
-		command: 'irb'
+		command: 'irb',
 	},
 	python: {
 		command: 'python',
-		options: ['-i']
+		options: ['-i'],
 	}
 }
 
@@ -30,6 +36,7 @@ function CpSpawner(cpSpawner={}){
 	_.defaults(cpSpawner, {
 
 		init(){
+			console.log('starting up cpType', cpType);
 			cpSpawner.redisPub = redis.createClient(redisOptions.port, redisOptions.domain);
 			cpSpawner.redisSub = redis.createClient(redisOptions.port, redisOptions.domain);
 			return cpSpawner.spawnCp(cpCommands[cpType])
@@ -45,12 +52,12 @@ function CpSpawner(cpSpawner={}){
 		},
 
 		messageHandler(channel, messageStr){
-			const message = JSON.parse(messageStr);
+			console.log('received message', messageStr);
 
+			const message = JSON.parse(messageStr);
 			if(message.type === 'kill'){
 				return cpSpawner.destroy();
 			}
-
 			cpSpawner.cp.stdin.write(message.payload);
 		},
 
@@ -83,15 +90,28 @@ function CpSpawner(cpSpawner={}){
 
 		cpOutHandler(payload){
 			payload = payload.toString();
-			if(!cpSpawner.ready){
-				cpSpawner.publishPayload('ready', payload);
-				cpSpawner.ready = true;
-			}
+
+			// cp is ready when it returns something
+			cpSpawner.setReady(payload);
 			cpSpawner.publishPayload('stdOut', payload);
 		},
 
 		cpErrHandler(payload){
+			payload = payload.toString();
+
+			// python -i sends >>> and .. as errors, but it is ready
+			if(cpType==='python'){
+				cpSpawner.setReady(payload);
+			}
 			cpSpawner.publishPayload('stdErr', payload);
+		},
+
+		// tell connector that cp is ready
+		setReady(payload){
+			if(!cpSpawner.ready){
+				cpSpawner.publishPayload('ready', payload);
+				cpSpawner.ready = true;
+			}
 		},
 
 		cpCloseHandler(){
