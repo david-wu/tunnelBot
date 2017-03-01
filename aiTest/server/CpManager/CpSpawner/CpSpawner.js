@@ -2,7 +2,7 @@ const _ = require('lodash')
 const redis = require('redis')
 const spawn = require('child_process').spawn
 
-const cpType = process.env.CP_TYPE
+const cpType = process.env.CP_TYPE || 'node'
 const instanceId = process.env.INSTANCE_ID;
 const channelIn = instanceId+'_IN'
 const channelOut = instanceId+'_OUT'
@@ -19,6 +19,10 @@ const cpCommands = {
 	},
 	ruby: {
 		command: 'irb'
+	},
+	python: {
+		command: 'python',
+		options: ['-i']
 	}
 }
 
@@ -78,6 +82,7 @@ function CpSpawner(cpSpawner={}){
 		},
 
 		cpOutHandler(payload){
+			payload = payload.toString();
 			if(!cpSpawner.ready){
 				cpSpawner.publishPayload('ready', payload);
 				cpSpawner.ready = true;
