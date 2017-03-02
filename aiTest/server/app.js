@@ -83,37 +83,15 @@ function App(app={}){
 
 		async attachSocketConnector(){
 			await DockerSpawner().init({
-				rebuild: true
+				// rebuild: true
 			})
 			const io = Io(app.server);
 			io.on('connection', app.spawnConnector)
 		},
 
-		spawnConnector(connection){
+		spawnConnector(ioConnection){
 			const socketConnector = SocketConnector()
-
-			let spawnPromise = Promise.resolve();
-			connection.on('message', function(message){
-				if(message.type === 'spawn'){
-					spawnPromise = socketConnector.init(message.payload.cpType)
-				}else{
-					spawnPromise = spawnPromise.then(function(){
-						socketConnector.sendMessage(message);
-					})
-				}
-			});
-
-			socketConnector.messageHandler = function(message){
-				connection.send(message)
-			}
-
-			connection.on('disconnect', function(){
-				spawnPromise.then(function(){
-					socketConnector.sendMessage({
-						type: 'kill',
-					})
-				})
-			})
+			socketConnector.setIoConnection(ioConnection)
 		},
 
 		serve(port=app.port){

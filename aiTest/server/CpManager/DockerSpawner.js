@@ -1,3 +1,8 @@
+/*
+	DockerSpawner rebuilds docker images, purges docker instances, and sets up redis network
+	It also listens for spawnRequest events and spawns worker_image instances
+*/
+
 const _ = require('lodash');
 const execp = require('execp');
 const redis = require('redis');
@@ -56,7 +61,7 @@ function DockerSpawner(dockerSpawner={}){
 			if(dockerIds){
 				console.log('purging docker instances:', dockerIds, '..')
 				await execp(`docker rm -f ${dockerIds}`)
-				await dockerSpawner.ensurePurge()
+				await dockerSpawner.ensurePurged()
 				console.log('purged docker instances')
 			}
 		},
@@ -91,7 +96,7 @@ function DockerSpawner(dockerSpawner={}){
 			}
 		},
 
-		ensurePurge: async function(){
+		ensurePurged: async function(){
 			let dockerIds = await dockerSpawner.getDockerIds();
 			while(dockerIds){
 				await delay(1000)
@@ -117,14 +122,14 @@ function DockerSpawner(dockerSpawner={}){
 		attachRedisHandler(){
 			return new Promise(function(resolve, reject){
 				redis.createClient(redisOptions.port, 'localhost')
-					.on('message', dockerSpawner.redisMessageHandler)
+					.on('message', dockerSpawner.spawnWorker)
 					.on('subscribe', resolve)
 					.subscribe('spawnRequest');
 			})
 		},
 
-		redisMessageHandler: async function(channel, messageStr){
-			console.log('dockerSpawner got:', channel, messageStr)
+		spawnWorker: async function(channel, messageStr){
+			console.log('dockerSpawner got:', messageStr)
 			const message = JSON.parse(messageStr);
 			await dockerSpawner.images.worker.start(message.spawnId, message.cpType);
 		},

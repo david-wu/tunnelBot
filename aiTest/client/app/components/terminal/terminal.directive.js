@@ -43,13 +43,16 @@ function linkFunc($q, scope, element){
 		},
 
 		spawn: function(socket){
-			socket.send({
-				type: 'spawn',
-				payload: {
-					cpType: scope.cpType,
-				},
+			return new Promise(function(resolve, reject){
+				socket.send({
+					type: 'spawn',
+					payload: {
+						cpType: scope.cpType,
+					},
+				}, function(err, res){
+					return err ? reject(err) : resolve(socket);
+				})
 			})
-			return socket;
 		},
 
 		showTerminal: function(socket){
