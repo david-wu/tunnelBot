@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const gulp = require('gulp');
+const uglify = require('gulp-uglify');
 const webpack = require('gulp-webpack');
 const mergeStream = require('merge-stream');
 const sass = require('gulp-sass');
@@ -20,8 +21,9 @@ gulp.task('default', ['watchHtml', 'watchAssets', 'watchSass'], function() {
         .pipe(gulp.dest(configs.dist));
 });
 
-gulp.task('build', ['sass', 'html', 'assets'], function(){
+gulp.task('build', ['html', 'assets', 'sass'], function(){
     return appPack({watch: false})
+        .pipe(uglify())
         .pipe(gulp.dest(configs.dist));
 })
 
