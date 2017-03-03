@@ -99,14 +99,7 @@ function linkFunc($q, scope, element){
 	})
 }
 
-// TerminalController.$inject = ['$scope', '$q'];
-
-// function linkFunc(){
-
-// }
-
 angular.module('Main')
-	// .controller('TerminalController', TerminalController)
 	.directive('terminal', [
 		'$q',
 		function($q){
