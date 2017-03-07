@@ -41,6 +41,10 @@ function CpSpawner(cpSpawner={}){
 			cpSpawner.redisSub = redis.createClient(redisOptions.port, redisOptions.domain);
 			return cpSpawner.spawnCp(cpCommands[cpType])
 				.then(cpSpawner.attachRedisHandler)
+				.catch(function(){
+					console.log('failed to spawn Cp:', cpType);
+					cpSpawner.destroy()
+				})
 		},
 
 		attachRedisHandler(){
@@ -62,9 +66,15 @@ function CpSpawner(cpSpawner={}){
 		},
 
 		destroy(){
-			cpSpawner.cp.kill();
-	        cpSpawner.redisSub.quit();
-	        cpSpawner.redisPub.quit();
+			if(cpSpawner.cp){
+				cpSpawner.cp.kill();
+			}
+			if(cpSpawner.redisSub){
+		        cpSpawner.redisSub.quit();
+			}
+			if(cpSpawner.redisPub){
+		        cpSpawner.redisPub.quit();
+			}
 		},
 
 		spawnCp(cpCommand){

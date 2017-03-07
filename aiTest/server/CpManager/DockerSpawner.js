@@ -27,7 +27,11 @@ function DockerSpawner(dockerSpawner={}){
 			redis: {
 				build: _.partial(execp, `docker pull redis`),
 				delete: _.partial(execp, 'docker rmi -f redis;'),
-				start: _.partial(execp, `docker run -d --net "${redisOptions.domain}" -p ${redisOptions.port}:6379 --name redis-container redis`),
+				start: async function(){
+					console.log('starting redis..');
+					await execp(`docker run -d --net "${redisOptions.domain}" -p ${redisOptions.port}:6379 --name redis-container redis`);
+					console.log('started redis');
+				},
 			},
 			worker: {
 				build: _.partial(execp, `docker build -t worker_image -f ${dockerFilePath} ${dockerContext}`),

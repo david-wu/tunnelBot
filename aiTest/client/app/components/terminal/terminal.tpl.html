@@ -1,4 +1,6 @@
-<div>
-	<div class="terminal-container">
-	</div>
-</div>
+<select [(ngModel)]="cpType" (change)="cpTypeChange.emit($event.target.value)">
+	<option *ngFor="let cpType of cpTypes" [value]="cpType.key">
+		{{cpType.displayName}}
+	</option>
+</select>
+<div #terminalContainer></div>

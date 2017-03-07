@@ -16,7 +16,7 @@ const redisOptions = {
 
 function SocketConnector(socketConnector={}){
 
-	_.defaults(socketConnector, {
+	return _.defaults(socketConnector, {
 		instances: {},
 		pub: redis.createClient(redisOptions.port, 'localhost'),
 
@@ -35,6 +35,7 @@ function SocketConnector(socketConnector={}){
 								id: instance.id
 							})
 						})
+						.catch(callback)
 				}else{
 					// messages from socket need to include an instanceId
 					const instance = socketConnector.instances[message.instanceId] || _.last(_.values(socketConnector.instances))
@@ -52,8 +53,15 @@ function SocketConnector(socketConnector={}){
 			})
 		},
 
+		canSpawn: function(){
+			return _.keys(socketConnector.instances).length < 15;
+		},
+
 		spawn: function(cpType='node'){
-			const instance = socketConnector.Instance({
+			if(!socketConnector.canSpawn()){
+				return;
+			}
+			const instance = Instance({
 				messageHandler: function(message){
 					socketConnector.ioConnection.send(message);
 				}
@@ -61,51 +69,49 @@ function SocketConnector(socketConnector={}){
 			socketConnector.instances[instance.id] = instance;
 			return instance.init(cpType);
 		},
+	})
+}
 
-		Instance: function(instance){
-			const instanceId = guid.raw()
-			return _.defaults(instance, {
-				id: instanceId,
-				channelIn: instanceId+'_IN',
-				channelOut: instanceId+'_OUT',
-				pub: redis.createClient(redisOptions.port, 'localhost'),
-				sub: redis.createClient(redisOptions.port, 'localhost'),
-				init: function(cpType){
-					instance.pub.publish('spawnRequest', JSON.stringify({
-						spawnId: instance.id,
-						cpType: cpType,
-					}))
-					return new Promise(function(resolve){
-						instance.sub.subscribe(instance.channelOut)
-						instance.sub.on('message', function(channel, messageStr){
-							const message = JSON.parse(messageStr)
-							message.instanceId = instance.id
-							if(message.type==='ready'){
-								resolve(instance)
-							}else{
-								instance.messageHandler(message)
-							}
-						})
-					})
-				},
-				send: function(message){
-					instance.pub.publish(instance.channelIn, JSON.stringify(message))
-				},
-				messageHandler: function(message){
-					console.log('message handler for instance', instanceId)
-				},
-				kill: function(){
-					instance.send({
-						type: 'kill'
-					})
-				}
+// Represents a child process instance all hooked up by redis and message handler
+function Instance(instance={}){
+	const instanceId = guid.raw()
+	return _.defaults(instance, {
+		id: instanceId,
+		channelIn: instanceId+'_IN',
+		channelOut: instanceId+'_OUT',
+		pub: redis.createClient(redisOptions.port, 'localhost'),
+		sub: redis.createClient(redisOptions.port, 'localhost'),
+		init: function(cpType){
+			instance.pub.publish('spawnRequest', JSON.stringify({
+				spawnId: instance.id,
+				cpType: cpType,
+			}))
+			return new Promise(function(resolve){
+				instance.sub.subscribe(instance.channelOut)
+				instance.sub.on('message', function(channel, messageStr){
+					const message = JSON.parse(messageStr)
+					message.instanceId = instance.id
+					if(message.type==='ready'){
+						resolve(instance)
+					}else{
+						instance.messageHandler(message)
+					}
+				})
 			})
 		},
-
+		send: function(message){
+			instance.pub.publish(instance.channelIn, JSON.stringify(message))
+		},
+		messageHandler: function(message){
+			console.log('provide a message handler for instance', instanceId)
+		},
+		kill: function(){
+			instance.send({
+				type: 'kill'
+			})
+		}
 	})
-
-	return socketConnector
-
 }
+
 
 module.exports = SocketConnector;

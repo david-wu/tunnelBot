@@ -1,4 +1,5 @@
 const _ = require('lodash');
+
 const gulp = require('gulp');
 const uglify = require('gulp-uglify');
 const webpack = require('gulp-webpack');
@@ -9,7 +10,7 @@ const concat = require('gulp-concat');
 const autoprefixer = require('gulp-autoprefixer');
 
 const configs = {
-    client: './app/**/*.*',
+    app: './app/**/*.*',
     sass: './app/**/*.{css,scss}',
     index: './app/index.html',
     assets: './app/assets/**/*.*',
@@ -17,15 +18,28 @@ const configs = {
 };
 
 gulp.task('default', ['watchHtml', 'watchAssets', 'watchSass'], function() {
-    return appPack()
+    return gulp.src(configs.app)
+        .pipe(getWebpack())
         .pipe(gulp.dest(configs.dist));
 });
 
 gulp.task('build', ['html', 'assets', 'sass'], function(){
-    return appPack({watch: false})
+    return gulp.src(configs.app)
+        .pipe(getWebpack({watch: false}))
         .pipe(uglify())
         .pipe(gulp.dest(configs.dist));
 })
+
+gulp.task('watchHtml', ['html'], function(){
+    gulp.watch(configs.index, function(event) {
+        gulp.start('html');
+    });
+})
+gulp.task('html', function(){
+    return gulp.src(configs.index)
+        .pipe(gulp.dest(configs.dist));
+});
+
 
 gulp.task('watchSass', ['sass'], function(){
     gulp.watch(configs.sass, function(event) {
@@ -45,17 +59,6 @@ gulp.task('sass', function(){
         .pipe(gulp.dest(configs.dist));
 })
 
-gulp.task('watchHtml', ['html'], function(){
-    gulp.watch(configs.index, function(event) {
-        gulp.start('html');
-    });
-})
-gulp.task('html', function(){
-    return gulp.src(configs.index)
-        .pipe(gulp.dest(configs.dist));
-});
-
-
 gulp.task('watchAssets', ['assets'], function(){
     gulp.watch(configs.assets, function(event) {
         gulp.start('assets');
@@ -68,8 +71,12 @@ gulp.task('assets', function(){
 
 
 const webpackConfig = require('./webpack.config.js');
+function getWebpack(options={}){
+    const config = _.extend(_.cloneDeep(webpackConfig), options)
+    return webpack(config);
+}
 function appPack(options){
     const config = _.extend(_.cloneDeep(webpackConfig), options)
-    return gulp.src(configs.client)
+    return gulp.src(configs.app)
         .pipe(webpack(config));
 }
