@@ -1,23 +1,20 @@
-const express = require('express');
+// const express = require('express');
 
-function Router(router){
-	_.defaults(router, {
+// module.exports = function Router(router){
 
-		// Returns an express router
-		mount(app, parentRouter = express()){
-			return _.reduce(router.getRoutes(app), function(router, route){
-				return router[route.method](route.endPoint, route.handler)
-			}, parentRouter)
-		},
+// 	return _.defaults(router, {
 
-		// overwride router
-		getRoutes(app){
-			return [];
-		},
+// 		mount(app, parentRouter = express()){
+// 			return _.reduce(router.getRoutes(app), function(router, route){
+// 				return router[route.method](route.endPoint, route.handler)
+// 			}, parentRouter)
+// 		},
 
-	})
+// 		// override
+// 		getRoutes(app){
+// 			return [];
+// 		},
 
-	return router;
-}
+// 	})
 
-module.exports = Router;
+// }

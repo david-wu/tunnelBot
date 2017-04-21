@@ -1,5 +1,5 @@
 
-const Router = rootRequire('./Router.js');
+const Router = rootRequire('./util/Router.js');
 const Post = require('./Post.js');
 
 module.exports = new Router({

@@ -18,9 +18,10 @@ function SocketConnector(socketConnector={}){
 
 	return _.defaults(socketConnector, {
 		instances: {},
-		pub: redis.createClient(redisOptions.port, 'localhost'),
+		// pub: redis.createClient(redisOptions.port, 'localhost'),
 
 		init: function(options={}){
+
 		},
 
 		setIoConnection: function(ioConnection){

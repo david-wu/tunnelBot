@@ -1,7 +1,3 @@
-/*
-	todo: make this 1:1 with child processes
-*/
-
 import {Component, Input, Output, EventEmitter, ViewChild, Inject} from '@angular/core';
 const Io = require('socket.io-client');
 const _ = require('lodash');
@@ -26,7 +22,6 @@ export class TerminalComponent {
 	@ViewChild('terminalContainer') terminalContainer;
 
 	constructor(
-		@Inject('note') private note,
 		@Inject('api') private api,
 		@Inject('socket') private socketService,
 	){
@@ -49,7 +44,13 @@ export class TerminalComponent {
 					key: 'python',
 					greetings: 'Interactive Python',
 					prompt: 'python> '
-				}
+				},
+				{
+					displayName: 'Maze',
+					key: 'maze',
+					greetings: 'Maze',
+					prompt: 'maze> '
+				},
 			],
 		})
 	}
@@ -62,8 +63,9 @@ export class TerminalComponent {
 	}
 	async ngOnChanges(change){
 		if(change.cpType){
+			this.removeHandlers();
 			const socket = await this.socketService.getConnection();
-			const removeHandlers = this.addHandlers(socket);
+			this.removeHandlers = this.addHandlers(socket);
 			const spawnId = await this.spawn(socket);
 			this.showTerminal(socket);
 		}
@@ -84,7 +86,6 @@ export class TerminalComponent {
 	}
 
 	spawn(socket){
-
 		return new Promise((resolve, reject)=>{
 			socket.send({
 				type: 'spawn',
@@ -124,13 +125,16 @@ export class TerminalComponent {
 	messageHandler(message){
 		if(!this.currentTerminal){return;}
 		if(message.type === 'stdOut'){
-			console.log(message)
 			this.currentTerminal.echo(message.payload);
 		}
 	}
 
 	disconnectHandler(){
 		console.log('server down!')
+	}
+
+	removeHandlers(){
+
 	}
 
 	private title:string;

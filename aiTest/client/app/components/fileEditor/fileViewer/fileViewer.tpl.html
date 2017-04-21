@@ -1,0 +1,6 @@
+<h3>
+	{{selectedFile.name}}
+</h3>
+<input type="text" [(ngModel)]="selectedFile.name">
+<button (click)="deleteFile.emit(selectedFile)">Delete</button>
+<ace-editor [selectedFile]="selectedFile"></ace-editor>

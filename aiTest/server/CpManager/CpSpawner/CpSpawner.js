@@ -2,7 +2,7 @@ const _ = require('lodash')
 const redis = require('redis')
 const spawn = require('child_process').spawn
 
-const cpType = process.env.CP_TYPE || 'python'
+const cpType = process.env.CP_TYPE || 'maze'
 const instanceId = process.env.INSTANCE_ID;
 const channelIn = instanceId+'_IN'
 const channelOut = instanceId+'_OUT'
@@ -12,7 +12,7 @@ const redisOptions = {
 	domain: 'redis',
 }
 
-// // used for testing locally
+// used for testing locally
 // const redisOptions = {
 // 	port: 6388,
 // 	domain: 'localhost',
@@ -29,6 +29,9 @@ const cpCommands = {
 	python: {
 		command: 'python',
 		options: ['-i'],
+	},
+	maze: {
+		command: 'node ./games/maze/index.js',
 	}
 }
 

@@ -40,8 +40,8 @@ class Post{
 		var data = this.json('db');
 		return this.db.collection('posts')
 			.save(data)
-			.then(function(userData){
-				return new Post(userData);
+			.then(function(postData){
+				return new Post(postData);
 			});
 	}
 

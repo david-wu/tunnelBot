@@ -31,16 +31,20 @@ function App(app={}){
 	_.defaults(app, {
 
 		async init(){
-			app.mongo.db = await app.connectMongo()
+			app.mongo.db = await app.getMongoConnection()
 			app.strapMiddleware()
 			app.mount(app.express)
+
 			app.server = http.createServer(app.express)
-			await app.attachSocketConnector()
+			await DockerSpawner().init({rebuild: false})
+			app.attachSocketConnector()
+
 			await app.serve(app.port)
+
 			console.log('serving on', app.port)
 		},
 
-		connectMongo(){
+		getMongoConnection(){
 			return new Promise((resolve, reject)=>{
 				MongoClient.connect(app.mongo.getUrl(), function(err, db){
 					if(err){
@@ -61,12 +65,12 @@ function App(app={}){
 
 		// Returns an express router
 		mount(parentRouter = express()){
-			return _.reduce(app.getRoutes(app), function(router, route){
+			return _.reduce(app.getApiRoutes(app), function(router, route){
 				return router[route.method](route.endPoint, route.handler)
 			}, parentRouter)
 		},
 
-		getRoutes(app){
+		getApiRoutes(app){
 			return [
 				{
 					method: 'use',
@@ -81,10 +85,8 @@ function App(app={}){
 			]
 		},
 
-		async attachSocketConnector(){
-			await DockerSpawner().init({
-				// rebuild: true
-			})
+
+		attachSocketConnector(){
 			const io = Io(app.server);
 			io.on('connection', app.spawnConnector)
 		},

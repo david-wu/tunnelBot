@@ -1,5 +1,5 @@
 
-const Router = rootRequire('./Router.js');
+const Router = rootRequire('./util/Router.js');
 const User = require('./User.js');
 const post = require('./post')
 

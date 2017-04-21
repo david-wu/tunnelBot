@@ -45,7 +45,7 @@ function DockerSpawner(dockerSpawner={}){
 		init(options={}){
 			return dockerSpawner.initDocker(options.rebuild)
 				.then(dockerSpawner.images.redis.start)
-				.then(dockerSpawner.attachRedisHandler)
+				.then(dockerSpawner.attachRedisSpawnHandler)
 				.catch(_.partial(console.log, 'failed to init dockerSpawner:'))
 		},
 
@@ -123,7 +123,8 @@ function DockerSpawner(dockerSpawner={}){
 			})
 		},
 
-		attachRedisHandler(){
+		// Listens for spawnRequests on Redis and spawns docker instances
+		attachRedisSpawnHandler(){
 			return new Promise(function(resolve, reject){
 				redis.createClient(redisOptions.port, 'localhost')
 					.on('message', dockerSpawner.spawnWorker)
@@ -133,7 +134,7 @@ function DockerSpawner(dockerSpawner={}){
 		},
 
 		spawnWorker: async function(channel, messageStr){
-			console.log('dockerSpawner got:', messageStr)
+			console.log('got spawnRequest:', messageStr)
 			const message = JSON.parse(messageStr);
 			await dockerSpawner.images.worker.start(message.spawnId, message.cpType);
 		},

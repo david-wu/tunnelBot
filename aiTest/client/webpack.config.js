@@ -36,6 +36,10 @@ module.exports = {
                     // 'sass-loader?sourceMap',
                     'raw-loader'
                 ]
+            },
+            {
+                test: /\.json$/,
+                loader: 'json-loader'
             }
         ],
     },

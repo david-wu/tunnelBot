@@ -19,13 +19,13 @@ const configs = {
 
 gulp.task('default', ['watchHtml', 'watchAssets', 'watchSass'], function() {
     return gulp.src(configs.app)
-        .pipe(getWebpack())
+        .pipe(getWebpacker())
         .pipe(gulp.dest(configs.dist));
 });
 
 gulp.task('build', ['html', 'assets', 'sass'], function(){
     return gulp.src(configs.app)
-        .pipe(getWebpack({watch: false}))
+        .pipe(getWebpacker({watch: false}))
         .pipe(uglify())
         .pipe(gulp.dest(configs.dist));
 })
@@ -71,7 +71,7 @@ gulp.task('assets', function(){
 
 
 const webpackConfig = require('./webpack.config.js');
-function getWebpack(options={}){
+function getWebpacker(options={}){
     const config = _.extend(_.cloneDeep(webpackConfig), options)
     return webpack(config);
 }
