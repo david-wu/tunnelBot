@@ -9,11 +9,6 @@ function App(app={}){
 	_.defaults(app, {
 		port: 10001,
 		server: undefined,
-		redisConfigs: {
-			domain: 'redis',
-			port: 6388,
-			containerPort: 6379
-		}
 	})
 
 	return _.defaults(app, {
@@ -28,13 +23,11 @@ function App(app={}){
 
 			// Provide docker spawning service through redis
 			await DockerSpawner().init({
-				redisConfigs: app.redisConfigs,
 				rebuild: false,
 			})
 
 			// Connects to redis through webSockets
 			await SocketManager().init({
-				redisConfigs: app.redisConfigs,
 				server: server,
 			})
 

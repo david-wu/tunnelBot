@@ -10,17 +10,13 @@ const redis = require('redis');
 const dockerContext = __dirname + '/CpSpawner/';
 const dockerFilePath = dockerContext + 'Dockerfile';
 
-const redisOptions = {
-	domain: 'redis',
-	port: 6388,
-	containerPort: 6379
-}
+const redisConfigs = rootRequire('services/redis.service.js').getConfigs('production');
 
 function DockerSpawner(dockerSpawner={}){
 
 	_.defaults(dockerSpawner, {
 
-		// --net "${redisOptions.domain}" declares the name of the network that the containers will share
+		// --net "${redisConfigs.containerDomain}" declares the name of the network that the containers will share
 		// -p 6388:6379 exposes this container's redis port to the outside port
 		// --link redis-container:redis makes the two containers share the domain
 		images: {
@@ -29,7 +25,7 @@ function DockerSpawner(dockerSpawner={}){
 				delete: _.partial(execp, 'docker rmi -f redis;'),
 				start: async function(){
 					console.log('starting redis..');
-					await execp(`docker run -d --net "${redisOptions.domain}" -p ${redisOptions.port}:6379 --name redis-container redis`);
+					await execp(`docker run -d --net "${redisConfigs.containerDomain}" -p ${redisConfigs.port}:${redisConfigs.containerPort} --name redis-container redis`);
 					console.log('started redis');
 				},
 			},
@@ -37,7 +33,7 @@ function DockerSpawner(dockerSpawner={}){
 				build: _.partial(execp, `docker build -t worker_image -f ${dockerFilePath} ${dockerContext}`),
 				delete: _.partial(execp, 'docker rmi -f worker_image;'),
 				start: function(instanceId, cpType){
-					return execp(`docker run -d -e "INSTANCE_ID=${instanceId}" -e "CP_TYPE=${cpType}" --net "${redisOptions.domain}" --link redis-container:redis --name worker_${instanceId} worker_image`)
+					return execp(`docker run -d -e "INSTANCE_ID=${instanceId}" -e "CP_TYPE=${cpType}" --net "${redisConfigs.containerDomain}" --link redis-container:redis --name worker_${instanceId} worker_image`)
 				}
 			},
 		},
@@ -73,10 +69,10 @@ function DockerSpawner(dockerSpawner={}){
 		prepareNetwork: async function(){
 			console.log('creating docker network..');
 			const networks = await dockerSpawner.getDockerNetworks();
-			if(!_.find(networks, {name: redisOptions.domain})){
-				await execp(`docker network create ${redisOptions.domain}`)
+			if(!_.find(networks, {name: redisConfigs.containerDomain})){
+				await execp(`docker network create ${redisConfigs.containerDomain}`)
 			}
-			console.log('created docker network', redisOptions.domain);
+			console.log('created docker network', redisConfigs.containerDomain);
 		},
 
 		rebuildRedisImage: async function(){
@@ -126,7 +122,7 @@ function DockerSpawner(dockerSpawner={}){
 		// Listens for spawnRequests on Redis and spawns docker instances
 		attachRedisSpawnHandler(){
 			return new Promise(function(resolve, reject){
-				redis.createClient(redisOptions.port, 'localhost')
+				redis.createClient(redisConfigs.port, redisConfigs.domain)
 					.on('message', dockerSpawner.spawnWorker)
 					.on('subscribe', resolve)
 					.subscribe('spawnRequest');

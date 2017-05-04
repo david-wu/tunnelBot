@@ -6,19 +6,12 @@
 const _ = require('lodash')
 const redis = require('redis')
 const guid = require('guid')
-
-const redisOptions = {
-	domain: 'redis',
-	port: 6388,
-	containerPort: 6379,
-}
-
+const redisConfigs = rootRequire('services/redis.service.js').getConfigs('production');
 
 function SocketConnector(socketConnector={}){
 
 	return _.defaults(socketConnector, {
 		instances: {},
-		// pub: redis.createClient(redisOptions.port, 'localhost'),
 
 		init: function(options={}){
 
@@ -80,8 +73,8 @@ function Instance(instance={}){
 		id: instanceId,
 		channelIn: instanceId+'_IN',
 		channelOut: instanceId+'_OUT',
-		pub: redis.createClient(redisOptions.port, 'localhost'),
-		sub: redis.createClient(redisOptions.port, 'localhost'),
+		pub: redis.createClient(redisConfigs.port, 'localhost'),
+		sub: redis.createClient(redisConfigs.port, 'localhost'),
 		init: function(cpType){
 			instance.pub.publish('spawnRequest', JSON.stringify({
 				spawnId: instance.id,
