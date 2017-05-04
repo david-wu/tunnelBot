@@ -1,116 +1,56 @@
 const http = require('http')
-const express = require('express')
-const cors = require('cors')
-const bodyParser = require('body-parser')
-const cookieParser = require('cookie-parser')
-const MongoClient = require('mongodb').MongoClient
-const Io = require('socket.io')
 
-const api = require('./api')
-const DockerSpawner = require('./CpManager/DockerSpawner.js')
-const SocketConnector = require('./CpManager/SocketConnector.js')
+const DbManager = require('./DbManager/DbManager.js')
+const DockerSpawner = require('./DockerSpawner/DockerSpawner.js')
+const SocketManager = require('./SocketManager/SocketManager.js')
 
 function App(app={}){
 
 	_.defaults(app, {
-		mongo: {},
 		port: 10001,
-		express: express(),
+		server: undefined,
+		redisConfigs: {
+			domain: 'redis',
+			port: 6388,
+			containerPort: 6379
+		}
 	})
 
-	_.defaults(app.mongo, {
-		domain: 'localhost',
-		port: '27017',
-		dbName: 'myproject',
-		db: undefined,
-		getUrl: function(){
-			return `mongodb://${this.domain}:${this.port}/${this.dbName}`
-		},
-	})
-
-	_.defaults(app, {
+	return _.defaults(app, {
 
 		async init(){
-			app.mongo.db = await app.getMongoConnection()
-			app.strapMiddleware()
-			app.mount(app.express)
+			const server = http.createServer()
 
-			app.server = http.createServer(app.express)
-			await DockerSpawner().init({rebuild: false})
-			app.attachSocketConnector()
+			// Connect to db and provide access through APIs
+			await DbManager().init({
+				server: server
+			})
 
-			await app.serve(app.port)
+			// Provide docker spawning service through redis
+			await DockerSpawner().init({
+				redisConfigs: app.redisConfigs,
+				rebuild: false,
+			})
 
+			// Connects to redis through webSockets
+			await SocketManager().init({
+				redisConfigs: app.redisConfigs,
+				server: server,
+			})
+
+			await app.serve(server, app.port)
 			console.log('serving on', app.port)
 		},
 
-		getMongoConnection(){
-			return new Promise((resolve, reject)=>{
-				MongoClient.connect(app.mongo.getUrl(), function(err, db){
-					if(err){
-						reject(err)
-					}else{
-						resolve(db);
-					}
-				});
-			});
-		},
-
-		strapMiddleware(){
-		    app.express.use(bodyParser.urlencoded({extended:true}));
-		    app.express.use(bodyParser.json());
-		    app.express.use(cookieParser());
-		    app.express.use(cors());
-		},
-
-		// Returns an express router
-		mount(parentRouter = express()){
-			return _.reduce(app.getApiRoutes(app), function(router, route){
-				return router[route.method](route.endPoint, route.handler)
-			}, parentRouter)
-		},
-
-		getApiRoutes(app){
-			return [
-				{
-					method: 'use',
-					endPoint: '/',
-					handler: express.static('../client/dist')
-				},
-				{
-					method: 'use',
-					endPoint: '/api',
-					handler: api.mount(app)
-				}
-			]
-		},
-
-
-		attachSocketConnector(){
-			const io = Io(app.server);
-			io.on('connection', app.spawnConnector)
-		},
-
-		spawnConnector(ioConnection){
-			const socketConnector = SocketConnector()
-			socketConnector.setIoConnection(ioConnection)
-		},
-
-		serve(port=app.port){
+		serve(server, port){
 			return new Promise((res, rej)=>{
-				app.server.listen(port, (err, response)=>{
-					if(err){
-						rej(err)
-					}else{
-						res(response);
-					}
+				server.listen(port, (err, response)=>{
+					return err ? rej(err) : res(response);
 				})
 			})
 		},
 
 	})
-
-	return app;
 }
 
 module.exports = App;
