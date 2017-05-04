@@ -12,9 +12,13 @@ const redisService = {
 		},
 		development: {
 
+		},
+		container: {
+			domain: 'redis',
+			port: 6379,
 		}
 	},
-	env: 'production',
+	env: 'container',
 
 	init(options){
 		_.defaults(this, options);

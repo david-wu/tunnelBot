@@ -1,6 +1,7 @@
 const _ = require('lodash')
 const redis = require('redis')
 const spawn = require('child_process').spawn
+const fs = require('fs')
 
 const cpType = process.env.CP_TYPE || 'maze'
 const instanceId = process.env.INSTANCE_ID;
@@ -11,6 +12,7 @@ const redisOptions = {
 	port: 6379,
 	domain: 'redis',
 }
+const redisService = require('./redis.service.js');
 
 // used for testing locally
 // const redisOptions = {
@@ -44,28 +46,45 @@ function CpSpawner(cpSpawner={}){
 			cpSpawner.redisSub = redis.createClient(redisOptions.port, redisOptions.domain);
 			return cpSpawner.spawnCp(cpCommands[cpType])
 				.then(cpSpawner.attachRedisHandler)
-				.catch(function(){
-					console.log('failed to spawn Cp:', cpType);
+				// .then(cpSpawner.emitRedisReady)
+				.catch(function(err){
+					console.log('failed to spawn Cp', err);
 					cpSpawner.destroy()
 				})
 		},
-
 		attachRedisHandler(){
-			return new Promise(function(resolve, reject){
-				cpSpawner.redisSub.on('message', cpSpawner.messageHandler)
-				cpSpawner.redisSub.on('subscribe', resolve)
-				cpSpawner.redisSub.subscribe(channelIn)
-			})
+			return redisService.onP(channelIn, cpSpawner.messageHandler);
+			// return new Promise(function(resolve, reject){
+			// 	cpSpawner.redisSub.on('message', cpSpawner.messageHandler)
+			// 	cpSpawner.redisSub.on('subscribe', resolve)
+			// 	cpSpawner.redisSub.subscribe(channelIn)
+			// })
+				// .then(function(){
+				// 	console.log('await file at', instanceId+'_fileWrite')
+				// 	return redisService.onP(instanceId+'_fileWrite', function(file){
+				// 		console.log('gotFile', file);
+						// return new Promise(function(resolve, reject){
+						// 	fs.writeFile(`./context/${file.path}`, file.content);
+						// })
+				// 	})
+				// })
 		},
 
-		messageHandler(channel, messageStr){
-			console.log('received message', messageStr);
-
-			const message = JSON.parse(messageStr);
+		messageHandler(message){
+			console.log('received message', message);
 			if(message.type === 'kill'){
 				return cpSpawner.destroy();
+			}else if(message.type === 'fileWrite'){
+				return new Promise(function(resolve, reject){
+					fs.writeFile(`./context/${message.file.name}`, message.file.content, resolve);
+				})
+			}else if(message.type === 'runProcess'){
+
 			}
-			cpSpawner.cp.stdin.write(message.payload);
+
+			if(message.payload){
+				cpSpawner.cp.stdin.write(message.payload);
+			}
 		},
 
 		destroy(){
@@ -126,6 +145,10 @@ function CpSpawner(cpSpawner={}){
 				cpSpawner.ready = true;
 			}
 		},
+
+		// emitRedisReady(){
+		// 	cpSpawner.publishPayload('ready', 'cp is listening on redis');
+		// },
 
 		cpCloseHandler(){
 			console.log('close event');

@@ -96,6 +96,9 @@ export class TerminalComponent {
 				return err ? reject(err) : resolve(res.id);
 			})
 		})
+			.catch(function(err){
+				console.log('failed to spawn', err)
+			})
 	}
 
 
@@ -123,6 +126,7 @@ export class TerminalComponent {
 	}
 
 	messageHandler(message){
+		console.log('get message', message)
 		if(!this.currentTerminal){return;}
 		if(message.type === 'stdOut'){
 			this.currentTerminal.echo(message.payload);

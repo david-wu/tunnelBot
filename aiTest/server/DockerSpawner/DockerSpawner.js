@@ -6,6 +6,7 @@
 const _ = require('lodash');
 const execp = require('execp');
 const redis = require('redis');
+// const axios = require('axios')
 
 const dockerContext = __dirname + '/CpSpawner/';
 const dockerFilePath = dockerContext + 'Dockerfile';
@@ -122,12 +123,45 @@ function DockerSpawner(dockerSpawner={}){
 
 		// Listens for spawnRequests on Redis and spawns docker instances
 		attachRedisSpawnHandler(){
-			return redisService.onP('spawnRequest', dockerSpawner.spawnWorker)
+			return redisService.onP('spawnRequest', async function(spawnMessage){
+				await dockerSpawner.spawnWorker(spawnMessage)
+				// await dockerSpawner.mountFiles(spawnMessage)
+			})
 		},
 
 		spawnWorker: async function(message){
 			await dockerSpawner.images.worker.start(message.spawnId, message.cpType);
+
+
+			// wait for docker to connect to redis
+
+
 		},
+
+		// mountFiles: function(message){
+		// 	return Promise.all(_.map(message.fileIds, function(fileId){
+		// 		return dockerSpawner.mountFile(message.spawnId, fileId)
+		// 	}));
+		// },
+		// mountFile: async function(spawnId, fileId){
+		// 	const file = await dockerSpawner.fetchFile(fileId);
+		// 	await dockerSpawner.sendFile(spawnId, file);
+		// },
+		// fetchFile: function(fileId){
+		// 	return axios.get(`http://localhost:10001/api/file/${fileId}`)
+		// 		.then(function(res){
+		// 			return res.data
+		// 		});
+		// },
+		// sendFile: async function(spawnId, file){
+		// 	// console.log('sending file to ', spawnId+'_fileWrite', file)
+		// 	await redisService.emitP(spawnId+'_fileWrite', {
+		// 		type: 'fileWrite',
+		// 		file: file
+		// 	})
+		// }
+
+
 
 	});
 

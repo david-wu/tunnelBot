@@ -6,6 +6,7 @@
 const _ = require('lodash')
 const redis = require('redis')
 const guid = require('guid')
+const axios = require('axios')
 
 const redisService = rootRequire('services/redis.service.js');
 const redisConfigs = redisService.getConfigs('production');
@@ -25,11 +26,15 @@ function SocketConnector(socketConnector={}){
 			let spawnPromise = Promise.resolve();
 			ioConnection.on('message', function(message, callback){
 				if(message.type === 'spawn'){
-					spawnPromise = socketConnector.spawn(message.payload.cpType)
+					spawnPromise = socketConnector.spawn(message.payload.cpType, message.payload.fileIds)
 						.then(function(instance){
 							callback(false, {
 								id: instance.id
 							})
+						})
+						.catch(function(errs){
+							console.log('gots', errs)
+							throw errs;
 						})
 						.catch(callback)
 				}else{
@@ -53,7 +58,7 @@ function SocketConnector(socketConnector={}){
 			return _.keys(socketConnector.instances).length < 15;
 		},
 
-		spawn: function(cpType='node'){
+		spawn: async function(cpType='node', fileIds=['58f93c1f43cdd43c6821309b']){
 			if(!socketConnector.canSpawn()){
 				return;
 			}
@@ -63,7 +68,8 @@ function SocketConnector(socketConnector={}){
 				}
 			})
 			socketConnector.instances[instance.id] = instance;
-			return instance.init(cpType);
+			await instance.init(cpType, fileIds)
+			return instance
 		},
 	})
 }
@@ -78,14 +84,14 @@ function Instance(instance={}){
 		pub: redis.createClient(redisConfigs.port, 'localhost'),
 		sub: redis.createClient(redisConfigs.port, 'localhost'),
 
-		init: async function(cpType){
+		init: async function(cpType, fileIds){
 
-			await redisService.emitP('spawnRequest', {
+			redisService.emitP('spawnRequest', {
 				spawnId: instance.id,
 				cpType: cpType,
 			})
 
-			return new Promise(function(resolve){
+			await new Promise(function(resolve){
 				instance.sub.subscribe(instance.channelOut)
 				instance.sub.on('message', function(channel, messageStr){
 					const message = JSON.parse(messageStr)
@@ -97,9 +103,36 @@ function Instance(instance={}){
 					}
 				})
 			})
+			await instance.mountFiles(fileIds)
+			await instance.runProcess
+			return instance
 		},
+
+		mountFiles: function(fileIds){
+			return Promise.all(_.map(fileIds, instance.mountFile));
+		},
+		mountFile: async function(fileId){
+			const file = await instance.fetchFile(fileId);
+			await instance.sendFile(file);
+		},
+		fetchFile: async function(fileId){
+			const response = await axios.get(`http://localhost:10001/api/file/${fileId}`)
+			return response.data
+		},
+		sendFile: async function(file){
+			await instance.send({
+				type: 'fileWrite',
+				file: file
+			})
+		},
+		runProcess: function(){
+			return instance.send({
+				type: 'runProcess'
+			});
+		},
+
 		send: function(message){
-			instance.pub.publish(instance.channelIn, JSON.stringify(message))
+			return redisService.emitP(instance.channelIn, message);
 		},
 		messageHandler: function(message){
 			console.log('provide a message handler for instance', instanceId)
@@ -108,7 +141,7 @@ function Instance(instance={}){
 			instance.send({
 				type: 'kill'
 			})
-		}
+		},
 	})
 }
 

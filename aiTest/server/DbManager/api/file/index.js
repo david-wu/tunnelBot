@@ -26,6 +26,17 @@ function getRoutes(app){
 			}
 		},
 		{
+			method: 'get',
+			endPoint: '/:_id',
+			handler: function(req, res){
+				return new File({_id: req.params._id})
+					.get()
+					.then(function(file){
+						res.status(200).send(file.json('public'));
+					})
+			}
+		},
+		{
 			method: 'post',
 			endPoint: '/',
 			handler: function(req, res){

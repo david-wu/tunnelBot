@@ -35,6 +35,11 @@ class File{
 		_.defaults(this, {
 			db: defaultDb,
 			keys: {
+				overview: [
+					'_id',
+					'name',
+					'title'
+				],
 				public: [
 					'_id',
 					'name',
@@ -51,12 +56,28 @@ class File{
 		})
 	}
 
+	get(){
+		return defaultDb.collection('files')
+			.findOne({
+				_id: ObjectID(this._id)
+			})
+			.then(function(fileData){
+				if(!fileData){
+					throw 'no such file'
+				}
+				return new File(fileData);
+			});
+	}
+
 	delete(){
 		return this.db.collection('files')
 			.deleteOne({
 				_id: ObjectID(this._id)
 			})
 			.then(function(fileData){
+				if(!fileData){
+					throw 'no such file'
+				}
 				return new File(fileData);
 			})
 			.catch(console.log);
