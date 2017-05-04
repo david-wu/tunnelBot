@@ -6,7 +6,9 @@
 const _ = require('lodash')
 const redis = require('redis')
 const guid = require('guid')
-const redisConfigs = rootRequire('services/redis.service.js').getConfigs('production');
+
+const redisService = rootRequire('services/redis.service.js');
+const redisConfigs = redisService.getConfigs('production');
 
 function SocketConnector(socketConnector={}){
 
@@ -75,11 +77,14 @@ function Instance(instance={}){
 		channelOut: instanceId+'_OUT',
 		pub: redis.createClient(redisConfigs.port, 'localhost'),
 		sub: redis.createClient(redisConfigs.port, 'localhost'),
-		init: function(cpType){
-			instance.pub.publish('spawnRequest', JSON.stringify({
+
+		init: async function(cpType){
+
+			await redisService.emitP('spawnRequest', {
 				spawnId: instance.id,
 				cpType: cpType,
-			}))
+			})
+
 			return new Promise(function(resolve){
 				instance.sub.subscribe(instance.channelOut)
 				instance.sub.on('message', function(channel, messageStr){

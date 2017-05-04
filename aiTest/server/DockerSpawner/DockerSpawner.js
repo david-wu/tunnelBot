@@ -10,7 +10,8 @@ const redis = require('redis');
 const dockerContext = __dirname + '/CpSpawner/';
 const dockerFilePath = dockerContext + 'Dockerfile';
 
-const redisConfigs = rootRequire('services/redis.service.js').getConfigs('production');
+const redisService = rootRequire('services/redis.service.js');
+const redisConfigs = redisService.getConfigs('production');
 
 function DockerSpawner(dockerSpawner={}){
 
@@ -121,17 +122,10 @@ function DockerSpawner(dockerSpawner={}){
 
 		// Listens for spawnRequests on Redis and spawns docker instances
 		attachRedisSpawnHandler(){
-			return new Promise(function(resolve, reject){
-				redis.createClient(redisConfigs.port, redisConfigs.domain)
-					.on('message', dockerSpawner.spawnWorker)
-					.on('subscribe', resolve)
-					.subscribe('spawnRequest');
-			})
+			return redisService.onP('spawnRequest', dockerSpawner.spawnWorker)
 		},
 
-		spawnWorker: async function(channel, messageStr){
-			console.log('got spawnRequest:', messageStr)
-			const message = JSON.parse(messageStr);
+		spawnWorker: async function(message){
 			await dockerSpawner.images.worker.start(message.spawnId, message.cpType);
 		},
 
