@@ -52,9 +52,7 @@ function SocketConnector(socketConnector={}){
 
 		spawn: async function(cpType='generic', fileIds=[]){
 			if(!socketConnector.canSpawn()){return}
-
-			cpType = 'generic';
-			fileIds = ['590b6ec51d420891bf53ca32', '58f94a4001ff2f49a31922d4'];
+			console.log('loading files', fileIds)
 
 			const instance = Instance({
 				messageHandler: socketConnector.ioConnection.send.bind(socketConnector.ioConnection)

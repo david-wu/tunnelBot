@@ -24,17 +24,12 @@ export class FileViewerComponent {
 	constructor(
 		@Inject('file') private fileService,
 	){
-
-		setInterval(()=>{
-			this.updateFile.emit(this.selectedFile)
-		}, 1000)
-
-		// Todo, ace editor should accept text
-		// call this debounced update in ngOnChange
-		this.debouncedUpdateFile = _.debounce(this.updateFile.emit, 1000);
-
+		this.debouncedUpdateFile = _.debounce(this.updateFile.emit.bind(this.updateFile), 300);
 	}
 
+	onFileContentChange(){
+		this.debouncedUpdateFile(this.selectedFile)
+	}
 
     private fileList;
     private debouncedUpdateFile

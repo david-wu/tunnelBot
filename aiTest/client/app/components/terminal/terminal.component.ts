@@ -24,6 +24,7 @@ export class TerminalComponent {
 	constructor(
 		@Inject('api') private api,
 		@Inject('socket') private socketService,
+		@Inject('file') private fileService,
 	){
 		_.defaults(this, {
 			cpTypes: [
@@ -86,16 +87,24 @@ export class TerminalComponent {
 	}
 
 	spawn(socket){
-		return new Promise((resolve, reject)=>{
-			socket.send({
-				type: 'spawn',
-				payload: {
-					cpType: this.cpType,
-				},
-			}, function(err, res){
-				return err ? reject(err) : resolve(res.id);
+		return this.fileService.get().toPromise()
+			.then(function(res){
+				return res.json();
 			})
-		})
+			.then(function(files){
+				const fileIds = _.map(files, '_id');
+				return new Promise((resolve, reject)=>{
+					socket.send({
+						type: 'spawn',
+						payload: {
+							cpType: 'generic',
+							fileIds: fileIds
+						},
+					}, function(err, res){
+						return err ? reject(err) : resolve(res.id);
+					})
+				})
+			})
 			.catch(function(err){
 				console.log('failed to spawn', err)
 			})

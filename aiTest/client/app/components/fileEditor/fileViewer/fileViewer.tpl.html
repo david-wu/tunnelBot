@@ -3,4 +3,7 @@
 </h3>
 <input type="text" [(ngModel)]="selectedFile.name">
 <button (click)="deleteFile.emit(selectedFile)">Delete</button>
-<ace-editor [selectedFile]="selectedFile"></ace-editor>
+<ace-editor
+	[selectedFile]="selectedFile"
+	(selectedFileContentChange)="onFileContentChange($event)"
+></ace-editor>

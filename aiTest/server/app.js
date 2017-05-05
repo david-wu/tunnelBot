@@ -23,7 +23,7 @@ function App(app={}){
 
 			// access docker spawning service through redis
 			await DockerSpawner().init({
-				rebuild: true,
+				rebuild: false,
 			})
 
 			// access redis through webSockets
