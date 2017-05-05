@@ -32,16 +32,12 @@ function SocketConnector(socketConnector={}){
 								id: instance.id
 							})
 						})
-						.catch(function(errs){
-							console.log('gots', errs)
-							throw errs;
-						})
 						.catch(callback)
 				}else{
 					// messages from socket need to include an instanceId
-					const instance = socketConnector.instances[message.instanceId] || _.last(_.values(socketConnector.instances))
+					const instance = socketConnector.instances[message.instanceId]// || _.last(_.values(socketConnector.instances))
 					spawnPromise = spawnPromise.then(function(){
-						instance.send(message);
+						instance.sendMessage(message);
 					})
 				}
 			});
@@ -54,22 +50,26 @@ function SocketConnector(socketConnector={}){
 			})
 		},
 
-		canSpawn: function(){
-			return _.keys(socketConnector.instances).length < 15;
+		spawn: async function(cpType='generic', fileIds=[]){
+			if(!socketConnector.canSpawn()){return}
+
+			cpType = 'generic';
+			fileIds = ['590b6ec51d420891bf53ca32', '58f94a4001ff2f49a31922d4'];
+
+			const instance = Instance({
+				messageHandler: socketConnector.ioConnection.send.bind(socketConnector.ioConnection)
+			})
+			socketConnector.instances[instance.id] = instance
+
+			await instance.init(cpType)
+			await instance.mountFiles(fileIds)
+			await instance.runProcess()
+
+			return instance
 		},
 
-		spawn: async function(cpType='node', fileIds=['58f93c1f43cdd43c6821309b']){
-			if(!socketConnector.canSpawn()){
-				return;
-			}
-			const instance = Instance({
-				messageHandler: function(message){
-					socketConnector.ioConnection.send(message);
-				}
-			})
-			socketConnector.instances[instance.id] = instance;
-			await instance.init(cpType, fileIds)
-			return instance
+		canSpawn: function(){
+			return _.keys(socketConnector.instances).length < 15;
 		},
 	})
 }
@@ -81,31 +81,33 @@ function Instance(instance={}){
 		id: instanceId,
 		channelIn: instanceId+'_IN',
 		channelOut: instanceId+'_OUT',
-		pub: redis.createClient(redisConfigs.port, 'localhost'),
+		// pub: redis.createClient(redisConfigs.port, 'localhost'),
 		sub: redis.createClient(redisConfigs.port, 'localhost'),
 
-		init: async function(cpType, fileIds){
+		init: async function(cpType){
 
 			redisService.emitP('spawnRequest', {
 				spawnId: instance.id,
 				cpType: cpType,
 			})
 
-			await new Promise(function(resolve){
+			await instance.ensureRedisReady()
+			return instance
+		},
+
+		ensureRedisReady: function(){
+			return new Promise(function(resolve){
 				instance.sub.subscribe(instance.channelOut)
 				instance.sub.on('message', function(channel, messageStr){
 					const message = JSON.parse(messageStr)
 					message.instanceId = instance.id
-					if(message.type==='ready'){
+					if(message.type==='redisReady'){
 						resolve(instance)
 					}else{
 						instance.messageHandler(message)
 					}
 				})
 			})
-			await instance.mountFiles(fileIds)
-			await instance.runProcess
-			return instance
 		},
 
 		mountFiles: function(fileIds){
@@ -120,25 +122,25 @@ function Instance(instance={}){
 			return response.data
 		},
 		sendFile: async function(file){
-			await instance.send({
+			await instance.sendMessage({
 				type: 'fileWrite',
 				file: file
 			})
 		},
 		runProcess: function(){
-			return instance.send({
+			return instance.sendMessage({
 				type: 'runProcess'
 			});
 		},
 
-		send: function(message){
+		sendMessage: function(message){
 			return redisService.emitP(instance.channelIn, message);
 		},
 		messageHandler: function(message){
-			console.log('provide a message handler for instance', instanceId)
+			console.log('provide a message handler for instance', instance.id)
 		},
 		kill: function(){
-			instance.send({
+			instance.sendMessage({
 				type: 'kill'
 			})
 		},

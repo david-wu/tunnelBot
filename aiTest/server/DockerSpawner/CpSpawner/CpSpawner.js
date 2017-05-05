@@ -1,6 +1,7 @@
 const _ = require('lodash')
 const redis = require('redis')
-const spawn = require('child_process').spawn
+const childProcess = require('child_process');
+const spawn = childProcess.spawn
 const fs = require('fs')
 
 const cpType = process.env.CP_TYPE || 'maze'
@@ -23,17 +24,20 @@ const redisService = require('./redis.service.js');
 const cpCommands = {
 	node: {
 		command: 'node',
-		options: ['-i']
+		args: ['-i']
 	},
 	ruby: {
 		command: 'irb',
 	},
 	python: {
 		command: 'python',
-		options: ['-i'],
+		args: ['-i'],
 	},
 	maze: {
 		command: 'node ./games/maze/index.js',
+	},
+	generic: {
+		command: './context/start.sh'
 	}
 }
 
@@ -41,50 +45,48 @@ function CpSpawner(cpSpawner={}){
 	_.defaults(cpSpawner, {
 
 		init(){
-			console.log('starting up cpType', cpType);
 			cpSpawner.redisPub = redis.createClient(redisOptions.port, redisOptions.domain);
 			cpSpawner.redisSub = redis.createClient(redisOptions.port, redisOptions.domain);
-			return cpSpawner.spawnCp(cpCommands[cpType])
-				.then(cpSpawner.attachRedisHandler)
-				// .then(cpSpawner.emitRedisReady)
-				.catch(function(err){
-					console.log('failed to spawn Cp', err);
-					cpSpawner.destroy()
-				})
+			return cpSpawner.startListening()
+				.then(cpSpawner.emitRedisReady)
 		},
-		attachRedisHandler(){
+
+		startListening(){
 			return redisService.onP(channelIn, cpSpawner.messageHandler);
-			// return new Promise(function(resolve, reject){
-			// 	cpSpawner.redisSub.on('message', cpSpawner.messageHandler)
-			// 	cpSpawner.redisSub.on('subscribe', resolve)
-			// 	cpSpawner.redisSub.subscribe(channelIn)
-			// })
-				// .then(function(){
-				// 	console.log('await file at', instanceId+'_fileWrite')
-				// 	return redisService.onP(instanceId+'_fileWrite', function(file){
-				// 		console.log('gotFile', file);
-						// return new Promise(function(resolve, reject){
-						// 	fs.writeFile(`./context/${file.path}`, file.content);
-						// })
-				// 	})
-				// })
 		},
 
 		messageHandler(message){
-			console.log('received message', message);
-			if(message.type === 'kill'){
-				return cpSpawner.destroy();
-			}else if(message.type === 'fileWrite'){
-				return new Promise(function(resolve, reject){
-					fs.writeFile(`./context/${message.file.name}`, message.file.content, resolve);
-				})
+			if(message.type === 'fileWrite'){
+				return cpSpawner.writeFile(message.file);
 			}else if(message.type === 'runProcess'){
-
+				return cpSpawner.runChildProcess(cpType)
+			}else if(message.type === 'kill'){
+				return cpSpawner.destroy();
 			}
-
 			if(message.payload){
-				cpSpawner.cp.stdin.write(message.payload);
+				return cpSpawner.cp.stdin.write(message.payload);
 			}
+		},
+
+		writeFile(file){
+			return new Promise(function(resolve, reject){
+				fs.writeFile(`./context/${file.name}`, file.content, resolve);
+			})
+		},
+
+		runChildProcess(cpType){
+			cpSpawner.ready = false;
+			if(cpType==='generic'){
+				childProcess.execSync('chmod +x ./context/start.sh')
+			}
+
+			const cpCommand = cpCommands[cpType]
+			cpSpawner.cp = spawn(cpCommand.command, cpCommand.args, cpCommand.options)
+			cpSpawner.cp.stdin.setEncoding('utf-8')
+			cpSpawner.cp.stdout.on('data', cpSpawner.cpOutHandler)
+			cpSpawner.cp.stderr.on('data', cpSpawner.cpErrHandler)
+			cpSpawner.cp.on('close', cpSpawner.cpCloseHandler)
+			cpSpawner.cp.on('exit', cpSpawner.cpExitHandler)
 		},
 
 		destroy(){
@@ -99,35 +101,12 @@ function CpSpawner(cpSpawner={}){
 			}
 		},
 
-		spawnCp(cpCommand){
-			return new Promise(function(resolve, reject){
-				cpSpawner.ready = false;
-				cpSpawner.cp = spawn(cpCommand.command, cpCommand.options);
-				cpSpawner.cp.stdin.setEncoding('utf-8');
-				cpSpawner.cp.stdout.on('data', cpSpawner.cpOutHandler);
-				cpSpawner.cp.stderr.on('data', cpSpawner.cpErrHandler);
-				cpSpawner.cp.on('close', cpSpawner.cpCloseHandler);
-				cpSpawner.cp.on('exit', cpSpawner.cpExitHandler);
-				resolve();
-			})
-		},
-
-		publishPayload(type, payload={}){
-			const message = {
-				type: type,
-				payload: payload && payload.toString()
-			};
-			cpSpawner.redisPub.publish(channelOut, JSON.stringify(message));
-		},
 
 		cpOutHandler(payload){
 			payload = payload.toString();
-
-			// cp is ready when it returns something
 			cpSpawner.setReady(payload);
 			cpSpawner.publishPayload('stdOut', payload);
 		},
-
 		cpErrHandler(payload){
 			payload = payload.toString();
 
@@ -137,18 +116,22 @@ function CpSpawner(cpSpawner={}){
 			}
 			cpSpawner.publishPayload('stdErr', payload);
 		},
-
-		// tell connector that cp is ready
 		setReady(payload){
 			if(!cpSpawner.ready){
 				cpSpawner.publishPayload('ready', payload);
 				cpSpawner.ready = true;
 			}
 		},
-
-		// emitRedisReady(){
-		// 	cpSpawner.publishPayload('ready', 'cp is listening on redis');
-		// },
+		emitRedisReady(){
+			cpSpawner.publishPayload('redisReady', 'cp is listening on redis');
+		},
+		publishPayload(type, payload={}){
+			const message = {
+				type: type,
+				payload: payload && payload.toString()
+			};
+			cpSpawner.redisPub.publish(channelOut, JSON.stringify(message));
+		},
 
 		cpCloseHandler(){
 			console.log('close event');

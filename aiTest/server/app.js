@@ -16,17 +16,17 @@ function App(app={}){
 		async init(){
 			const server = http.createServer()
 
-			// Connect to db and provide access through APIs
+			// access db through APIs
 			await DbManager().init({
 				server: server
 			})
 
-			// Provide docker spawning service through redis
+			// access docker spawning service through redis
 			await DockerSpawner().init({
-				rebuild: false,
+				rebuild: true,
 			})
 
-			// Connects to redis through webSockets
+			// access redis through webSockets
 			await SocketManager().init({
 				server: server,
 			})
