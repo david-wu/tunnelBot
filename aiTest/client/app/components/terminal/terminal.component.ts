@@ -64,15 +64,26 @@ export class TerminalComponent {
 	}
 	async ngOnChanges(change){
 		if(change.cpType){
-			this.removeHandlers();
-			const socket = await this.socketService.getConnection();
-			this.removeHandlers = this.addHandlers(socket);
-			const spawnId = await this.spawn(socket);
-			this.showTerminal(socket);
+			// this.removeHandlers();
+			// const socket = await this.socketService.getConnection();
+			// this.removeHandlers = this.addHandlers(socket);
+			// const spawnId = await this.spawn(socket);
+			// this.showTerminal(socket);
 		}
 	}
+
 	ngOnDestroy(){
 
+	}
+
+	async spawnProcess(){
+		this.removeHandlers()
+		const socket = await this.socketService.getConnection()
+		this.removeHandlers = this.addHandlers(socket)
+		this.showTerminal(socket)
+		const spawnId = await this.spawn(socket)
+
+		console.log('spawned', socket)
 	}
 
 	addHandlers(socket){
@@ -115,7 +126,9 @@ export class TerminalComponent {
 		if(!this.cpType){return;}
 		var terminalOptions = _.find(this.cpTypes, {key: this.cpType});
 		_.defaults(terminalOptions, {
-			height: 400
+			height: 400,
+			echoCommand: false,
+			greetings: 'hello',
 		})
 
 		this.terminalContainerEl.empty();
