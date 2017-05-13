@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 const _ = require('lodash');
 
 @Injectable()
-export class FileService{
+export class ProjectService{
 
 	constructor(
 		private http: Http,
@@ -14,20 +14,20 @@ export class FileService{
 
 	}
 
-	url = this.api+'/file';
+	url = this.api+'/project';
 
-	get(fileIds=[]){
-		if(!fileIds.length){
+	get(projectIds=[]){
+		if(!projectIds.length){
 			return this.http.get(this.url)
 		}
 	}
 
-	save(file){
-		return this.http.post(this.url, file)
+	save(project){
+		return this.http.post(this.url, project)
 	}
 
-	update(file){
-		return this.http.put(`${this.url}/${file._id}`, file)
+	update(project){
+		return this.http.put(`${this.url}/${project._id}`, file)
 	}
 
 	delete(id){

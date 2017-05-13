@@ -18,6 +18,7 @@ import { FileListViewerComponent } from './components/fileEditor/fileListViewer/
 import { AceEditorComponent } from './components/fileEditor/aceEditor/aceEditor.component';
 
 import { FileService } from './services/file.service';
+import { ProjectService } from './services/project.service';
 import { NoteService } from './services/note.service';
 import { SocketService } from './services/socket.service'
 
@@ -45,6 +46,10 @@ import { SocketService } from './services/socket.service'
 		{
 			provide: 'file',
 			useClass: FileService,
+		},
+		{
+			provide: 'project',
+			useClass: ProjectService,
 		},
 		{
 			provide: 'note',

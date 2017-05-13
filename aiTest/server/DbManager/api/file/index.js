@@ -1,7 +1,7 @@
 
 const Router = rootRequire('./util/Router.js');
 const File = require('./File.model.js');
-const ObjectID = require('mongodb').ObjectID
+// const ObjectID = require('mongodb').ObjectID
 
 
 module.exports = new Router({
@@ -72,16 +72,16 @@ function getRoutes(app){
 	];
 }
 
-function getFile(req, res, next){
-	const FileId = req.params.FileId
-	return File.get({
-		_id: new ObjectID(FileId)
-	})
-		.catch(function(err){
-			res.status(400).send(err)
-		})
-		.then(function(File){
-			req.File = File;
-			next();
-		})
-}
+// function getFile(req, res, next){
+// 	const FileId = req.params.FileId
+// 	return File.get({
+// 		_id: new ObjectID(FileId)
+// 	})
+// 		.catch(function(err){
+// 			res.status(400).send(err)
+// 		})
+// 		.then(function(File){
+// 			req.File = File;
+// 			next();
+// 		})
+// }

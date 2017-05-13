@@ -10,8 +10,26 @@ export class FileEditorComponent {
 
 	constructor(
 		@Inject('file') private fileService,
+		@Inject('project') private projectService,
 	){
 		this.getFiles();
+
+
+		console.log('projectService', this.projectService)
+		const fakeProject = {
+			name: 'myProj'
+			fileIds: [
+				'58f9438a01ff2f49a31922ca',
+				'58f94a4001ff2f49a31922d4',
+				'590b6ec51d420891bf53ca32'
+			]
+		}
+		this.projectService.save(fakeProject).toPromise()
+			.then(console.log)
+			.catch(function(err){
+				console.log('err', err)
+			})
+
 	}
 
 	getFiles(){
