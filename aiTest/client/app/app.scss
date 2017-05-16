@@ -37,6 +37,11 @@
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
+
+  .column{
+  	flex-direction: column;
+  }
+
 }
 
 .clickable {
@@ -45,3 +50,4 @@
 .clickable:hover {
 	opacity: 0.85;
 }
+

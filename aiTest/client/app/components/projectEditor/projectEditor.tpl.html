@@ -1,0 +1,33 @@
+<h1>Projects</h1>
+
+<!-- <file-list-viewer
+	*ngIf="fileList"
+	[fileList]="fileList"
+	[(selectedFile)]="selectedFile"
+	(createFile)="onCreateFile($event)"
+></file-list-viewer>
+ -->
+<project-list-viewer
+	*ngIf="projectList"
+	[projectList]="projectList"
+	[(selectedProject)]="selectedProject"
+	(createProject)="onCreateProject($event)"
+>
+</project-list-viewer>
+
+
+<project-viewer
+	*ngIf="selectedProject"
+	[selectedProject]="selectedProject"
+	(updateProject)="onUpdateProject($event)"
+	(deleteProject)="onDeleteProject($event)"
+></project-viewer>
+
+
+<!--
+<file-viewer
+	*ngIf="selectedFile"
+	[selectedFile]="selectedFile"
+	(updateFile)="onUpdateFile($event)"
+	(deleteFile)="onDeleteFile($event)"
+></file-viewer> -->

@@ -22,12 +22,17 @@ export class ProjectService{
 		}
 	}
 
+
+	getFiles(projectId){
+		return this.http.get(`${this.url}/${projectId}/files`);
+	}
+
 	save(project){
 		return this.http.post(this.url, project)
 	}
 
 	update(project){
-		return this.http.put(`${this.url}/${project._id}`, file)
+		return this.http.put(`${this.url}/${project._id}`, project)
 	}
 
 	delete(id){

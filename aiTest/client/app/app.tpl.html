@@ -1,5 +1,38 @@
 <div>
-	Terminal with cpType: {{cpType}}
-	<terminal [(cpType)]="cpType"></terminal>
-	<file-editor></file-editor>
+
+	<div class="flex" style="width:100%;">
+
+		<div class="flex column" style="flex: 0 0 auto; padding: 10px;">
+			<project-list-viewer
+				*ngIf="projectList"
+				[projectList]="projectList"
+				[selectedProject]="selectedProject"
+				(selectedProjectChange)="onSelectProject($event)"
+				(createProject)="onCreateProject($event)"
+			></project-list-viewer>
+
+			<file-list-viewer
+				*ngIf="fileList"
+				[fileList]="fileList"
+				[(selectedFile)]="selectedFile"
+				(createFile)="onCreateFile($event)"
+				style="margin-top: 10px;"
+			></file-list-viewer>
+		</div>
+
+		<div style="flex: 1 0 auto; padding: 10px;">
+
+			<file-viewer
+				*ngIf="selectedFile"
+				[selectedFile]="selectedFile"
+				(updateFile)="onUpdateFile($event)"
+				(deleteFile)="onDeleteFile($event)"
+			></file-viewer>
+
+		</div>
+
+		<div style="flex: 1 0 auto; padding: 10px;">
+			Terminal with cpType: {{cpType}}
+			<terminal [(cpType)]="cpType"></terminal>
+		</div>
 </div>

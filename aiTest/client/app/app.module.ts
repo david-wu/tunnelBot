@@ -17,6 +17,12 @@ import { FileViewerComponent } from './components/fileEditor/fileViewer/fileView
 import { FileListViewerComponent } from './components/fileEditor/fileListViewer/fileListViewer.component';
 import { AceEditorComponent } from './components/fileEditor/aceEditor/aceEditor.component';
 
+
+import { ProjectEditorComponent } from './components/projectEditor/projectEditor.component';
+import { ProjectViewerComponent } from './components/projectEditor/projectViewer/projectViewer.component';
+import { ProjectListViewerComponent } from './components/projectEditor/projectListViewer/projectListViewer.component';
+
+
 import { FileService } from './services/file.service';
 import { ProjectService } from './services/project.service';
 import { NoteService } from './services/note.service';
@@ -37,6 +43,9 @@ import { SocketService } from './services/socket.service'
 		FileViewerComponent,
 		FileListViewerComponent,
 		AceEditorComponent,
+		ProjectEditorComponent,
+		ProjectViewerComponent,
+		ProjectListViewerComponent,
 	],
 	providers: [
 		{

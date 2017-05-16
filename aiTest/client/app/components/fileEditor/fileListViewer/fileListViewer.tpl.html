@@ -1,8 +1,14 @@
+Select A File
 <input type="text" [(ngModel)]="newFile.name">
 <button (click)="createFileHandler()">+ Create File</button>
 
 <div *ngIf="fileList">
-	<div *ngFor="let file of fileList.items;" (click)="onFileSelect(file)">
-		fileName: {{file.name}}
+	<div
+		*ngFor="let file of fileList.items;"
+		(click)="onFileSelect(file)"
+		class="clickable"
+		[ngClass]="{'selected': file===selectedFile}"
+	>
+		{{file.name}}
 	</div>
 </div>

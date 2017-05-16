@@ -11,7 +11,6 @@ declare const ace:any;
 		:host{
 			display: block;
 			width: 100%;
-			height: 250px;
 		}
 	`],
 })

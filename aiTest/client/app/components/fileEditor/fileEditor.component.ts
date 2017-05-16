@@ -8,32 +8,40 @@ const _ = require('lodash');
 })
 export class FileEditorComponent {
 
+	@Input('selectedProject') selectedProject;
+
 	constructor(
 		@Inject('file') private fileService,
 		@Inject('project') private projectService,
 	){
-		this.getFiles();
-
-
-		console.log('projectService', this.projectService)
-		const fakeProject = {
-			name: 'myProj'
-			fileIds: [
-				'58f9438a01ff2f49a31922ca',
-				'58f94a4001ff2f49a31922d4',
-				'590b6ec51d420891bf53ca32'
-			]
-		}
-		this.projectService.save(fakeProject).toPromise()
-			.then(console.log)
-			.catch(function(err){
-				console.log('err', err)
-			})
 
 	}
 
-	getFiles(){
+	ngOnInit(){
+		// console.log(changes)
+		// if(changes.selectedProject){
+			if(this.selectedProject){
+				this.getFiles(this.selectedProject)
+			}else{
+				this.getAllFiles();
+			}
+		// }
+	}
+
+
+	getAllFiles(){
 		return this.fileService.get().toPromise()
+			.then((response)=>{
+				this.fileList = {
+					items: response.json(),
+				}
+			});
+	}
+
+	getFiles(project){
+
+		return this.projectService.getFiles(project._id).toPromise()
+		// return this.fileService.get().toPromise()
 			.then((response)=>{
 				this.fileList = {
 					items: response.json(),
@@ -45,7 +53,8 @@ export class FileEditorComponent {
 		_.defaults(file, {
 			title: 'default title',
 			name: 'default name',
-			content: 'default content'
+			content: 'default content',
+			projectId: this.selectedProject._id
 		})
 		return this.fileService.save(file).toPromise()
 			.then(this.getFiles.bind(this))

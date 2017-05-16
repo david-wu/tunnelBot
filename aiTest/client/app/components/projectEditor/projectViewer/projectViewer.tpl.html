@@ -1,0 +1,13 @@
+<h3>
+	{{selectedProject.name}}
+</h3>
+<input type="text" [(ngModel)]="selectedProject.name">
+<button (click)="deleteProject.emit(selectedProject)">Delete</button>
+
+<file-editor
+	*ngIf="selectedProject"
+	[selectedProject]="selectedProject"
+></file-editor>
+
+<file-editor>
+</file-editor>

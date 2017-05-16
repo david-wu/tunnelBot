@@ -1,0 +1,14 @@
+Select A Project
+<input type="text" [(ngModel)]="newProject.name">
+<button (click)="createProjectHandler()">+ Create Project</button>
+
+<div *ngIf="projectList">
+	<div
+		*ngFor="let project of projectList.items;"
+		(click)="onProjectSelect(project)"
+		class="clickable"
+		[ngClass]="{'selected': project===selectedProject}"
+	>
+		{{project.name}} ({{project.fileIds.length}})
+	</div>
+</div>

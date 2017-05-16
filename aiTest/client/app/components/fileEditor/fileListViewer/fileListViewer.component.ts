@@ -4,7 +4,12 @@ const _ = require('lodash');
 @Component({
 	selector: 'file-list-viewer',
 	template: require('./fileListViewer.tpl.html'),
-	styles: [``],
+	styles: [`
+		.selected{
+			background-color: black;
+			color: white;
+		}
+	`],
 })
 export class FileListViewerComponent {
 
@@ -20,7 +25,11 @@ export class FileListViewerComponent {
 	}
 
 	onFileSelect(file){
-		this.selectedFileChange.emit(file);
+		if(this.selectedFile === file){
+			this.selectedFileChange.emit(undefined);
+		}else{
+			this.selectedFileChange.emit(file);
+		}
 	}
 
 	createFileHandler(){
