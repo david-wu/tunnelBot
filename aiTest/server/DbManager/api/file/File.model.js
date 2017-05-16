@@ -61,11 +61,11 @@ class File{
 			.findOne({
 				_id: ObjectID(this._id)
 			})
-			.then(function(fileData){
+			.then((fileData)=>{
 				if(!fileData){
 					throw 'no such file'
 				}
-				return new File(fileData);
+				return _.extend(this, fileData);
 			});
 	}
 
@@ -74,21 +74,34 @@ class File{
 			.deleteOne({
 				_id: ObjectID(this._id)
 			})
-			.then(function(fileData){
+			.then((fileData)=>{
 				if(!fileData){
 					throw 'no such file'
 				}
-				return new File(fileData);
+				return _.extend(this, fileData.toJSON());
 			})
 			.catch(console.log);
 	}
 
 	save(){
+		if(!this._id){
+			return this.insert();
+		}
 		var data = this.json('db');
 		return this.db.collection('files')
 			.save(data)
-			.then(function(fileData){
-				return new File(fileData);
+			.then((fileData)=>{
+				return _.extend(this, fileData.toJSON());
+			});
+	}
+
+	insert(){
+		var data = this.json('db');
+		return this.db.collection('files')
+			.insertOne(data)
+			.then((result)=>{
+				this._id = result.insertedId;
+				return this;
 			});
 	}
 
@@ -99,8 +112,8 @@ class File{
 			.update({
 				_id: ObjectID(this._id)
 			}, updateData)
-			.then(function(fileData){
-				return new File(fileData)
+			.then((fileData)=>{
+				return _.extend(this, fileData.toJSON());
 			})
 	}
 

@@ -1,6 +1,7 @@
 
 const Router = rootRequire('./util/Router.js');
 const File = require('./File.model.js');
+const Project = require('../project/Project.model.js');
 // const ObjectID = require('mongodb').ObjectID
 
 
@@ -39,12 +40,17 @@ function getRoutes(app){
 		{
 			method: 'post',
 			endPoint: '/',
-			handler: function(req, res){
-				return new File(req.body)
-					.save()
-					.then(function(file){
-						res.status(200).send(file.json('public'));
-					})
+			handler: async function(req, res){
+				const file = new File(req.body)
+				await file.save()
+
+				if(req.body.projectId){
+					const project = new Project({_id: req.body.projectId})
+					await project.get()
+					await project.linkFiles([file._id])
+				}
+
+				return res.status(200).send(file.json('public'));
 			}
 		},
 		{

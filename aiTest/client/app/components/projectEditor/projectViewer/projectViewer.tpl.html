@@ -4,10 +4,8 @@
 <input type="text" [(ngModel)]="selectedProject.name">
 <button (click)="deleteProject.emit(selectedProject)">Delete</button>
 
-<file-editor
-	*ngIf="selectedProject"
-	[selectedProject]="selectedProject"
-></file-editor>
 
-<file-editor>
-</file-editor>
+<div style="flex: 1 0 auto; padding: 10px;">
+	Terminal with cpType: {{cpType}}
+	<terminal [(cpType)]="cpType"></terminal>
+</div>

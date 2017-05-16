@@ -34,6 +34,7 @@ export class FileListViewerComponent {
 
 	createFileHandler(){
 		this.createFile.emit(this.newFile);
+		this.newFile = {};
 	}
 
 	private newFile:any;

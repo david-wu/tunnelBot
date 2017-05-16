@@ -6,7 +6,6 @@ const _ = require('lodash');
   template: require('./app.tpl.html'),
 })
 export class AppComponent{
-	cpType = 'ruby';
 
 	constructor(
 		@Inject('file') private fileService,
@@ -28,9 +27,7 @@ export class AppComponent{
 	onCreateProject(project){
 		_.defaults(project, {
 			name: 'default project name',
-			fileIds: ['58f9438a01ff2f49a31922ca', '58f94a4001ff2f49a31922d4'],
-			// TODO
-			// fileIds: [],
+			fileIds: [],
 		})
 		return this.projectService.save(project).toPromise()
 			.then(this.getProjects.bind(this))
@@ -38,6 +35,7 @@ export class AppComponent{
 
 	onUpdateProject(project){
 		return this.fileService.update(project).toPromise()
+			.then(this.getProjects.bind(this))
 	}
 
 	onDeleteProject(project){
@@ -82,21 +80,27 @@ export class AppComponent{
 		return this.projectService.getFiles(project._id).toPromise()
 		// return this.fileService.get().toPromise()
 			.then((response)=>{
-				this.fileList = {
+				project.fileList = {
 					items: response.json(),
 				}
+				this.fileList = project.fileList
 			});
 	}
 
 	onCreateFile(file){
+		var parentProject = this.selectedProject
 		_.defaults(file, {
 			title: 'default title',
 			name: 'default name',
 			content: 'default content',
-			projectId: this.selectedProject._id
+			projectId: parentProject._id
 		})
 		return this.fileService.save(file).toPromise()
-			.then(this.getFiles.bind(this))
+			.then(()=>{
+				parentProject.fileList.items.push(file);
+				this.selectedFile = file;
+			})
+			// .then(this.getFiles.bind(this))
 	}
 
 	onUpdateFile(file){

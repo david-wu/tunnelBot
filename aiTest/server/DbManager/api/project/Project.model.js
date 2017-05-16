@@ -35,6 +35,7 @@ class Project{
 		_.extend(this, options);
 		_.defaults(this, {
 			db: defaultDb,
+			fileIds: [],
 			keys: {
 				overview: [
 					'_id',
@@ -55,16 +56,29 @@ class Project{
 	}
 
 	get(){
+		if(!this._id){
+			throw 'can not get project with no _id'
+		}
 		return defaultDb.collection('projects')
 			.findOne({
 				_id: ObjectID(this._id)
 			})
-			.then(function(projectData){
+			.then((projectData)=>{
 				if(!projectData){
-					throw 'no such Project'
+					throw `can not find project: ${this._id}`
 				}
-				return new Project(projectData);
+				return _.extend(this, projectData)
 			});
+	}
+
+	async linkFiles(fileIds){
+		const project = await this.get();
+
+		const fileIdList = _.map(fileIds, function(fileId){
+			return ObjectID(fileId)
+		})
+		this.fileIds = this.fileIds.concat(fileIdList)
+		return this.update();
 	}
 
 	async getFiles(){
@@ -97,21 +111,34 @@ class Project{
 			.deleteOne({
 				_id: ObjectID(this._id)
 			})
-			.then(function(projectData){
+			.then((projectData)=>{
 				if(!projectData){
 					throw 'no such Project'
 				}
-				return new Project(projectData);
+				return _.extend(this, projectData)
 			})
 			.catch(console.log);
 	}
 
 	save(){
+		if(!this._id){
+			return this.insert();
+		}
 		var data = this.json('db');
 		return this.db.collection('projects')
 			.save(data)
-			.then(function(projectData){
-				return new Project(projectData);
+			.then((projectData)=>{
+				return _.extend(this, projectData)
+			});
+	}
+
+	insert(){
+		var data = this.json('db');
+		return this.db.collection('projects')
+			.insertOne(data)
+			.then((result)=>{
+				this._id = result.insertedId;
+				return this;
 			});
 	}
 
@@ -122,8 +149,8 @@ class Project{
 			.update({
 				_id: ObjectID(this._id)
 			}, updateData)
-			.then(function(projectData){
-				return new Project(projectData)
+			.then(()=>{
+				return this;
 			})
 	}
 

@@ -22,6 +22,13 @@
 
 		<div style="flex: 1 0 auto; padding: 10px;">
 
+			<project-viewer
+				*ngIf="selectedProject"
+				[selectedProject]="selectedProject"
+				(updateProject)="onUpdateProject($event)"
+				(deleteProject)="onDeleteProject($event)"
+			></project-viewer>
+
 			<file-viewer
 				*ngIf="selectedFile"
 				[selectedFile]="selectedFile"
@@ -29,10 +36,5 @@
 				(deleteFile)="onDeleteFile($event)"
 			></file-viewer>
 
-		</div>
-
-		<div style="flex: 1 0 auto; padding: 10px;">
-			Terminal with cpType: {{cpType}}
-			<terminal [(cpType)]="cpType"></terminal>
 		</div>
 </div>

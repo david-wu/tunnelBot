@@ -62,6 +62,19 @@ function getRoutes(app){
 			}
 		},
 		{
+			method: 'post',
+			endPoint: '/:_id/linkFiles',
+			handler: function(req, res){
+				var fileIds = req.params.fileIds
+				return new Project({_id: req.params._id})
+					.get()
+					.linkFiles(fileIds)
+					.then(function(project){
+						res.status(200).send(project.json('public'));
+					})
+			}
+		},
+		{
 			method: 'delete',
 			endPoint: '/:_id',
 			handler: function(req, res){

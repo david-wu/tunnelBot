@@ -24,6 +24,7 @@ export class ProjectViewerComponent {
 	constructor(
 		@Inject('project') private projectService,
 	){
+		this.cpType = 'ruby';
 		this.debouncedUpdateProject = _.debounce(this.updateProject.emit.bind(this.updateProject), 300);
 	}
 
@@ -31,7 +32,8 @@ export class ProjectViewerComponent {
 		this.debouncedUpdateProject(this.selectedProject)
 	}
 
-    private projectList;
+    private projectList
     private debouncedUpdateProject
+    private cpType:string
 
 }
