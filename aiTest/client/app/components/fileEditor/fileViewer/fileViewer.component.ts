@@ -20,9 +20,7 @@ export class FileViewerComponent {
 	@Output() deleteFile = new EventEmitter();
 	@Output() updateFile = new EventEmitter();
 
-	constructor(
-		@Inject('file') private fileService,
-	){
+	constructor(){
 		this.debouncedUpdateFile = _.debounce(this.updateFile.emit.bind(this.updateFile), 300);
 	}
 

@@ -1,7 +1,7 @@
 <h3>
 	{{selectedProject.name}}
 </h3>
-<input type="text" [(ngModel)]="selectedProject.name">
+<input type="text" [(ngModel)]="selectedProject.name" (input)="debouncedUpdateProject(selectedProject)">
 <button (click)="deleteProject.emit(selectedProject)">Delete</button>
 
 

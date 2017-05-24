@@ -27,7 +27,7 @@ export class FileService{
 	}
 
 	update(file){
-		return this.http.put(`${this.url}/${file._id}`, file)
+		return this.http.put(`${this.url}/${file.id}`, file)
 	}
 
 	delete(id){

@@ -3,7 +3,7 @@
 	It also serves the client
 */
 
-const MongoClient = require('mongodb').MongoClient
+// const MongoClient = require('mongodb').MongoClient
 const api = require('./api')
 const express = require('express')
 
@@ -16,18 +16,19 @@ module.exports = function DbManager(dbManager={}){
 	return _.defaults(dbManager, {
 
 		express: express(),
-		mongo: {
-			db: undefined,
-			domain: 'localhost',
-			port: '27017',
-			dbName: 'myproject',
-			getUrl: function(){
-				return `mongodb://${this.domain}:${this.port}/${this.dbName}`
-			},
-		},
+		// mongo: {
+		// 	db: undefined,
+		// 	domain: 'localhost',
+		// 	port: '27017',
+		// 	dbName: 'myproject',
+		// 	getUrl: function(){
+		// 		return `mongodb://${this.domain}:${this.port}/${this.dbName}`
+		// 	},
+		// },
 
 		async init(options){
-			dbManager.mongo.db = await dbManager.getMongoConnection()
+			dbManager.models = await require('./models')
+			// dbManager.mongo.db = await dbManager.getMongoConnection()
 			dbManager.strapMiddleware()
 			dbManager.mount(dbManager.express)
 			options.server.on('request', dbManager.express)
@@ -35,17 +36,17 @@ module.exports = function DbManager(dbManager={}){
 			return dbManager;
 		},
 
-		getMongoConnection(){
-			return new Promise((resolve, reject)=>{
-				MongoClient.connect(dbManager.mongo.getUrl(), function(err, db){
-					if(err){
-						reject(err)
-					}else{
-						resolve(db);
-					}
-				});
-			});
-		},
+		// getMongoConnection(){
+		// 	return new Promise((resolve, reject)=>{
+		// 		MongoClient.connect(dbManager.mongo.getUrl(), function(err, db){
+		// 			if(err){
+		// 				reject(err)
+		// 			}else{
+		// 				resolve(db);
+		// 			}
+		// 		});
+		// 	});
+		// },
 
 		strapMiddleware(){
 		    dbManager.express.use(bodyParser.urlencoded({extended:true}));

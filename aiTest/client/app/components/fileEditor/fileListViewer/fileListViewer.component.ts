@@ -18,9 +18,7 @@ export class FileListViewerComponent {
 	@Output() selectedFileChange = new EventEmitter();
 	@Output() createFile = new EventEmitter();
 
-	constructor(
-		@Inject('file') private fileService,
-	){
+	constructor(){
 		this.newFile = {};
 	}
 

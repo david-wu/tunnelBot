@@ -32,7 +32,7 @@ export class ProjectService{
 	}
 
 	update(project){
-		return this.http.put(`${this.url}/${project._id}`, project)
+		return this.http.put(`${this.url}/${project.id}`, project)
 	}
 
 	delete(id){

@@ -12,20 +12,17 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { TerminalComponent } from './components/terminal/terminal.component';
 
-import { FileEditorComponent } from './components/fileEditor/fileEditor.component';
 import { FileViewerComponent } from './components/fileEditor/fileViewer/fileViewer.component';
 import { FileListViewerComponent } from './components/fileEditor/fileListViewer/fileListViewer.component';
 import { AceEditorComponent } from './components/fileEditor/aceEditor/aceEditor.component';
 
 
-import { ProjectEditorComponent } from './components/projectEditor/projectEditor.component';
 import { ProjectViewerComponent } from './components/projectEditor/projectViewer/projectViewer.component';
 import { ProjectListViewerComponent } from './components/projectEditor/projectListViewer/projectListViewer.component';
 
 
 import { FileService } from './services/file.service';
 import { ProjectService } from './services/project.service';
-import { NoteService } from './services/note.service';
 import { SocketService } from './services/socket.service'
 
 
@@ -39,11 +36,9 @@ import { SocketService } from './services/socket.service'
 	declarations: [
 		AppComponent,
 		TerminalComponent,
-		FileEditorComponent,
 		FileViewerComponent,
 		FileListViewerComponent,
 		AceEditorComponent,
-		ProjectEditorComponent,
 		ProjectViewerComponent,
 		ProjectListViewerComponent,
 	],
@@ -59,10 +54,6 @@ import { SocketService } from './services/socket.service'
 		{
 			provide: 'project',
 			useClass: ProjectService,
-		},
-		{
-			provide: 'note',
-			useClass: NoteService,
 		},
 		{
 			provide: 'socket',

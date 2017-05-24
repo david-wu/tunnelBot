@@ -28,9 +28,9 @@ export class ProjectViewerComponent {
 		this.debouncedUpdateProject = _.debounce(this.updateProject.emit.bind(this.updateProject), 300);
 	}
 
-	onProjectContentChange(){
-		this.debouncedUpdateProject(this.selectedProject)
-	}
+	// onProjectContentChange(){
+	// 	this.debouncedUpdateProject(this.selectedProject)
+	// }
 
     private projectList
     private debouncedUpdateProject

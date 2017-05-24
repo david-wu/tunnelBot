@@ -27,19 +27,18 @@ export class AppComponent{
 	onCreateProject(project){
 		_.defaults(project, {
 			name: 'default project name',
-			fileIds: [],
+			description: 'default project description'
 		})
 		return this.projectService.save(project).toPromise()
 			.then(this.getProjects.bind(this))
 	}
 
 	onUpdateProject(project){
-		return this.fileService.update(project).toPromise()
-			.then(this.getProjects.bind(this))
+		return this.projectService.update(project).toPromise()
 	}
 
 	onDeleteProject(project){
-		return this.projectService.delete(project._id).toPromise()
+		return this.projectService.delete(project.id).toPromise()
 			.then(()=>{
 				if(project === this.selectedProject){
 					this.selectedProject = undefined
@@ -60,9 +59,6 @@ export class AppComponent{
     private selectedProject;
     private projectList;
 
-
-
-
 	getAllFiles(){
 		return this.fileService.get().toPromise()
 			.then((response)=>{
@@ -77,8 +73,7 @@ export class AppComponent{
 			return this.getAllFiles();
 		}
 
-		return this.projectService.getFiles(project._id).toPromise()
-		// return this.fileService.get().toPromise()
+		return this.projectService.getFiles(project.id).toPromise()
 			.then((response)=>{
 				project.fileList = {
 					items: response.json(),
@@ -90,26 +85,25 @@ export class AppComponent{
 	onCreateFile(file){
 		var parentProject = this.selectedProject
 		_.defaults(file, {
-			title: 'default title',
-			name: 'default name',
-			content: 'default content',
-			projectId: parentProject._id
+			title: '',
+			name: '',
+			content: '',
+			projectIds: [parentProject.id]
 		})
 		return this.fileService.save(file).toPromise()
-			.then(()=>{
-				parentProject.fileList.items.push(file);
-				this.selectedFile = file;
+			.then((response)=>{
+				const savedFile = response.json();
+				parentProject.fileList.items.push(savedFile);
+				this.selectedFile = savedFile;
 			})
-			// .then(this.getFiles.bind(this))
 	}
 
 	onUpdateFile(file){
 		return this.fileService.update(file).toPromise()
-			// .then(this.getFiles.bind(this))
 	}
 
 	onDeleteFile(file){
-		return this.fileService.delete(file._id).toPromise()
+		return this.fileService.delete(file.id).toPromise()
 			.then(()=>{
 				if(file === this.selectedFile){
 					this.selectedFile = undefined;
