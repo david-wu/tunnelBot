@@ -23,22 +23,24 @@ export class ConsoleComponent {
 
 	ngOnChanges(changes){
 		if(changes.project){
-			this.clearSpawn();
+			this.instanceId = undefined;
+			this.removeHandlers()
+			this.emptyTerminal();
 		}
 	}
 
 	async spawnProcess(){
-		this.clearSpawn()
+		this.awaitingSpawn = true;
+
+		this.instanceId = undefined;
+		this.removeHandlers()
+		this.emptyTerminal();
+
 		const socket = await this.socketService.getConnection()
 		this.removeHandlers = this.addHandlers(socket)
 		this.instanceId = await this.spawn(socket)
 		this.showTerminal(socket)
-	}
-
-	clearSpawn(){
-		this.instanceId = undefined;
-		this.removeHandlers()
-		this.removeTerminal();
+		this.awaitingSpawn = false;
 	}
 
 	addHandlers(socket){
@@ -83,7 +85,7 @@ export class ConsoleComponent {
 	}
 
 	async promptInput(socket){
-		this.terminal.input('', async (input)=>{
+		this.terminal.input('> ', async (input)=>{
 			await socket.send({
 				instanceId: this.instanceId,
 				type: 'stdIn',
@@ -93,16 +95,16 @@ export class ConsoleComponent {
 		})
 	}
 
-	removeTerminal(){
-		$(this.consoleContainer.nativeElement).empty()
-	}
-
 	setTerminal(){
 		const terminal = new Terminal('my-console')
-		this.removeTerminal();
+		this.emptyTerminal();
 		this.consoleContainer.nativeElement.appendChild(terminal.html)
 
 		return terminal
+	}
+
+	emptyTerminal(){
+		$(this.consoleContainer.nativeElement).empty()
 	}
 
 	messageHandler(message){
@@ -130,6 +132,7 @@ export class ConsoleComponent {
 	}
 
 	private instanceId:any;
+	private awaitingSpawn:boolean;
 
 }
 

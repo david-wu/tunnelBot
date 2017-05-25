@@ -1,23 +1,12 @@
 /*! terminal.js v2.0 | (c) 2014 Erik Österberg | https://github.com/eosterberg/terminaljs */
 
 var Terminal = (function () {
-	// PROMPT_TYPE
 	var PROMPT_INPUT = 1, PROMPT_PASSWORD = 2, PROMPT_CONFIRM = 3
-
-	var fireCursorInterval = function (inputField, terminalObj) {
-		var cursor = terminalObj._cursor
-		setTimeout(function () {
-			if (inputField.parentElement && terminalObj._shouldBlinkCursor) {
-				cursor.style.visibility = cursor.style.visibility === 'visible' ? 'hidden' : 'visible'
-				fireCursorInterval(inputField, terminalObj)
-			} else {
-				cursor.style.visibility = 'visible'
-			}
-		}, 500)
-	}
 
 	var firstPrompt = true;
 	promptInput = function (terminalObj, message, PROMPT_TYPE, callback) {
+		var isScrolledToBottom = terminalObj.isScrolledToBottom();
+
 		var shouldDisplayInput = (PROMPT_TYPE === PROMPT_INPUT)
 		var inputField = document.createElement('input')
 
@@ -26,22 +15,31 @@ var Terminal = (function () {
 		inputField.style.outline = 'none'
 		inputField.style.border = 'none'
 		inputField.style.opacity = '0'
-		inputField.style.fontSize = '0.2em'
+		terminalObj._inputLine.style.fontSize = '12px'
+		terminalObj._input.style.padding = '2px';
 
 		terminalObj._inputLine.textContent = ''
 		terminalObj._input.style.display = 'block'
-		terminalObj.html.appendChild(inputField)
-		fireCursorInterval(inputField, terminalObj)
 
-		if (message.length) terminalObj.print(PROMPT_TYPE === PROMPT_CONFIRM ? message + ' (y/n)' : message)
+		message = message || '> '
+		terminalObj._inputLinePrefix.textContent = message;
+
+		terminalObj.html.appendChild(inputField)
+
+		if(isScrolledToBottom){
+			terminalObj.html.scrollTop = (terminalObj.html.scrollHeight - terminalObj.html.offsetHeight);
+		}
+
+		// if (message.length) terminalObj.print(PROMPT_TYPE === PROMPT_CONFIRM ? message + ' (y/n)' : message)
 
 		inputField.onblur = function () {
-			terminalObj._cursor.style.display = 'none'
+			terminalObj._cursor.style.opacity = '0.25';
 		}
 
 		inputField.onfocus = function () {
 			inputField.value = terminalObj._inputLine.textContent
 			terminalObj._cursor.style.display = 'inline'
+			terminalObj._cursor.style.opacity = '1';
 		}
 
 		terminalObj.html.onclick = function () {
@@ -61,7 +59,7 @@ var Terminal = (function () {
 			if (PROMPT_TYPE === PROMPT_CONFIRM || e.which === 13) {
 				terminalObj._input.style.display = 'none'
 				var inputValue = inputField.value
-				if (shouldDisplayInput) terminalObj.print(inputValue)
+				if (shouldDisplayInput) terminalObj.print('> '+inputValue)
 				terminalObj.html.removeChild(inputField)
 				if (typeof(callback) === 'function') {
 					if (PROMPT_TYPE === PROMPT_CONFIRM) {
@@ -94,6 +92,7 @@ var Terminal = (function () {
 
 		this._innerWindow = document.createElement('div')
 		this._output = document.createElement('p')
+		this._inputLinePrefix = document.createElement('span');
 		this._inputLine = document.createElement('span') //the span element where the users input is put
 		this._cursor = document.createElement('span')
 		this._input = document.createElement('p') //the full element administering the user input, including cursor
@@ -183,6 +182,7 @@ var Terminal = (function () {
 			this._shouldBlinkCursor = (bool === 'TRUE' || bool === '1' || bool === 'YES')
 		}
 
+		this._input.appendChild(this._inputLinePrefix)
 		this._input.appendChild(this._inputLine)
 		this._input.appendChild(this._cursor)
 		this._innerWindow.appendChild(this._output)
