@@ -1,3 +1,4 @@
+
 <div class="flex">
 	<input class="mrs" type="text" [(ngModel)]="selectedProject.name" (input)="debouncedUpdateProject(selectedProject)">
 	<button (click)="deleteProject.emit(selectedProject)">Delete</button>
@@ -15,6 +16,5 @@
 
 <div class="flex column" style="flex: 1 0 auto; padding: 10px;">
 	<div>Console for {{selectedProject.name}}</div>
-	<console [project]="selectedProject"></console>
+	<console class="flex column" style="flex: 1 0 auto;" [project]="selectedProject"></console>
 </div>
-

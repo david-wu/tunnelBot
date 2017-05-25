@@ -52,8 +52,6 @@ function SocketConnector(socketConnector={}){
 
 		spawn: async function(cpType='generic', fileIds=[]){
 			if(!socketConnector.canSpawn()){return}
-			console.log('loading files', fileIds)
-
 			const instance = Instance({
 				messageHandler: socketConnector.ioConnection.send.bind(socketConnector.ioConnection)
 			})
@@ -79,7 +77,6 @@ function Instance(instance={}){
 		id: instanceId,
 		channelIn: instanceId+'_IN',
 		channelOut: instanceId+'_OUT',
-		// pub: redis.createClient(redisConfigs.port, 'localhost'),
 		sub: redis.createClient(redisConfigs.port, 'localhost'),
 
 		init: async function(cpType){

@@ -1,19 +1,25 @@
-<div class="flex">
-	<input class="mrs" type="text" [value]="selectedFile.name" (input)="onFileNameChange($event)">
-	<button (click)="deleteFile.emit(selectedFile)">Delete</button>
-</div>
 
-<div class="flex">
-	<div class="mrs">Created:</div>
-	<div>{{selectedFile.createdAt | date:'yMdjm'}}</div>
-</div>
+<div class="flex space-between align-center">
 
-<div class="flex">
-	<div class="mrs">Updated:</div>
-	<div>{{selectedFile.updatedAt | date:'yMdjm'}}</div>
+	<div class="flex">
+		<input class="mrs" type="text" [value]="selectedFile.name" (input)="onFileNameChange($event)">
+		<button (click)="deleteFile.emit(selectedFile)">Delete</button>
+	</div>
+
+	<div class="flex column">
+		<div class="flex" title="{{selectedFile.createdAt | date:'yMdjm'}}">
+			<div class="mrs">created </div>
+			<div>{{selectedFile.createdAt | amTimeAgo}}</div>
+		</div>
+		<div class="flex" title="{{selectedFile.updatedAt | date:'yMdjm'}}">
+			<div class="mrs">updated </div>
+			<div>{{selectedFile.updatedAt | amTimeAgo}}</div>
+		</div>
+	</div>
 </div>
 
 <ace-editor
+	class="mtm"
 	[selectedFile]="selectedFile"
 	(selectedFileContentChange)="onFileContentChange($event)"
 ></ace-editor>

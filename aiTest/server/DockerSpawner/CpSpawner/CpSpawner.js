@@ -37,7 +37,11 @@ const cpCommands = {
 		command: 'node ./games/maze/index.js',
 	},
 	generic: {
-		command: './context/start.sh'
+		command: './start.sh',
+		args: [],
+		options: {
+			cwd: 'context'
+		}
 	}
 }
 

@@ -10,7 +10,6 @@ declare const ace:any;
 	styles: [`
 		:host{
 			display: block;
-			width: 100%;
 		}
 	`],
 })

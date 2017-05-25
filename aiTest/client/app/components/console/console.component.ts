@@ -31,8 +31,8 @@ export class ConsoleComponent {
 		this.clearSpawn()
 		const socket = await this.socketService.getConnection()
 		this.removeHandlers = this.addHandlers(socket)
-		this.showTerminal(socket)
 		this.instanceId = await this.spawn(socket)
+		this.showTerminal(socket)
 	}
 
 	clearSpawn(){
@@ -79,12 +79,18 @@ export class ConsoleComponent {
 
 	showTerminal(socket){
 		this.terminal = this.setTerminal();
-		// this.terminal.input('->', function(a,b,c){
-		// 	socket.send({
-		// 		type: 'stdIn',
-		// 		payload: command+'\n'
-		// 	});
-		// })
+		this.promptInput(socket);
+	}
+
+	async promptInput(socket){
+		this.terminal.input('', async (input)=>{
+			await socket.send({
+				instanceId: this.instanceId,
+				type: 'stdIn',
+				payload: input+'\n',
+			});
+			this.promptInput(socket);
+		})
 	}
 
 	removeTerminal(){
@@ -105,6 +111,8 @@ export class ConsoleComponent {
 			if(message.instanceId === this.instanceId){
 				this.terminal.print(message.payload);
 			}
+		}else if(message.type === 'stdErr'){
+			this.terminal.printError(message.payload);
 		}
 	}
 

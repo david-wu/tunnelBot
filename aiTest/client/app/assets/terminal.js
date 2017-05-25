@@ -106,9 +106,34 @@ var Terminal = (function () {
 		}
 
 		this.print = function (message) {
+			var isScrolledToBottom = this.isScrolledToBottom();
+
 			var newLine = document.createElement('div')
 			newLine.textContent = message
+			newLine.style.padding = '2px';
 			this._output.appendChild(newLine)
+
+			if(isScrolledToBottom){
+				this.html.scrollTop = (this.html.scrollHeight - this.html.offsetHeight);
+			}
+		}
+
+		this.printError = function (message) {
+			var isScrolledToBottom = this.isScrolledToBottom();
+
+			var newLine = document.createElement('div')
+			newLine.textContent = message
+			newLine.style.padding = '2px';
+			newLine.style.color = 'red'
+			this._output.appendChild(newLine)
+
+			if(isScrolledToBottom){
+				this.html.scrollTop = (this.html.scrollHeight - this.html.offsetHeight);
+			}
+		}
+
+		this.isScrolledToBottom = function () {
+			return this.html.scrollTop >= (this.html.scrollHeight - this.html.offsetHeight);
 		}
 
 		this.input = function (message, callback) {
@@ -164,9 +189,14 @@ var Terminal = (function () {
 		this._innerWindow.appendChild(this._input)
 		this.html.appendChild(this._innerWindow)
 
+		this.html.style.position = 'absolute'
+		this.html.style.top = '0'
+		this.html.style.bottom = '100%'
+		this.html.style.overflow = 'auto'
+
 		this.setBackgroundColor('black')
 		this.setTextColor('white')
-		this.setTextSize('1em')
+		this.setTextSize('12px')
 		this.setWidth('100%')
 		this.setHeight('100%')
 

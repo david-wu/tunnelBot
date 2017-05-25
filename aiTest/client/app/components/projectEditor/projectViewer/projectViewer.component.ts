@@ -8,11 +8,9 @@ declare const ace:any;
 	selector: 'project-viewer',
 	template: require('./projectViewer.tpl.html'),
 	styles: [`
-		:host{
-			display: block;
-			width: 100%;
-			height: 250px;
-		}
+		// :host{
+		// 	display: block;
+		// }
 	`],
 })
 export class ProjectViewerComponent {

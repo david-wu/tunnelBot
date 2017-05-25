@@ -26,12 +26,14 @@ import { FileService } from './services/file.service';
 import { ProjectService } from './services/project.service';
 import { SocketService } from './services/socket.service'
 
+import {MomentModule} from 'angular2-moment';
 
 @NgModule({
 	imports: [
 		BrowserModule,
 		FormsModule,
-		HttpModule
+		HttpModule,
+		MomentModule,
 		// MaterialModule
 	],
 	declarations: [
