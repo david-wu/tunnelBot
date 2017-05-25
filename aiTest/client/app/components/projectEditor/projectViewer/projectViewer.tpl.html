@@ -1,11 +1,20 @@
-<h3>
-	{{selectedProject.name}}
-</h3>
-<input type="text" [(ngModel)]="selectedProject.name" (input)="debouncedUpdateProject(selectedProject)">
-<button (click)="deleteProject.emit(selectedProject)">Delete</button>
-
-
-<div style="flex: 1 0 auto; padding: 10px;">
-	Terminal with cpType: {{cpType}}
-	<terminal [(cpType)]="cpType"></terminal>
+<div class="flex">
+	<input class="mrs" type="text" [(ngModel)]="selectedProject.name" (input)="debouncedUpdateProject(selectedProject)">
+	<button (click)="deleteProject.emit(selectedProject)">Delete</button>
 </div>
+
+<div class="flex">
+	<div class="mrs">Created:</div>
+	<div>{{selectedProject.createdAt | date:'yMdjm'}}</div>
+</div>
+
+<div class="flex">
+	<div class="mrs">Updated:</div>
+	<div>{{selectedProject.updatedAt | date:'yMdjm'}}</div>
+</div>
+
+<div class="flex column" style="flex: 1 0 auto; padding: 10px;">
+	<div>Console for {{selectedProject.name}}</div>
+	<console [project]="selectedProject"></console>
+</div>
+

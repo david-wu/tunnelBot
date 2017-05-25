@@ -1,6 +1,8 @@
-Select A File
-<input type="text" [(ngModel)]="newFile.name">
-<button (click)="createFileHandler()">+ Create File</button>
+<div class="flex">
+	<div class="mrm">Select A File</div>
+	<input class="mrs" type="text" [(ngModel)]="newFile.name">
+	<button (click)="createFileHandler()">+ Create File</button>
+</div>
 
 <div *ngIf="fileList">
 	<div

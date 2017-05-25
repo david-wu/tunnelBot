@@ -19,6 +19,7 @@ import { AceEditorComponent } from './components/fileEditor/aceEditor/aceEditor.
 
 import { ProjectViewerComponent } from './components/projectEditor/projectViewer/projectViewer.component';
 import { ProjectListViewerComponent } from './components/projectEditor/projectListViewer/projectListViewer.component';
+import { ConsoleComponent } from './components/console/console.component';
 
 
 import { FileService } from './services/file.service';
@@ -41,6 +42,7 @@ import { SocketService } from './services/socket.service'
 		AceEditorComponent,
 		ProjectViewerComponent,
 		ProjectListViewerComponent,
+		ConsoleComponent
 	],
 	providers: [
 		{

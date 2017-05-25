@@ -84,6 +84,9 @@ export class AppComponent{
 
 	onCreateFile(file){
 		var parentProject = this.selectedProject
+		if(!parentProject || !parentProject.id){
+			throw 'need a parent project';
+		}
 		_.defaults(file, {
 			title: '',
 			name: '',
