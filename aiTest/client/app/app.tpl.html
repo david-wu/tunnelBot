@@ -20,24 +20,22 @@
 			></file-list-viewer>
 		</div>
 
-		<div class="flex" style="flex: 1 0 auto; padding: 10px;">
+		<project-viewer
+			class="flex column"
+			style="flex:1 0 0; padding:10px;"
+			*ngIf="selectedProject"
+			[selectedProject]="selectedProject"
+			(updateProject)="onUpdateProject($event)"
+			(deleteProject)="onDeleteProject($event)"
+		></project-viewer>
 
-			<project-viewer
-				class="flex column"
-				style="flex: 1 0 0;"
-				*ngIf="selectedProject"
-				[selectedProject]="selectedProject"
-				(updateProject)="onUpdateProject($event)"
-				(deleteProject)="onDeleteProject($event)"
-			></project-viewer>
+		<file-viewer
+			class="flex column"
+			style="flex: 1 0 0; padding:10px;"
+			*ngIf="selectedFile"
+			[selectedFile]="selectedFile"
+			(updateFile)="onUpdateFile($event)"
+			(deleteFile)="onDeleteFile($event)"
+		></file-viewer>
 
-			<file-viewer
-				style="flex: 1 0 0;"
-				*ngIf="selectedFile"
-				[selectedFile]="selectedFile"
-				(updateFile)="onUpdateFile($event)"
-				(deleteFile)="onDeleteFile($event)"
-			></file-viewer>
-
-		</div>
 </div>

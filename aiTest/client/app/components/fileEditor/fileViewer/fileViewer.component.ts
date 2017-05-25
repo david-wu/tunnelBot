@@ -9,7 +9,6 @@ declare const ace:any;
 	template: require('./fileViewer.tpl.html'),
 	styles: [`
 		:host{
-			display: block;
 		}
 	`],
 })

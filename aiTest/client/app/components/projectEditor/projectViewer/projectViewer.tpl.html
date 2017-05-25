@@ -1,20 +1,24 @@
+<div class="flex space-between align-center">
 
-<div class="flex">
-	<input class="mrs" type="text" [(ngModel)]="selectedProject.name" (input)="debouncedUpdateProject(selectedProject)">
-	<button (click)="deleteProject.emit(selectedProject)">Delete</button>
+	<div class="flex">
+		<input class="mrs" type="text" [(ngModel)]="selectedProject.name" (input)="debouncedUpdateProject(selectedProject)">
+		<button (click)="deleteProject.emit(selectedProject)">Delete</button>
+	</div>
+
+	<div class="flex column">
+		<div class="flex" title="{{selectedProject.createdAt | date:'yMdjm'}}">
+			<div class="mrs">created </div>
+			<div>{{selectedProject.createdAt | amTimeAgo}}</div>
+		</div>
+		<div class="flex" title="{{selectedProject.updatedAt | date:'yMdjm'}}">
+			<div class="mrs">updated </div>
+			<div>{{selectedProject.updatedAt | amTimeAgo}}</div>
+		</div>
+	</div>
+
 </div>
 
-<div class="flex">
-	<div class="mrs">Created:</div>
-	<div>{{selectedProject.createdAt | date:'yMdjm'}}</div>
-</div>
-
-<div class="flex">
-	<div class="mrs">Updated:</div>
-	<div>{{selectedProject.updatedAt | date:'yMdjm'}}</div>
-</div>
 
 <div class="flex column" style="flex: 1 0 auto; padding: 10px;">
-	<div>Console for {{selectedProject.name}}</div>
 	<console class="flex column" style="flex: 1 0 auto;" [project]="selectedProject"></console>
 </div>
