@@ -25,7 +25,7 @@ export class ProjectViewerComponent {
 		@Inject('project') private projectService,
 	){
 		this.cpType = 'ruby';
-		this.debouncedUpdateProject = _.debounce(this.updateProject.emit.bind(this.updateProject), 300);
+		this.debouncedUpdateProject = _.debounce(this.updateProject.emit.bind(this.updateProject), 200);
 	}
 
 	// onProjectContentChange(){

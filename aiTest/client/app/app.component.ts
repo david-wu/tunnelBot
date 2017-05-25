@@ -100,6 +100,9 @@ export class AppComponent{
 
 	onUpdateFile(file){
 		return this.fileService.update(file).toPromise()
+			.then(function(res){
+				return _.extend(file, res.json());
+			})
 	}
 
 	onDeleteFile(file){

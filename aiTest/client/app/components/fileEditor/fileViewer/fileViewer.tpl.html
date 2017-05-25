@@ -1,8 +1,18 @@
-<h3>
-	{{selectedFile.name}}
-</h3>
-<input type="text" [(ngModel)]="selectedFile.name">
-<button (click)="deleteFile.emit(selectedFile)">Delete</button>
+<div class="flex">
+	<input class="mrs" type="text" [value]="selectedFile.name" (input)="onFileNameChange($event)">
+	<button (click)="deleteFile.emit(selectedFile)">Delete</button>
+</div>
+
+<div class="flex">
+	<div class="mrs">Created:</div>
+	<div>{{selectedFile.createdAt | date:'yMdjm'}}</div>
+</div>
+
+<div class="flex">
+	<div class="mrs">Updated:</div>
+	<div>{{selectedFile.updatedAt | date:'yMdjm'}}</div>
+</div>
+
 <ace-editor
 	[selectedFile]="selectedFile"
 	(selectedFileContentChange)="onFileContentChange($event)"

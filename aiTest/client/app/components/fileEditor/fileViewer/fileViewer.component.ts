@@ -21,7 +21,12 @@ export class FileViewerComponent {
 	@Output() updateFile = new EventEmitter();
 
 	constructor(){
-		this.debouncedUpdateFile = _.debounce(this.updateFile.emit.bind(this.updateFile), 300);
+		this.debouncedUpdateFile = _.debounce(this.updateFile.emit.bind(this.updateFile), 200);
+	}
+
+	onFileNameChange(event){
+		this.selectedFile.name = event.target.value
+		this.debouncedUpdateFile(this.selectedFile)
 	}
 
 	onFileContentChange(){
