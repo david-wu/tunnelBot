@@ -25,7 +25,25 @@ function SocketConnector(socketConnector={}){
 
 			let spawnPromise = Promise.resolve();
 			ioConnection.on('message', function(message, callback){
-				if(message.type === 'spawn'){
+				if(message.type === 'spawnSystem'){
+					spawnPromise = socketConnector.spawnSystem(message.payload.systemId)
+						.then(function(instance){
+							callback(false, {
+								id: instance.id
+							})
+						})
+						.catch(callback);
+
+				}else if(message.type === 'spawnProject'){
+					spawnPromise = socketConnector.spawnProject(message.payload.projectId)
+						.then(function(instance){
+							callback(false, {
+								id: instance.id
+							})
+						})
+						.catch(callback);
+
+				}else if(message.type === 'spawn'){
 					spawnPromise = socketConnector.spawn(message.payload.cpType, message.payload.fileIds)
 						.then(function(instance){
 							callback(false, {
@@ -33,6 +51,7 @@ function SocketConnector(socketConnector={}){
 							})
 						})
 						.catch(callback)
+
 				}else{
 					// messages from socket need to include an instanceId
 					const instance = socketConnector.instances[message.instanceId]// || _.last(_.values(socketConnector.instances))
@@ -48,6 +67,27 @@ function SocketConnector(socketConnector={}){
 					instance.kill();
 				})
 			})
+		},
+
+		spawnSystem: async function(systemId){
+			const response = await axios.get(`http://localhost:10001/api/system/${systemId}`);
+			const nodes = response.data;
+
+
+		},
+
+		spawnProject: async function(projectId){
+			const response = await axios.get(`http://localhost:10001/api/project/${projectId}/files`);
+			const files = response.data
+			const instance = Instance({
+				messageHandler: socketConnector.ioConnection.send.bind(socketConnector.ioConnection)
+			})
+			socketConnector.instances[instance.id] = instance
+
+			await instance.init('generic')
+			await instance.sendFiles(files);
+			await instance.runProcess()
+			return instance;
 		},
 
 		spawn: async function(cpType='generic', fileIds=[]){
@@ -115,6 +155,9 @@ function Instance(instance={}){
 		fetchFile: async function(fileId){
 			const response = await axios.get(`http://localhost:10001/api/file/${fileId}`)
 			return response.data
+		},
+		sendFiles: function(files){
+			return Promise.all(_.map(files, instance.sendFile))
 		},
 		sendFile: async function(file){
 			await instance.sendMessage({

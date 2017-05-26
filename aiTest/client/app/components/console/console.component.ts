@@ -38,7 +38,10 @@ export class ConsoleComponent {
 
 		const socket = await this.socketService.getConnection()
 		this.removeHandlers = this.addHandlers(socket)
-		this.instanceId = await this.spawn(socket)
+
+		// this.instanceId = await this.spawn(socket)
+		this.instanceId = await this.spawnProject(socket, this.project.id);
+
 		this.showTerminal(socket)
 		this.awaitingSpawn = false;
 	}
@@ -53,6 +56,24 @@ export class ConsoleComponent {
 			socket.removeListener('disconnect', disconnectHandler);
 		}
 	}
+
+	spawnProject(socket, projectId){
+		return new Promise((resolve, reject)=>{
+			socket.send({
+				type: 'spawnProject',
+				payload: {
+					cpType: 'generic',
+					projectId: projectId
+				},
+			}, function(err, res){
+				return err ? reject(err) : resolve(res.id);
+			})
+		})
+		.catch(function(err){
+			console.log('failed to spawn', err)
+		})
+	}
+
 
 	spawn(socket){
 		return this.projectService.getFiles(this.project.id).toPromise()
