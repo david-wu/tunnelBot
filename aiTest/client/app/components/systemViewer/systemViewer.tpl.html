@@ -1,0 +1,19 @@
+<div class="flex space-between align-center">
+
+	<div class="flex">
+		<input class="mrs" type="text" [(ngModel)]="selectedSystem.name" (input)="debouncedUpdateSystem(selectedSystem)">
+		<button (click)="deleteSystem.emit(selectedSystem)">Delete</button>
+	</div>
+
+	<div class="flex column">
+		<div class="flex" title="{{selectedSystem.createdAt | date:'yMdjm'}}">
+			<div class="mrs">created </div>
+			<div>{{selectedSystem.createdAt | amTimeAgo}}</div>
+		</div>
+		<div class="flex" title="{{selectedSystem.updatedAt | date:'yMdjm'}}">
+			<div class="mrs">updated </div>
+			<div>{{selectedSystem.updatedAt | amTimeAgo}}</div>
+		</div>
+	</div>
+
+</div>

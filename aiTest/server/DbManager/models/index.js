@@ -6,6 +6,7 @@ const db = new Sequelize('code_together', null, null, {
 })
 const File = require('./File.factory.js')(db)
 const Project = require('./Project.factory.js')(db)
+const System = require('./System.factory.js')(db)
 
 const FileProject = db.define('file_project', {
 	fileId: Sequelize.UUID,
@@ -13,11 +14,12 @@ const FileProject = db.define('file_project', {
 });
 
 async function ModelsFactory(){
-	await [
+	await Promise.all([
 		File.sync(),
 		Project.sync(),
+		System.sync(),
 		FileProject.sync(),
-	]
+	])
 
 	File.belongsToMany(Project, {
 		through: FileProject
@@ -29,6 +31,7 @@ async function ModelsFactory(){
 	return {
 		File,
 		Project,
+		System,
 	};
 }
 

@@ -14,6 +14,7 @@ const redisConfigs = redisService.getConfigs('production');
 function SocketConnector(socketConnector={}){
 
 	return _.defaults(socketConnector, {
+
 		instances: {},
 
 		init: function(options={}){
@@ -55,9 +56,9 @@ function SocketConnector(socketConnector={}){
 				}else{
 					// messages from socket need to include an instanceId
 					const instance = socketConnector.instances[message.instanceId]// || _.last(_.values(socketConnector.instances))
-					spawnPromise = spawnPromise.then(function(){
+					// spawnPromise = spawnPromise.then(function(){
 						instance.sendMessage(message);
-					})
+					// })
 				}
 			});
 
@@ -72,6 +73,7 @@ function SocketConnector(socketConnector={}){
 		spawnSystem: async function(systemId){
 			const response = await axios.get(`http://localhost:10001/api/system/${systemId}`);
 			const nodes = response.data;
+
 
 
 		},

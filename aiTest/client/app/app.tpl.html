@@ -3,12 +3,22 @@
 	<div class="flex" style="width:100%; height:100%;">
 
 		<div class="flex column" style="flex: 0 0 auto; padding: 10px;">
+			<system-list-viewer
+				*ngIf="systemList"
+				[systemList]="systemList"
+				[selectedSystem]="selectedSystem"
+				(selectedSystemChange)="onSelectSystem($event)"
+				(createSystem)="onCreateSystem($event)"
+				style="margin-top: 10px;"
+			></system-list-viewer>
+
 			<project-list-viewer
 				*ngIf="projectList"
 				[projectList]="projectList"
 				[selectedProject]="selectedProject"
 				(selectedProjectChange)="onSelectProject($event)"
 				(createProject)="onCreateProject($event)"
+				style="margin-top: 10px;"
 			></project-list-viewer>
 
 			<file-list-viewer
@@ -19,6 +29,15 @@
 				style="margin-top: 10px;"
 			></file-list-viewer>
 		</div>
+
+		<system-viewer
+			class="flex column"
+			style="flex:1 0 0; padding:10px;"
+			*ngIf="selectedSystem"
+			[selectedSystem]="selectedSystem"
+			(updateSystem)="onUpdateSystem($event)"
+			(deleteSystem)="onDeleteSystem($event)"
+		></system-viewer>
 
 		<project-viewer
 			class="flex column"

@@ -16,15 +16,17 @@ import { FileViewerComponent } from './components/fileEditor/fileViewer/fileView
 import { FileListViewerComponent } from './components/fileEditor/fileListViewer/fileListViewer.component';
 import { AceEditorComponent } from './components/fileEditor/aceEditor/aceEditor.component';
 
-
 import { ProjectViewerComponent } from './components/projectEditor/projectViewer/projectViewer.component';
 import { ProjectListViewerComponent } from './components/projectEditor/projectListViewer/projectListViewer.component';
 import { ConsoleComponent } from './components/console/console.component';
 
+import { SystemListViewerComponent } from './components/systemListViewer/systemListViewer.component';
+import { SystemViewerComponent } from './components/systemViewer/systemViewer.component';
 
 import { FileService } from './services/file.service';
 import { ProjectService } from './services/project.service';
 import { SocketService } from './services/socket.service'
+import { SystemService } from './services/system.service'
 
 import {MomentModule} from 'angular2-moment';
 
@@ -44,7 +46,9 @@ import {MomentModule} from 'angular2-moment';
 		AceEditorComponent,
 		ProjectViewerComponent,
 		ProjectListViewerComponent,
-		ConsoleComponent
+		ConsoleComponent,
+		SystemListViewerComponent,
+		SystemViewerComponent
 	],
 	providers: [
 		{
@@ -62,6 +66,10 @@ import {MomentModule} from 'angular2-moment';
 		{
 			provide: 'socket',
 			useClass: SocketService,
+		},
+		{
+			provide: 'system',
+			useClass: SystemService,
 		},
 	],
 	bootstrap: [AppComponent]

@@ -10,10 +10,57 @@ export class AppComponent{
 	constructor(
 		@Inject('file') private fileService,
 		@Inject('project') private projectService,
+		@Inject('system') private systemService,
 	){
 		this.getProjects()
 		this.getAllFiles()
+		this.getSystems()
 	}
+
+	getSystems(){
+		this.systemService.get().toPromise()
+			.then((response)=>{
+				this.systemList = {
+					items: response.json()
+				}
+			})
+	}
+
+	onCreateSystem(system){
+		_.defaults(system, {
+			name: 'default system name',
+			description: 'default system desc',
+			mappingsJson: [
+				{
+					test: 'yes'
+				}
+			]
+		});
+		return this.systemService.save(system).toPromise()
+			.then(this.getSystems.bind(this));
+	}
+
+	onUpdateSystem(system){
+		return this.systemService.update(system).toPromise()
+	}
+
+	onDeleteSystem(system){
+		return this.systemService.delete(system.id).toPromise()
+			.then(()=>{
+				if(system === this.selectedSystem){
+					this.selectedSystem = undefined
+				}
+			})
+			.then(this.getSystems.bind(this))
+	}
+
+	onSelectSystem(system){
+		this.selectedSystem = system;
+	}
+
+	private selectedSystem;
+    private systemList;
+
 
 	getProjects(){
 		return this.projectService.get().toPromise()
