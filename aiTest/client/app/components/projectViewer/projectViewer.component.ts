@@ -7,11 +7,7 @@ declare const ace:any;
 @Component({
 	selector: 'project-viewer',
 	template: require('./projectViewer.tpl.html'),
-	styles: [`
-		// :host{
-		// 	display: block;
-		// }
-	`],
+	styles: [require('./projectViewer.scss')],
 })
 export class ProjectViewerComponent {
 

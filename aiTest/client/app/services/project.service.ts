@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import { Http, Response }          from '@angular/http';
+import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 const _ = require('lodash');
@@ -22,11 +22,6 @@ export class ProjectService{
 		}
 	}
 
-
-	getFiles(projectId){
-		return this.http.get(`${this.url}/${projectId}/files`);
-	}
-
 	save(project){
 		return this.http.post(this.url, project)
 	}
@@ -37,6 +32,10 @@ export class ProjectService{
 
 	delete(id){
 		return this.http.delete(`${this.url}/${id}`)
+	}
+
+	getFiles(projectId){
+		return this.http.get(`${this.url}/${projectId}/files`);
 	}
 
 }

@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import { Http, Response }          from '@angular/http';
+import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 const _ = require('lodash');
@@ -21,11 +21,6 @@ export class SystemService{
 			return this.http.get(this.url)
 		}
 	}
-
-
-	// getFiles(projectId){
-	// 	return this.http.get(`${this.url}/${projectId}/files`);
-	// }
 
 	save(system){
 		return this.http.post(this.url, system)

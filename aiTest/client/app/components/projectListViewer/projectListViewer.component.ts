@@ -4,12 +4,7 @@ const _ = require('lodash');
 @Component({
 	selector: 'project-list-viewer',
 	template: require('./projectListViewer.tpl.html'),
-	styles: [`
-		.selected{
-			background-color: black;
-			color: white;
-		}
-	`],
+	styles: [require('./projectListViewer.scss')],
 })
 export class ProjectListViewerComponent {
 

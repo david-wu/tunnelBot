@@ -4,8 +4,7 @@ const _ = require('lodash');
 @Component({
 	selector: 'system-viewer',
 	template: require('./systemViewer.tpl.html'),
-	styles: [`
-	`],
+	styles: [require('./systemViewer.scss')],
 })
 export class SystemViewerComponent {
 

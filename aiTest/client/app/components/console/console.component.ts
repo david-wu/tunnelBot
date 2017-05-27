@@ -5,8 +5,7 @@ const $ = require('jquery');
 @Component({
 	selector: 'console',
 	template: require('./console.tpl.html'),
-	styles: [`
-	`],
+	styles: [require('./console.scss')],
 })
 export class ConsoleComponent {
 

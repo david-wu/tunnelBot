@@ -7,10 +7,7 @@ declare const ace:any;
 @Component({
 	selector: 'file-viewer',
 	template: require('./fileViewer.tpl.html'),
-	styles: [`
-		:host{
-		}
-	`],
+	styles: [require('./fileViewer.scss')],
 })
 export class FileViewerComponent {
 

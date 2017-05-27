@@ -4,12 +4,7 @@ const _ = require('lodash');
 @Component({
 	selector: 'system-list-viewer',
 	template: require('./systemListViewer.tpl.html'),
-	styles: [`
-		.selected{
-			background-color: black;
-			color: white;
-		}
-	`],
+	styles: [require('./systemListViewer.scss')],
 })
 export class SystemListViewerComponent {
 

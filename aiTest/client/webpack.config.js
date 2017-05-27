@@ -34,7 +34,8 @@ module.exports = {
                 loaders: [
                     // ExtractTextPlugin.extract('sass-loader')
                     // 'sass-loader?sourceMap',
-                    'raw-loader'
+                    'raw-loader',
+                    'sass-loader'
                 ]
             },
             {

@@ -4,12 +4,7 @@ const _ = require('lodash');
 @Component({
 	selector: 'file-list-viewer',
 	template: require('./fileListViewer.tpl.html'),
-	styles: [`
-		.selected{
-			background-color: black;
-			color: white;
-		}
-	`],
+	styles: [require('./fileListViewer.scss')],
 })
 export class FileListViewerComponent {
 

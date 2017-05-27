@@ -3,9 +3,6 @@ const Io = require('socket.io-client');
 
 export class SocketService{
 
-	private connectionPromise;
-	private socket;
-
 	constructor(){}
 
 	getConnection(){
@@ -20,4 +17,6 @@ export class SocketService{
 		})
 	}
 
+	private connectionPromise;
+	private socket;
 }

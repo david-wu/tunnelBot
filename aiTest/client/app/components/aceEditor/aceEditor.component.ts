@@ -6,13 +6,7 @@ declare const ace:any;
 @Component({
 	selector: 'ace-editor',
 	template: require('./aceEditor.tpl.html'),
-	styles: [`
-		:host{
-			display: block;
-			width: 100%;
-			height: 250px;
-		}
-	`],
+	styles: [require('./aceEditor.scss')],
 })
 export class AceEditorComponent {
 

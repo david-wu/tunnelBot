@@ -7,13 +7,7 @@ const $ = require('jquery');
 @Component({
 	selector: 'terminal',
 	template: require('./terminal.tpl.html'),
-	styles: [`
-		:host{
-			display: flex;
-			flex-direction: column;
-			max-width: 400px;
-		}
-	`]
+	styles: [require('./terminal.scss')]
 })
 export class TerminalComponent {
 
