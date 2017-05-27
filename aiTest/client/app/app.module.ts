@@ -12,12 +12,12 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { TerminalComponent } from './components/terminal/terminal.component';
 
-import { FileViewerComponent } from './components/fileEditor/fileViewer/fileViewer.component';
-import { FileListViewerComponent } from './components/fileEditor/fileListViewer/fileListViewer.component';
-import { AceEditorComponent } from './components/fileEditor/aceEditor/aceEditor.component';
+import { FileViewerComponent } from './components/fileViewer/fileViewer.component';
+import { FileListViewerComponent } from './components/fileListViewer/fileListViewer.component';
+import { AceEditorComponent } from './components/aceEditor/aceEditor.component';
 
-import { ProjectViewerComponent } from './components/projectEditor/projectViewer/projectViewer.component';
-import { ProjectListViewerComponent } from './components/projectEditor/projectListViewer/projectListViewer.component';
+import { ProjectViewerComponent } from './components/projectViewer/projectViewer.component';
+import { ProjectListViewerComponent } from './components/projectListViewer/projectListViewer.component';
 import { ConsoleComponent } from './components/console/console.component';
 
 import { SystemListViewerComponent } from './components/systemListViewer/systemListViewer.component';
