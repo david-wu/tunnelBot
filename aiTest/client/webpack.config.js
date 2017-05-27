@@ -16,34 +16,48 @@ module.exports = {
             {
                 test: /(\.tpl.html|\.txt)$/,
                 exclude: /(node_modules|dist)/,
-                loader: 'raw-loader'
+                loaders: [
+                    'raw-loader',
+                ],
             },
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|dist)/,
-                loader: 'babel'
+                loaders: [
+                    'babel-loader',
+                ],
             },
             {
                 test: /\.tsx?$/,
                 exclude: /(node_modules|dist)/,
-                loader: 'babel!ts-loader'
+                loaders: [
+                    'babel-loader',
+                    'ts-loader',
+                ],
             },
             {
                 test: /\.scss$/,
                 exclude: /(node_modules|dist)/,
                 loaders: [
-                    // ExtractTextPlugin.extract('sass-loader')
-                    // 'sass-loader?sourceMap',
                     'raw-loader',
-                    'sass-loader'
-                ]
+                    'sass-loader',
+                ],
             },
             {
                 test: /\.json$/,
-                loader: 'json-loader'
-            }
+                loader: 'json-loader',
+            },
         ],
     },
     watch: true,
-    devtool: 'inline-source-map',
+    devtool: 'eval',
+
+    // devServer: {
+    //     proxy: {
+    //         '/api': {
+    //             target: 'http://localhost:10001',
+    //             secure: false
+    //         }
+    //     }
+    // }
 }

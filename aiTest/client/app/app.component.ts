@@ -4,6 +4,7 @@ const _ = require('lodash');
 @Component({
   selector: 'app',
   template: require('./app.tpl.html'),
+  styles: [require('./app.scss')]
 })
 export class AppComponent{
 
