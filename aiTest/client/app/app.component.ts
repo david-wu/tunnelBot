@@ -1,10 +1,11 @@
-import {Component, Input, Output, EventEmitter, Inject} from '@angular/core';
+import {Component, Input, Output, EventEmitter, Inject, ViewEncapsulation} from '@angular/core';
 const _ = require('lodash');
 
 @Component({
-  selector: 'app',
-  template: require('./app.tpl.html'),
-  styles: [require('./app.scss')]
+	encapsulation: ViewEncapsulation.None,
+	selector: 'app',
+	template: require('./app.tpl.html'),
+	styles: [require('./app.scss')]
 })
 export class AppComponent{
 
