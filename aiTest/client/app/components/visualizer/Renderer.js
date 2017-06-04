@@ -15,8 +15,8 @@ class Renderer{
 		_.defaults(this, {
 			viewAngle: 45,
 			aspect: this.width / this.height,
-			near: 0.1,
-			far: 2000,
+			near: 0.001,
+			far: 100000,
 		});
 
 		this.initComponents();
@@ -28,22 +28,32 @@ class Renderer{
 
 	initComponents(){
 
+
 		const components = this.components = {
-			renderer: new THREE.CSS3DRenderer(),
+			// renderer: new THREE.CSS3DRenderer(),
+			renderer: this.createRenderer(),
 			camera: new THREE.PerspectiveCamera(this.viewAngle, this.aspect, this.near, this.far),
 			scene: new THREE.Scene(),
 			tween: TWEEN,
 		};
 
 		this.context.appendChild(components.renderer.domElement);
-		components.renderer.setSize(this.width, this.height)
 		components.scene.add(components.camera)
 		return components;
 	}
 
+	createRenderer(){
+		const renderer = new THREE.WebGLRenderer({
+			antialias: true
+		})
+		renderer.setClearColor(0xf0f0f0);
+		renderer.setSize(this.width, this.height);
+		return renderer;
+	}
+
 	setBoard(board){
 
-		board.renderer = this;
+		// board.renderer = this;
 		board.on('newMesh', (mesh)=>{
 			this.components.scene.add(mesh);
 		});
