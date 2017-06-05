@@ -23,18 +23,22 @@ class Berry extends Renderable{
 	}
 
 	makeMesh(){
-		const element = document.createElement('div');
+		// const element = document.createElement('div');
 
 		const radius = Math.pow(this.size, 0.5)*20;
 
-		_.extend(element.style, {
-			'width': radius+'px',
-			'height': radius+'px',
-			'border-radius': radius+'px',
-			'background-color': this.color
-		})
+		// _.extend(element.style, {
+		// 	'width': radius+'px',
+		// 	'height': radius+'px',
+		// 	'border-radius': radius+'px',
+		// 	'background-color': this.color
+		// })
 
-		const mesh = this.mesh = new THREE.CSS3DObject(element)
+		// const mesh = this.mesh = new THREE.CSS3DObject(element)
+		const geometry = new THREE.BoxGeometry(radius, radius, 0);
+		const material = new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff });
+		const mesh = this.mesh = new THREE.Mesh(geometry, material);
+
 
 		const board = this.getRoot('Board');
 		board.emit('newMesh', mesh);

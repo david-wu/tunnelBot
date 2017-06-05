@@ -23,6 +23,8 @@ import { ConsoleComponent } from './components/console/console.component';
 import { SystemListViewerComponent } from './components/systemListViewer/systemListViewer.component';
 import { SystemViewerComponent } from './components/systemViewer/systemViewer.component';
 
+import { VisualizerComponent } from './components/visualizer/visualizer.component';
+
 import { FileService } from './services/file.service';
 import { ProjectService } from './services/project.service';
 import { SocketService } from './services/socket.service'
@@ -48,7 +50,8 @@ import {MomentModule} from 'angular2-moment';
 		ProjectListViewerComponent,
 		ConsoleComponent,
 		SystemListViewerComponent,
-		SystemViewerComponent
+		SystemViewerComponent,
+		VisualizerComponent
 	],
 	providers: [
 		{
