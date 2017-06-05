@@ -20,17 +20,10 @@ class Renderer{
 		});
 
 		this.initComponents();
-		if(this.board){
-			this.setBoard(this.board);
-		}
-
 	}
 
 	initComponents(){
-
-
-		const components = this.components = {
-			// renderer: new THREE.CSS3DRenderer(),
+		const components = {
 			renderer: this.createRenderer(),
 			camera: new THREE.PerspectiveCamera(this.viewAngle, this.aspect, this.near, this.far),
 			scene: new THREE.Scene(),
@@ -39,7 +32,7 @@ class Renderer{
 
 		this.context.appendChild(components.renderer.domElement);
 		components.scene.add(components.camera)
-		return components;
+		return this.components = components;
 	}
 
 	createRenderer(){
@@ -52,8 +45,6 @@ class Renderer{
 	}
 
 	setBoard(board){
-
-		// board.renderer = this;
 		board.on('newMesh', (mesh)=>{
 			this.components.scene.add(mesh);
 		});
@@ -66,13 +57,6 @@ class Renderer{
 			}
 		});
 
-		this.startRendering();
-	}
-
-	attachControls(){
-		const components = this.components;
-		components.controls = new THREE.TrackballControls(components.camera, components.renderer.domElement );
-		components.controls.rotateSpeed = 1;
 	}
 
 	startRendering(){
@@ -106,6 +90,12 @@ class Renderer{
 				.onComplete(resolve)
 				.start();
 		});
+	}
+
+	attachControls(){
+		const components = this.components;
+		components.controls = new THREE.TrackballControls(components.camera, components.renderer.domElement );
+		components.controls.rotateSpeed = 1;
 	}
 
 }

@@ -48,6 +48,7 @@ export class VisualizerComponent {
 
 	    renderer.setBoard(board1)
 	    renderer.setBoard(board2)
+	    renderer.startRendering();
 
 	    bot1(board1)
 	    bot2(board2)

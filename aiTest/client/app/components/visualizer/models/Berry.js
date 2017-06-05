@@ -1,7 +1,15 @@
 const Renderable = require('../util/Renderable.js');
 const THREE = require('three-js')();
 
+
+
+const particleSystem = new THREE.ParticleSystem({
+
+});
+
 class Berry extends Renderable{
+
+	static particleSystem = particleSystem
 
 	constructor(options){
 		super(options);
@@ -23,20 +31,12 @@ class Berry extends Renderable{
 	}
 
 	makeMesh(){
-		// const element = document.createElement('div');
-
 		const radius = Math.pow(this.size, 0.5)*20;
 
-		// _.extend(element.style, {
-		// 	'width': radius+'px',
-		// 	'height': radius+'px',
-		// 	'border-radius': radius+'px',
-		// 	'background-color': this.color
-		// })
-
-		// const mesh = this.mesh = new THREE.CSS3DObject(element)
 		const geometry = new THREE.BoxGeometry(radius, radius, 0);
-		const material = new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff });
+		const material = new THREE.MeshLambertMaterial({
+			color: Math.random() * 0xffffff
+		});
 		const mesh = this.mesh = new THREE.Mesh(geometry, material);
 
 
