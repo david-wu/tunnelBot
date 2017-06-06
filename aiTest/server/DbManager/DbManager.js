@@ -10,6 +10,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
+const session = require('express-session')
+const passport = require('./services/passport.js')
 
 module.exports = function DbManager(dbManager={}){
 
@@ -53,6 +55,14 @@ module.exports = function DbManager(dbManager={}){
 		    dbManager.express.use(bodyParser.json());
 		    dbManager.express.use(cookieParser());
 		    dbManager.express.use(cors());
+			dbManager.express.use(session({
+				secret: 'keyboard cat',
+				resave: true,
+				saveUninitialized: true
+			}));
+			dbManager.express.use(passport.initialize());
+			dbManager.express.use(passport.session());
+
 		},
 
 		mount(parentRouter = express()){
