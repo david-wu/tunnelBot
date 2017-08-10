@@ -16,7 +16,7 @@ export class ConsoleComponent {
 	constructor(
 		@Inject('project') private projectService,
 		@Inject('socket') private socketService,
-		@Inject('file') private fileService,
+		@Inject('fileService') private fileService,
 	){
 	}
 

@@ -59,7 +59,7 @@ import {MomentModule} from 'angular2-moment';
 			useValue: '/api',
 		},
 		{
-			provide: 'file',
+			provide: 'fileService',
 			useClass: FileService,
 		},
 		{

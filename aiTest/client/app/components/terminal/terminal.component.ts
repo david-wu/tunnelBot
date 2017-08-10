@@ -18,7 +18,7 @@ export class TerminalComponent {
 	constructor(
 		@Inject('api') private api,
 		@Inject('socket') private socketService,
-		@Inject('file') private fileService,
+		@Inject('fileService') private fileService,
 	){
 		_.defaults(this, {
 			cpTypes: [

@@ -10,13 +10,20 @@ const _ = require('lodash');
 export class AppComponent{
 
 	constructor(
-		@Inject('file') private fileService,
-		@Inject('project') private projectService,
 		@Inject('system') private systemService,
+		@Inject('project') private projectService,
+		@Inject('fileService') private fileService,
 	){
+		this.getSystems()
 		this.getProjects()
 		this.getAllFiles()
-		this.getSystems()
+		_.defaults(this, {
+			selectionState: {
+				system: undefined,
+				project: undefined,
+				file: undefined
+			}
+		})
 	}
 
 	getSystems(){
