@@ -45,12 +45,11 @@ function SocketHandler(scope={}){
 			}
 		},
 
-		disconnectHandler: async function(message, callback){
+		disconnectHandler: async function(message){
 			await Promise.all(scope.spawnPromises)
 			await Promise.all(_.map(scope.instances, function(instance){
 				return instance.kill()
 			}))
-			callback()
 		},
 
 		spawnInstance: async function(projectId){
