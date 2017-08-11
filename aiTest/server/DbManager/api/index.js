@@ -3,7 +3,7 @@ const fileRouter = require('./file.js');
 const projectRouter = require('./project.js');
 const systemRouter = require('./system.js');
 const authRouter = require('./auth.js');
-console.log(authRouter);
+
 module.exports = new Router({
 	getRoutes: function(app){
 		return [
