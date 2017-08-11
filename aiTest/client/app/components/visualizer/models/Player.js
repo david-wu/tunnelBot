@@ -25,19 +25,15 @@ class Player extends Renderable{
 	}
 
 	makeMesh(){
-		const element = document.createElement('div');
+		const radius = Math.pow(this.size, 0.5)*20*(2/3);
 
-		const radius = Math.pow(this.size, 0.5)*20;
-
-
-		_.extend(element.style, {
-			'width': radius+'px',
-			'height': radius+'px',
-			'border-radius': radius+'px',
-			'background-color': this.color
-		})
-
-		const mesh = new THREE.CSS3DObject(element)
+		var geometry = new THREE.CircleGeometry(radius, 32);
+		var material = new THREE.MeshBasicMaterial({
+			color: parseInt((Math.random()/2+1) * 0xffffff),
+			side: THREE.DoubleSide,
+		});
+		// material.side = THREE.DoubleSide;
+		const mesh = this.mesh = new THREE.Mesh(geometry, material);
 
 		const board = this.getRoot('Board');
 		board.emit('newMesh', mesh);

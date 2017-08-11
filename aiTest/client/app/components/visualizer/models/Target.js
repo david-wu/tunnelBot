@@ -25,22 +25,14 @@ class Target extends Renderable{
 	}
 
 	makeMesh(){
-		const element = document.createElement('div');
-
 		const radius = Math.pow(this.size, 0.5)*20;
 
+		const geometry = new THREE.BoxGeometry(radius, radius, 0);
+		const material = new THREE.MeshBasicMaterial({
+			color: 0xff0000
+		});
+		const mesh = this.mesh = new THREE.Mesh(geometry, material);
 
-		_.extend(element.style, {
-			'width': radius+'px',
-			'height': radius+'px',
-			'border-radius': radius+'px',
-			'background-color': this.color
-		})
-
-		var number = document.createElement( 'div' );
-		number.textContent = this.name;
-		element.appendChild(number);
-		const mesh = new THREE.CSS3DObject(element)
 
 		const board = this.getRoot('Board');
 		board.emit('newMesh', mesh);

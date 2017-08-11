@@ -34,8 +34,8 @@ class Berry extends Renderable{
 		const radius = Math.pow(this.size, 0.5)*20;
 
 		const geometry = new THREE.BoxGeometry(radius, radius, 0);
-		const material = new THREE.MeshLambertMaterial({
-			color: Math.random() * 0xffffff
+		const material = new THREE.MeshBasicMaterial({
+			color: 0x228b22
 		});
 		const mesh = this.mesh = new THREE.Mesh(geometry, material);
 
