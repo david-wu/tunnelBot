@@ -2,14 +2,7 @@ const Renderable = require('../util/Renderable.js');
 const THREE = require('three-js')();
 
 
-
-const particleSystem = new THREE.ParticleSystem({
-
-});
-
 class Berry extends Renderable{
-
-	static particleSystem = particleSystem
 
 	constructor(options){
 		super(options);

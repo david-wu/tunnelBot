@@ -1,57 +1,59 @@
-// angular.module('Main')
-//     .directive('visualizer', [
-//         '$timeout',
-//         Visualizer
-//     ]);
+// For Angular 1
 
-// function Visualizer($timeout){
-//     return {
-//         scope: {
-//             customBot: '=?',
-//         },
-//         template: '',
-//         link: linkFunc.bind(null, $timeout),
-//     };
-// }
+angular.module('Main')
+    .directive('visualizer', [
+        '$timeout',
+        Visualizer
+    ]);
 
-// function linkFunc($timeout, scope, element, attrs){
+function Visualizer($timeout){
+    return {
+        scope: {
+            customBot: '=?',
+        },
+        template: '',
+        link: linkFunc.bind(null, $timeout),
+    };
+}
 
-//     const THREE = require('three-js')();
-//     require('./lib/CSS3DRenderer.js')(THREE);
-//     require('./lib/TrackBallControls.js')(THREE);
+function linkFunc($timeout, scope, element, attrs){
 
-//     const Renderer = require('./Renderer.js');
-//     const Board = require('./models/Board.js');
-//     const bot1 = require('./bot1.js');
-//     const bot2 = require('./bot2.js');
+    const THREE = require('three-js')();
+    require('./lib/CSS3DRenderer.js')(THREE);
+    require('./lib/TrackBallControls.js')(THREE);
 
-//     const renderer = new Renderer({
-//         width: element.innerWidth(),
-//         height: element.innerHeight(),
-//         context: element[0],
-//     })
-//     const board1 = new Board({
-//         pos: {
-//             x: -3500,
-//         }
-//     })
-//     const board2 = new Board({
-//         pos: {
-//             x: 3500,
-//         }
-//     })
+    const Renderer = require('./Renderer.js');
+    const Board = require('./models/Board.js');
+    const bot1 = require('./bot1.js');
+    const bot2 = require('./bot2.js');
 
-//     renderer.setBoard(board1)
-//     renderer.setBoard(board2)
+    const renderer = new Renderer({
+        width: element.innerWidth(),
+        height: element.innerHeight(),
+        context: element[0],
+    })
+    const board1 = new Board({
+        pos: {
+            x: -3500,
+        }
+    })
+    const board2 = new Board({
+        pos: {
+            x: 3500,
+        }
+    })
 
-//     bot1(board1)
-//     bot2(board2)
+    renderer.setBoard(board1)
+    renderer.setBoard(board2)
 
-//     board1.restartGame()
-//     board2.restartGame()
+    bot1(board1)
+    bot2(board2)
 
-//     renderer.dramaticEntry()
-//         .then(function(){
-//             renderer.attachControls()
-//         })
-// }
+    board1.restartGame()
+    board2.restartGame()
+
+    renderer.dramaticEntry()
+        .then(function(){
+            renderer.attachControls()
+        })
+}

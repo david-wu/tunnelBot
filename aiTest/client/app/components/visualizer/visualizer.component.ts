@@ -27,8 +27,8 @@ export class VisualizerComponent {
 
 	    const Renderer = require('./Renderer.js');
 	    const Board = require('./models/Board.js');
-	    const bot1 = require('./bot1.js');
-	    const bot2 = require('./bot2.js');
+	    const bot1 = require('./bots/bot1.js');
+	    const bot2 = require('./bots/bot2.js');
 
 	    const renderer = new Renderer({
 	        width: element.innerWidth(),

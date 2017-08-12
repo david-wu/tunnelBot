@@ -27,27 +27,13 @@ module.exports = function(board){
 
 	board.on('requestMove', function(map){
 
-		function setFront(front, cell){
+		_.times(20, setCosts)
 
-			if(cell.type === 'target'){
-				front.cost = 0;
-			}else{
-				front.cost += 0.001
-				front.cost += cell.size;
-			}
+		const player = getCell(map, 'player');
+		const neighbors = getNeighbors(player);
+		const bestNeighbor = _.minBy(neighbors, 'minCost');
 
-			if(_.isUndefined(cell.minCost)){
-				cell.minCost = front.cost;
-				return;
-			}
-
-			if(cell.minCost > front.cost){
-				cell.minCost = front.cost;
-			}else{
-				front.cost = cell.minCost;
-			}
-
-		}
+		board.emit('move', bestNeighbor.key)
 
 
 		function setCosts(){
@@ -90,14 +76,27 @@ module.exports = function(board){
 
 		}
 
-		_.times(20, setCosts)
+		function setFront(front, cell){
 
-		const player = getCell(map, 'player');
-		const neighbors = getNeighbors(player);
-		const bestNeighbor = _.minBy(neighbors, 'minCost');
+			if(cell.type === 'target'){
+				front.cost = 0;
+			}else{
+				front.cost += 0.001
+				front.cost += cell.size;
+			}
 
-		board.emit('move', bestNeighbor.key)
+			if(_.isUndefined(cell.minCost)){
+				cell.minCost = front.cost;
+				return;
+			}
 
+			if(cell.minCost > front.cost){
+				cell.minCost = front.cost;
+			}else{
+				front.cost = cell.minCost;
+			}
+
+		}
 
 		function getNeighbors(loc, key){
 			const neighbors = _.map(fronts, function(front){

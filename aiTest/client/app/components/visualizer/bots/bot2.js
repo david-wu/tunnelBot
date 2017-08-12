@@ -5,7 +5,7 @@
 module.exports = function(board){
 
     board.on('requestMove', function(map){
-        // console.log(map);
+        console.log(map);
         return board.emit('move', _.sample([
             'north',
             'east',
