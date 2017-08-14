@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import FilePicker from './components/FilePicker/FilePicker';
-import ProjectPicker from './components/ProjectPicker/ProjectPicker';
+import DirPicker from './components/DirPicker/DirPicker';
 
 
 const _ = require('lodash');
@@ -18,7 +18,7 @@ class App extends Component {
 
             state: {
                 selectedFile: undefined,
-                selectedProject: undefined,
+                selectedDir: undefined,
             },
 
             onFilePick: function(file){
@@ -26,27 +26,42 @@ class App extends Component {
                     selectedFile: scope.state.selectedFile === file ? undefined : file
                 })
             },
-            onProjectPick: function(project){
+
+            onDirPick: function(dir){
                 scope.setState({
-                    selectedProject: scope.state.selectedProject === project ? undefined : project
+                    selectedDir: scope.state.selectedDir === dir ? undefined : dir
                 })
             },
 
-            renderProjects: function(){
+            render: function(){
+                return (
+                    <div className="picker-viewer">
+                        <div className="pickers">
+                            {scope.renderDirs()}
+                            {scope.renderFiles()}
+                        </div>
+                        <div className="viewer">
+                            <div>{!!scope.state.selectedFile && scope.state.selectedFile.name}</div>
+                        </div>
+                    </div>
+                );
+            },
+
+            renderDirs: function(){
                 return (
                     <div>
-                        {scope.renderSelectionHeader(scope.state.selectedProject)}
-                        <ProjectPicker onPick={scope.onProjectPick} />
+                        {scope.renderSelectionHeader(scope.state.selectedDir)}
+                        <DirPicker selectedDir={scope.state.selectedDir} onPick={scope.onDirPick} />
                     </div>
                 )
             },
 
             renderFiles: function(){
-                if(!scope.state.selectedProject){return;}
+                if(!scope.state.selectedDir){return;}
                 return (
                     <div>
                         {scope.renderSelectionHeader(scope.state.selectedFile)}
-                        <FilePicker onPick={scope.onFilePick} />
+                        <FilePicker parentDir={scope.selectedDir} onPick={scope.onFilePick} />
                     </div>
                 )
             },
@@ -64,21 +79,6 @@ class App extends Component {
                         </div>
                     )
                 }
-            },
-
-            render: function(){
-                return (
-                    <div>
-                        <div className="pickers">
-                            {scope.renderProjects()}
-                            {scope.renderFiles()}
-                        </div>
-
-                        <div className="viewer">
-                            {!!scope.state.selectedFile && <div>{scope.state.selectedFile.name}</div>}
-                        </div>
-                    </div>
-                );
             },
         })
 

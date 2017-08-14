@@ -3,7 +3,7 @@ const request = require('request-promise-native')
 const _ = require('lodash');
 
 const apiEndpoint = 'http://localhost:10001/api'
-const uri = apiEndpoint + '/project';
+const uri = apiEndpoint + '/dir';
 
 const apiKeyMap = {
 	'id': 'id',
@@ -12,58 +12,60 @@ const apiKeyMap = {
 }
 
 module.exports = {
-	factory: ProjectFactory,
+	factory: DirFactory,
 	getAll: function(){
 		return request({
 			method: 'GET',
 			uri: uri,
 		})
-			.then(function(projectData){
-				return JSON.parse(projectData).map(ProjectFactory);
+			.then(function(dirData){
+				return JSON.parse(dirData).map(DirFactory);
 			})
 	}
 }
 
-function ProjectFactory(project){
+function DirFactory(dir){
 
-	return _.defaults(project, {
+	return _.defaults(dir, {
 
 		get: function(){
 			return request({
 				method: 'GET',
-				uri: `${uri}/${project.id}`,
+				uri: `${uri}/${dir.id}`,
 			})
-				.then(ProjectFactory)
+				.then(DirFactory)
 		},
 
 		post: function(){
 			return request({
 				method: 'POST',
 				uri: `${uri}`,
-				body: project.getFormData(),
+				body: dir.getFormData(),
 				json: true,
 			})
+				.then(DirFactory)
 		},
 
 		put: function(){
 			return request({
 				method: 'PUT',
-				uri: `${uri}/${project.id}`,
-				body: project.getFormData(),
+				uri: `${uri}/${dir.id}`,
+				body: dir.getFormData(),
 				json: true,
 			})
+				.then(DirFactory)
 		},
 
 		delete: function(){
 			return request({
 				method: 'DELETE',
-				uri: `${uri}/${project.id}`,
+				uri: `${uri}/${dir.id}`,
 			})
 		},
 
 		getFormData: function(){
 			return _.mapValues(apiKeyMap, function(key){
-				return project[key];
+				return dir[key];
 			});
 		},
 

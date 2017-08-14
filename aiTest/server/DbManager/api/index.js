@@ -1,6 +1,6 @@
 const Router = rootRequire('./util/Router.js');
 const fileRouter = require('./file.js');
-const projectRouter = require('./project.js');
+const dirRouter = require('./dir.js');
 const systemRouter = require('./system.js');
 const authRouter = require('./auth.js');
 
@@ -14,8 +14,8 @@ module.exports = new Router({
 			},
 			{
 				method: 'use',
-				endPoint: '/project',
-				handler: projectRouter.mount(app)
+				endPoint: '/dir',
+				handler: dirRouter.mount(app)
 			},
 			{
 				method: 'use',

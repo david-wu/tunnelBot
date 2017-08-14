@@ -6,7 +6,7 @@ module.exports = new Router({
 
 function getRoutes(app){
 	const models = app.models;
-	const Project = models.Project;
+	const Dir = models.Dir;
 	const File = models.File;
 
 	return [
@@ -14,32 +14,32 @@ function getRoutes(app){
 			method: 'get',
 			endPoint: '/',
 			handler: async function(req, res){
-				const projects = await Project.findAll();
-				res.status(200).send(projects);
+				const dirs = await Dir.findAll();
+				res.status(200).send(dirs);
 			}
 		},
 		{
 			method: 'get',
 			endPoint: '/:id',
 			handler: async function(req, res){
-				const project = await Project.findOne({
+				const dir = await Dir.findOne({
 					where: {
 						id: req.params.id
 					}
 				});
-				res.status(200).send(project);
+				res.status(200).send(dir);
 			}
 		},
 		{
 			method: 'get',
 			endPoint: '/:id/files',
 			handler: async function(req, res){
-				const project = await Project.findOne({
+				const dir = await Dir.findOne({
 					where: {
 						id: req.params.id
 					}
 				});
-				const files = await project.getFiles();
+				const files = await dir.getFiles();
 				res.status(200).send(files);
 			}
 		},
@@ -47,51 +47,51 @@ function getRoutes(app){
 			method: 'post',
 			endPoint: '/',
 			handler: async function(req, res){
-				const project = await Project.create(req.body);
+				const dir = await Dir.create(req.body);
 				if(req.body.fileIds){
-					project.addFiles(req.body.fileIds);
+					dir.addFiles(req.body.fileIds);
 				}
-				res.status(200).send(project);
+				res.status(200).send(dir);
 			}
 		},
 		{
 			method: 'post',
 			endPoint: '/:id/linkFiles',
 			handler: async function(req, res){
-				const project = await Project.findOne({
+				const dir = await Dir.findOne({
 					where: {
 						id: req.params.id
 					}
 				});
 				var fileIds = req.params.fileIds
-				await project.addFiles(fileIds);
-				res.status(200).send(project);
+				await dir.addFiles(fileIds);
+				res.status(200).send(dir);
 			}
 		},
 		{
 			method: 'delete',
 			endPoint: '/:id',
 			handler: async function(req, res){
-				const project = await Project.findOne({
+				const dir = await Dir.findOne({
 					where: {
 						id: req.params.id
 					}
 				});
-				await project.destroy();
-				res.status(200).send(project);
+				await dir.destroy();
+				res.status(200).send(dir);
 			}
 		},
 		{
 			method: 'put',
 			endPoint: '/:id',
 			handler: async function(req, res){
-				const project = await Project.findOne({
+				const dir = await Dir.findOne({
 					where: {
 						id: req.params.id
 					}
 				});
-				await project.update(req.body);
-				res.status(200).send(project);
+				await dir.update(req.body);
+				res.status(200).send(dir);
 			}
 		},
 	];

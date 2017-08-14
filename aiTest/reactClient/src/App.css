@@ -36,3 +36,10 @@
     background-color: cyan;
 }
 
+.clickable{
+    cursor: pointer;
+}
+
+.picker-viewer{
+    display: flex;
+}

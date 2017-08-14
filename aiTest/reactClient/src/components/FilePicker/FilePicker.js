@@ -40,7 +40,7 @@ class FilePicker extends Component {
 
             renderFile: function(file){
                 return (
-                    <div key={file.id} onClick={_.partial(scope.props.onPick, file)}>
+                    <div className="clickable" key={file.id} onClick={_.partial(scope.props.onPick, file)}>
                         <div>
                             {file.name}
                         </div>

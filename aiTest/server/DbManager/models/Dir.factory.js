@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 
-module.exports = function ProjectFactor(db){
-	return db.define('system', {
+module.exports = function DirFactory(db){
+	return db.define('dir', {
 		id: {
 			type: Sequelize.UUID,
 			primaryKey: true,
@@ -13,10 +13,6 @@ module.exports = function ProjectFactor(db){
 		},
 		description: {
 			type: Sequelize.TEXT,
-			defaultValue: '',
-		},
-		mappingsJson: {
-			type: Sequelize.JSON,
 			defaultValue: '',
 		},
 	})
