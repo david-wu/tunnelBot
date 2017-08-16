@@ -37,8 +37,8 @@ class App extends Component {
                 return (
                     <div className="picker-viewer">
                         <div className="pickers">
-                            {scope.renderDirs()}
-                            {scope.renderFiles()}
+                            {scope.renderDirPicker()}
+                            {scope.renderFilePicker()}
                         </div>
                         <div className="viewer">
                             <div>{!!scope.state.selectedFile && scope.state.selectedFile.name}</div>
@@ -47,7 +47,7 @@ class App extends Component {
                 );
             },
 
-            renderDirs: function(){
+            renderDirPicker: function(){
                 return (
                     <div>
                         {scope.renderSelectionHeader(scope.state.selectedDir)}
@@ -56,12 +56,12 @@ class App extends Component {
                 )
             },
 
-            renderFiles: function(){
+            renderFilePicker: function(){
                 if(!scope.state.selectedDir){return;}
                 return (
                     <div>
                         {scope.renderSelectionHeader(scope.state.selectedFile)}
-                        <FilePicker parentDir={scope.selectedDir} onPick={scope.onFilePick} />
+                        <FilePicker selectedFile={scope.state.selectedFile} parentDir={scope.state.selectedDir} onPick={scope.onFilePick} />
                     </div>
                 )
             },

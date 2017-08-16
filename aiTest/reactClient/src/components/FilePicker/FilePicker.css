@@ -1,0 +1,12 @@
+.selected-file{
+	background-color: lime;
+}
+
+.file-item{
+	display: flex;
+	padding: 5px;
+}
+
+.file-item > * {
+	padding: 5px;
+}

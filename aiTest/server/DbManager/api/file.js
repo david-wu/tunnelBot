@@ -8,14 +8,25 @@ function getRoutes(app){
 	const models = app.models;
 	const Project = models.Project;
 	const File = models.File;
+	const Dir = models.Dir;
 
 	return [
 		{
 			method: 'get',
 			endPoint: '/',
 			handler: async function(req, res){
-				const files = await File.findAll();
-				res.status(200).send(files);
+				if(req.query.dirId){
+					const dir = await Dir.findOne({
+						where: {
+							id: req.query.dirId
+						}
+					});
+					const files = await dir.getFiles();
+					res.status(200).send(files);
+				}else{
+					const files = await File.findAll();
+					res.status(200).send(files);
+				}
 			}
 		},
 		{
@@ -48,9 +59,10 @@ function getRoutes(app){
 			endPoint: '/',
 			handler: async function(req, res){
 				const file = await File.create(req.body);
-				if(req.body.projectIds){
-					file.addProjects(req.body.projectIds)
+				if(req.body.dirIds){
+					file.addDirs(req.body.dirIds)
 				}
+				console.log(req.body.dirIds)
 				res.status(200).send(file);
 			}
 		},

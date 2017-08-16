@@ -10,14 +10,16 @@ const apiKeyMap = {
 	'id': 'id',
 	'name': 'name',
 	'path': 'path',
+	'dirIds': 'dirIds',
 }
 
 module.exports = {
 	factory: FileFactory,
-	getAll: function(){
+	getAll: function(params){
 		return request({
 			method: 'GET',
 			uri: uri,
+			qs: params
 		})
 			.then(function(fileData){
 				return JSON.parse(fileData).map(FileFactory);
@@ -40,10 +42,11 @@ function FileFactory(file){
 		post: function(){
 			return request({
 				method: 'POST',
-				uri: `${uri}`,
-				body: file.getFormData(),
-				json: true,
+				url: `${uri}`,
+				// body: JSON.stringify(file.getFormData()),
+				json: file.getFormData(),
 			})
+				.then(FileFactory)
 		},
 
 		put: function(){
@@ -53,6 +56,7 @@ function FileFactory(file){
 				body: file.getFormData(),
 				json: true,
 			})
+				.then(FileFactory)
 		},
 
 		delete: function(){

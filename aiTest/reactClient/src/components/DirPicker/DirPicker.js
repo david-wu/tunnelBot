@@ -3,7 +3,7 @@ import './DirPicker.css';
 
 const _ = require('lodash');
 const dirService = require('../../services/dirService');
-
+const FontAwesome = require('react-fontawesome');
 
 class DirPicker extends Component {
 
@@ -70,9 +70,10 @@ class DirPicker extends Component {
             },
 
             renderDir: function(dir){
-                const dirClass = _.get(scope, 'props.selectedDir.id') === dir.id ? 'clickable selected-dir' : 'clickable';
+                const dirClass = _.get(scope, 'props.selectedDir.id') === dir.id ? 'dir-item clickable selected-dir' : 'dir-item clickable';
                 return (
                     <div className={dirClass} key={dir.id} onClick={_.partial(scope.props.onPick, dir)}>
+                        <FontAwesome name='folder' />
                         <div>
                             {dir.name}
                         </div>
