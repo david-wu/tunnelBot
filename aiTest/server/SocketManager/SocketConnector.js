@@ -36,6 +36,18 @@ function SocketHandler(scope={}){
 					})
 					.catch(callback)
 				scope.spawnPromises.push(spawnPromise)
+			}else if(message.type === 'spawnDir'){
+				console.log('spawningDir', message.payload.id)
+				const spawnPromise = scope.spawnDir(message.payload.id)
+					.then(function(instance){
+						// arg[0] is for errors
+						callback(false, {
+							id: instance.id
+						})
+					})
+					.catch(callback)
+				scope.spawnPromises.push(spawnPromise)
+
 			}else{
 				const instance = scope.instances[message.instanceId]
 				instance.sendMessage(message)
@@ -47,6 +59,24 @@ function SocketHandler(scope={}){
 			await Promise.all(_.map(scope.instances, function(instance){
 				return instance.kill()
 			}))
+		},
+
+		spawnDir: async function(dirId){
+			if(!scope.canSpawn()){return;}
+			console.log('dirId', dirId)
+
+			const response = await axios.get(`http://localhost:10001/api/dir/${dirId}/children?deep=true`);
+			const files = response.data.files;
+			console.log('files', files)
+			const instance = Instance({
+				messageHandler: scope.ioConnection.send.bind(scope.ioConnection)
+			})
+			scope.instances[instance.id] = instance
+
+			await instance.init('generic')
+			await instance.sendFiles(files);
+			await instance.runProcess()
+			return instance;
 		},
 
 		spawnInstance: async function(projectId){

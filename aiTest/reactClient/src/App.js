@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import FilePicker from './components/FilePicker/FilePicker';
+import DirViewer from './components/DirViewer/DirViewer';
+import FileViewer from './components/FileViewer/FileViewer';
 
 const _ = require('lodash');
 const dirService = require('./services/dirService');
@@ -81,14 +83,12 @@ class App extends Component {
                 if(!child) return;
                 if(child.type === 'dir'){
                     return (
-                        <div>
-                            dirr
-                        </div>
+                        <DirViewer dir={child}/>
                     )
                 }else if(child.type === 'file'){
                     return (
                         <div>
-                            filell
+                            <FileViewer file={child}/>
                         </div>
                     )
                 }
