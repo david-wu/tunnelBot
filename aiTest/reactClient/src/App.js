@@ -53,7 +53,6 @@ class App extends Component {
             },
 
             onPick: function(child){
-                console.log('picked', child)
                 scope.setState({
                     selectedChild: scope.state.selectedChild === child ? undefined : child
                 })

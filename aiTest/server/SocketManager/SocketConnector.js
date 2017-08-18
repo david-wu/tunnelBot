@@ -5,8 +5,8 @@
 
 const _ = require('lodash')
 const axios = require('axios')
+const Instance = require('./Instance.js')
 
-const Instance = require('./Instance.js');
 
 function SocketHandler(scope={}){
 
@@ -15,7 +15,7 @@ function SocketHandler(scope={}){
 		instances: {},
 		spawnPromises: [],
 
-		init: function(options={}){
+		init: function(){
 
 		},
 
@@ -26,18 +26,7 @@ function SocketHandler(scope={}){
 		},
 
 		messageHandler: function(message, callback){
-			if(message.type === 'spawnProject'){
-				const spawnPromise = scope.spawnInstance(message.payload.projectId)
-					.then(function(instance){
-						// arg[0] is for errors
-						callback(false, {
-							id: instance.id
-						})
-					})
-					.catch(callback)
-				scope.spawnPromises.push(spawnPromise)
-			}else if(message.type === 'spawnDir'){
-				console.log('spawningDir', message.payload.id)
+			if(message.type === 'spawnDir'){
 				const spawnPromise = scope.spawnDir(message.payload.id)
 					.then(function(instance){
 						// arg[0] is for errors
@@ -62,41 +51,23 @@ function SocketHandler(scope={}){
 		},
 
 		spawnDir: async function(dirId){
-			if(!scope.canSpawn()){return;}
-			console.log('dirId', dirId)
+			if(!scope.canSpawn()){return}
 
-			const response = await axios.get(`http://localhost:10001/api/dir/${dirId}/children?deep=true`);
-			const files = response.data.files;
-			console.log('files', files)
+			const response = await axios.get(`http://localhost:10001/api/dir/${dirId}/children?filesDeep=true`)
+			const files = response.data.files
 			const instance = Instance({
 				messageHandler: scope.ioConnection.send.bind(scope.ioConnection)
 			})
 			scope.instances[instance.id] = instance
 
 			await instance.init('generic')
-			await instance.sendFiles(files);
+			await instance.sendFiles(files)
 			await instance.runProcess()
-			return instance;
-		},
-
-		spawnInstance: async function(projectId){
-			if(!scope.canSpawn()){return;}
-
-			const response = await axios.get(`http://localhost:10001/api/project/${projectId}/files`);
-			const files = response.data
-			const instance = Instance({
-				messageHandler: scope.ioConnection.send.bind(scope.ioConnection)
-			})
-			scope.instances[instance.id] = instance
-
-			await instance.init('generic')
-			await instance.sendFiles(files);
-			await instance.runProcess()
-			return instance;
+			return instance
 		},
 
 		canSpawn: function(){
-			return _.keys(scope.instances).length < 15;
+			return _.keys(scope.instances).length < 15
 		},
 	})
 }

@@ -19,16 +19,13 @@ class FileViewer extends Component {
             state: {
             },
 
-            componentDidMount: function(){
-
+            componentWillMount: function(){
+                scope.debouncedPutFile = _.debounce(scope.putFile, 300);
             },
 
             onEditorContainer: function(element){
-                scope.editorContainer = element
-
-                // const context = elementRef.nativeElement
                 scope.aceEditor = ace.edit(element)
-                scope.aceEditor.$blockScrolling = Infinity;
+                scope.aceEditor.$blockScrolling = Infinity
                 scope.aceEditor.setOptions({
                     theme: 'ace/theme/monokai',
                     maxLines: Infinity,
@@ -39,33 +36,25 @@ class FileViewer extends Component {
                 var editSession = scope.aceEditor.getSession()
                 editSession.setMode('ace/mode/javascript')
                 editSession.on('change', ()=>{
-                    scope.props.file.content = scope.aceEditor.getValue()
-                    // scope.selectedFileContentChange.emit(scope.selectedFile)
-                    scope.props.file.put();
+                    scope.file.content = scope.aceEditor.getValue()
+                    scope.debouncedPutFile();
                 });
 
                 scope.componentWillReceiveProps(scope.props);
             },
 
+            // wraper befcause scope.file can change
+            putFile: function(){
+                scope.file.put()
+            },
+
             componentWillReceiveProps: function(newProps){
-                console.log('newProps', newProps);
                 if(newProps.file.id){
-                    console.log('setValue', newProps.file.content || '');
-                    scope.aceEditor.setValue(newProps.file.content || '')
+                    scope.file = newProps.file;
+                    scope.aceEditor.setValue(scope.file.content || '')
                     scope.aceEditor.clearSelection()
                 }
             },
-
-            // }
-
-            // ngOnChanges(change){
-            //     // scope.aceEditor.resize(true);
-            //     if(change.selectedFile){
-            //         scope.aceEditor.setValue(change.selectedFile.currentValue.content || '')
-            //         scope.aceEditor.clearSelection()
-            //     }
-            // }
-
 
             render: function(){
                 return (
@@ -74,8 +63,6 @@ class FileViewer extends Component {
                     </div>
                 );
             },
-
-
 
         })
     }

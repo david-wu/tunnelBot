@@ -40,7 +40,10 @@ class DirViewer extends Component {
             },
 
             spawnProcess: async function(){
-                scope.awaitingSpawn = true;
+                scope.setState({
+                    awaitingSpawn: true,
+                })
+
                 scope.instanceId = undefined;
                 scope.removeHandlers()
                 scope.emptyTerminal();
@@ -51,7 +54,10 @@ class DirViewer extends Component {
                 scope.instanceId = await scope.spawnDir(socket, scope.props.dir.id);
 
                 scope.showTerminal(socket)
-                scope.awaitingSpawn = false;
+
+                scope.setState({
+                    awaitingSpawn: false,
+                })
             },
 
             addHandlers: function(socket){
@@ -126,35 +132,17 @@ class DirViewer extends Component {
                 console.log('server down!')
             },
 
-            removeHandlers: function(){
-
-            },
-
-
-
-
-
-
-
-
-
-
-
-
+            removeHandlers: _.noop,
 
             render: function(){
                 return (
-
-
-                    <div className="">
-
+                    <div>
                         <button onClick={scope.spawnProcess}>Spawn instance</button>
-                        <div style={{width:'500px', height:'500px', position:'relative', flex: '1 0 0'}} ref={scope.onConsoleContainer}></div>
-
-                        <div id="my-console">
-                            console
+                        <div>
+                            {scope.state.awaitingSpawn ? <FontAwesome name="cog" spin /> : ''}
                         </div>
-                        dirviewer
+                        <div style={{width:'500px', height:'500px', position:'relative', flex: '1 0 0'}} ref={scope.onConsoleContainer}>
+                        </div>
                     </div>
                 );
             },
