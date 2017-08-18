@@ -5,27 +5,20 @@ const _ = require('lodash');
 const apiEndpoint = 'http://localhost:10001/api'
 const uri = apiEndpoint + '/file';
 
+
 const apiKeyMap = {
-	content: 'content',
 	id: 'id',
 	name: 'name',
-	path: 'path',
+	userId: 'userId',
 	isRoot: 'isRoot',
 	parentId: 'parentId',
+	content: 'content',
+	path: 'path',
 }
+
 
 module.exports = {
 	factory: FileFactory,
-	getAll: function(params){
-		return request({
-			method: 'GET',
-			uri: uri,
-			qs: params
-		})
-			.then(function(fileData){
-				return JSON.parse(fileData).map(FileFactory);
-			})
-	}
 }
 
 function FileFactory(file){

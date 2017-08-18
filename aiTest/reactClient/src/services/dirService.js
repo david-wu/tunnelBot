@@ -8,25 +8,18 @@ const uri = apiEndpoint + '/dir';
 
 const apiKeyMap = {
 	id: 'id',
-	description: 'description',
 	name: 'name',
 	userId: 'userId',
 	isRoot: 'isRoot',
 	parentId: 'parentId',
+	description: 'description',
 }
+
+
 
 module.exports = {
 	factory: DirFactory,
 }
-
-
-
-
-
-
-
-
-
 
 function DirFactory(dir){
 	return _.defaults(dir, {
