@@ -7,6 +7,14 @@ module.exports = function DirFactory(db){
 			primaryKey: true,
 			defaultValue: Sequelize.UUIDV4,
 		},
+		userId: {
+			type: Sequelize.STRING,
+			defaultValue: undefined,
+		},
+		isRoot: {
+			type: Sequelize.BOOLEAN,
+			defaultValue: false,
+		},
 		name: {
 			type: Sequelize.STRING,
 			defaultValue: '',

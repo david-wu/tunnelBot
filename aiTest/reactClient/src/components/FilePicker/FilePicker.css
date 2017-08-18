@@ -10,3 +10,13 @@
 .file-item > * {
 	padding: 5px;
 }
+
+.inline-block {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.child-container {
+	/*max-height: 200px;*/
+	overflow-y: auto;
+}

@@ -1,37 +1,42 @@
 // import/export makes it so you can't reference imports in debugger?
 const request = require('request-promise-native')
 const _ = require('lodash');
+const fileService = require('./fileService.js');
 
 const apiEndpoint = 'http://localhost:10001/api'
 const uri = apiEndpoint + '/dir';
 
 const apiKeyMap = {
-	'id': 'id',
-	'description': 'description',
-	'name': 'name',
+	id: 'id',
+	description: 'description',
+	name: 'name',
+	userId: 'userId',
+	isRoot: 'isRoot',
+	parentId: 'parentId',
 }
 
 module.exports = {
 	factory: DirFactory,
-	getAll: function(){
-		return request({
-			method: 'GET',
-			uri: uri,
-		})
-			.then(function(dirData){
-				return JSON.parse(dirData).map(DirFactory);
-			})
-	}
 }
 
-function DirFactory(dir){
 
+
+
+
+
+
+
+
+
+function DirFactory(dir){
 	return _.defaults(dir, {
+		type: 'dir',
 
 		get: function(){
 			return request({
 				method: 'GET',
 				uri: `${uri}/${dir.id}`,
+				json: true,
 			})
 				.then(DirFactory)
 		},
@@ -61,6 +66,33 @@ function DirFactory(dir){
 				method: 'DELETE',
 				uri: `${uri}/${dir.id}`,
 			})
+		},
+
+		findOne: function(){
+			return request({
+				method: 'GET',
+				uri: uri,
+				qs: dir.getFormData(),
+				json: true,
+			})
+				.then(function(dirs){
+					if(dirs.length){
+						return DirFactory(dirs[0]);
+					}
+				})
+		},
+
+		getChildren: function(){
+			return request({
+				method: 'GET',
+				uri: `${uri}/${dir.id}/children`,
+				json: true,
+			})
+				.then(function(response){
+					const dirs = _.map(response.dirs, DirFactory)
+					const files = _.map(response.files, fileService.factory)
+					return dirs.concat(files);
+				})
 		},
 
 		getFormData: function(){

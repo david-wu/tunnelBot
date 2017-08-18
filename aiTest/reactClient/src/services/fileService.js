@@ -6,11 +6,12 @@ const apiEndpoint = 'http://localhost:10001/api'
 const uri = apiEndpoint + '/file';
 
 const apiKeyMap = {
-	'content': 'content',
-	'id': 'id',
-	'name': 'name',
-	'path': 'path',
-	'dirIds': 'dirIds',
+	content: 'content',
+	id: 'id',
+	name: 'name',
+	path: 'path',
+	isRoot: 'isRoot',
+	parentId: 'parentId',
 }
 
 module.exports = {
@@ -28,13 +29,14 @@ module.exports = {
 }
 
 function FileFactory(file){
-
 	return _.defaults(file, {
+		type: 'file',
 
 		get: function(){
 			return request({
 				method: 'GET',
 				uri: `${uri}/${file.id}`,
+				json: true,
 			})
 				.then(FileFactory)
 		},
@@ -43,8 +45,8 @@ function FileFactory(file){
 			return request({
 				method: 'POST',
 				url: `${uri}`,
-				// body: JSON.stringify(file.getFormData()),
-				json: file.getFormData(),
+				body: file.getFormData(),
+				json: true,
 			})
 				.then(FileFactory)
 		},

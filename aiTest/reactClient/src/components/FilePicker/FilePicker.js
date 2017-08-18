@@ -3,6 +3,7 @@ import './FilePicker.css';
 
 const _ = require('lodash');
 const fileService = require('../../services/fileService');
+const dirService = require('../../services/dirService');
 const FontAwesome = require('react-fontawesome');
 
 class FilePicker extends Component {
@@ -14,145 +15,165 @@ class FilePicker extends Component {
         _.defaults(scope, {
 
             state: {
-                files: [],
+                childNodes: [],
+                newDir: {
+                    name: '',
+                },
                 newFile: {
                     name: '',
-                    dirIds: [scope.props.parentDir.id]
                 }
             },
 
             componentDidMount: function(){
-                scope.setFiles(scope.props.parentDir.id)
+                scope.setChildren(scope.props.parentNode)
             },
 
             componentWillReceiveProps: function(newProps){
-                if(newProps.parentDir.id !== scope.props.parentDir.id){
-                    scope.setFiles(newProps.parentDir.id);
+                if(newProps.parentNode.id !== scope.props.parentNode.id){
+                    scope.setChildren(newProps.parentNode);
                 }
             },
 
-            changeNameHandler: function(event){
-                scope.setState({
-                    newFile: {
-                        name: event.target.value,
-                        dirIds: [scope.props.parentDir.id]
-                    }
-                })
-            },
-
-            setFiles: function(dirId){
-                return fileService.getAll({
-                    dirId: dirId
-                })
-                    .then((files)=>{
+            setChildren: function(parentNode){
+                if(!parentNode) return;
+                return parentNode.getChildren()
+                    .then((childNodes)=>{
                         scope.setState({
-                            files: files
+                            childNodes: childNodes,
+                            selectedChild: undefined,
                         })
                     })
             },
 
-            onCreate: function(){
-                return fileService.factory(scope.state.newFile).post()
+            onCreateFile: function(){
+                return fileService.factory({
+                    name: scope.state.newFile.name,
+                    parentId: scope.props.parentNode.id,
+                })
+                    .post()
                     .catch(console.log)
                     .then(function(file){
                         scope.setState(function(prevState){
                             prevState.newFile.name = ''
-                            prevState.files.push(file)
+                            prevState.childNodes.push(file)
+                            return prevState;
+                        })
+                    })
+            },
+            onCreateDir: function(){
+                return dirService.factory({
+                    name: scope.state.newDir.name,
+                    parentId: scope.props.parentNode.id,
+                })
+                    .post()
+                    .catch(console.log)
+                    .then(function(dir){
+                        scope.setState(function(prevState){
+                            prevState.newDir.name = ''
+                            prevState.childNodes.unshift(dir)
                             return prevState;
                         })
                     })
             },
 
+            changeFileNameHandler: function(event){
+                scope.setState({
+                    newFile: {
+                        name: event.target.value,
+                    }
+                })
+            },
+            changeDirNameHandler: function(event){
+                scope.setState({
+                    newDir: {
+                        name: event.target.value,
+                    }
+                })
+            },
+
+            onChildClick: function(child){
+                if(scope.state.selectedChild === child){
+                    child = undefined;
+                }
+
+                scope.setState(function(prevState){
+                    prevState.selectedChild = child;
+                })
+
+                scope.props.onPick(child);
+            },
+
             render: function(){
                 return (
-                    <div>
-                        <button onClick={scope.onCreate}>
-                            + Create File
-                        </button>
-                        <input value={scope.state.newFile.name}
-                            type="text"
-                            onChange={scope.changeNameHandler}
-                            placeholder="fileName"
-                        ></input>
-                        {scope.renderFiles()}
+                    <div className="inline-block">
+                        <div className="inline-block">
+                            <div>
+                                {scope.renderSelectionHeader(scope.state.selectedChild)}
+                                <button onClick={scope.onCreateFile}>
+                                    + Create File
+                                </button>
+                                <input value={scope.state.newFile.name}
+                                    type="text"
+                                    onChange={scope.changeFileNameHandler}
+                                    placeholder="fileName"
+                                ></input>
+                            </div>
+                            <div>
+                                <button onClick={scope.onCreateDir}>
+                                    + Create Dir
+                                </button>
+                                <input value={scope.state.newDir.name}
+                                    type="text"
+                                    onChange={scope.changeDirNameHandler}
+                                    placeholder="dirName"
+                                ></input>
+                            </div>
+                            <div className="child-container">
+                                {scope.renderChildren()}
+                            </div>
+                        </div>
+                        {_.get(scope, 'state.selectedChild.type')==='dir' ? <FilePicker parentNode={scope.state.selectedChild} onPick={scope.props.onPick} /> : ''}
                     </div>
                 );
             },
 
-            renderFiles: function(){
-                return scope.state.files.map(scope.renderFile);
+            renderSelectionHeader: function(selection){
+                if(selection){
+                    return (
+                        <div className="selection selected">
+                            {selection.name}
+                        </div>
+                    )
+                }else{
+                    return <div className="selection"></div>
+                }
             },
 
-            renderFile: function(file){
-                const fileClass = _.get(scope, 'props.selectedFile.id') === file.id ? 'file-item clickable selected-file' : 'file-item clickable';
+            renderChildren: function(){
+                return scope.state.childNodes.map(scope.renderChild);
+            },
+
+            renderChild: function(child){
+                const fileClass = _.get(scope, 'state.selectedChild.id') === child.id ? 'file-item clickable selected-file' : 'file-item clickable';
+                const iconClassesByType = {
+                    file: 'file',
+                    dir: 'folder'
+                }
+                const iconClass = iconClassesByType[child.type];
                 return (
-                    <div className={fileClass} key={file.id} onClick={_.partial(scope.props.onPick, file)}>
-                        <FontAwesome name='file' />
+                    <div className={fileClass} key={child.id} onClick={_.partial(scope.onChildClick, child)}>
+                        <FontAwesome name={iconClass} />
                         <div>
-                            {file.name}
+                            {child.name}
                         </div>
                     </div>
                 )
             },
+
+
         })
     }
 
 }
 
 export default FilePicker;
-
-// import React, { Component } from 'react';
-// import './FilePicker.css';
-
-// const _ = require('lodash');
-// const fileService = require('../../services/fileService');
-
-
-// class FilePicker extends Component {
-
-//     constructor(props){
-//         super(props);
-//         const scope = this;
-
-//         _.defaults(scope, {
-
-//             state: {
-//                 files: []
-//             },
-
-//             componentDidMount: function(){
-//                 return fileService.getAll()
-//                     .then((files)=>{
-//                         scope.setState({
-//                             files: files
-//                         })
-//                     })
-//             },
-
-//             render: function(){
-//                 return (
-//                     <div>
-//                         {scope.renderFiles()}
-//                     </div>
-//                 );
-//             },
-
-//             renderFiles: function(){
-//                 return scope.state.files.map(scope.renderFile);
-//             },
-
-//             renderFile: function(file){
-//                 return (
-//                     <div className="clickable" key={file.id} onClick={_.partial(scope.props.onPick, file)}>
-//                         <div>
-//                             {file.name}
-//                         </div>
-//                     </div>
-//                 )
-//             },
-//         })
-//     }
-
-// }
-
-// export default FilePicker;

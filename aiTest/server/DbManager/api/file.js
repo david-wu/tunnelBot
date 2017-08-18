@@ -15,18 +15,10 @@ function getRoutes(app){
 			method: 'get',
 			endPoint: '/',
 			handler: async function(req, res){
-				if(req.query.dirId){
-					const dir = await Dir.findOne({
-						where: {
-							id: req.query.dirId
-						}
-					});
-					const files = await dir.getFiles();
-					res.status(200).send(files);
-				}else{
-					const files = await File.findAll();
-					res.status(200).send(files);
-				}
+				const files = await File.findAll({
+					where: req.query
+				});
+				res.status(200).send(files);
 			}
 		},
 		{
@@ -39,19 +31,6 @@ function getRoutes(app){
 					}
 				});
 				res.status(200).send(file);
-			}
-		},
-		{
-			method: 'get',
-			endPoint: '/:id/projects',
-			handler: async function(req, res){
-				const file = await File.findOne({
-					where: {
-						id: req.params.id
-					}
-				});
-				const projects = await file.getFiles();
-				res.status(200).send(projects);
 			}
 		},
 		{
@@ -59,37 +38,6 @@ function getRoutes(app){
 			endPoint: '/',
 			handler: async function(req, res){
 				const file = await File.create(req.body);
-				if(req.body.dirIds){
-					file.addDirs(req.body.dirIds)
-				}
-				console.log(req.body.dirIds)
-				res.status(200).send(file);
-			}
-		},
-		{
-			method: 'post',
-			endPoint: '/:id/linkProjects',
-			handler: async function(req, res){
-				const file = await File.findOne({
-					where: {
-						id: req.params.id
-					}
-				});
-				var projectIds = req.params.projectIds
-				await file.addProjectss(projectIds);
-				res.status(200).send(file);
-			}
-		},
-		{
-			method: 'delete',
-			endPoint: '/:id',
-			handler: async function(req, res){
-				const file = await File.findOne({
-					where: {
-						id: req.params.id
-					}
-				});
-				await file.destroy();
 				res.status(200).send(file);
 			}
 		},
@@ -103,6 +51,19 @@ function getRoutes(app){
 					}
 				});
 				await file.update(req.body);
+				res.status(200).send(file);
+			}
+		},
+		{
+			method: 'delete',
+			endPoint: '/:id',
+			handler: async function(req, res){
+				const file = await File.findOne({
+					where: {
+						id: req.params.id
+					}
+				});
+				await file.destroy();
 				res.status(200).send(file);
 			}
 		},

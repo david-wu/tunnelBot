@@ -6,33 +6,35 @@ const db = new Sequelize('code_together', null, null, {
 })
 const File = require('./File.factory.js')(db)
 const Dir = require('./Dir.factory.js')(db)
-// const System = require('./System.factory.js')(db)
-
-const FileDir = db.define('file_dir', {
-	fileId: Sequelize.UUID,
-	dirId: Sequelize.UUID
-});
 
 async function ModelsFactory(){
-	await Promise.all([
-		File.sync(),
-		Dir.sync(),
-		// System.sync(),
-		FileDir.sync(),
-	])
 
-	File.belongsToMany(Dir, {
-		through: FileDir
+	Dir.hasMany(File, {
+		as: 'children',
+		foreignKey: 'parentId',
 	})
-	Dir.belongsToMany(File, {
-		through: FileDir
-	})
+	File.belongsTo(Dir, {
+		foreignKey: 'parentId',
+	});
 
-	return {
-		File,
-		Dir,
-		// System,
-	};
+
+	Dir.hasMany(Dir, {
+		as: 'children',
+		foreignKey: 'parentId',
+	})
+	Dir.belongsTo(Dir, {
+		foreignKey: 'parentId',
+	});
+
+	return db.sync({
+		force: true
+	})
+		.then(function(){
+			return {
+				File,
+				Dir,
+			}
+		})
 }
 
 module.exports = ModelsFactory();

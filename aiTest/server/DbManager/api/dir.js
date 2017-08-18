@@ -9,12 +9,15 @@ function getRoutes(app){
 	const Dir = models.Dir;
 	const File = models.File;
 
+
 	return [
 		{
 			method: 'get',
 			endPoint: '/',
 			handler: async function(req, res){
-				const dirs = await Dir.findAll();
+				const dirs = await Dir.findAll({
+					where: req.query
+				});
 				res.status(200).send(dirs);
 			}
 		},
@@ -31,40 +34,23 @@ function getRoutes(app){
 			}
 		},
 		{
-			method: 'get',
-			endPoint: '/:id/files',
-			handler: async function(req, res){
-				const dir = await Dir.findOne({
-					where: {
-						id: req.params.id
-					}
-				});
-				const files = await dir.getFiles();
-				res.status(200).send(files);
-			}
-		},
-		{
 			method: 'post',
 			endPoint: '/',
 			handler: async function(req, res){
 				const dir = await Dir.create(req.body);
-				if(req.body.fileIds){
-					dir.addFiles(req.body.fileIds);
-				}
 				res.status(200).send(dir);
 			}
 		},
 		{
-			method: 'post',
-			endPoint: '/:id/linkFiles',
+			method: 'put',
+			endPoint: '/:id',
 			handler: async function(req, res){
 				const dir = await Dir.findOne({
 					where: {
 						id: req.params.id
 					}
 				});
-				var fileIds = req.params.fileIds
-				await dir.addFiles(fileIds);
+				await dir.update(req.body);
 				res.status(200).send(dir);
 			}
 		},
@@ -82,16 +68,25 @@ function getRoutes(app){
 			}
 		},
 		{
-			method: 'put',
-			endPoint: '/:id',
+			method: 'get',
+			endPoint: '/:id/children',
 			handler: async function(req, res){
-				const dir = await Dir.findOne({
+
+				const dirs = await Dir.findAll({
 					where: {
-						id: req.params.id
+						parentId: req.params.id
 					}
 				});
-				await dir.update(req.body);
-				res.status(200).send(dir);
+				const files = await File.findAll({
+					where: {
+						parentId: req.params.id
+					}
+				});
+
+				res.status(200).send({
+					files: files,
+					dirs: dirs,
+				});
 			}
 		},
 	];

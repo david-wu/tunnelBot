@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import FilePicker from './components/FilePicker/FilePicker';
-import DirPicker from './components/DirPicker/DirPicker';
-
 
 const _ = require('lodash');
-const fileService = require('./services/fileService')
-
+const dirService = require('./services/dirService');
 
 class App extends Component {
 
@@ -17,69 +14,86 @@ class App extends Component {
         _.defaults(scope, {
 
             state: {
-                selectedFile: undefined,
-                selectedDir: undefined,
+                rootNode: undefined,
+                selectedChild: undefined,
             },
 
-            onFilePick: function(file){
-                scope.setState({
-                    selectedFile: scope.state.selectedFile === file ? undefined : file
+            componentDidMount: function(){
+                return scope.getRootNode()
+                    .then(function(rootNode){
+                        scope.setState({
+                            rootNode: rootNode,
+                            selectedChild: scope.state.selectedChild,
+                        })
+                    })
+            },
+
+            getRootNode: function(){
+                return dirService.factory({
+                    isRoot: true,
+                    userId: 'billyBo',
                 })
+                    .findOne()
             },
 
-            onDirPick: function(dir){
+            onCreateRootNode: function(){
+                return dirService.factory({
+                    isRoot: true,
+                    userId: 'billyBo',
+                })
+                    .post()
+                    .then(function(rootNode){
+                        scope.setState({
+                            rootNode: rootNode,
+                            selectedChild: scope.state.selectedChild
+                        })
+                    })
+            },
+
+            onPick: function(child){
+                console.log('picked', child)
                 scope.setState({
-                    selectedDir: scope.state.selectedDir === dir ? undefined : dir
+                    selectedChild: scope.state.selectedChild === child ? undefined : child
                 })
             },
 
             render: function(){
-                return (
-                    <div className="picker-viewer">
-                        <div className="pickers">
-                            {scope.renderDirPicker()}
-                            {scope.renderFilePicker()}
-                        </div>
-                        <div className="viewer">
-                            <div>{!!scope.state.selectedFile && scope.state.selectedFile.name}</div>
-                        </div>
-                    </div>
-                );
-            },
-
-            renderDirPicker: function(){
-                return (
-                    <div>
-                        {scope.renderSelectionHeader(scope.state.selectedDir)}
-                        <DirPicker selectedDir={scope.state.selectedDir} onPick={scope.onDirPick} />
-                    </div>
-                )
-            },
-
-            renderFilePicker: function(){
-                if(!scope.state.selectedDir){return;}
-                return (
-                    <div>
-                        {scope.renderSelectionHeader(scope.state.selectedFile)}
-                        <FilePicker selectedFile={scope.state.selectedFile} parentDir={scope.state.selectedDir} onPick={scope.onFilePick} />
-                    </div>
-                )
-            },
-
-            renderSelectionHeader: function(selection){
-                if(selection){
+                if(!scope.state.rootNode){
                     return (
-                        <div className="selection selected">
-                            {selection.name}
-                        </div>
-                    )
-                }else{
-                    return (
-                        <div className="selection">
+                        <div>
+                            <button onClick={scope.onCreateRootNode}>
+                                + Create Root Node
+                            </button>
                         </div>
                     )
                 }
+                return (
+                    <div className="components">
+                        <div className="file-picker-container">
+                            <FilePicker parentNode={scope.state.rootNode} onPick={scope.onPick} />
+                        </div>
+                        {scope.renderChild(scope.state.selectedChild)}
+                    </div>
+                )
             },
+
+            renderChild: function(child){
+                if(!child) return;
+                if(child.type === 'dir'){
+                    return (
+                        <div>
+                            dirr
+                        </div>
+                    )
+                }else if(child.type === 'file'){
+                    return (
+                        <div>
+                            filell
+                        </div>
+                    )
+                }
+            }
+
         })
 
     }
