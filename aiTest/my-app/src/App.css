@@ -1,0 +1,27 @@
+.components{
+    font-size: 12px;
+    display: flex;
+    padding: 10px;
+}
+
+.selection{
+    height: 1em;
+    background-color: whitesmoke;
+}
+.selection.selected{
+    background-color: cyan;
+}
+
+.clickable{
+    cursor: pointer;
+}
+
+.picker-viewer{
+    display: flex;
+}
+
+.file-picker-container{
+    /*max-width: 500px;*/
+    overflow: auto;
+    white-space: nowrap;
+}

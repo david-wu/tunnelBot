@@ -1,30 +1,11 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
+
 import './App.css';
 import FilePicker from './components/FilePicker/FilePicker';
 import DirViewer from './components/DirViewer/DirViewer';
 import FileViewer from './components/FileViewer/FileViewer';
-
-const _ = require('lodash');
-const dirService = require('./services/dirService');
-
-
-
-
-
-import { observable } from 'mobx';
-
-class TodoStore {
-    @observable todos = ['milk', 'eggs'];
-    @observable filter = ''
-
-
-}
-
-
-const store = new TodoStore();
-
-console.log(store)
-
+import Dir from './services/dirService';
 
 
 class App extends Component {
@@ -51,7 +32,7 @@ class App extends Component {
             },
 
             getRootNode: function(){
-                return dirService.factory({
+                return Dir.factory({
                     isRoot: true,
                     userId: 'billyBo',
                 })
@@ -59,7 +40,7 @@ class App extends Component {
             },
 
             onCreateRootNode: function(){
-                return dirService.factory({
+                return Dir.factory({
                     isRoot: true,
                     userId: 'billyBo',
                 })
@@ -93,7 +74,9 @@ class App extends Component {
                         <div className="file-picker-container">
                             <FilePicker parentNode={scope.state.rootNode} onPick={scope.onPick} />
                         </div>
-                        {scope.renderChild(scope.state.selectedChild)}
+                        <div>
+                            {scope.renderChild(scope.state.selectedChild)}
+                        </div>
                     </div>
                 )
             },
