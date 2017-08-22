@@ -53,7 +53,7 @@ function SocketHandler(scope={}){
 		spawnDir: async function(dirId){
 			if(!scope.canSpawn()){return}
 
-			const response = await axios.get(`http://localhost:10001/api/dir/${dirId}/children?filesDeep=true`)
+			const response = await axios.get(`http://localhost:10001/api/dir/${dirId}/filesDeep`)
 			const files = response.data.files
 			const instance = Instance({
 				messageHandler: scope.ioConnection.send.bind(scope.ioConnection)
