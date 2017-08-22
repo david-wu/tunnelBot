@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 
+import './reset.css';
 import './App.css';
 import FilePicker from './components/FilePicker/FilePicker';
 import DirViewer from './components/DirViewer/DirViewer';

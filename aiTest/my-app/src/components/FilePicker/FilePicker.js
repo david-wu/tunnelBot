@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { autobind } from 'core-decorators';
 
-import './FilePicker.css';
+import './FilePicker.scss';
 import File from '../../services/fileService';
 import Dir from '../../services/dirService';
 
