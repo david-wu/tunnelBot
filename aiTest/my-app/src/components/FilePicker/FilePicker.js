@@ -104,9 +104,6 @@ class FilePicker extends Component {
 
     @autobind
     onChildClick(child){
-        // if(this.state.selectedChild === child){
-        //     child = undefined;
-        // }
 
         this.setState(function(prevState){
             prevState.selectedChild = child;

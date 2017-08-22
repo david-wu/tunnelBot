@@ -3,6 +3,7 @@ const redis = require('redis')
 const childProcess = require('child_process');
 const spawn = childProcess.spawn
 const fs = require('fs')
+const mkdirp = require('mkdirp')
 
 const cpType = process.env.CP_TYPE || 'maze'
 const instanceId = process.env.INSTANCE_ID;
@@ -74,7 +75,20 @@ function CpSpawner(cpSpawner={}){
 
 		writeFile(file){
 			return new Promise(function(resolve, reject){
-				fs.writeFile(`./context/${file.name}`, file.content, resolve);
+				if(file.path){
+					mkdirp(`/workerApp/context/${file.path}`, function(err){
+						if(err){reject('mkdirp failed!', err)}
+						fs.writeFile(`./context/${file.path}/${file.name}`, file.content, function(err){
+							if(err){
+								reject('failed to writeFile', err)
+							}else{
+								resolve()
+							}
+						});
+					})
+				}else{
+					fs.writeFile(`./context/${file.name}`, file.content, resolve);
+				}
 			})
 		},
 

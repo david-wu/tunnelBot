@@ -49,14 +49,14 @@ function Instance(instance={}){
 			})
 		},
 
+		sendMessage: function(message){
+			return redisService.emitP(instance.channelIn, message);
+		},
+
 		runProcess: function(){
 			return instance.sendMessage({
 				type: 'runProcess'
 			});
-		},
-
-		sendMessage: function(message){
-			return redisService.emitP(instance.channelIn, message);
 		},
 
 		kill: function(){

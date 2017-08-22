@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const Router = rootRequire('./util/Router.js');
 
 module.exports = new Router({
@@ -89,5 +90,40 @@ function getRoutes(app){
 				});
 			}
 		},
+		{
+			method: 'get',
+			endPoint: '/:id/filesDeep',
+			handler: async function(req, res){
+				const deepFiles = await getFilesDeep(req.params.id);
+				res.status(200).send({
+					files: deepFiles,
+				});
+			}
+		},
 	];
+
+	// SHOWCASE: async await
+	async function getFilesDeep(parentId, path=[]){
+
+		const dirs = await Dir.findAll({
+			where: {
+				parentId: parentId
+			}
+		})
+
+		const files = await File.findAll({
+			where: {
+				parentId: parentId
+			}
+		})
+		_.each(files, function(file){
+			file.path = path.join('/')
+		})
+
+		const deepFiles = await Promise.all(_.map(dirs, function(dir){
+			return getFilesDeep(dir.id, path.concat([dir.name]));
+		}))
+
+		return files.concat(_.flatten(deepFiles));
+	}
 }

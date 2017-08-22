@@ -3,8 +3,9 @@
     "start": "npm install;node app.js"
   },
   "dependencies": {
-    "lodash": "^4.17.4",
     "guid": "0.0.12",
+    "lodash": "^4.17.4",
+    "mkdirp": "^0.5.1",
     "redis": "^2.6.5"
   }
 }
