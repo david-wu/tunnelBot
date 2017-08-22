@@ -3,8 +3,6 @@ const endpoint = 'http://localhost:10001'
 
 class SocketService{
 
-	constructor(){}
-
 	getConnection(){
 		if(this.connectionPromise){
 			return this.connectionPromise;

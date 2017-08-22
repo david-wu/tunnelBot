@@ -29,6 +29,7 @@ export default class File{
 
 	@observable name
 	@observable content
+	@observable focused
 
 	constructor(file){
 		_.defaults(this, file, {

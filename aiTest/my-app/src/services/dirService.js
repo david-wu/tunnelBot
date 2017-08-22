@@ -27,6 +27,7 @@ export default class Dir{
 
 	@observable name
 	@observable children
+	@observable focused
 
 	constructor(dir){
 		_.defaults(this, dir, {

@@ -5,6 +5,8 @@
 .file-item{
 	display: flex;
 	padding: 5px;
+	height: 30px;
+	align-items: center;
 }
 
 .file-item > * {
@@ -19,4 +21,8 @@
 .child-container {
 	/*max-height: 200px;*/
 	overflow-y: auto;
+}
+
+.focused {
+	background-color: cyan;
 }

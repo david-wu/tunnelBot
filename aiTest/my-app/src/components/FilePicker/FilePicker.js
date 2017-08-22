@@ -120,7 +120,6 @@ class FilePicker extends Component {
             <div className="inline-block">
                 <div className="inline-block">
                     <div>
-                        {this.renderSelectionHeader(this.state.selectedChild)}
                         <button onClick={this.onCreateFile}>
                             + Create File
                         </button>
@@ -149,24 +148,13 @@ class FilePicker extends Component {
         );
     }
 
-    renderSelectionHeader(selection){
-        if(selection){
-            return (
-                <div className="selection selected">
-                    {selection.name}
-                </div>
-            )
-        }else{
-            return <div className="selection"></div>
-        }
-    }
-
     renderChildren(){
         return this.state.childNodes.map(this.renderChild.bind(this));
     }
 
     renderChild(child){
-        const fileClass = _.get(this, 'state.selectedChild.id') === child.id ? 'file-item clickable selected-file' : 'file-item clickable';
+
+        const fileClass = this.getChildClass(child)
         const iconClassesByType = {
             file: 'file',
             dir: 'folder'
@@ -180,6 +168,18 @@ class FilePicker extends Component {
                 </div>
             </div>
         )
+    }
+
+    getChildClass(child){
+        if(child.focused){
+            return 'file-item clickable focused';
+        }
+        if(_.get(this, 'state.selectedChild.id')===child.id){
+            return 'file-item clickable selected-file'
+        }else{
+            return 'file-item clickable '
+        }
+
     }
 
 }

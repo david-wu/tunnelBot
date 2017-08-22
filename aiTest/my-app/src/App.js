@@ -54,6 +54,13 @@ class App extends Component {
             },
 
             onPick: function(child){
+                if(scope.focusedChild){
+                    scope.focusedChild.focused = false;
+                }
+                scope.focusedChild = child;
+                if(child){
+                    scope.focusedChild.focused = true;
+                }
                 scope.setState({
                     selectedChild: scope.state.selectedChild === child ? undefined : child
                 })
@@ -70,7 +77,7 @@ class App extends Component {
                     )
                 }
                 return (
-                    <div className="components">
+                    <div>
                         <div className="file-picker-container">
                             <FilePicker parentNode={scope.state.rootNode} onPick={scope.onPick} />
                         </div>
