@@ -6,6 +6,7 @@ import { autobind } from 'core-decorators';
 import './FilePicker.scss';
 import File from '../../services/fileService';
 import Dir from '../../services/dirService';
+import TreeNode from '../../services/treeNodeService';
 
 const FontAwesome = require('react-fontawesome');
 
@@ -17,51 +18,53 @@ class FilePicker extends Component {
         super(props);
 
         this.state = {
-            childNodes: [],
             newDir: {
                 name: '',
             },
             newFile: {
                 name: '',
-            }
+            },
+            selectedChild: undefined,
         }
 
     }
 
 
     componentDidMount(){
-        this.setChildren(this.props.parentNode)
+        this.props.parentNode.setChildNodes();
+        // this.setChildren(this.props.parentNode)
     }
 
     componentWillReceiveProps(newProps){
-        if(newProps.parentNode.id !== this.props.parentNode.id){
-            this.setChildren(newProps.parentNode);
+        if(newProps.parentNode.model.id !== this.props.parentNode.model.id){
+            newProps.parentNode.setChildNodes();
         }
     }
 
-    setChildren(parentNode){
-        if(!parentNode) return;
-        return parentNode.getChildren()
-            .then((childNodes)=>{
-                this.setState({
-                    childNodes: parentNode.children,
-                    selectedChild: undefined,
-                })
-            })
-    }
+    // setChildren(parentNode){
+    //     if(!parentNode) return;
+    //     return parentNode.getChildren()
+    //         .then(()=>{
+    //             this.setState({
+    //                 selectedChild: undefined,
+    //             })
+    //         })
+    // }
 
     @autobind
     onCreateFile(){
         return File.factory({
             name: this.state.newFile.name,
+            parent: this.props.parentNode,
             parentId: this.props.parentNode.id,
         })
             .post()
             .catch(console.log)
-            .then((file)=>{
+            .then(TreeNode.factory)
+            .then(this.props.parentNode.pushChildNode)
+            .then(()=>{
                 this.setState(function(prevState){
                     prevState.newFile.name = ''
-                    prevState.childNodes.push(file)
                     return prevState;
                 })
             })
@@ -71,14 +74,16 @@ class FilePicker extends Component {
     onCreateDir(){
         return Dir.factory({
             name: this.state.newDir.name,
+            parent: this.props.parentNode,
             parentId: this.props.parentNode.id,
         })
             .post()
             .catch(console.log)
-            .then((dir)=>{
+            .then(TreeNode.factory)
+            .then(this.props.parentNode.unshiftChildNode)
+            .then(()=>{
                 this.setState(function(prevState){
                     prevState.newDir.name = ''
-                    prevState.childNodes.unshift(dir)
                     return prevState;
                 })
             })
@@ -103,13 +108,9 @@ class FilePicker extends Component {
     }
 
     @autobind
-    onChildClick(child){
-
-        this.setState(function(prevState){
-            prevState.selectedChild = child;
-        })
-
-        this.props.onPick(child);
+    onChildClick(childNode){
+        this.props.parentNode.selectChildNode(childNode);
+        this.props.onPick(childNode);
     }
 
     render(){
@@ -140,38 +141,40 @@ class FilePicker extends Component {
                         {this.renderChildren()}
                     </div>
                 </div>
-                {_.get(this, 'state.selectedChild.type')==='dir' ? <FilePicker parentNode={this.state.selectedChild} onPick={this.props.onPick} /> : ''}
+                {_.get(this, 'props.parentNode.selectedChildNode.model.type')==='dir' ? <FilePicker parentNode={this.props.parentNode.selectedChildNode} onPick={this.props.onPick} /> : ''}
             </div>
         );
     }
 
     renderChildren(){
-        return this.state.childNodes.map(this.renderChild.bind(this));
+        return this.props.parentNode.childNodes.map(this.renderChildNode);
     }
 
-    renderChild(child){
+    @autobind
+    renderChildNode(childNode){
+        const model = childNode.model;
 
-        const fileClass = this.getChildClass(child)
+        const fileClass = this.getChildClass(childNode)
         const iconClassesByType = {
             file: 'file',
             dir: 'folder'
         }
-        const iconClass = iconClassesByType[child.type];
+        const iconClass = iconClassesByType[model.type];
         return (
-            <div className={fileClass} key={child.id} onClick={_.partial(this.onChildClick, child)}>
+            <div className={fileClass} key={model.id} onClick={_.partial(this.onChildClick, childNode)}>
                 <FontAwesome name={iconClass} />
                 <div>
-                    {child.name}
+                    {model.name}
                 </div>
             </div>
         )
     }
 
-    getChildClass(child){
-        if(child.focused){
+    getChildClass(childNode){
+        if(childNode.focused){
             return 'file-item clickable focused';
         }
-        if(_.get(this, 'state.selectedChild.id')===child.id){
+        if(_.get(this, 'props.parentNode.selectedChildNode.id')===childNode.model.id){
             return 'file-item clickable selected-file'
         }else{
             return 'file-item clickable '

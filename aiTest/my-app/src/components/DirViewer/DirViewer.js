@@ -28,12 +28,12 @@ class DirViewer extends Component {
             },
 
             componentWillReceiveProps: function(newProps){
-                if(newProps.dir.id !== scope.props.dir.id){
+                if(newProps.dirNode.model.id !== scope.props.dirNode.model.id){
                     scope.instanceId = undefined;
                     scope.removeHandlers();
                     scope.emptyTerminal();
                     scope.setState(function(oldState){
-                        oldState.dir = newProps.dir
+                        oldState.dir = newProps.dirNode.model
                     })
                 }
             },
@@ -50,7 +50,7 @@ class DirViewer extends Component {
                 const socket = await socketService.getConnection()
                 scope.removeHandlers = scope.addHandlers(socket)
 
-                scope.instanceId = await scope.spawnDir(socket, scope.props.dir.id);
+                scope.instanceId = await scope.spawnDir(socket, scope.props.dirNode.model.id);
 
                 scope.showTerminal(socket)
 
@@ -90,7 +90,6 @@ class DirViewer extends Component {
             showTerminal: function(socket){
                 scope.terminal = scope.setTerminal();
                 scope.promptInput(socket);
-                console.log(socket, scope.terminal)
             },
 
             promptInput: async function(socket){
@@ -113,7 +112,10 @@ class DirViewer extends Component {
             },
 
             emptyTerminal: function(){
-                // $(scope.consoleContainer.nativeElement).empty()
+                const container = scope.consoleContainer;
+                while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
             },
 
             messageHandler: function(message){
@@ -127,8 +129,12 @@ class DirViewer extends Component {
                 }
             },
 
+            deleteDir: function(){
+                scope.props.dirNode.destroy();
+            },
+
             disconnectHandler: function(){
-                console.log('server down!')
+                console.log('connection lost!')
             },
 
             removeHandlers: _.noop,
@@ -136,6 +142,9 @@ class DirViewer extends Component {
             render: function(){
                 return (
                     <div>
+                        <button disabled>Set Permissions</button>
+                        <button disabled>Get Public Access Url</button>
+                        <button onClick={scope.deleteDir}>Delete</button>
                         <button onClick={scope.spawnProcess}>Spawn instance</button>
                         <div>
                             {scope.state.awaitingSpawn ? <FontAwesome name="cog" spin /> : ''}

@@ -12,6 +12,7 @@ async function ModelsFactory(){
 	Dir.hasMany(File, {
 		as: 'children',
 		foreignKey: 'parentId',
+		onDelete: 'cascade',
 	})
 	File.belongsTo(Dir, {
 		foreignKey: 'parentId',
@@ -21,6 +22,7 @@ async function ModelsFactory(){
 	Dir.hasMany(Dir, {
 		as: 'children',
 		foreignKey: 'parentId',
+		onDelete: 'cascade',
 	})
 	Dir.belongsTo(Dir, {
 		foreignKey: 'parentId',

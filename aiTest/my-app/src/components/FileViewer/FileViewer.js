@@ -23,10 +23,10 @@ class FileViewer extends Component{
     }
 
     componentWillReceiveProps(props){
-        const fileSession = new ace.EditSession(props.file.content)
+        const fileSession = new ace.EditSession(props.fileNode.model.content)
         fileSession.setMode('ace/mode/javascript')
         fileSession.on('change', ()=>{
-            this.onEditorValueChange(this.aceEditor.getValue(), props.file)
+            this.onEditorValueChange(this.aceEditor.getValue(), props.fileNode.model)
         })
         this.aceEditor.setSession(fileSession)
     }
@@ -41,19 +41,25 @@ class FileViewer extends Component{
 
     @autobind
     onFileNameChange(e){
-        this.props.file.name = e.target.value
+        this.props.fileNode.model.name = e.target.value
         this.debouncedPutFile()
     }
 
     @autobind
     putFile(){
-        this.props.file.put()
+        this.props.fileNode.model.put()
+    }
+
+    @autobind
+    deleteFile(){
+        this.props.fileNode.destroy();
     }
 
     render(){
         return (
             <div>
-                <input value={this.props.file.name} type="text" onChange={this.onFileNameChange} />
+                <button onClick={this.deleteFile}>Delete</button>
+                <input value={this.props.fileNode.model.name} type="text" onChange={this.onFileNameChange} />
                 <div style={{width:'500px', height:'500px', position:'relative', flex: '1 0 0'}} ref={this.onEditorElement}></div>
             </div>
         )

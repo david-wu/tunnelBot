@@ -70,7 +70,9 @@ export default class Dir{
 		return request({
 			method: 'DELETE',
 			uri: `${uri}/${this.id}`,
+			json: true,
 		})
+			.then(Dir.factory)
 	}
 
 	findOne(){
@@ -99,9 +101,13 @@ export default class Dir{
 				return dirs.concat(files);
 			})
 			.then((children)=>{
+				_.each(children, (child)=>{
+					child.parent = this;
+				})
+
 				this.children.length = 0;
 				this.children.push.apply(this.children, children);
-				this.children;
+				return this.children;
 			})
 	}
 

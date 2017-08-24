@@ -70,6 +70,7 @@ export default class File{
 		return request({
 			method: 'DELETE',
 			uri: `${uri}/${this.id}`,
+			json: true,
 		})
 	}
 

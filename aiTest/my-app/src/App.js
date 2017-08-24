@@ -7,7 +7,7 @@ import FilePicker from './components/FilePicker/FilePicker';
 import DirViewer from './components/DirViewer/DirViewer';
 import FileViewer from './components/FileViewer/FileViewer';
 import Dir from './services/dirService';
-
+import TreeNode from './services/treeNodeService';
 
 class App extends Component {
 
@@ -38,6 +38,7 @@ class App extends Component {
                     userId: 'billyBo',
                 })
                     .findOne()
+                    .then(TreeNode.factory)
             },
 
             onCreateRootNode: function(){
@@ -46,6 +47,7 @@ class App extends Component {
                     userId: 'billyBo',
                 })
                     .post()
+                    .then(TreeNode.factory)
                     .then(function(rootNode){
                         scope.setState({
                             rootNode: rootNode,
@@ -54,16 +56,16 @@ class App extends Component {
                     })
             },
 
-            onPick: function(child){
+            onPick: function(childNode){
                 if(scope.focusedChild){
                     scope.focusedChild.focused = false;
                 }
-                scope.focusedChild = child;
-                if(child){
+                scope.focusedChild = childNode;
+                if(childNode){
                     scope.focusedChild.focused = true;
                 }
                 scope.setState({
-                    selectedChild: scope.state.selectedChild === child ? undefined : child
+                    selectedChild: scope.state.selectedChild === childNode ? undefined : childNode
                 })
             },
 
@@ -83,22 +85,23 @@ class App extends Component {
                             <FilePicker parentNode={scope.state.rootNode} onPick={scope.onPick} />
                         </div>
                         <div>
-                            {scope.renderChild(scope.state.selectedChild)}
+                            {scope.renderChildNode(scope.state.selectedChild)}
                         </div>
                     </div>
                 )
             },
 
-            renderChild: function(child){
-                if(!child) return;
-                if(child.type === 'dir'){
+            renderChildNode: function(childNode){
+                if(!childNode) return;
+
+                if(childNode.model.type === 'dir'){
                     return (
-                        <DirViewer dir={child}/>
+                        <DirViewer dirNode={childNode}/>
                     )
-                }else if(child.type === 'file'){
+                }else if(childNode.model.type === 'file'){
                     return (
                         <div>
-                            <FileViewer file={child}/>
+                            <FileViewer fileNode={childNode}/>
                         </div>
                     )
                 }
