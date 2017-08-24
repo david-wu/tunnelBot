@@ -1,163 +1,195 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
+import { observer } from 'mobx-react';
+import { autobind } from 'core-decorators';
+import * as moment from 'moment';
+import * as FontAwesome from 'react-fontawesome';
+
 import './DirViewer.css';
 
-const _ = require('lodash');
-
-const FontAwesome = require('react-fontawesome');
 const Terminal = require('./lib/terminal.js')
 const socketService = require('../../services/socketService');
 
-
+@observer
 class DirViewer extends Component {
 
     constructor(props){
         super(props);
-        const scope = this;
+        this.state = {
+            dir: undefined
+        }
+        this.debouncedPutDir = _.debounce(this.putDir, 300)
+    }
 
-        _.defaults(scope, {
+    componentDidMount(){
 
-            state: {
-            },
+    }
 
-            componentDidMount: function(){
+    @autobind
+    onConsoleContainer(element){
+        this.consoleContainer = element
+    }
 
-            },
+    componentWillReceiveProps(newProps){
+        if(newProps.dirNode.model.id !== this.props.dirNode.model.id){
+            this.instanceId = undefined;
+            this.removeHandlers();
+            this.emptyTerminal();
+            this.setState(function(oldState){
+                oldState.dir = newProps.dirNode.model
+                return oldState
+            })
+        }
+    }
 
-            onConsoleContainer: function(element){
-                scope.consoleContainer = element
-            },
-
-            componentWillReceiveProps: function(newProps){
-                if(newProps.dirNode.model.id !== scope.props.dirNode.model.id){
-                    scope.instanceId = undefined;
-                    scope.removeHandlers();
-                    scope.emptyTerminal();
-                    scope.setState(function(oldState){
-                        oldState.dir = newProps.dirNode.model
-                    })
-                }
-            },
-
-            spawnProcess: async function(){
-                scope.setState({
-                    awaitingSpawn: true,
-                })
-
-                scope.instanceId = undefined;
-                scope.removeHandlers()
-                scope.emptyTerminal();
-
-                const socket = await socketService.getConnection()
-                scope.removeHandlers = scope.addHandlers(socket)
-
-                scope.instanceId = await scope.spawnDir(socket, scope.props.dirNode.model.id);
-
-                scope.showTerminal(socket)
-
-                scope.setState({
-                    awaitingSpawn: false,
-                })
-            },
-
-            addHandlers: function(socket){
-                const messageHandler = scope.messageHandler.bind(scope);
-                const disconnectHandler = scope.disconnectHandler.bind(scope);
-                socket.on('message', messageHandler)
-                socket.on('disconnect', disconnectHandler);
-                return function(){
-                    socket.removeListener('message', messageHandler);
-                    socket.removeListener('disconnect', disconnectHandler);
-                }
-            },
-
-            spawnDir: function(socket, id){
-                return new Promise((resolve, reject)=>{
-                    socket.send({
-                        type: 'spawnDir',
-                        payload: {
-                            id: id
-                        },
-                    }, function(err, res){
-                        return err ? reject(err) : resolve(res.id);
-                    })
-                })
-                .catch(function(err){
-                    console.log('failed to spawn', err)
-                })
-            },
-
-
-            showTerminal: function(socket){
-                scope.terminal = scope.setTerminal();
-                scope.promptInput(socket);
-            },
-
-            promptInput: async function(socket){
-                scope.terminal.input('> ', async (input)=>{
-                    await socket.send({
-                        instanceId: scope.instanceId,
-                        type: 'stdIn',
-                        payload: input+'\n',
-                    });
-                    scope.promptInput(socket);
-                })
-            },
-
-            setTerminal: function(){
-                const terminal = new Terminal('my-console')
-                scope.emptyTerminal();
-                scope.consoleContainer.appendChild(terminal.html)
-
-                return terminal
-            },
-
-            emptyTerminal: function(){
-                const container = scope.consoleContainer;
-                while (container.firstChild) {
-                    container.removeChild(container.firstChild);
-                }
-            },
-
-            messageHandler: function(message){
-                if(!scope.terminal){return;}
-                if(message.type === 'stdOut'){
-                    if(message.instanceId === scope.instanceId){
-                        scope.terminal.print(message.payload);
-                    }
-                }else if(message.type === 'stdErr'){
-                    scope.terminal.printError(message.payload);
-                }
-            },
-
-            deleteDir: function(){
-                scope.props.dirNode.destroy();
-            },
-
-            disconnectHandler: function(){
-                console.log('connection lost!')
-            },
-
-            removeHandlers: _.noop,
-
-            render: function(){
-                return (
-                    <div>
-                        <button disabled>Set Permissions</button>
-                        <button disabled>Get Public Access Url</button>
-                        <button onClick={scope.deleteDir}>Delete</button>
-                        <button onClick={scope.spawnProcess}>Spawn instance</button>
-                        <div>
-                            {scope.state.awaitingSpawn ? <FontAwesome name="cog" spin /> : ''}
-                        </div>
-                        <div style={{width:'500px', height:'500px', position:'relative', flex: '1 0 0'}} ref={scope.onConsoleContainer}>
-                        </div>
-                    </div>
-                );
-            },
-
-
-
+    @autobind
+    async spawnProcess(){
+        this.setState({
+            awaitingSpawn: true,
         })
+
+        this.instanceId = undefined;
+        this.removeHandlers()
+        this.emptyTerminal();
+
+        const socket = await socketService.getConnection()
+        this.removeHandlers = this.addHandlers(socket)
+
+        this.instanceId = await this.spawnDir(socket, this.props.dirNode.model.id);
+
+        this.showTerminal(socket)
+
+        this.setState({
+            awaitingSpawn: false,
+        })
+    }
+
+    addHandlers(socket){
+        const messageHandler = this.messageHandler.bind(this);
+        const disconnectHandler = this.disconnectHandler.bind(this);
+        socket.on('message', messageHandler)
+        socket.on('disconnect', disconnectHandler);
+        return function(){
+            socket.removeListener('message', messageHandler);
+            socket.removeListener('disconnect', disconnectHandler);
+        }
+    }
+
+    spawnDir(socket, id){
+        return new Promise((resolve, reject)=>{
+            socket.send({
+                type: 'spawnDir',
+                payload: {
+                    id: id
+                },
+            }, function(err, res){
+                return err ? reject(err) : resolve(res.id);
+            })
+        })
+        .catch(function(err){
+            console.log('failed to spawn', err)
+        })
+    }
+
+
+    showTerminal(socket){
+        this.terminal = this.setTerminal();
+        this.promptInput(socket);
+    }
+
+    async promptInput(socket){
+        this.terminal.input('> ', async (input)=>{
+            await socket.send({
+                instanceId: this.instanceId,
+                type: 'stdIn',
+                payload: input+'\n',
+            });
+            this.promptInput(socket);
+        })
+    }
+
+    setTerminal(){
+        const terminal = new Terminal('my-console')
+        this.emptyTerminal();
+        this.consoleContainer.appendChild(terminal.html)
+
+        return terminal
+    }
+
+    emptyTerminal(){
+        const container = this.consoleContainer;
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+    }
+
+    messageHandler(message){
+        if(!this.terminal){return;}
+        if(message.type === 'stdOut'){
+            if(message.instanceId === this.instanceId){
+                this.terminal.print(message.payload);
+            }
+        }else if(message.type === 'stdErr'){
+            this.terminal.printError(message.payload);
+        }
+    }
+
+    @autobind
+    deleteDir(){
+        this.props.dirNode.destroy();
+    }
+
+    @autobind
+    onDirNameChange(e){
+        this.props.dirNode.model.name = e.target.value
+        this.debouncedPutDir()
+    }
+
+    @autobind
+    putDir(){
+        this.props.dirNode.model.put()
+    }
+
+
+    disconnectHandler(){
+        console.log('connection lost!')
+    }
+
+    removeHandlers(){
+
+    }
+
+    render(){
+        const created = moment(new Date(this.props.dirNode.model.createdAt)).fromNow()
+        const lastUpdated = moment(new Date(this.props.dirNode.model.updatedAt)).fromNow()
+        return (
+            <div>
+                <div>
+                    <button disabled>Set Permissions</button>
+                    <button disabled>Get Public Access Url</button>
+                    <button onClick={this.deleteDir}>Delete</button>
+                </div>
+                <div>
+                    <div>
+                        created: {created}
+                    </div>
+                    <div>
+                        last updated: {lastUpdated}
+                    </div>
+                </div>
+                <div>
+                    <input value={this.props.dirNode.model.name} type="text" onChange={this.onDirNameChange} />
+                    <button onClick={this.spawnProcess}>Spawn instance</button>
+                </div>
+                <div>
+                    <div>
+                        {this.state.awaitingSpawn ? <FontAwesome name="cog" spin /> : ''}
+                    </div>
+                    <div style={{width:'500px', height:'500px', position:'relative', flex: '1 0 0'}} ref={this.onConsoleContainer}>
+                    </div>
+                </div>
+            </div>
+        );
     }
 
 }

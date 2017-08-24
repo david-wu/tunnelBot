@@ -66,6 +66,10 @@ export default class TreeNode{
 	}
 
 	selectChildNode(childNode){
+		// So everything gets unselected if you select a different parentNode
+		if(this.selectedChildNode){
+			this.selectedChildNode.selectChildNode(undefined);
+		}
 		this.selectedChildNode = childNode;
 	}
 

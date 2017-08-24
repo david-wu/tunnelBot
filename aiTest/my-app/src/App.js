@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 
 import './reset.css';
-import './App.css';
+import './App.scss';
 import FilePicker from './components/FilePicker/FilePicker';
 import DirViewer from './components/DirViewer/DirViewer';
 import FileViewer from './components/FileViewer/FileViewer';

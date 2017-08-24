@@ -162,9 +162,12 @@ class FilePicker extends Component {
         const iconClass = iconClassesByType[model.type];
         return (
             <div className={fileClass} key={model.id} onClick={_.partial(this.onChildClick, childNode)}>
-                <FontAwesome name={iconClass} />
-                <div>
+                <div className="file-item">
+                    <FontAwesome name={iconClass} />
                     {model.name}
+                </div>
+                <div style={{'padding-right': '7px'}}>
+                    {model.type==='dir' ? <FontAwesome name="caret-right" /> : ''}
                 </div>
             </div>
         )
@@ -172,12 +175,12 @@ class FilePicker extends Component {
 
     getChildClass(childNode){
         if(childNode.focused){
-            return 'file-item clickable focused';
+            return 'clickable focused flex justify-spaced align-center';
         }
         if(_.get(this, 'props.parentNode.selectedChildNode.id')===childNode.model.id){
-            return 'file-item clickable selected-file'
+            return 'clickable selected-file flex justify-spaced align-center'
         }else{
-            return 'file-item clickable '
+            return 'clickable flex justify-spaced align-center'
         }
 
     }

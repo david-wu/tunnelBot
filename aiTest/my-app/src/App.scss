@@ -20,3 +20,19 @@
     overflow: auto;
     white-space: nowrap;
 }
+
+.flex{
+	display: flex;
+
+	&.column{
+		flex-direction: column;
+	}
+
+	&.justify-spaced{
+		justify-content: space-between;
+	}
+
+	&.align-center{
+		align-items: center;
+	}
+}

@@ -1,8 +1,10 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
-import './FileViewer.css';
 import { observer } from 'mobx-react';
 import { autobind } from 'core-decorators';
-import _ from 'lodash';
+import * as moment from 'moment';
+
+import './FileViewer.css';
 
 const ace = window.ace;
 
@@ -56,11 +58,27 @@ class FileViewer extends Component{
     }
 
     render(){
+        const created = moment(new Date(this.props.fileNode.model.createdAt)).fromNow()
+        const lastUpdated = moment(new Date(this.props.fileNode.model.updatedAt)).fromNow()
         return (
             <div>
-                <button onClick={this.deleteFile}>Delete</button>
-                <input value={this.props.fileNode.model.name} type="text" onChange={this.onFileNameChange} />
-                <div style={{width:'500px', height:'500px', position:'relative', flex: '1 0 0'}} ref={this.onEditorElement}></div>
+                <div>
+                    <button onClick={this.deleteFile}>Delete</button>
+                </div>
+                <div>
+                    <div>
+                        created: {created}
+                    </div>
+                    <div>
+                        last updated: {lastUpdated}
+                    </div>
+                </div>
+                <div>
+                    <input value={this.props.fileNode.model.name} type="text" onChange={this.onFileNameChange} />
+                </div>
+                <div>
+                    <div style={{width:'500px', height:'500px', position:'relative', flex: '1 0 0'}} ref={this.onEditorElement}></div>
+                </div>
             </div>
         )
     }
