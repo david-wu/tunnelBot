@@ -1,9 +1,7 @@
 import { observable } from 'mobx';
 import File from './fileService.js';
-// import/export makes it so you can't reference imports in debugger?
+import _ from 'lodash';
 const request = require('request-promise-native')
-const _ = require('lodash');
-// const fileService = require('./fileService.js');
 
 const apiEndpoint = 'http://localhost:10001/api'
 const uri = apiEndpoint + '/dir';
@@ -19,6 +17,7 @@ const apiKeyMap = {
 
 
 
+
 export default class Dir{
 
 	static factory(dir){
@@ -28,10 +27,12 @@ export default class Dir{
 	@observable name
 	@observable children
 	@observable focused
+	@observable updatedAt
+	@observable createdAt
 
 	constructor(dir){
 		_.defaults(this, dir, {
-			name: '',
+			name: undefined,
 			children: [],
 			type: 'dir',
 		})
@@ -75,7 +76,7 @@ export default class Dir{
 			.then(Dir.factory)
 	}
 
-	findOne(){
+	find(){
 		return request({
 			method: 'GET',
 			uri: uri,
@@ -83,8 +84,15 @@ export default class Dir{
 			json: true,
 		})
 			.then(function(dirs){
+				return _.map(dirs, Dir.factory)
+			})
+	}
+
+	findOne(){
+		return this.find()
+			.then(function(dirs){
 				if(dirs.length){
-					return Dir.factory(dirs[0]);
+					return Dir.factory(dirs[0])
 				}
 			})
 	}

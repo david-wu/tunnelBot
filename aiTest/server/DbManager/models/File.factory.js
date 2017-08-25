@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 
-module.exports = function FileFactory(db){
-	return db.define('file', {
+module.exports = function FileFactory(sequelize){
+	return sequelize.define('file', {
 		id: {
 			type: Sequelize.UUID,
 			primaryKey: true,

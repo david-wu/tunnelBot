@@ -9,6 +9,7 @@ function App(app={}){
 	_.defaults(app, {
 		port: 10001,
 		server: undefined,
+		rebuild: false,
 	})
 
 	return _.defaults(app, {
@@ -23,7 +24,7 @@ function App(app={}){
 
 			// access docker spawning service through redis
 			await DockerSpawner().init({
-				rebuild: false,
+				rebuild: app.rebuild,
 			})
 
 			// access redis through webSockets

@@ -58,20 +58,28 @@ class FileViewer extends Component{
     }
 
     render(){
-        const created = moment(new Date(this.props.fileNode.model.createdAt)).fromNow()
-        const lastUpdated = moment(new Date(this.props.fileNode.model.updatedAt)).fromNow()
+        const createdAgo = moment(new Date(this.props.fileNode.model.createdAt)).fromNow()
+        const updatedAgo = moment(new Date(this.props.fileNode.model.updatedAt)).fromNow()
         return (
             <div>
                 <div>
                     <button onClick={this.deleteFile}>Delete</button>
                 </div>
                 <div>
-                    <div>
-                        created: {created}
-                    </div>
-                    <div>
-                        last updated: {lastUpdated}
-                    </div>
+                    <span className="field-tip">
+                        created {createdAgo}
+                        <span className="tip-content">
+                            {moment(this.props.fileNode.model.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
+                        </span>
+                    </span>
+
+                    <span className="field-tip">
+                        last updated {updatedAgo}
+                        <span className="tip-content">
+                            {moment(this.props.fileNode.model.updatedAt).format('MMMM Do YYYY, h:mm:ss a')}
+                        </span>
+                    </span>
+
                 </div>
                 <div>
                     <input value={this.props.fileNode.model.name} type="text" onChange={this.onFileNameChange} />

@@ -1,11 +1,13 @@
 const Sequelize = require('sequelize')
 
-const db = new Sequelize('code_together', null, null, {
+const sequelize = new Sequelize('code_together', null, null, {
 	dialect: 'postgres',
 	logging: false
 })
-const File = require('./File.factory.js')(db)
-const Dir = require('./Dir.factory.js')(db)
+const File = require('./File.factory.js')(sequelize)
+const Dir = require('./Dir.factory.js')(sequelize)
+
+
 
 async function ModelsFactory(){
 
@@ -28,15 +30,15 @@ async function ModelsFactory(){
 		foreignKey: 'parentId',
 	});
 
-	return db.sync({
+	return sequelize.sync({
 		force: true
 	})
-		.then(function(){
-			return {
-				File,
-				Dir,
-			}
-		})
+	.then(function(){
+		return {
+			File,
+			Dir,
+		}
+	})
 }
 
 module.exports = ModelsFactory();

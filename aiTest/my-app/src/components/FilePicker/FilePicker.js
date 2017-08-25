@@ -166,7 +166,7 @@ class FilePicker extends Component {
                     <FontAwesome name={iconClass} />
                     {model.name}
                 </div>
-                <div style={{'padding-right': '7px'}}>
+                <div style={{paddingRight: '7px'}}>
                     {model.type==='dir' ? <FontAwesome name="caret-right" /> : ''}
                 </div>
             </div>

@@ -17,9 +17,6 @@ const apiKeyMap = {
 	path: 'path',
 }
 
-// export default function File.factory(file){
-// 	return new File(file);
-// }
 
 export default class File{
 
@@ -30,6 +27,8 @@ export default class File{
 	@observable name
 	@observable content
 	@observable focused
+	@observable updatedAt
+	@observable createdAt
 
 	constructor(file){
 		_.defaults(this, file, {
@@ -63,7 +62,7 @@ export default class File{
 			body: this.getFormData(),
 			json: true,
 		})
-			.then(File.factory)
+			.then(_.extend.bind(this, this))
 	}
 
 	delete(){

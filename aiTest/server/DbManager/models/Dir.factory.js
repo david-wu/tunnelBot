@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 
-module.exports = function DirFactory(db){
-	return db.define('dir', {
+module.exports = function DirFactory(sequelize){
+	return sequelize.define('dir', {
 		id: {
 			type: Sequelize.UUID,
 			primaryKey: true,

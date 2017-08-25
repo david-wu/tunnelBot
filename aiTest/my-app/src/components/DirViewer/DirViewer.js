@@ -159,22 +159,35 @@ class DirViewer extends Component {
 
     }
 
+    @autobind
+    showPublicAccessUrl(){
+        const baseUrl = window.location.protocol + '//' + window.location.host;
+        this.setState({
+            publicAccessUrl: `${baseUrl}?rootNodeId=${this.props.dirNode.model.id}`
+        })
+    }
+
     render(){
-        const created = moment(new Date(this.props.dirNode.model.createdAt)).fromNow()
-        const lastUpdated = moment(new Date(this.props.dirNode.model.updatedAt)).fromNow()
+        const createdAgo = moment(new Date(this.props.dirNode.model.createdAt)).fromNow()
+        const updatedAgo = moment(new Date(this.props.dirNode.model.updatedAt)).fromNow()
         return (
             <div>
                 <div>
                     <button disabled>Set Permissions</button>
-                    <button disabled>Get Public Access Url</button>
+                    <button onClick={this.showPublicAccessUrl}>Get Public Access Url</button>
                     <button onClick={this.deleteDir}>Delete</button>
                 </div>
                 <div>
                     <div>
-                        created: {created}
+                        {this.state.publicAccessUrl ? <input value={this.state.publicAccessUrl}/> : ''}
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        created {createdAgo}
                     </div>
                     <div>
-                        last updated: {lastUpdated}
+                        last updated {updatedAgo}
                     </div>
                 </div>
                 <div>
