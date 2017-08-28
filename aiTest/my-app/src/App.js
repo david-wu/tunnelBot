@@ -129,7 +129,6 @@ class App extends Component {
 
     renderOpenNodeGroup(){
         const tabNodes = this.openNodeGroup.openNodes;
-        console.log('sel', this.openNodeGroup.selectedNode)
         return (
             <div>
                 <div style={{display: 'flex'}}>

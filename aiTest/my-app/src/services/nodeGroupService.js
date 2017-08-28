@@ -27,9 +27,8 @@ export default class NodeGroup{
 	}
 
 	removeOpenNode(node){
-		if(this.selectedNode === node){
+		if(this.selectedNode.id === node.id){
 			this.selectedNode = undefined;
-			console.log('what', node, this.openNodes)
 		}
 		this.openNodes = _.filter(this.openNodes, function(openNode){
 			return node !== openNode
@@ -43,14 +42,12 @@ export default class NodeGroup{
 		}
 
         if(this.focusedNode){
-        	if(this.focusedNode===node){
-	            this.focusedNode.focused = false
-	            this.focusedNode = undefined
+        	if(this.focusedNode.id===node.id){
 	            this.addOpenNode(node)
 	            return
         	}
 
-        	if(this.focusedNode!==node){
+        	if(this.focusedNode.id!==node.id){
 	            this.focusedNode.focused = false
 	            node.focused = true;
 	            this.focusedNode = node
