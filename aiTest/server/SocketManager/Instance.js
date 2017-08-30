@@ -2,6 +2,7 @@ const guid = require('guid')
 
 const redis = require('redis')
 const redisService = rootRequire('services/redis.service.js');
+const redisPsp = require('redis-psp');
 const redisConfigs = redisService.getConfigs('production');
 
 
@@ -15,7 +16,7 @@ function Instance(instance={}){
 		sub: redis.createClient(redisConfigs.port, 'localhost'),
 
 		init: async function(cpType){
-			redisService.emitP('spawnRequest', {
+			redisPsp.emitP('spawnRequest', {
 				spawnId: instance.id,
 				cpType: cpType,
 			})
@@ -50,7 +51,7 @@ function Instance(instance={}){
 		},
 
 		sendMessage: function(message){
-			return redisService.emitP(instance.channelIn, message);
+			return redisPsp.emitP(instance.channelIn, message);
 		},
 
 		runProcess: function(){

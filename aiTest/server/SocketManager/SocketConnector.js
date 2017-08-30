@@ -8,69 +8,70 @@ const axios = require('axios')
 const Instance = require('./Instance.js')
 
 
-function SocketHandler(scope={}){
+class SocketConnector{
 
-	return _.defaults(scope, {
+	static factory(ioConnection){
+		return new SocketConnector(ioConnection)
+	}
 
-		instances: {},
-		spawnPromises: [],
+	constructor(ioConnection){
+		_.defaults(this, {
+			instances: {},
+			spawnPromises: [],
+			ioConnection: ioConnection,
+		})
 
-		init: function(){
+		this.ioConnection.on('message', this.messageHandler.bind(this))
+		this.ioConnection.on('disconnect', this.disconnectHandler.bind(this))
+	}
 
-		},
-
-		setIoConnection: function(ioConnection){
-			scope.ioConnection = ioConnection
-			ioConnection.on('message', scope.messageHandler)
-			ioConnection.on('disconnect', scope.disconnectHandler)
-		},
-
-		messageHandler: function(message, callback){
-			if(message.type === 'spawnDir'){
-				const spawnPromise = scope.spawnDir(message.payload.id)
-					.then(function(instance){
-						// arg[0] is for errors
-						callback(false, {
-							id: instance.id
-						})
+	messageHandler(message, callback){
+		if(message.type === 'spawnDir'){
+			const spawnPromise = this.spawnDir(message.payload.id)
+				.then(function(instance){
+					// arg[0] is for errors
+					callback(false, {
+						id: instance.id
 					})
-					.catch(callback)
-				scope.spawnPromises.push(spawnPromise)
+				})
+				.catch(callback)
+			this.spawnPromises.push(spawnPromise)
+		}else if(message.typpe === 'stdIn'){
+			const instance = this.instances[message.instanceId]
+			instance.sendMessage(message)
+		}else{
+			const instance = this.instances[message.instanceId]
+			instance.sendMessage(message)
+		}
+	}
 
-			}else{
-				const instance = scope.instances[message.instanceId]
-				instance.sendMessage(message)
-			}
-		},
+	async disconnectHandler(message){
+		await Promise.all(this.spawnPromises)
+		await Promise.all(_.map(this.instances, function(instance){
+			return instance.kill()
+		}))
+	}
 
-		disconnectHandler: async function(message){
-			await Promise.all(scope.spawnPromises)
-			await Promise.all(_.map(scope.instances, function(instance){
-				return instance.kill()
-			}))
-		},
+	async spawnDir(dirId){
+		if(!this.canSpawn()){return}
 
-		spawnDir: async function(dirId){
-			if(!scope.canSpawn()){return}
+		const response = await axios.get(`http://localhost:10001/api/dir/${dirId}/filesDeep`)
+		const files = response.data.files
+		const instance = Instance({
+			messageHandler: this.ioConnection.send.bind(this.ioConnection)
+		})
+		this.instances[instance.id] = instance
 
-			const response = await axios.get(`http://localhost:10001/api/dir/${dirId}/filesDeep`)
-			const files = response.data.files
-			const instance = Instance({
-				messageHandler: scope.ioConnection.send.bind(scope.ioConnection)
-			})
-			scope.instances[instance.id] = instance
+		await instance.init('generic')
+		await instance.sendFiles(files)
+		await instance.runProcess()
+		return instance
+	}
 
-			await instance.init('generic')
-			await instance.sendFiles(files)
-			await instance.runProcess()
-			return instance
-		},
+	canSpawn(){
+		return _.keys(this.instances).length < 15
+	}
 
-		canSpawn: function(){
-			return _.keys(scope.instances).length < 15
-		},
-	})
 }
 
-
-module.exports = SocketHandler;
+module.exports = SocketConnector

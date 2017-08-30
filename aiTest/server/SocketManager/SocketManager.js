@@ -8,12 +8,7 @@ module.exports = function SocketManager(socketManager={}){
 
 		async init(options){
 			const io = Io(options.server)
-			io.on('connection', socketManager.spawnConnector)
-		},
-
-		spawnConnector(ioConnection){
-			const socketConnector = SocketConnector()
-			socketConnector.setIoConnection(ioConnection)
+			io.on('connection', SocketConnector.factory)
 		},
 
 	})

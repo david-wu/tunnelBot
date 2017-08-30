@@ -34,8 +34,8 @@ function DockerSpawner(dockerSpawner={}){
 			worker: {
 				build: _.partial(execp, `docker build -t worker_image -f ${dockerFilePath} ${dockerContext}`),
 				delete: _.partial(execp, 'docker rmi -f worker_image;'),
-				start: function(instanceId, cpType){
-					return execp(`docker run -d -e "INSTANCE_ID=${instanceId}" -e "CP_TYPE=${cpType}" --net "${redisConfigs.containerDomain}" --link redis-container:redis --name worker_${instanceId} worker_image`)
+				start: function(instanceId, env){
+					return execp(`docker run -d -e "INSTANCE_ID=${instanceId}" -e "ENV=${env}" --net "${redisConfigs.containerDomain}" --link redis-container:redis --name worker_${instanceId} worker_image`)
 				}
 			},
 		},
@@ -48,12 +48,16 @@ function DockerSpawner(dockerSpawner={}){
 		},
 
 		async initDocker(rebuild=false){
-			await dockerSpawner.purgeContainers()
-			await dockerSpawner.prepareNetwork()
+			await Promise.all([
+				dockerSpawner.purgeContainers(),
+				dockerSpawner.prepareNetwork(),
+			])
 			if(rebuild){
 				console.log('rebuilding docker images..')
-				await dockerSpawner.rebuildRedisImage()
-				await dockerSpawner.rebuildWorkerImage()
+				await Promise.all([
+					dockerSpawner.rebuildRedisImage(),
+					dockerSpawner.rebuildWorkerImage(),
+				])
 				console.log('rebuilt docker images')
 			}
 		},
@@ -101,7 +105,7 @@ function DockerSpawner(dockerSpawner={}){
 		ensurePurged: async function(){
 			let dockerIds = await dockerSpawner.getDockerIds();
 			while(dockerIds){
-				await delay(1000)
+				await wait(1000)
 				dockerIds = await dockerSpawner.getDockerIds();
 			}
 		},
@@ -123,13 +127,11 @@ function DockerSpawner(dockerSpawner={}){
 
 		// Listens for spawnRequests on Redis and spawns docker instances
 		attachRedisSpawnHandler(){
-			return redisService.onP('spawnRequest', async function(spawnMessage){
-				await dockerSpawner.spawnWorker(spawnMessage)
-			})
+			return redisService.onP('spawnRequest', dockerSpawner.spawnWorker)
 		},
 
-		spawnWorker: async function(message){
-			await dockerSpawner.images.worker.start(message.spawnId, message.cpType);
+		spawnWorker: function(message){
+			return dockerSpawner.images.worker.start(message.spawnId, JSON.stringify(message.env));
 		},
 
 	});
@@ -138,7 +140,7 @@ function DockerSpawner(dockerSpawner={}){
 }
 
 
-function delay(time){
+function wait(time){
 	return new Promise(function(resolve){
 		setTimeout(resolve, time)
 	})
