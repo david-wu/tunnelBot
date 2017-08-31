@@ -8,7 +8,12 @@ module.exports = function SocketManager(socketManager={}){
 
 		async init(options){
 			const io = Io(options.server)
-			io.on('connection', SocketConnector.factory)
+			io.on('connection', function(ioConnection){
+				SocketConnector.factory({
+					ioConnection: ioConnection,
+					dbEmitter: options.dbEmitter
+				})
+			})
 		},
 
 	})

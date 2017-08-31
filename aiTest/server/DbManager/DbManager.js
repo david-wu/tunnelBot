@@ -29,6 +29,8 @@ module.exports = function DbManager(dbManager={}){
 		// },
 
 		async init(options){
+			_.defaults(dbManager, options);
+
 			dbManager.models = await require('./models')
 			// dbManager.mongo.db = await dbManager.getMongoConnection()
 			dbManager.strapMiddleware()

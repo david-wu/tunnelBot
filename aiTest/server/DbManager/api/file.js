@@ -33,11 +33,23 @@ function getRoutes(app){
 				res.status(200).send(file);
 			}
 		},
+
 		{
 			method: 'post',
 			endPoint: '/',
 			handler: async function(req, res){
 				const file = await File.create(req.body);
+
+
+				if(req.body.parentId){
+					app.dbEmitter.emit({
+						type: 'dir',
+						id: req.body.parentId,
+						eventName: 'addChild'
+					}, req.body)
+				}
+
+
 				res.status(200).send(file);
 			}
 		},
@@ -50,6 +62,24 @@ function getRoutes(app){
 						id: req.params.id
 					}
 				});
+
+
+				if(file.name !== req.body.name){
+					app.dbEmitter.emit({
+						type: 'file',
+						id: file.id,
+						eventName: 'changeName'
+					}, req.body.name)
+				}
+				if(file.content !== req.body.content){
+					app.dbEmitter.emit({
+						type: 'file',
+						id: file.id,
+						eventName: 'changeContent'
+					}, req.body.content)
+				}
+
+
 				await file.update(req.body);
 				res.status(200).send(file);
 			}
@@ -63,6 +93,22 @@ function getRoutes(app){
 						id: req.params.id
 					}
 				});
+
+
+				app.dbEmitter.emit({
+					type: 'file',
+					id: file.id,
+					eventName: 'destroy'
+				}, true)
+				if(file.parentId){
+					app.dbEmitter.emit({
+						type: 'file',
+						id: file.parentId,
+						eventName: 'removeChild'
+					}, file.id)
+				}
+
+
 				await file.destroy();
 				res.status(200).send(file);
 			}

@@ -8,18 +8,21 @@ const axios = require('axios')
 const Instance = require('./Instance.js')
 
 
+
 class SocketConnector{
 
-	static factory(ioConnection){
-		return new SocketConnector(ioConnection)
+	static factory(options){
+		return new SocketConnector(options)
 	}
 
-	constructor(ioConnection){
+	constructor(options){
+		_.defaults(this, options)
 		_.defaults(this, {
 			instances: {},
 			spawnPromises: [],
-			ioConnection: ioConnection,
 		})
+
+		this.ioConnection.send = this.ioConnection.send.bind(this.ioConnection);
 
 		this.ioConnection.on('message', this.messageHandler.bind(this))
 		this.ioConnection.on('disconnect', this.disconnectHandler.bind(this))
@@ -28,19 +31,35 @@ class SocketConnector{
 	messageHandler(message, callback){
 		if(message.type === 'spawnDir'){
 			const spawnPromise = this.spawnDir(message.payload.id)
-				.then(function(instance){
-					// arg[0] is for errors
+				.catch(callback)
+				.then((instance)=>{
+					this.instances[instance.id] = instance
 					callback(false, {
 						id: instance.id
 					})
 				})
-				.catch(callback)
 			this.spawnPromises.push(spawnPromise)
-		}else if(message.typpe === 'stdIn'){
+		}else if(message.type === 'registerDbEmitter'){
+
+			var eventHandler = (event)=>{
+				this.ioConnection.send(message.on, event)
+			}
+
+			if(message.on){
+				this.dbEmitter.on(message.on, eventHandler)
+			}
+			if(message.removeListener){
+				this.dbEmitter.removeListener(message.removeListener, eventHandler)
+			}
+
+
+		}else if(message.type === 'stdIn'){
 			const instance = this.instances[message.instanceId]
+			if(!instance){callback('no such instance')}
 			instance.sendMessage(message)
 		}else{
 			const instance = this.instances[message.instanceId]
+			if(!instance){callback('no such instance')}
 			instance.sendMessage(message)
 		}
 	}
@@ -58,11 +77,9 @@ class SocketConnector{
 		const response = await axios.get(`http://localhost:10001/api/dir/${dirId}/filesDeep`)
 		const files = response.data.files
 		const instance = Instance({
-			messageHandler: this.ioConnection.send.bind(this.ioConnection)
+			messageHandler: this.ioConnection.send
 		})
-		this.instances[instance.id] = instance
-
-		await instance.init('generic')
+		await instance.init({})
 		await instance.sendFiles(files)
 		await instance.runProcess()
 		return instance
@@ -73,5 +90,7 @@ class SocketConnector{
 	}
 
 }
+
+
 
 module.exports = SocketConnector

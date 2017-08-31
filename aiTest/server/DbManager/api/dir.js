@@ -9,7 +9,7 @@ function getRoutes(app){
 	const models = app.models;
 	const Dir = models.Dir;
 	const File = models.File;
-
+console.log('emitter', app.dbEmitter)
 
 	return [
 		{
@@ -34,40 +34,7 @@ function getRoutes(app){
 				res.status(200).send(dir);
 			}
 		},
-		{
-			method: 'post',
-			endPoint: '/',
-			handler: async function(req, res){
-				const dir = await Dir.create(req.body);
-				res.status(200).send(dir);
-			}
-		},
-		{
-			method: 'put',
-			endPoint: '/:id',
-			handler: async function(req, res){
-				const dir = await Dir.findOne({
-					where: {
-						id: req.params.id
-					}
-				});
-				await dir.update(req.body);
-				res.status(200).send(dir);
-			}
-		},
-		{
-			method: 'delete',
-			endPoint: '/:id',
-			handler: async function(req, res){
-				const dir = await Dir.findOne({
-					where: {
-						id: req.params.id
-					}
-				});
-				await dir.destroy();
-				res.status(200).send(dir);
-			}
-		},
+
 		{
 			method: 'get',
 			endPoint: '/:id/children',
@@ -98,6 +65,86 @@ function getRoutes(app){
 				res.status(200).send({
 					files: deepFiles,
 				});
+			}
+		},
+
+		{
+			method: 'post',
+			endPoint: '/',
+			handler: async function(req, res){
+				const dir = await Dir.create(req.body);
+
+
+				if(req.body.parentId){
+					app.dbEmitter.emit({
+						type: 'dir',
+						id: req.body.parentId,
+						eventName: 'addChild'
+					}, req.body)
+				}
+
+
+				res.status(200).send(dir);
+			}
+		},
+		{
+			method: 'put',
+			endPoint: '/:id',
+			handler: async function(req, res){
+				const dir = await Dir.findOne({
+					where: {
+						id: req.params.id
+					}
+				});
+
+
+				if(dir.name !== req.body.name){
+					app.dbEmitter.emit({
+						type: 'dir',
+						id: dir.id,
+						eventName: 'changeName'
+					}, req.body.name)
+				}
+				if(dir.description !== req.body.description){
+					app.dbEmitter.emit({
+						type: 'dir',
+						id: dir.id,
+						eventName: 'changeDescription'
+					}, req.body.description)
+				}
+
+
+				await dir.update(req.body);
+				res.status(200).send(dir);
+			}
+		},
+		{
+			method: 'delete',
+			endPoint: '/:id',
+			handler: async function(req, res){
+				const dir = await Dir.findOne({
+					where: {
+						id: req.params.id
+					}
+				});
+
+
+				app.dbEmitter.emit({
+					type: 'dir',
+					id: dir.id,
+					eventName: 'destroy'
+				}, true)
+				if(dir.parentId){
+					app.dbEmitter.emit({
+						type: 'dir',
+						id: dir.parentId,
+						eventName: 'removeChild'
+					}, dir.id)
+				}
+
+
+				await dir.destroy();
+				res.status(200).send(dir);
 			}
 		},
 	];

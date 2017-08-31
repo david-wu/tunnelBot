@@ -15,10 +15,10 @@ function Instance(instance={}){
 		channelOut: instanceId+'_OUT',
 		sub: redis.createClient(redisConfigs.port, 'localhost'),
 
-		init: async function(cpType){
+		init: async function(env){
 			redisPsp.emitP('spawnRequest', {
 				spawnId: instance.id,
-				cpType: cpType,
+				env: env || {},
 			})
 			await instance.ensureRedisReady()
 			return instance

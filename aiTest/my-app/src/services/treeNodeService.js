@@ -2,6 +2,10 @@ import _ from 'lodash';
 import { observable, action } from 'mobx';
 import { autobind } from 'core-decorators';
 
+const socketService = require('./socketService');
+
+const socketP = socketService.getConnection();
+
 
 /*
 	models must have
@@ -27,6 +31,37 @@ export default class TreeNode{
 			focused: false,
 			selectedChildNode: undefined,
 		})
+
+		if(this.model.type === 'file'){
+			socketP.then((socket)=>{
+				socket.send({
+					type: 'registerDbEmitter',
+					on: {
+						type: 'file',
+						id: this.model.id,
+						eventName: 'changeName'
+					}
+				})
+				socket.send({
+					type: 'registerDbEmitter',
+					on: {
+						type: 'file',
+						id: this.model.id,
+						eventName: 'changeContent'
+					}
+				})
+				socket.on('message', (emitterRef, payload)=>{
+					if(emitterRef.id === this.model.id){
+						if(emitterRef.eventName === 'changeContent'){
+							this.model.content = payload;
+						}
+						if(emitterRef.eventName === 'changeName'){
+							this.model.name = payload;
+						}
+					}
+				})
+			})
+		}
 	}
 
 	async setChildNodes(){

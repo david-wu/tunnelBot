@@ -6,6 +6,10 @@ import * as moment from 'moment';
 
 import './FileViewer.css';
 
+// const socketService = require('../services/socketService');
+// const socketP = socketService.getConnection();
+
+
 const ace = window.ace;
 
 @observer
@@ -25,12 +29,12 @@ class FileViewer extends Component{
     }
 
     componentWillReceiveProps(props){
-        const fileSession = new ace.EditSession(props.fileNode.model.content)
-        fileSession.setMode('ace/mode/javascript')
-        fileSession.on('change', ()=>{
+        this.fileSession = new ace.EditSession(props.fileNode.model.content)
+        this.fileSession.setMode('ace/mode/javascript')
+        this.fileSession.on('change', (e)=>{
             this.onEditorValueChange(this.aceEditor.getValue(), props.fileNode.model)
         })
-        this.aceEditor.setSession(fileSession)
+        this.aceEditor.setSession(this.fileSession)
     }
 
     @autobind
@@ -58,6 +62,8 @@ class FileViewer extends Component{
     }
 
     render(){
+        console.log(this.props.fileNode.model.content);
+
         const createdAgo = moment(new Date(this.props.fileNode.model.createdAt)).fromNow()
         const updatedAgo = moment(new Date(this.props.fileNode.model.updatedAt)).fromNow()
         return (

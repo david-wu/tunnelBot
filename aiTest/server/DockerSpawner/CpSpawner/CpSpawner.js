@@ -1,5 +1,8 @@
 /*
 	agent inside docker container
+	listens for messages on ${instanceId}_IN
+	responds on ${instanceId}_OUT
+	handles 'fileWrite', 'runProcess', 'kill', and 'stdin' message types
 */
 
 const _ = require('lodash')
@@ -42,14 +45,14 @@ function CpSpawner(cpSpawner={}){
 			if(message.type === 'fileWrite'){
 				return cpSpawner.writeFile(message.file);
 			}else if(message.type === 'runProcess'){
-				cpSpawner.runChildProcess()
+				return cpSpawner.runChildProcess()
 			}else if(message.type === 'kill'){
-				cpSpawner.destroy();
+				return cpSpawner.destroy();
 			}else if(message.type === 'stdin'){
-				cpSpawner.cp.stdin.write(message.payload);
+				return cpSpawner.cp.stdin.write(message.payload);
 			// todo: always send a message.type and remove this
 			}else{
-				cpSpawner.cp.stdin.write(message.payload);
+				return cpSpawner.cp.stdin.write(message.payload);
 			}
 		},
 
@@ -74,6 +77,7 @@ function CpSpawner(cpSpawner={}){
 			cpSpawner.cp.stderr.on('data', cpSpawner.cpErrHandler)
 			cpSpawner.cp.on('close', cpSpawner.cpCloseHandler)
 			cpSpawner.cp.on('exit', cpSpawner.cpExitHandler)
+			return true;
 		},
 
 		cpOutHandler(payload){
@@ -103,6 +107,7 @@ function CpSpawner(cpSpawner={}){
 			if(cpSpawner.redisPub){
 		        cpSpawner.redisPub.quit();
 			}
+			return true;
 		},
 
 		publishPayload(type, payload={}){
