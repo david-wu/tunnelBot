@@ -78,7 +78,7 @@ module.exports = function DbManager(dbManager={}){
 				{
 					method: 'use',
 					endPoint: '/',
-					handler: express.static('../client/dist')
+					handler: express.static('../my-app/build')
 				},
 				{
 					method: 'use',

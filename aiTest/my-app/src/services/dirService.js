@@ -3,7 +3,9 @@ import File from './fileService.js';
 import _ from 'lodash';
 const request = require('request-promise-native')
 
-const apiEndpoint = 'http://localhost:10001/api'
+const env = require('../env.js');
+const apiEndpoint = env.url()+'/api'
+
 const uri = apiEndpoint + '/dir';
 
 const apiKeyMap = {

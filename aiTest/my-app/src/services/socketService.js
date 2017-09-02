@@ -1,5 +1,6 @@
 const Io = require('socket.io-client');
-const endpoint = 'http://localhost:10001'
+const env = require('../env.js');
+const endpoint = env.url()
 
 class SocketService{
 

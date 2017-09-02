@@ -4,7 +4,7 @@ require('babel-polyfill');
 
 const fs = require('fs');
 const minimist = require('minimist');
-
+const env = require('./env.js');
 
 global._ = require('lodash');
 global.rootRequire = function(path){
@@ -22,5 +22,6 @@ const argv = _.defaults(minimist(process.argv.slice(2)), {
 
 var App = require('./app.js')
 App({
+    port: env.port,
 	rebuild: argv.r || argv.rebuild
 }).init();
