@@ -2,14 +2,15 @@
 
 
 # init
-apt-get update
+sudo apt-get update
 
 
 # Docker
 curl -sSL https://get.docker.com | sudo sh;
 
 
-# install node, mongo
-apt-get install -y nodejs
-apt-get install postgresql postgresql-contrib
+# install node, postgres
+sudo apt-get install -y nodejs
+sudo apt install nodejs-legacy
+sudo apt-get install postgresql postgresql-contrib
 
