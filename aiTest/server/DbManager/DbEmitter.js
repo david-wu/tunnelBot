@@ -55,6 +55,10 @@ class DbEmitter{
 				fileEmitter.emit(emitterRef.eventName, event)
 			}
 		}else if(emitterRef.type === 'dir'){
+			const dirEmitter = this.dirEmittersById[emitterRef.id]
+			if(dirEmitter){
+				dirEmitter.emit(emitterRef.eventName, event)
+			}
 
 		}
 	}

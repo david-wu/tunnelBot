@@ -60,8 +60,8 @@ class FilePicker extends Component {
         })
             .post()
             .catch(console.log)
-            .then(TreeNode.factory)
-            .then(this.props.parentNode.pushChildNode)
+            // .then(TreeNode.factory)
+            // .then(this.props.parentNode.pushChildNode)
             .then(()=>{
                 this.setState(function(prevState){
                     prevState.newFile.name = ''
@@ -79,8 +79,8 @@ class FilePicker extends Component {
         })
             .post()
             .catch(console.log)
-            .then(TreeNode.factory)
-            .then(this.props.parentNode.unshiftChildNode)
+            // .then(TreeNode.factory)
+            // .then(this.props.parentNode.unshiftChildNode)
             .then(()=>{
                 this.setState(function(prevState){
                     prevState.newDir.name = ''

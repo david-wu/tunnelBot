@@ -42,6 +42,8 @@ function getRoutes(app){
 
 
 				if(req.body.parentId){
+					req.body.type = 'file'
+					req.body.id = file.id
 					app.dbEmitter.emit({
 						type: 'dir',
 						id: req.body.parentId,
@@ -102,7 +104,7 @@ function getRoutes(app){
 				}, true)
 				if(file.parentId){
 					app.dbEmitter.emit({
-						type: 'file',
+						type: 'dir',
 						id: file.parentId,
 						eventName: 'removeChild'
 					}, file.id)

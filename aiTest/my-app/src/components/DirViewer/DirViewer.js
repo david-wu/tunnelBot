@@ -18,7 +18,7 @@ class DirViewer extends Component {
         this.state = {
             dir: undefined
         }
-        this.debouncedPutDir = _.debounce(this.putDir, 300)
+        this.debouncedPutDir = _.debounce(this.putDir, 200)
     }
 
     componentDidMount(){

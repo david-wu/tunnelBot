@@ -76,6 +76,8 @@ console.log('emitter', app.dbEmitter)
 
 
 				if(req.body.parentId){
+					req.body.type = 'dir'
+					req.body.id = dir.id
 					app.dbEmitter.emit({
 						type: 'dir',
 						id: req.body.parentId,

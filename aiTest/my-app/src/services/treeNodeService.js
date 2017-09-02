@@ -1,8 +1,12 @@
 import _ from 'lodash';
 import { observable, action } from 'mobx';
 import { autobind } from 'core-decorators';
-
+import Dir from './dirService';
+import File from './fileService';
 const socketService = require('./socketService');
+
+// const Dir = require('./dirService');
+// const File = require('./fileService');
 
 const socketP = socketService.getConnection();
 
@@ -61,6 +65,59 @@ export default class TreeNode{
 					}
 				})
 			})
+		}
+
+		if(this.model.type === 'dir'){
+			socketP.then((socket)=>{
+				socket.send({
+					type: 'registerDbEmitter',
+					on: {
+						type: 'dir',
+						id: this.model.id,
+						eventName: 'changeName'
+					}
+				})
+				socket.send({
+					type: 'registerDbEmitter',
+					on: {
+						type: 'dir',
+						id: this.model.id,
+						eventName: 'addChild'
+					}
+				})
+				socket.send({
+					type: 'registerDbEmitter',
+					on: {
+						type: 'dir',
+						id: this.model.id,
+						eventName: 'removeChild'
+					}
+				})
+				socket.on('message', (emitterRef, payload)=>{
+					if(emitterRef.id === this.model.id){
+						console.log('mymessage', payload)
+						if(emitterRef.eventName === 'changeName'){
+							this.model.name = payload;
+						}
+						if(emitterRef.eventName === 'addChild'){
+							console.log('py', payload)
+							if(payload.type === 'dir'){
+								this.unshiftChildNode(TreeNode.factory(Dir.factory(payload)))
+							}else if(payload.type === 'file'){
+								this.pushChildNode(TreeNode.factory(File.factory(payload)))
+							}
+							console.log('adding child', this.childNodes.peek())
+						}
+						if(emitterRef.eventName === 'removeChild'){
+							console.log(payload, this.childNodes.peek())
+							this.childNodes = _.filter(this.childNodes, function(childNode){
+								return childNode.model.id !== payload
+							})
+						}
+					}
+				})
+			})
+
 		}
 	}
 

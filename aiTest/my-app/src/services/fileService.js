@@ -32,7 +32,9 @@ export default class File{
 
 	constructor(file){
 		_.defaults(this, file, {
-			type: 'file'
+			type: 'file',
+			content: '',
+			name: '',
 		})
 	}
 

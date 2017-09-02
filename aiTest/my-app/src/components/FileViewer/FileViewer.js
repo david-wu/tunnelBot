@@ -6,10 +6,6 @@ import * as moment from 'moment';
 
 import './FileViewer.css';
 
-// const socketService = require('../services/socketService');
-// const socketP = socketService.getConnection();
-
-
 const ace = window.ace;
 
 @observer
@@ -17,7 +13,7 @@ class FileViewer extends Component{
 
     constructor(props){
         super(props)
-        this.debouncedPutFile = _.debounce(this.putFile, 300)
+        this.debouncedPutFile = _.debounce(this.putFile, 200)
     }
 
     @autobind
@@ -29,12 +25,13 @@ class FileViewer extends Component{
     }
 
     componentWillReceiveProps(props){
-        this.fileSession = new ace.EditSession(props.fileNode.model.content)
-        this.fileSession.setMode('ace/mode/javascript')
-        this.fileSession.on('change', (e)=>{
+        const fileSession = new ace.EditSession(props.fileNode.model.content)
+        fileSession.setMode('ace/mode/javascript')
+        fileSession.on('change', (diff)=>{
+            if(this._silentChange){return;}
             this.onEditorValueChange(this.aceEditor.getValue(), props.fileNode.model)
         })
-        this.aceEditor.setSession(this.fileSession)
+        this.aceEditor.setSession(fileSession)
     }
 
     @autobind
@@ -62,7 +59,14 @@ class FileViewer extends Component{
     }
 
     render(){
-        console.log(this.props.fileNode.model.content);
+
+        if(this.aceEditor && this.aceEditor.session){
+            var pos = this.aceEditor.session.selection.toJSON()
+            this._silentChange = true;
+            this.aceEditor.session.setValue(this.props.fileNode.model.content)
+            this._silentChange = false;
+            this.aceEditor.session.selection.fromJSON(pos)
+        }
 
         const createdAgo = moment(new Date(this.props.fileNode.model.createdAt)).fromNow()
         const updatedAgo = moment(new Date(this.props.fileNode.model.updatedAt)).fromNow()
