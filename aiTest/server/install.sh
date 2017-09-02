@@ -14,3 +14,5 @@ sudo apt-get install -y nodejs
 sudo apt install nodejs-legacy
 sudo apt-get install postgresql postgresql-contrib
 
+# psql
+# CREATE DATABASE code_together

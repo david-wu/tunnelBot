@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize')
 
-const sequelize = new Sequelize('code_together', 'postgres', null, {
-	host: 'localhost',
+const sequelize = new Sequelize('code_together', null, null, {
 	dialect: 'postgres',
 	logging: false
 })
+
 const File = require('./File.factory.js')(sequelize)
 const Dir = require('./Dir.factory.js')(sequelize)
 

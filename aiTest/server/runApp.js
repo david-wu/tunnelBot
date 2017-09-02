@@ -22,6 +22,6 @@ const argv = _.defaults(minimist(process.argv.slice(2)), {
 
 var App = require('./app.js')
 App({
-    port: env.port,
+    port: env.server.port,
 	rebuild: argv.r || argv.rebuild
 }).init();
