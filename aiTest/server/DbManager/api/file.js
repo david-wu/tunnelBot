@@ -44,7 +44,7 @@ function getRoutes(app){
 				if(req.body.parentId){
 					req.body.type = 'file'
 					req.body.id = file.id
-					app.dbEmitter.emit({
+					app.modelEmitter.emit({
 						type: 'dir',
 						id: req.body.parentId,
 						eventName: 'addChild'
@@ -67,18 +67,11 @@ function getRoutes(app){
 
 
 				if(file.name !== req.body.name){
-					app.dbEmitter.emit({
+					app.modelEmitter.emit({
 						type: 'file',
 						id: file.id,
 						eventName: 'changeName'
 					}, req.body.name)
-				}
-				if(file.content !== req.body.content){
-					app.dbEmitter.emit({
-						type: 'file',
-						id: file.id,
-						eventName: 'changeContent'
-					}, req.body.content)
 				}
 
 
@@ -97,13 +90,13 @@ function getRoutes(app){
 				});
 
 
-				app.dbEmitter.emit({
+				app.modelEmitter.emit({
 					type: 'file',
 					id: file.id,
 					eventName: 'destroy'
 				}, true)
 				if(file.parentId){
-					app.dbEmitter.emit({
+					app.modelEmitter.emit({
 						type: 'dir',
 						id: file.parentId,
 						eventName: 'removeChild'

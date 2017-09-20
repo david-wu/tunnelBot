@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { autobind } from 'core-decorators';
 import * as moment from 'moment';
+import * as Uuid from 'uuid';
 
 import './FileViewer.css';
 
@@ -14,10 +15,11 @@ class FileViewer extends Component{
     constructor(props){
         super(props)
         this.debouncedPutFile = _.debounce(this.putFile, 200)
+        this.id = Uuid()
     }
 
     @autobind
-    onEditorElement(element){
+    mountAceEditor(element){
         this.aceEditor = ace.edit(element)
         this.aceEditor.$blockScrolling = Infinity
         this.aceEditor.setOptions(editorOptions)
@@ -27,30 +29,43 @@ class FileViewer extends Component{
     componentWillReceiveProps(props){
         const fileSession = new ace.EditSession(props.fileNode.model.content)
         fileSession.setMode('ace/mode/javascript')
-        fileSession.on('change', (diff)=>{
-            if(this._silentChange){return;}
-            this.onEditorValueChange(this.aceEditor.getValue(), props.fileNode.model)
+        fileSession.on('change', this.aceSessionChangeHandler)
+
+        props.fileNode.modelConnector.on('contentDiff', (delta)=>{
+            if(delta.viewerId !== this.id){
+                this._silentChange = true;
+                fileSession.getDocument().applyDeltas([delta])
+                this._silentChange = false;
+            }
         })
+
+
         this.aceEditor.setSession(fileSession)
     }
 
     @autobind
-    onEditorValueChange(editorContent, file){
-        if(file.content !== editorContent){
-            file.content = editorContent
-            this.debouncedPutFile()
+    aceSessionChangeHandler(diff){
+        const fileNode = this.props.fileNode
+        fileNode.model.content = this.aceEditor.getValue()
+
+        if(!this._silentChange){
+            diff.viewerId = this.id
+            fileNode.modelConnector.emitAll('contentDiff', diff)
+
+            this.debouncedPutFile(fileNode.model)
         }
     }
 
     @autobind
     onFileNameChange(e){
-        this.props.fileNode.model.name = e.target.value
-        this.debouncedPutFile()
+        const file = this.props.fileNode.model
+        file.name = e.target.value
+        this.debouncedPutFile(file)
     }
 
     @autobind
-    putFile(){
-        this.props.fileNode.model.put()
+    putFile(file){
+        file.put()
     }
 
     @autobind
@@ -60,13 +75,13 @@ class FileViewer extends Component{
 
     render(){
 
-        if(this.aceEditor && this.aceEditor.session){
-            var pos = this.aceEditor.session.selection.toJSON()
-            this._silentChange = true;
-            this.aceEditor.session.setValue(this.props.fileNode.model.content)
-            this._silentChange = false;
-            this.aceEditor.session.selection.fromJSON(pos)
-        }
+        // if(this.aceEditor && this.aceEditor.session){
+        //     var pos = this.aceEditor.session.selection.toJSON()
+        //     this._silentChange = true;
+        //     this.aceEditor.session.setValue(this.props.fileNode.model.content)
+        //     this._silentChange = false;
+        //     this.aceEditor.session.selection.fromJSON(pos)
+        // }
 
         const createdAgo = moment(new Date(this.props.fileNode.model.createdAt)).fromNow()
         const updatedAgo = moment(new Date(this.props.fileNode.model.updatedAt)).fromNow()
@@ -95,7 +110,7 @@ class FileViewer extends Component{
                     <input value={this.props.fileNode.model.name} type="text" onChange={this.onFileNameChange} />
                 </div>
                 <div>
-                    <div style={{width:'500px', height:'500px', position:'relative', flex: '1 0 0'}} ref={this.onEditorElement}></div>
+                    <div style={{width:'500px', height:'500px', position:'relative', flex: '1 0 0'}} ref={this.mountAceEditor}></div>
                 </div>
             </div>
         )

@@ -3,7 +3,7 @@ const http = require('http')
 const DbManager = require('./DbManager/DbManager.js')
 const DockerSpawner = require('./DockerSpawner/DockerSpawner.js')
 const SocketManager = require('./SocketManager/SocketManager.js')
-const DbEmitter = require('./DbManager/DbEmitter.js')
+const ModelEmitter = require('./util/ModelEmitter.js')
 
 function App(app={}){
 
@@ -17,23 +17,23 @@ function App(app={}){
 
 		async init(){
 			const server = http.createServer()
-			const dbEmitter = DbEmitter.factory();
-
-			// access db through APIs
-			await DbManager().init({
-				server: server,
-				dbEmitter: dbEmitter,
-			})
+			const modelEmitter = ModelEmitter.factory()
 
 			// access docker spawning service through redis
 			await DockerSpawner().init({
 				rebuild: app.rebuild,
 			})
 
+			// access db through APIs
+			await DbManager().init({
+				server: server,
+				modelEmitter: modelEmitter,
+			})
+
 			// access redis through webSockets
 			await SocketManager().init({
 				server: server,
-				dbEmitter: dbEmitter,
+				modelEmitter: modelEmitter,
 			})
 
 			await app.serve(server, app.port)

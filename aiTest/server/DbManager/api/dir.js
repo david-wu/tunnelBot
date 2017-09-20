@@ -9,7 +9,6 @@ function getRoutes(app){
 	const models = app.models;
 	const Dir = models.Dir;
 	const File = models.File;
-console.log('emitter', app.dbEmitter)
 
 	return [
 		{
@@ -78,7 +77,7 @@ console.log('emitter', app.dbEmitter)
 				if(req.body.parentId){
 					req.body.type = 'dir'
 					req.body.id = dir.id
-					app.dbEmitter.emit({
+					app.modelEmitter.emit({
 						type: 'dir',
 						id: req.body.parentId,
 						eventName: 'addChild'
@@ -101,14 +100,14 @@ console.log('emitter', app.dbEmitter)
 
 
 				if(dir.name !== req.body.name){
-					app.dbEmitter.emit({
+					app.modelEmitter.emit({
 						type: 'dir',
 						id: dir.id,
 						eventName: 'changeName'
 					}, req.body.name)
 				}
 				if(dir.description !== req.body.description){
-					app.dbEmitter.emit({
+					app.modelEmitter.emit({
 						type: 'dir',
 						id: dir.id,
 						eventName: 'changeDescription'
@@ -131,13 +130,13 @@ console.log('emitter', app.dbEmitter)
 				});
 
 
-				app.dbEmitter.emit({
+				app.modelEmitter.emit({
 					type: 'dir',
 					id: dir.id,
 					eventName: 'destroy'
 				}, true)
 				if(dir.parentId){
-					app.dbEmitter.emit({
+					app.modelEmitter.emit({
 						type: 'dir',
 						id: dir.parentId,
 						eventName: 'removeChild'

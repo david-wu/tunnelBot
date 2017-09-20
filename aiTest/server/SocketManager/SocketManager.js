@@ -11,7 +11,7 @@ module.exports = function SocketManager(socketManager={}){
 			io.on('connection', function(ioConnection){
 				SocketConnector.factory({
 					ioConnection: ioConnection,
-					dbEmitter: options.dbEmitter
+					modelEmitter: options.modelEmitter
 				})
 			})
 		},

@@ -17,6 +17,7 @@ const apiKeyMap = {
 	parentId: 'parentId',
 	content: 'content',
 	path: 'path',
+	contentDiff: 'contentDiff',
 }
 
 
@@ -66,7 +67,12 @@ export default class File{
 			body: this.getFormData(),
 			json: true,
 		})
-			.then(_.extend.bind(this, this))
+			.then((res)=>{
+				_.extend(this, {
+					createdAt: res.createdAt,
+					updatedAt: res.updatedAt,
+				})
+			})
 	}
 
 	delete(){

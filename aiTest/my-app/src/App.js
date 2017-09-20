@@ -23,7 +23,7 @@ class App extends Component {
         super(props)
 
         _.defaults(this, {
-            openNodeGroup: NodeGroup.factory()
+            openNodeGroup: NodeGroup.factory(),
         })
 
         this.state = {
@@ -116,6 +116,9 @@ class App extends Component {
         }
         return (
             <div>
+                <div className="clickable" onClick={this.onPick.bind(this, this.state.rootNode)}>
+                    {this.state.rootNode.model.name}
+                </div>
                 <div className="file-picker-container">
                     <FilePicker parentNode={this.state.rootNode} onPick={this.onPick} />
                 </div>
