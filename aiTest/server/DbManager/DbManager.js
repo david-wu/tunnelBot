@@ -3,7 +3,6 @@
 	It also serves the client
 */
 
-// const MongoClient = require('mongodb').MongoClient
 const api = require('./api')
 const express = require('express')
 
@@ -11,46 +10,24 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const session = require('express-session')
-const passport = require('./services/passport.js')
+// const passport = require('./services/passport.js')
 
 module.exports = function DbManager(dbManager={}){
 
 	return _.defaults(dbManager, {
 
 		express: express(),
-		// mongo: {
-		// 	db: undefined,
-		// 	domain: 'localhost',
-		// 	port: '27017',
-		// 	dbName: 'myproject',
-		// 	getUrl: function(){
-		// 		return `mongodb://${this.domain}:${this.port}/${this.dbName}`
-		// 	},
-		// },
 
 		async init(options){
 			_.defaults(dbManager, options);
 
 			dbManager.models = await require('./models')
-			// dbManager.mongo.db = await dbManager.getMongoConnection()
 			dbManager.strapMiddleware()
 			dbManager.mount(dbManager.express)
 			options.server.on('request', dbManager.express)
 
 			return dbManager;
 		},
-
-		// getMongoConnection(){
-		// 	return new Promise((resolve, reject)=>{
-		// 		MongoClient.connect(dbManager.mongo.getUrl(), function(err, db){
-		// 			if(err){
-		// 				reject(err)
-		// 			}else{
-		// 				resolve(db);
-		// 			}
-		// 		});
-		// 	});
-		// },
 
 		strapMiddleware(){
 		    dbManager.express.use(bodyParser.urlencoded({extended:true}));
@@ -62,8 +39,8 @@ module.exports = function DbManager(dbManager={}){
 				resave: true,
 				saveUninitialized: true
 			}));
-			dbManager.express.use(passport.initialize());
-			dbManager.express.use(passport.session());
+			// dbManager.express.use(passport.initialize());
+			// dbManager.express.use(passport.session());
 
 		},
 
