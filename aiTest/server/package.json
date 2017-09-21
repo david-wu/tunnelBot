@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "npm install; node app.js"
+    "start": "export PORT=80;export PSQL_USER=root;export PSQL_PASSWORD=test;forever runApp.js",
+    "dev": "forever runApp.js"
   },
   "dependencies": {
     "axios": "^0.16.1",
@@ -33,13 +34,10 @@
     "sequelize": "^3.30.4",
     "socket.io": "^1.7.3"
   },
-  "scripts": {
-    "start": "export PORT=80;export PSQL_USER=postgres;export PSQL_PASSWORD=;node runApp.js",
-    "dev": "node runApp.js"
-  },
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.22.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-polyfill": "^6.23.0"
+    "babel-polyfill": "^6.23.0",
+    "forever": "^0.15.3"
   }
 }

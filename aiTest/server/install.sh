@@ -12,8 +12,8 @@ curl -sSL https://get.docker.com | sudo sh;
 
 sudo apt-get install -y postgresql postgresql-contrib;
 sudo -u postgres -i;
-psql postgres -c "CREATE DATABASE code_together";
-psql postgres -c "CREATE USER root;"
+psql postgres -c "CREATE USER root PASSWORD 'test'";
+psql postgres -c "CREATE DATABASE code_together OWNER root";
 su - root;
 
 # psql
