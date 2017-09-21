@@ -1,6 +1,9 @@
 const Sequelize = require('sequelize')
 
-const sequelize = new Sequelize('code_together', null, null, {
+const psqlUser = process.env.PSQL_USER || null;
+const psqlPassword = process.env.PSQL_PASSWORD || null;
+
+const sequelize = new Sequelize('code_together', psqlUser, psqlPassword, {
 	dialect: 'postgres',
 	logging: false
 })
