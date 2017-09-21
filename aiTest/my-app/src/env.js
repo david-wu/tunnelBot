@@ -1,4 +1,4 @@
-const port = process.env.PORT || 10001;
+const port = 10001;
 
 module.exports = {
     server: {
@@ -7,6 +7,10 @@ module.exports = {
         port: port
     },
     url: function(){
+        if(process.env.APP_ENV === 'BUILD'){
+            console.log('build')
+            return '';
+        }
         return this.server.protocol + '://' + this.server.domain + (this.server.port ? ':' + this.server.port : '')
     }
 }

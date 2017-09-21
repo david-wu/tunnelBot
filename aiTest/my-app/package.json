@@ -19,8 +19,8 @@
     "uuid": "^3.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "export PORT=80;react-scripts build",
+    "start": "export APP_ENV=DEV;react-scripts start",
+    "build": "export APP_ENV=BUILD;react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
