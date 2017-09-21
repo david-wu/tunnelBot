@@ -2,7 +2,7 @@ const Router = rootRequire('./util/Router.js');
 const fileRouter = require('./file.js');
 const dirRouter = require('./dir.js');
 const systemRouter = require('./system.js');
-const authRouter = require('./auth.js');
+// const authRouter = require('./auth.js');
 
 module.exports = new Router({
 	getRoutes: function(app){
@@ -22,11 +22,11 @@ module.exports = new Router({
 				endPoint: '/system',
 				handler: systemRouter.mount(app)
 			},
-			{
-				method: 'use',
-				endPoint: '/auth',
-				handler: authRouter.mount(app)
-			},
+			// {
+			// 	method: 'use',
+			// 	endPoint: '/auth',
+			// 	handler: authRouter.mount(app)
+			// },
 		];
 	}
 });
