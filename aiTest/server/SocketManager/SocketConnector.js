@@ -33,6 +33,8 @@ class SocketConnector{
 			this.modelEmitter.on(message.ref, (payload)=>{
 				this.ioConnection.send(message.ref, payload)
 			});
+		}else if(message.type === 'stopListening'){
+
 		}else if(message.type === 'emit'){
 			this.modelEmitter.emit(message.ref, message.payload)
 		}else if(message.type === 'spawnDir'){

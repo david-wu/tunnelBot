@@ -21,18 +21,18 @@ class ModelEmitter{
         })
     }
 
-    on(emitterRef, changeRunner){
+    on(emitterRef, handler){
         const emitter = this.getEmitter(emitterRef);
-        emitter.on(emitterRef.eventName, changeRunner);
+        emitter.on(emitterRef.eventName, handler);
 
         return ()=>{
-            this.off(emitterRef, changeRunner);
+            this.off(emitterRef, handler);
         }
     }
 
-    off(emitterRef, changeRunner){
+    off(emitterRef, handler){
         const emitter = this.getEmitter(emitterRef);
-        emitter.removeListener(emitterRef.eventName, changeRunner);
+        emitter.removeListener(emitterRef.eventName, handler);
     }
 
     emit(emitterRef, event){
