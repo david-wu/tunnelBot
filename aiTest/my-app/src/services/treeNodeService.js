@@ -5,11 +5,6 @@ import Dir from './dirService';
 import File from './fileService';
 import ModelConnector from './ModelConnector';
 
-// const EventEmitter = require('events');
-
-const socketService = require('./socketService');
-const socketP = socketService.getConnection();
-
 /*
 	models must have
 		type: 'file' || 'dir',
