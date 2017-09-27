@@ -26,7 +26,11 @@ class FileViewer extends Component{
         this.componentWillReceiveProps(this.props)
     }
 
-    componentWillReceiveProps(props){
+    async componentWillReceiveProps(props){
+        if(props.fileNode){
+            await props.fileNode.model.get()
+        }
+
         const fileSession = new ace.EditSession(props.fileNode.model.content)
         fileSession.setMode('ace/mode/javascript')
         fileSession.on('change', this.aceSessionChangeHandler)
