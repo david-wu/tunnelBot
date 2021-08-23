@@ -1,0 +1,120 @@
+<cdk-virtual-scroll-viewport itemSize="24" class="viewport">
+  <div [dragula]="'EXP'">
+    <div
+      *cdkVirtualFor="let fileIdAndDepth of fileIdsAndDepth; index as i; trackBy: trackByFn"
+      [attr.data-file-id]="filesById[fileIdAndDepth[0]].id"
+    >
+      <div
+        *ngIf="filesById[fileIdAndDepth[0]] as file"
+        class="file-row"
+        [ngClass]="fileIsOddById[file.id] ? 'odd' : 'even'"
+        [class.dragging]="fileIdBeingDragged"
+        [class.being-dragged]="fileIdBeingDragged === file.id"
+        [class.selected]="selectedFileIds.has(file.id)"
+        [class.hidden]="visibleFileIds && !visibleFileIds.has(file.id)"
+        [style.padding-left]="getPaddingLeft(fileIdAndDepth[1])"
+        (click)="selectFile(file)"
+      >
+        <div class="dragula-container">
+          <span *ngIf="dragEnabled" class="material-icons dragula-handle">
+            swap_vert
+          </span>
+          <ng-container *ngIf="file.childIds">
+            <i
+              *ngIf="!disableOpening"
+              class="material-icons arrow clickable"
+              (click)="toggleClosedFile(file, $event)"
+              [class.closed]="!this.fuzzFilterString && closedFileIds.has(file.id)"
+            >
+              keyboard_arrow_right
+            </i>
+            <div *ngIf="multiFileSelect" class="checkbox-container">
+              <input type="checkbox" [attr.checked]="selectedFileIds.has(file.id) ? true : null">
+            </div>
+            <i *ngIf="!multiFileSelect" class="material-icons folder">
+              folder
+            </i>
+          </ng-container>
+          <ng-container *ngIf="!file.childIds">
+            <div *ngIf="!disableOpening" class="space-maker"></div>
+            <div *ngIf="multiFileSelect" class="checkbox-container">
+              <input type="checkbox" [attr.checked]="selectedFileIds.has(file.id) ? true : null">
+            </div>
+            <i *ngIf="!multiFileSelect" class="material-icons text">subject</i>
+          </ng-container>
+          <div class="file-label" *ngIf="fuzzItemsByFileId[file.id] as fuzzItem">
+            <dwu-text-decorator
+              [ignoreUpdates]="visibleFileIds && !visibleFileIds.has(file.id)"
+              [text]="fuzzItemsByFileId[file.id].subject"
+              [matchRanges]="fuzzItemsByFileId[file.id].matchRanges"
+            ></dwu-text-decorator>
+          </div>
+          <div class="file-label" *ngIf="!fuzzItemsByFileId[file.id]">
+            {{ file.label || file.id }}
+          </div>
+          <ng-container *ngIf="rowIconTemplate">
+            <ng-container *ngTemplateOutlet="rowIconTemplate; context: { file: file }">
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</cdk-virtual-scroll-viewport>
+
+
+<!-- Not sure how, but should avoid duplicating this -->
+<!-- <div *ngIf="!perfMode" class="viewport">
+    <div [dragula]="'EXP'">
+        <div
+            *ngFor="let fileIdAndDepth of fileIdsAndDepth; index as i; trackBy: trackByFn"
+            [attr.data-file-id]="filesById[fileIdAndDepth[0]].id"
+        >
+            <div
+                *ngIf="filesById[fileIdAndDepth[0]] as file"
+                class="file-row"
+                [ngClass]="fileIsOddById[file.id] ? 'odd' : 'even'"
+                [class.dragging]="fileIdBeingDragged"
+                [class.being-dragged]="fileIdBeingDragged === file.id"
+                [class.selected]="selectedFileIds.has(file.id)"
+                [class.hidden]="visibleFileIds && !visibleFileIds.has(file.id)"
+                [style.padding-left]="getPaddingLeft(fileIdAndDepth[1])"
+                (click)="selectFile(file)"
+            >
+                <div class="dragula-container">
+                    <ng-container *ngIf="file.childIds">
+                        <i
+                            class="material-icons arrow clickable"
+                            (click)="toggleClosedFile(file, $event)"
+                            [class.closed]="closedFileIds.has(file.id)"
+                        >
+                            keyboard_arrow_right
+                        </i>
+                        <i class="material-icons folder">
+                            folder
+                        </i>
+                    </ng-container>
+                    <ng-container *ngIf="!file.childIds">
+                        <div class="space-maker">
+                        </div>
+                        <i class="material-icons text">subject</i>
+                    </ng-container>
+                    <div class="file-label" *ngIf="fuzzItemsByFileId[file.id] as fuzzItem">
+                        <dwu-text-decorator
+                            [ignoreUpdates]="visibleFileIds && !visibleFileIds.has(file.id)"
+                            [text]="fuzzItemsByFileId[file.id].subject"
+                            [matchRanges]="fuzzItemsByFileId[file.id].matchRanges"
+                        ></dwu-text-decorator>
+                    </div>
+                    <div class="file-label" *ngIf="!fuzzItemsByFileId[file.id]">
+                        {{ file.label || file.id }}
+                    </div>
+                    <ng-container *ngIf="rowIconTemplate">
+                        <ng-container *ngTemplateOutlet="rowIconTemplate; context: { file: file }">
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

@@ -1,0 +1,9 @@
+<div
+  *ngIf="template"
+  class="tooltip-container"
+  [style.transform]="transform"
+>
+  <ng-container
+     *ngTemplateOutlet="template">
+  </ng-container>
+</div>

@@ -1,0 +1,466 @@
+{
+  "Beaverhead": {
+    "dateStr": "8/19/21",
+    "cases": 966,
+    "deaths": 12,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  },
+  "Big Horn": {
+    "dateStr": "8/19/21",
+    "cases": 2625,
+    "deaths": 76,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  },
+  "Blaine": {
+    "dateStr": "8/19/21",
+    "cases": 866,
+    "deaths": 24,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  },
+  "Broadwater": {
+    "dateStr": "8/19/21",
+    "cases": 550,
+    "deaths": 8,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 1
+  },
+  "Carbon": {
+    "dateStr": "8/19/21",
+    "cases": 971,
+    "deaths": 18,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Carter": {
+    "dateStr": "8/19/21",
+    "cases": 154,
+    "deaths": 5,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Cascade": {
+    "dateStr": "8/19/21",
+    "cases": 10438,
+    "deaths": 194,
+    "recovered": 0,
+    "new": 51,
+    "newDeaths": 0
+  },
+  "Chouteau": {
+    "dateStr": "8/19/21",
+    "cases": 523,
+    "deaths": 7,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Custer": {
+    "dateStr": "8/19/21",
+    "cases": 1267,
+    "deaths": 18,
+    "recovered": 0,
+    "new": 13,
+    "newDeaths": 0
+  },
+  "Daniels": {
+    "dateStr": "8/19/21",
+    "cases": 201,
+    "deaths": 8,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Dawson": {
+    "dateStr": "8/19/21",
+    "cases": 1164,
+    "deaths": 32,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  },
+  "Deer Lodge": {
+    "dateStr": "8/19/21",
+    "cases": 1214,
+    "deaths": 18,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "Fallon": {
+    "dateStr": "8/19/21",
+    "cases": 327,
+    "deaths": 3,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Fergus": {
+    "dateStr": "8/19/21",
+    "cases": 1226,
+    "deaths": 32,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Flathead": {
+    "dateStr": "8/19/21",
+    "cases": 14002,
+    "deaths": 117,
+    "recovered": 0,
+    "new": 104,
+    "newDeaths": 0
+  },
+  "Gallatin": {
+    "dateStr": "8/19/21",
+    "cases": 15564,
+    "deaths": 64,
+    "recovered": 0,
+    "new": 28,
+    "newDeaths": 0
+  },
+  "Garfield": {
+    "dateStr": "8/19/21",
+    "cases": 91,
+    "deaths": 2,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Glacier": {
+    "dateStr": "8/19/21",
+    "cases": 1594,
+    "deaths": 45,
+    "recovered": 0,
+    "new": 8,
+    "newDeaths": 0
+  },
+  "Golden Valley": {
+    "dateStr": "8/19/21",
+    "cases": 60,
+    "deaths": 2,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Granite": {
+    "dateStr": "8/19/21",
+    "cases": 243,
+    "deaths": 2,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Hill": {
+    "dateStr": "8/19/21",
+    "cases": 2131,
+    "deaths": 46,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Jefferson": {
+    "dateStr": "8/19/21",
+    "cases": 1181,
+    "deaths": 8,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Judith Basin": {
+    "dateStr": "8/19/21",
+    "cases": 101,
+    "deaths": 1,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Lake": {
+    "dateStr": "8/19/21",
+    "cases": 2327,
+    "deaths": 41,
+    "recovered": 0,
+    "new": 26,
+    "newDeaths": 0
+  },
+  "Lewis and Clark": {
+    "dateStr": "8/19/21",
+    "cases": 7474,
+    "deaths": 94,
+    "recovered": 0,
+    "new": 16,
+    "newDeaths": 0
+  },
+  "Liberty": {
+    "dateStr": "8/19/21",
+    "cases": 143,
+    "deaths": 1,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Lincoln": {
+    "dateStr": "8/19/21",
+    "cases": 1855,
+    "deaths": 28,
+    "recovered": 0,
+    "new": 13,
+    "newDeaths": 0
+  },
+  "Madison": {
+    "dateStr": "8/19/21",
+    "cases": 841,
+    "deaths": 8,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "McCone": {
+    "dateStr": "8/19/21",
+    "cases": 190,
+    "deaths": 2,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Meagher": {
+    "dateStr": "8/19/21",
+    "cases": 160,
+    "deaths": 7,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Mineral": {
+    "dateStr": "8/19/21",
+    "cases": 394,
+    "deaths": 8,
+    "recovered": 0,
+    "new": 10,
+    "newDeaths": 0
+  },
+  "Missoula": {
+    "dateStr": "8/19/21",
+    "cases": 10238,
+    "deaths": 104,
+    "recovered": 0,
+    "new": 59,
+    "newDeaths": 0
+  },
+  "Musselshell": {
+    "dateStr": "8/19/21",
+    "cases": 383,
+    "deaths": 14,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Out of MT": {
+    "dateStr": "8/19/21",
+    "cases": 0,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Park": {
+    "dateStr": "8/19/21",
+    "cases": 1588,
+    "deaths": 22,
+    "recovered": 0,
+    "new": 12,
+    "newDeaths": 1
+  },
+  "Petroleum": {
+    "dateStr": "8/19/21",
+    "cases": 18,
+    "deaths": 1,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Phillips": {
+    "dateStr": "8/19/21",
+    "cases": 543,
+    "deaths": 16,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Pondera": {
+    "dateStr": "8/19/21",
+    "cases": 544,
+    "deaths": 4,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Powder River": {
+    "dateStr": "8/19/21",
+    "cases": 165,
+    "deaths": 8,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Powell": {
+    "dateStr": "8/19/21",
+    "cases": 1015,
+    "deaths": 11,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Prairie": {
+    "dateStr": "8/19/21",
+    "cases": 141,
+    "deaths": 2,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Ravalli": {
+    "dateStr": "8/19/21",
+    "cases": 3454,
+    "deaths": 51,
+    "recovered": 0,
+    "new": 12,
+    "newDeaths": 0
+  },
+  "Richland": {
+    "dateStr": "8/19/21",
+    "cases": 1289,
+    "deaths": 18,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Roosevelt": {
+    "dateStr": "8/19/21",
+    "cases": 1705,
+    "deaths": 55,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Rosebud": {
+    "dateStr": "8/19/21",
+    "cases": 1279,
+    "deaths": 50,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  },
+  "Sanders": {
+    "dateStr": "8/19/21",
+    "cases": 744,
+    "deaths": 15,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Sheridan": {
+    "dateStr": "8/19/21",
+    "cases": 436,
+    "deaths": 5,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Silver Bow": {
+    "dateStr": "8/19/21",
+    "cases": 4345,
+    "deaths": 88,
+    "recovered": 0,
+    "new": 19,
+    "newDeaths": 0
+  },
+  "Stillwater": {
+    "dateStr": "8/19/21",
+    "cases": 797,
+    "deaths": 16,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Sweet Grass": {
+    "dateStr": "8/19/21",
+    "cases": 412,
+    "deaths": 7,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Teton": {
+    "dateStr": "8/19/21",
+    "cases": 565,
+    "deaths": 6,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Toole": {
+    "dateStr": "8/19/21",
+    "cases": 799,
+    "deaths": 11,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Treasure": {
+    "dateStr": "8/19/21",
+    "cases": 56,
+    "deaths": 1,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 6,
+    "deaths": 1,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Valley": {
+    "dateStr": "8/19/21",
+    "cases": 919,
+    "deaths": 19,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Wheatland": {
+    "dateStr": "8/19/21",
+    "cases": 192,
+    "deaths": 9,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Wibaux": {
+    "dateStr": "8/19/21",
+    "cases": 129,
+    "deaths": 6,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Yellowstone": {
+    "dateStr": "8/19/21",
+    "cases": 19283,
+    "deaths": 287,
+    "recovered": 0,
+    "new": 48,
+    "newDeaths": 1
+  }
+}

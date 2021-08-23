@@ -1,0 +1,34 @@
+{
+  "Aruba": {
+    "dateStr": "8/19/21",
+    "cases": 13719,
+    "deaths": 124,
+    "recovered": 11259,
+    "new": 208,
+    "newDeaths": 3
+  },
+  "Bonaire, Sint Eustatius and Saba": {
+    "dateStr": "8/19/21",
+    "cases": 1765,
+    "deaths": 17,
+    "recovered": 1673,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Curacao": {
+    "dateStr": "8/19/21",
+    "cases": 14802,
+    "deaths": 136,
+    "recovered": 13157,
+    "new": 51,
+    "newDeaths": 1
+  },
+  "Sint Maarten": {
+    "dateStr": "8/19/21",
+    "cases": 3366,
+    "deaths": 42,
+    "recovered": 2682,
+    "new": 53,
+    "newDeaths": 0
+  }
+}

@@ -1,0 +1,23 @@
+<h2>File Explorer</h2>
+<div class="demo-container">
+  <p>
+    File Explorer
+  </p>
+  <div>
+    <input
+      [(ngModel)]="filterStr"
+      placeholder="Enter Filter String.."
+    />
+    <dwu-file-explorer
+      [rootFileId]="'file1'"
+      [filesById]="filesById"
+      [(closedFileIds)]="closedFileIds"
+      [(selectedFileIds)]="selectedFileIds"
+      [fuzzFilterString]="filterStr"
+      [perfMode]="true"
+      [multiFileSelect]="true"
+    ></dwu-file-explorer>
+  </div>
+  <h3>Usage</h3>
+  <dwu-code-snippet [snippet]="fileExplorerUsage"></dwu-code-snippet>
+</div>

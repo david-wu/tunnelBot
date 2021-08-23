@@ -1,0 +1,132 @@
+<div class="chart-container">
+  <div class="chart-header">
+    <div class="radio-button-container">
+      <div class="radio-buttons">
+        <div class="radio-button"
+          [class.active]="!isViewingNormalized"
+          (click)="onChangeNormalized(false)"
+        >Total</div>
+        <div class="radio-button"
+          [class.active]="isViewingNormalized"
+          (click)="onChangeNormalized(true)"
+        >Per 1M</div>
+      </div>
+      <div class="radio-buttons">
+        <div class="radio-button"
+          [class.active]="distanceFromPointToAvg === 0"
+          (click)="onChangeAvgedDays(0)"
+        >1 Day</div>
+        <div class="radio-button"
+          [class.active]="distanceFromPointToAvg === 1"
+          (click)="onChangeAvgedDays(1)"
+        >3 Day</div>
+        <div class="radio-button"
+          [class.active]="distanceFromPointToAvg === 3"
+          (click)="onChangeAvgedDays(3)"
+        >7 Day</div>
+      </div>
+      <div class="chart radio-buttons">
+        <div class="radio-button"
+          [class.active]="!isViewingLineChart"
+          (click)="onChangeViewingLineChart(false)"
+        >
+          <span class="material-icons">
+            insert_chart
+          </span>
+        </div>
+        <div class="radio-button"
+          [class.active]="isViewingLineChart"
+          (click)="onChangeViewingLineChart(true)"
+        >
+          <span class="material-icons">
+          show_chart
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <dwu-line-chart
+    *ngIf="isViewingLineChart"
+    class="overview chart"
+    [tableData]="coronaData"
+    [keys]="isViewingNormalized ? perMilKeys : coronaKeys"
+    [colorsByKey]="coronaColorsByKey"
+    [disabledKeys]="disabledBarKeys"
+    [hoverIndex]="hoverIndex"
+    (hoverIndexChange)="hoverIndex = $event"
+    [hoverSeries]="hoverSeries"
+    (hoverSeriesChange)="hoverSeries = $event"
+    [indicators]="indicators"
+    [tooltipTemplate]="overViewTooltipTemplate"
+  ></dwu-line-chart>
+  <dwu-bar-chart
+    *ngIf="!isViewingLineChart"
+    class="overview chart"
+    [tableData]="coronaData"
+    [keys]="isViewingNormalized ? perMilKeys : coronaKeys"
+    [colorsByKey]="coronaColorsByKey"
+    [disabledKeys]="disabledBarKeys"
+    [hoverIndex]="hoverIndex"
+    (hoverIndexChange)="hoverIndex = $event"
+    [indicators]="indicators"
+    [tooltipTemplate]="overViewTooltipTemplate"
+  ></dwu-bar-chart>
+  <dwu-chart-legend
+    [keys]="isViewingNormalized ? perMilKeys : coronaKeys"
+    [colorsByKey]="coronaColorsByKey"
+    [disabledKeys]="disabledBarKeys"
+    [labelsByKey]="Labels.corona"
+    (disabledKeysChange)="disabledBarKeysChange.emit($event)"
+  ></dwu-chart-legend>
+</div>
+
+<div class="chart-container">
+  <div class="chart-header">
+  </div>
+  <dwu-line-chart
+    class="overview chart"
+    [tableData]="coronaData"
+    [keys]="normalKeys"
+    [colorsByKey]="coronaColorsByKey"
+    [disabledKeys]="disabledNormalKeys"
+    [yAxisFormatter]="toPercentage"
+    [indicators]="indicators"
+    [tooltipTemplate]="growthTooltipTemplate"
+    [hoverIndex]="hoverIndex"
+    (hoverIndexChange)="hoverIndex = $event"
+  ></dwu-line-chart>
+  <dwu-chart-legend
+    [keys]="normalKeys"
+    [colorsByKey]="coronaColorsByKey"
+    [disabledKeys]="disabledNormalKeys"
+    [labelsByKey]="Labels.corona"
+    (disabledKeysChange)="disabledNormalKeysChange.emit($event)"
+  ></dwu-chart-legend>
+</div>
+
+<ng-template #overViewTooltipTemplate>
+  <div class="tooltip-container">
+  <dwu-stat-viewer
+    [columnData]="coronaData[hoverIndex]"
+    [keys]="isViewingNormalized ? perMilViewKeys : coronaViewKeys"
+    [disabledKeys]="disabledBarKeys"
+    [labelsByKey]="Labels.corona"
+    [rowCount]="10"
+    [formattersByKeys]="formattersByKeys"
+    [hoverSeries]="hoverSeries"
+  ></dwu-stat-viewer>
+  </div>
+</ng-template>
+
+<ng-template #growthTooltipTemplate>
+  <div class="tooltip-container">
+  <dwu-stat-viewer
+    [columnData]="coronaData[hoverIndex]"
+    [keys]="normalizedViewKeys"
+    [disabledKeys]="disabledBarKeys"
+    [labelsByKey]="Labels.corona"
+    [rowCount]="10"
+    [formattersByKeys]="formattersByKeys"
+  ></dwu-stat-viewer>
+  </div>
+</ng-template>

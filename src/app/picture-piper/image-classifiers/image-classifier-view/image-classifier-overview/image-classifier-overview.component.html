@@ -1,0 +1,26 @@
+<ng-container *ngIf="selectedImageClassifier$ | async as selectedImageClassifier">
+  <h3>
+    <dwu-input-string-editor
+      [str]="selectedImageClassifier.label || selectedImageClassifier.id"
+      (strChange)="onLabelChange(selectedImageClassifier.id, $event)"
+      [placeholder]="'set a classifier name..'"
+    ></dwu-input-string-editor>
+  </h3>
+  <div class="description-editor">
+    <dwu-input-string-editor
+      [str]="selectedImageClassifier.description || ''"
+      (strChange)="onDescriptionChange(selectedImageClassifier.id, $event)"
+      [placeholder]="'set a description..'"
+    ></dwu-input-string-editor>
+  </div>
+  <div class="control-buttons">
+    <span class="delete-button">
+      delete
+    </span>
+  </div>
+  <div class="info-grid">
+    <div>id: {{ selectedImageClassifier.id }}</div>
+    <div>mostRecentImage: {{ selectedImageClassifier }}</div>
+    <div>upload count over time</div>
+  </div>
+</ng-container>

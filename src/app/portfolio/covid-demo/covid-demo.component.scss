@@ -1,0 +1,12 @@
+
+@import 'mixins';
+@import 'variables';
+
+:host {
+  @include standard-demo-page;
+  height: 100%;
+  .corona-phone-demo {
+    margin-top: 1.5rem;
+    @include phone-demo;
+  }
+}

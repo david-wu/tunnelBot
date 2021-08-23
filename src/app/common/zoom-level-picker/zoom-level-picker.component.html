@@ -1,0 +1,16 @@
+  <div class="zoom-icons">
+    <i
+      class="material-icons zoom-icon"
+      (click)="zoomIn()"
+      [class.disabled]="zoomLevel <= minZoomLevel"
+    >
+      zoom_in
+    </i>
+    <i
+      class="material-icons zoom-icon"
+      (click)="zoomOut()"
+      [class.disabled]="zoomLevel >= maxZoomLevel"
+    >
+      zoom_out
+    </i>
+  </div>

@@ -1,0 +1,9 @@
+<div class="top-bar">
+  <div class="run-button">Run Classifier</div>
+  <div class="run-button">Finalize</div>
+  <dwu-file-uploader
+    (fileChange)="onFileChange($event)"
+    [acceptStr]="zipAcceptStr"
+    [showUploadButton]="true"
+  ></dwu-file-uploader>
+</div>

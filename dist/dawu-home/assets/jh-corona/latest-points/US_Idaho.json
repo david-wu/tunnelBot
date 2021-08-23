@@ -1,0 +1,370 @@
+{
+  "Ada": {
+    "dateStr": "8/19/21",
+    "cases": 58763,
+    "deaths": 499,
+    "recovered": 0,
+    "new": 211,
+    "newDeaths": 0
+  },
+  "Adams": {
+    "dateStr": "8/19/21",
+    "cases": 378,
+    "deaths": 4,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Bannock": {
+    "dateStr": "8/19/21",
+    "cases": 9473,
+    "deaths": 122,
+    "recovered": 0,
+    "new": 28,
+    "newDeaths": 0
+  },
+  "Bear Lake": {
+    "dateStr": "8/19/21",
+    "cases": 437,
+    "deaths": 6,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Benewah": {
+    "dateStr": "8/19/21",
+    "cases": 859,
+    "deaths": 10,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Bingham": {
+    "dateStr": "8/19/21",
+    "cases": 5031,
+    "deaths": 78,
+    "recovered": 0,
+    "new": 14,
+    "newDeaths": 0
+  },
+  "Blaine": {
+    "dateStr": "8/19/21",
+    "cases": 2496,
+    "deaths": 19,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Boise": {
+    "dateStr": "8/19/21",
+    "cases": 445,
+    "deaths": 3,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Bonner": {
+    "dateStr": "8/19/21",
+    "cases": 3698,
+    "deaths": 47,
+    "recovered": 0,
+    "new": 27,
+    "newDeaths": 0
+  },
+  "Bonneville": {
+    "dateStr": "8/19/21",
+    "cases": 15693,
+    "deaths": 180,
+    "recovered": 0,
+    "new": 31,
+    "newDeaths": 0
+  },
+  "Boundary": {
+    "dateStr": "8/19/21",
+    "cases": 957,
+    "deaths": 14,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Butte": {
+    "dateStr": "8/19/21",
+    "cases": 227,
+    "deaths": 1,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Camas": {
+    "dateStr": "8/19/21",
+    "cases": 74,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Canyon": {
+    "dateStr": "8/19/21",
+    "cases": 30210,
+    "deaths": 330,
+    "recovered": 0,
+    "new": 99,
+    "newDeaths": 1
+  },
+  "Caribou": {
+    "dateStr": "8/19/21",
+    "cases": 738,
+    "deaths": 12,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Cassia": {
+    "dateStr": "8/19/21",
+    "cases": 3087,
+    "deaths": 28,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Clark": {
+    "dateStr": "8/19/21",
+    "cases": 60,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Clearwater": {
+    "dateStr": "8/19/21",
+    "cases": 1214,
+    "deaths": 16,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "Custer": {
+    "dateStr": "8/19/21",
+    "cases": 262,
+    "deaths": 3,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Elmore": {
+    "dateStr": "8/19/21",
+    "cases": 2429,
+    "deaths": 20,
+    "recovered": 0,
+    "new": 22,
+    "newDeaths": 0
+  },
+  "Franklin": {
+    "dateStr": "8/19/21",
+    "cases": 1286,
+    "deaths": 19,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Fremont": {
+    "dateStr": "8/19/21",
+    "cases": 1228,
+    "deaths": 14,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Gem": {
+    "dateStr": "8/19/21",
+    "cases": 2065,
+    "deaths": 46,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  },
+  "Gooding": {
+    "dateStr": "8/19/21",
+    "cases": 1475,
+    "deaths": 27,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Idaho": {
+    "dateStr": "8/19/21",
+    "cases": 1531,
+    "deaths": 18,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "Jefferson": {
+    "dateStr": "8/19/21",
+    "cases": 3198,
+    "deaths": 33,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  },
+  "Jerome": {
+    "dateStr": "8/19/21",
+    "cases": 2891,
+    "deaths": 27,
+    "recovered": 0,
+    "new": 22,
+    "newDeaths": 0
+  },
+  "Kootenai": {
+    "dateStr": "8/19/21",
+    "cases": 21192,
+    "deaths": 238,
+    "recovered": 0,
+    "new": 68,
+    "newDeaths": 0
+  },
+  "Latah": {
+    "dateStr": "8/19/21",
+    "cases": 3472,
+    "deaths": 16,
+    "recovered": 0,
+    "new": 23,
+    "newDeaths": 0
+  },
+  "Lemhi": {
+    "dateStr": "8/19/21",
+    "cases": 581,
+    "deaths": 9,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Lewis": {
+    "dateStr": "8/19/21",
+    "cases": 494,
+    "deaths": 12,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Lincoln": {
+    "dateStr": "8/19/21",
+    "cases": 524,
+    "deaths": 11,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Madison": {
+    "dateStr": "8/19/21",
+    "cases": 7655,
+    "deaths": 28,
+    "recovered": 0,
+    "new": 8,
+    "newDeaths": 0
+  },
+  "Minidoka": {
+    "dateStr": "8/19/21",
+    "cases": 2484,
+    "deaths": 34,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  },
+  "Nez Perce": {
+    "dateStr": "8/19/21",
+    "cases": 4412,
+    "deaths": 63,
+    "recovered": 0,
+    "new": 47,
+    "newDeaths": 0
+  },
+  "Oneida": {
+    "dateStr": "8/19/21",
+    "cases": 394,
+    "deaths": 4,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Out of ID": {
+    "dateStr": "8/19/21",
+    "cases": 0,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Owyhee": {
+    "dateStr": "8/19/21",
+    "cases": 1160,
+    "deaths": 31,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "Payette": {
+    "dateStr": "8/19/21",
+    "cases": 2835,
+    "deaths": 39,
+    "recovered": 0,
+    "new": 17,
+    "newDeaths": 0
+  },
+  "Power": {
+    "dateStr": "8/19/21",
+    "cases": 693,
+    "deaths": 9,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Shoshone": {
+    "dateStr": "8/19/21",
+    "cases": 1427,
+    "deaths": 41,
+    "recovered": 0,
+    "new": 15,
+    "newDeaths": 0
+  },
+  "Teton": {
+    "dateStr": "8/19/21",
+    "cases": 1307,
+    "deaths": 4,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Twin Falls": {
+    "dateStr": "8/19/21",
+    "cases": 11189,
+    "deaths": 137,
+    "recovered": 0,
+    "new": 71,
+    "newDeaths": 0
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 1054,
+    "deaths": 17,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Valley": {
+    "dateStr": "8/19/21",
+    "cases": 1014,
+    "deaths": 7,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Washington": {
+    "dateStr": "8/19/21",
+    "cases": 1288,
+    "deaths": 24,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  }
+}

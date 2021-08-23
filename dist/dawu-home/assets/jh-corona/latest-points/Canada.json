@@ -1,0 +1,130 @@
+{
+  "Alberta": {
+    "dateStr": "8/19/21",
+    "cases": 242248,
+    "deaths": 2342,
+    "recovered": 0,
+    "new": 817,
+    "newDeaths": 4
+  },
+  "British Columbia": {
+    "dateStr": "8/19/21",
+    "cases": 158256,
+    "deaths": 1784,
+    "recovered": 0,
+    "new": 689,
+    "newDeaths": 2
+  },
+  "Diamond Princess": {
+    "dateStr": "8/19/21",
+    "cases": 1,
+    "deaths": 1,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Grand Princess": {
+    "dateStr": "8/19/21",
+    "cases": 13,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Manitoba": {
+    "dateStr": "8/19/21",
+    "cases": 58134,
+    "deaths": 1188,
+    "recovered": 0,
+    "new": 26,
+    "newDeaths": 0
+  },
+  "New Brunswick": {
+    "dateStr": "8/19/21",
+    "cases": 2582,
+    "deaths": 46,
+    "recovered": 0,
+    "new": 23,
+    "newDeaths": 0
+  },
+  "Newfoundland and Labrador": {
+    "dateStr": "8/19/21",
+    "cases": 1456,
+    "deaths": 7,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Northwest Territories": {
+    "dateStr": "8/19/21",
+    "cases": 259,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  },
+  "Nova Scotia": {
+    "dateStr": "8/19/21",
+    "cases": 5946,
+    "deaths": 93,
+    "recovered": 0,
+    "new": 8,
+    "newDeaths": 0
+  },
+  "Nunavut": {
+    "dateStr": "8/19/21",
+    "cases": 657,
+    "deaths": 4,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Ontario": {
+    "dateStr": "8/19/21",
+    "cases": 565336,
+    "deaths": 9407,
+    "recovered": 0,
+    "new": 767,
+    "newDeaths": 9
+  },
+  "Prince Edward Island": {
+    "dateStr": "8/19/21",
+    "cases": 220,
+    "deaths": 1,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Quebec": {
+    "dateStr": "8/19/21",
+    "cases": 383191,
+    "deaths": 11278,
+    "recovered": 0,
+    "new": 436,
+    "newDeaths": 0
+  },
+  "Repatriated Travellers": {
+    "dateStr": "8/19/21",
+    "cases": 13,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Saskatchewan": {
+    "dateStr": "8/19/21",
+    "cases": 51821,
+    "deaths": 586,
+    "recovered": 0,
+    "new": 191,
+    "newDeaths": 0
+  },
+  "Yukon": {
+    "dateStr": "8/19/21",
+    "cases": 671,
+    "deaths": 8,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  }
+}

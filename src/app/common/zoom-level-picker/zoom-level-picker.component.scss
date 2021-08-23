@@ -1,0 +1,17 @@
+@import 'mixins';
+
+.zoom-icons {
+  height: 28px;
+  .zoom-icon {
+    padding: 0.125rem;
+    user-select: none;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+    &.disabled {
+      cursor: default;
+      opacity: 0.25;
+    }
+  }
+}

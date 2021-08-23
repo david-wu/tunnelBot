@@ -1,0 +1,14 @@
+<ng-container *ngIf="filesById$ | async as filesById">
+  <dwu-file-explorer
+    *ngIf="filesById[rootId]"
+    [rootFileId]="rootId"
+    [filesById]="filesById"
+    (filesByIdChange)="fileGroup.filesById = $event"
+    [fuzzFilterString]="filterStr"
+    [closedFileIds]="fileGroup.closedFileIds"
+    (closedFileIdsChange)="fileGroup.setClosedFileIds($event)"
+    [selectedFileIds]="fileGroup.selectedFileIds"
+    (selectedFileIdsChange)="onSelectedFileIdsChange($event)"
+    [perfMode]="true"
+  ></dwu-file-explorer>
+</ng-container>

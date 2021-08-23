@@ -1,0 +1,8 @@
+<dwu-zoom-level-picker
+  [(zoomLevel)]="zoomLevel"
+></dwu-zoom-level-picker>
+<dwu-image-grid
+  [files]="images$ | async"
+  [zoomLevel]="zoomLevel"
+  (deleteImage)="onDeleteImage($event)"
+></dwu-image-grid>

@@ -1,0 +1,13 @@
+@import 'mixins';
+
+:host {
+  @include standard-demo-page;
+  p {
+    margin: 1rem 0;
+  }
+  .phone-demo {
+    margin-top: 1.5rem;
+    @include phone-demo;
+  }
+
+}

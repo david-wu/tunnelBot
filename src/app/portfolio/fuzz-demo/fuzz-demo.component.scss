@@ -1,0 +1,12 @@
+@import 'mixins';
+
+// use dwu-fuzz-demo instead of :host
+// component uses ViewEncapsulation.None to apply monokai.css styles
+:host {
+  @include standard-demo-page;
+  .demo-page-container {
+    height: 40rem;
+    position: relative;
+    background-color: #fdfdfd;
+  }
+}

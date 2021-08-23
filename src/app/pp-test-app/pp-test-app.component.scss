@@ -1,0 +1,24 @@
+@import 'mixins';
+
+:host {
+  @include standard-demo-page;
+
+  .camera-container {
+    display: flex;
+    flex-direction: column;
+
+    .camera-control-buttons {
+      @include control-buttons
+    }
+    .video-container {
+      width: 20rem;
+      max-width: 20rem;
+      background-color: $lighter-gray;
+      line-height: 0;
+      video {
+        width: 100%;
+      }
+    }
+  }
+
+}

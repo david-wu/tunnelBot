@@ -1,0 +1,18 @@
+<h2>Bar Chart</h2>
+<div class="demo-container">
+  <p>
+    Bar charts are great for visualizing data with two discrete groupings.  This implementation is based on the d3 library.
+  </p>
+  <div class="chart-container">
+    <dwu-bar-chart
+      [tableData]="demoData"
+      [keys]="demoKeys"
+      [hoverIndex]="hoverIndex"
+      (hoverIndexChange)="hoverIndex = $event"
+    ></dwu-bar-chart>
+  </div>
+  <p><button (click)="generateDemoData()">Generate Demo Data</button></p>
+  <h3>Usage</h3>
+  <dwu-code-snippet [snippet]="barChartHtml"></dwu-code-snippet>
+  <dwu-code-snippet [snippet]="barChartJs"></dwu-code-snippet>
+</div>

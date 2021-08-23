@@ -1,0 +1,21 @@
+<table>
+  <tr *ngFor="let key of keys" [class.focused]="isFocused(key)">
+    <td class="column-name">{{ labelsByKey[key] }}:</td>
+    <td>{{ getFormattedValue(key) }}</td>
+  </tr>
+</table>
+
+<!-- <div class="selected-stats">
+    <div *ngFor="let statCols of statTable; let columnIndex = index" class="stats-column-container">
+        <div class="stats-column">
+            <div *ngFor="let columnKey of statCols.columnKeys">{{ labelsByKey[columnKey] }}:</div>
+        </div>
+        <div class="stats-column stats">
+            <div
+                *ngFor="let columnValue of statCols.columnValues; let valueIndex = index"
+                [class.first-val]="(columnIndex === 0) && (valueIndex === 0)"
+            >{{ columnValue }}</div>
+        </div>
+    </div>
+</div>
+ -->

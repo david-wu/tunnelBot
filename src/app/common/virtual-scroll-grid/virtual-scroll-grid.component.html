@@ -1,0 +1,20 @@
+<cdk-virtual-scroll-viewport
+  #scrollViewport
+  class="viewport"
+  [itemSize]="scaledImageHeight"
+>
+  <div
+    *cdkVirtualFor="let tileIdRow of tileIdRows; index as i;"
+    class="upload-file-container-row"
+  >
+    <div
+      *ngFor="let tileId of tileIdRow"
+      class="upload-file-container"
+    >
+      <ng-template
+        [ngTemplateOutlet]="tileTemplate"
+        [ngTemplateOutletContext]="{ scaledImageWidthStr: scaledImageWidthStr, scaledImageHeightStr: scaledImageHeightStr, tileId: tileId, targetTileOption: targetTileOption }"
+      ></ng-template>
+    </div>
+  </div>
+</cdk-virtual-scroll-viewport>

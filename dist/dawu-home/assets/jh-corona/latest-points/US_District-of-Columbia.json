@@ -1,0 +1,26 @@
+{
+  "District of Columbia": {
+    "dateStr": "8/19/21",
+    "cases": 53162,
+    "deaths": 1155,
+    "recovered": 0,
+    "new": 138,
+    "newDeaths": 2
+  },
+  "Out of DC": {
+    "dateStr": "8/19/21",
+    "cases": 0,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 0,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  }
+}

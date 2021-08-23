@@ -1,0 +1,28 @@
+@import 'mixins';
+
+:host {
+  position: relative;
+  display: block;
+}
+
+.map-container {
+  height: 100%;
+  width: 100%;
+}
+
+.use-my-location-button {
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+}
+
+.cross-hairs {
+  position: absolute;
+  height: 24px;
+  opacity: 0.8;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+}

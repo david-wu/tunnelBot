@@ -1,0 +1,44 @@
+@import 'mixins';
+
+
+@import 'mixins';
+
+// .upload-container {
+//   display: flex;
+//   align-items: center;
+//   width: 25rem;
+//   // border: 1px solid $black-olive;
+//   border-radius: 0.25rem;
+//   padding: 0.25rem;
+//   background-color: $eggshell-light;
+//   > * {
+//     margin: 0 0.125rem;
+//     flex: 0 0 auto;
+//     display: inline-block;
+//   }
+//   .file-label {
+//     flex: 1 1 0;
+//     overflow: hidden;
+//     white-space: nowrap;
+//     text-overflow: ellipsis;
+//   }
+// }
+// label {
+//   display: inline-block;
+// }
+.top-bar {
+  display: flex;
+  align-items: center;
+  > * {
+    margin-right: 0.25rem;
+  }
+  .run-button {
+    @include dark-button;
+  }
+}
+// .upload-input {
+//   position: absolute;
+//   visibility: hidden;
+//   width: 0;
+//   height: 0;
+// }

@@ -1,0 +1,24 @@
+<h2>
+  <div>Covid Tracker Demo</div>
+</h2>
+<div class="demo-container">
+  <p>
+    Track time series covid data for over 3,500 counties, states, and countries.
+  </p>
+  <p>
+    Save relevant locations, and compare the covid spread with other locations.
+  </p>
+  <p>
+    <span>Uses Johns Hopkins data </span>
+    [<a
+      target="_blank"
+      href="https://github.com/CSSEGISandData/COVID-19"
+    >https://github.com/CSSEGISandData/COVID-19</a>]
+  </p>
+  <div class="corona-phone-demo">
+    <router-outlet></router-outlet>
+  </div>
+  <p>
+    <a [routerLink]="['/corona']">Click here to go to the full-size app</a>
+  </p>
+</div>

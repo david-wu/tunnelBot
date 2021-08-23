@@ -1,0 +1,28 @@
+
+<div class="page-container" *ngIf="user$ | async as user; else userLogin">
+  <div class="left-side">
+    <dwu-user-login></dwu-user-login>
+    <dwu-search-input [(searchText)]="filterStr" [placeholder]="'search..'"></dwu-search-input>
+    <dwu-ml-file-explorer></dwu-ml-file-explorer>
+    <!-- <dwu-file-explorer
+      [rootFileId]="fileGroup.rootFileId"
+      [filesById]="fileGroup.filesById"
+      (filesByIdChange)="fileGroup.filesById = $event"
+      [fuzzFilterString]="filterStr"
+      [closedFileIds]="fileGroup.closedFileIds"
+      (closedFileIdsChange)="fileGroup.setClosedFileIds($event)"
+      [selectedFileIds]="fileGroup.selectedFileIds"
+      (selectedFileIdsChange)="onSelectedFileIdsChange($event)"
+      [perfMode]="true"
+    ></dwu-file-explorer> -->
+  </div>
+  <div class="right-side">
+    {{ selectedFileId }}
+    <div [ngSwitch]="selectedFileId">
+       <ml-upload-images *ngSwitchCase="'UPLOAD_IMAGES'"></ml-upload-images>
+    </div>
+  </div>
+</div>
+<ng-template #userLogin>
+  <dwu-user-login></dwu-user-login>
+</ng-template>

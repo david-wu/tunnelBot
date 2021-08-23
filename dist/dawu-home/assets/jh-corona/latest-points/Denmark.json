@@ -1,0 +1,18 @@
+{
+  "Faroe Islands": {
+    "dateStr": "8/19/21",
+    "cases": 995,
+    "deaths": 2,
+    "recovered": 963,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Greenland": {
+    "dateStr": "8/19/21",
+    "cases": 285,
+    "deaths": 0,
+    "recovered": 87,
+    "new": 12,
+    "newDeaths": 0
+  }
+}

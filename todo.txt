@@ -1,0 +1,29 @@
+todo:
+[x] radio button shadow
+[x] change r graph to percentages
+[x] Move "Growth Rate" to first series and disable it by default
+[x] spinner overlay while loading page instead of ngIf
+[x] add bubbles to line chart line
+[x] Increase RAvg to 5 days
+[-] add chart titles
+
+[x] format R as a percentage in stat viewer
+[x] file viewer hide root
+[x] add in a compare tab + dashboard
+
+[x] dragula rearrange saved folder
+[x] bubble on chart is at top when no data
+[x] adjustable file-explorer height
+[ ] stat viewer improvements, long country names, color code, gray out when no data
+[ ] also track "hover series" along with hover index to style stat viewer and bigger bubbles
+[ ] clicking on folder should select summary
+[ ] sort lists alphabetically or by case or R
+[ ] santa clara search shows brazil
+[ ] table form with top counts
+[ ] horizontal overlay on R graph "double every 3 days"
+[ ] google maps overlay
+
+[ ] get world data
+    clean data on backend
+    latestPointByLocation
+    compare r with world data

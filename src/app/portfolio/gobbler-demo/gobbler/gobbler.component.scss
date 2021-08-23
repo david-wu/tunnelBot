@@ -1,0 +1,52 @@
+@import 'mixins';
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  .game-body {
+    display: flex;
+    .side-bar {
+      display: flex;
+    }
+  }
+}
+
+.board-container {
+  height: 400px;
+  width: 400px;
+  .board {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $eggshell-dark;
+    .row {
+      display: flex;
+      flex: 1 0 0;
+      .cell {
+        flex: 1 0 0;
+        border: 1px solid $eggshell-dark;
+        &.valid-move {
+          background-color: rgba(138,154,91,0.35);
+        }
+        position: relative;
+        dwu-gbl-piece {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+      }
+    }
+  }
+}
+
+.pieces-container {
+  .pieces {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column
+  }
+}

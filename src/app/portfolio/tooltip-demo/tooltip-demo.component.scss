@@ -1,0 +1,17 @@
+@import 'mixins';
+
+:host {
+  @include standard-demo-page;
+  .horizontal-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .hover-text {
+    color: purple;
+  }
+}
+
+.material-icons {
+  display: block;
+  font-size: inherit;
+}

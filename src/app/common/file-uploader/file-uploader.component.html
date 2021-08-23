@@ -1,0 +1,31 @@
+<div *ngIf="showUploadButton" class="upload-container">
+  <div class="file-label">
+    {{ file ? file.name : 'no file selected' }}
+  </div>
+  <label for="select-file-button">
+    <div class="upload-button">
+      Select File
+    </div>
+  </label>
+  <div
+    (click)="upload()"
+    class="upload-button"
+    [attr.disabled]="file ? null : true"
+  >
+    Upload
+  </div>
+</div>
+
+<label *ngIf="!showUploadButton" for="select-file-button">
+  <div class="upload-button">
+    Upload File
+  </div>
+</label>
+
+<input
+  type="file"
+  [accept]="acceptStr"
+  (change)="onFileChange($event)"
+  class="upload-input"
+  id="select-file-button"
+>

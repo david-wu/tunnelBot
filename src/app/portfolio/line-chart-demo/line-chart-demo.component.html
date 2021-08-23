@@ -1,0 +1,18 @@
+<h2>Line Chart</h2>
+<div class="demo-container">
+  <p>
+    This implementation is based on the d3 library.
+  </p>
+  <div class="chart-container">
+    <dwu-line-chart
+      [tableData]="demoData"
+      [keys]="demoKeys"
+      [hoverIndex]="hoverIndex"
+      (hoverIndexChange)="hoverIndex = $event"
+    ></dwu-line-chart>
+  </div>
+  <p><button (click)="generateDemoData()">Generate Demo Data</button></p>
+  <h3>Usage</h3>
+  <dwu-code-snippet [snippet]="lineChartHtml"></dwu-code-snippet>
+  <dwu-code-snippet [snippet]="lineChartJs"></dwu-code-snippet>
+</div>

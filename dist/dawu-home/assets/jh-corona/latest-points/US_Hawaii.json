@@ -1,0 +1,58 @@
+{
+  "Hawaii": {
+    "dateStr": "8/19/21",
+    "cases": 6003,
+    "deaths": 59,
+    "recovered": 0,
+    "new": 163,
+    "newDeaths": 0
+  },
+  "Honolulu": {
+    "dateStr": "8/19/21",
+    "cases": 38079,
+    "deaths": 431,
+    "recovered": 0,
+    "new": 426,
+    "newDeaths": 3
+  },
+  "Kalawao": {
+    "dateStr": "8/19/21",
+    "cases": 3,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Kauai": {
+    "dateStr": "8/19/21",
+    "cases": 919,
+    "deaths": 3,
+    "recovered": 0,
+    "new": 25,
+    "newDeaths": 1
+  },
+  "Maui": {
+    "dateStr": "8/19/21",
+    "cases": 6564,
+    "deaths": 62,
+    "recovered": 0,
+    "new": 130,
+    "newDeaths": 0
+  },
+  "Out of HI": {
+    "dateStr": "8/19/21",
+    "cases": 2033,
+    "deaths": 3,
+    "recovered": 0,
+    "new": 8,
+    "newDeaths": 0
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 21,
+    "deaths": 1,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  }
+}

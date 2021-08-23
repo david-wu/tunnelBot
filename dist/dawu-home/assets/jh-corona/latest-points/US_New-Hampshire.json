@@ -1,0 +1,98 @@
+{
+  "Belknap": {
+    "dateStr": "8/19/21",
+    "cases": 4474,
+    "deaths": 101,
+    "recovered": 0,
+    "new": 24,
+    "newDeaths": 0
+  },
+  "Carroll": {
+    "dateStr": "8/19/21",
+    "cases": 2652,
+    "deaths": 13,
+    "recovered": 0,
+    "new": 12,
+    "newDeaths": 0
+  },
+  "Cheshire": {
+    "dateStr": "8/19/21",
+    "cases": 4145,
+    "deaths": 36,
+    "recovered": 0,
+    "new": 20,
+    "newDeaths": 0
+  },
+  "Coos": {
+    "dateStr": "8/19/21",
+    "cases": 2196,
+    "deaths": 45,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  },
+  "Grafton": {
+    "dateStr": "8/19/21",
+    "cases": 4365,
+    "deaths": 30,
+    "recovered": 0,
+    "new": 22,
+    "newDeaths": 0
+  },
+  "Hillsborough": {
+    "dateStr": "8/19/21",
+    "cases": 37783,
+    "deaths": 652,
+    "recovered": 0,
+    "new": 74,
+    "newDeaths": 0
+  },
+  "Merrimack": {
+    "dateStr": "8/19/21",
+    "cases": 10121,
+    "deaths": 118,
+    "recovered": 0,
+    "new": 21,
+    "newDeaths": 0
+  },
+  "Out of NH": {
+    "dateStr": "8/19/21",
+    "cases": 0,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Rockingham": {
+    "dateStr": "8/19/21",
+    "cases": 25458,
+    "deaths": 274,
+    "recovered": 0,
+    "new": 42,
+    "newDeaths": 0
+  },
+  "Strafford": {
+    "dateStr": "8/19/21",
+    "cases": 10542,
+    "deaths": 101,
+    "recovered": 0,
+    "new": 31,
+    "newDeaths": 1
+  },
+  "Sullivan": {
+    "dateStr": "8/19/21",
+    "cases": 2011,
+    "deaths": 27,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 2837,
+    "deaths": 64,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  }
+}

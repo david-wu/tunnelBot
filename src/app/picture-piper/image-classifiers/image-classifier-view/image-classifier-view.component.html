@@ -1,0 +1,27 @@
+<div class="top-nav">
+  <div class="view-tabs">
+    <div
+      class="view-tab"
+      [routerLink]="['./overview']"
+      [routerLinkActive]="['active']"
+    >Overview</div>
+    <!-- <div
+      class="view-tab"
+      [routerLink]="['./training']"
+      [routerLinkActive]="['active']"
+    >Training</div>
+    <div
+      class="view-tab"
+      [routerLink]="['./test']"
+      [routerLinkActive]="['active']"
+    >Test</div> -->
+    <div
+      class="view-tab"
+      [routerLink]="['./settings']"
+      [routerLinkActive]="['active']"
+    >Settings</div>
+  </div>
+</div>
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>

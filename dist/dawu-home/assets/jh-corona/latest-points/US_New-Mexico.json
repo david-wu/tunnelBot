@@ -1,0 +1,282 @@
+{
+  "Bernalillo": {
+    "dateStr": "8/19/21",
+    "cases": 63859,
+    "deaths": 993,
+    "recovered": 0,
+    "new": 199,
+    "newDeaths": 1
+  },
+  "Catron": {
+    "dateStr": "8/19/21",
+    "cases": 117,
+    "deaths": 6,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Chaves": {
+    "dateStr": "8/19/21",
+    "cases": 9992,
+    "deaths": 174,
+    "recovered": 0,
+    "new": 104,
+    "newDeaths": 1
+  },
+  "Cibola": {
+    "dateStr": "8/19/21",
+    "cases": 3003,
+    "deaths": 128,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  },
+  "Colfax": {
+    "dateStr": "8/19/21",
+    "cases": 875,
+    "deaths": 47,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  },
+  "Curry": {
+    "dateStr": "8/19/21",
+    "cases": 5838,
+    "deaths": 88,
+    "recovered": 0,
+    "new": 32,
+    "newDeaths": 0
+  },
+  "De Baca": {
+    "dateStr": "8/19/21",
+    "cases": 202,
+    "deaths": 2,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Dona Ana": {
+    "dateStr": "8/19/21",
+    "cases": 26296,
+    "deaths": 504,
+    "recovered": 0,
+    "new": 75,
+    "newDeaths": 0
+  },
+  "Eddy": {
+    "dateStr": "8/19/21",
+    "cases": 8431,
+    "deaths": 153,
+    "recovered": 0,
+    "new": 86,
+    "newDeaths": 0
+  },
+  "Grant": {
+    "dateStr": "8/19/21",
+    "cases": 1845,
+    "deaths": 43,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Guadalupe": {
+    "dateStr": "8/19/21",
+    "cases": 504,
+    "deaths": 15,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  },
+  "Harding": {
+    "dateStr": "8/19/21",
+    "cases": 13,
+    "deaths": 1,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Hidalgo": {
+    "dateStr": "8/19/21",
+    "cases": 485,
+    "deaths": 9,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Lea": {
+    "dateStr": "8/19/21",
+    "cases": 10348,
+    "deaths": 205,
+    "recovered": 0,
+    "new": 158,
+    "newDeaths": 0
+  },
+  "Lincoln": {
+    "dateStr": "8/19/21",
+    "cases": 2092,
+    "deaths": 20,
+    "recovered": 0,
+    "new": 20,
+    "newDeaths": 0
+  },
+  "Los Alamos": {
+    "dateStr": "8/19/21",
+    "cases": 593,
+    "deaths": 7,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Luna": {
+    "dateStr": "8/19/21",
+    "cases": 3529,
+    "deaths": 92,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "McKinley": {
+    "dateStr": "8/19/21",
+    "cases": 12908,
+    "deaths": 483,
+    "recovered": 0,
+    "new": 25,
+    "newDeaths": 0
+  },
+  "Mora": {
+    "dateStr": "8/19/21",
+    "cases": 199,
+    "deaths": 8,
+    "recovered": 0,
+    "new": 8,
+    "newDeaths": 0
+  },
+  "Otero": {
+    "dateStr": "8/19/21",
+    "cases": 4553,
+    "deaths": 89,
+    "recovered": 0,
+    "new": 26,
+    "newDeaths": 0
+  },
+  "Out of NM": {
+    "dateStr": "8/19/21",
+    "cases": 0,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Quay": {
+    "dateStr": "8/19/21",
+    "cases": 658,
+    "deaths": 12,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Rio Arriba": {
+    "dateStr": "8/19/21",
+    "cases": 4056,
+    "deaths": 82,
+    "recovered": 0,
+    "new": 10,
+    "newDeaths": 0
+  },
+  "Roosevelt": {
+    "dateStr": "8/19/21",
+    "cases": 2262,
+    "deaths": 61,
+    "recovered": 0,
+    "new": 21,
+    "newDeaths": 0
+  },
+  "San Juan": {
+    "dateStr": "8/19/21",
+    "cases": 16566,
+    "deaths": 505,
+    "recovered": 0,
+    "new": 40,
+    "newDeaths": 1
+  },
+  "San Miguel": {
+    "dateStr": "8/19/21",
+    "cases": 1627,
+    "deaths": 17,
+    "recovered": 0,
+    "new": 25,
+    "newDeaths": 0
+  },
+  "Sandoval": {
+    "dateStr": "8/19/21",
+    "cases": 13230,
+    "deaths": 246,
+    "recovered": 0,
+    "new": 29,
+    "newDeaths": 1
+  },
+  "Santa Fe": {
+    "dateStr": "8/19/21",
+    "cases": 11298,
+    "deaths": 154,
+    "recovered": 0,
+    "new": 21,
+    "newDeaths": 0
+  },
+  "Sierra": {
+    "dateStr": "8/19/21",
+    "cases": 831,
+    "deaths": 52,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "Socorro": {
+    "dateStr": "8/19/21",
+    "cases": 1396,
+    "deaths": 61,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Taos": {
+    "dateStr": "8/19/21",
+    "cases": 1870,
+    "deaths": 56,
+    "recovered": 0,
+    "new": 11,
+    "newDeaths": 0
+  },
+  "Torrance": {
+    "dateStr": "8/19/21",
+    "cases": 987,
+    "deaths": 16,
+    "recovered": 0,
+    "new": 8,
+    "newDeaths": 0
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 4675,
+    "deaths": 114,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Union": {
+    "dateStr": "8/19/21",
+    "cases": 273,
+    "deaths": 10,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Valencia": {
+    "dateStr": "8/19/21",
+    "cases": 7516,
+    "deaths": 125,
+    "recovered": 0,
+    "new": 16,
+    "newDeaths": 0
+  }
+}

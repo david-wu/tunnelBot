@@ -1,0 +1,37 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": [
+      "node"
+    ],
+    "paths": {
+      "@src/*": [
+        "src/*.web",
+        "src/*"
+      ],
+      "@app/*": ["src/app/*"],
+      "@pp/*": ["src/app/picture-piper/*"],
+      "@common/*": ["src/app/common/*"],
+      "@file-explorer/*": ["src/app/common/file-explorer/*"],
+      "@photo-gallery/*": ["src/app/photo-gallery/*"],
+      "@ml-app/*": ["src/app/ml-app/*"],
+      "@utils/*": ["src/app/utils/*"],
+      "@firebase-auth/*": ["src/app/firebase-auth/*"],
+      "@services/*": ["src/app/services/*"],
+      "@models/*": ["src/app/models/*"]
+    },
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts",
+    "src/main.ts",
+    "src/polyfills.ts"
+  ],
+  "exclude": [
+    "src/test.ts",
+    "src/**/*.spec.ts"
+  ]
+}

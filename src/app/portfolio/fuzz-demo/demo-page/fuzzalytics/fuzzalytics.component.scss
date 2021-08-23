@@ -1,0 +1,82 @@
+:host {
+  display: flex;
+}
+
+.matrix {
+  display: flex;
+  flex-direction: column;
+  .row {
+    display: flex;
+    .cell {
+      border: 1px solid #eeeeee;
+      &:first-child {
+        border-left: 2px solid #eeeeee;
+      }
+      &:last-child {
+        border-right: 2px solid #eeeeee;
+      }
+    }
+    &:first-child {
+      .cell {
+        border-top: 2px solid #eeeeee;
+      }
+    }
+    &:last-child {
+      .cell {
+        border-bottom: 2px solid #eeeeee;
+      }
+    }
+  }
+}
+
+.legend {
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 7.5rem;
+  min-height: 11rem;
+  button {
+    margin-bottom: 0.5rem;
+  }
+  .legend-title {
+    margin-bottom: 0.5rem;
+  }
+  .legend-entry {
+    margin: 0.25rem 0;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    .cell {
+      border: 1px solid #bbbbbb;
+      margin-right: 0.25rem;
+      border-radius: 3px;
+      width: 0.75rem;
+      height: 0.75rem;
+      min-width: 0.75rem;
+      min-height: 0.75rem;
+      line-height: 0.75rem;
+    }
+  }
+}
+
+.cell {
+  width: 1.5rem;
+  height: 1.5rem;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  &.del {
+    background-color: #ffaaaa;
+  }
+  &.ins {
+    background-color: #aaffaa;
+  }
+  &.sub {
+    background-color: #ffffaa;
+  }
+  &.nop {
+    background-color: #cccccc;
+  }
+
+}

@@ -1,0 +1,134 @@
+
+:host {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+  background-color: #fdfdfd;
+  border: 1px solid #dddddd;
+
+  display: flex;
+  .left-windows {
+    flex: 2 2 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid #dddddd;
+    app-tabbed-window.top {
+      width: auto;
+      height: auto;
+      flex: 1 1 0;
+    }
+    app-tabbed-window.bottom {
+      width: auto;
+      height: auto;
+      flex: 0 0 auto;
+      max-height: 75%;
+      border-top: 1px solid #dddddd;
+    }
+  }
+  .right-windows {
+    flex: 1 1 0;
+    min-width: 15rem;
+    max-width: 20rem;
+    app-tabbed-window.narrow {
+      flex: 1 1 0;
+    }
+  }
+}
+
+.tab-page {
+  flex: 1 1 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &.fixed {
+    overflow: auto;
+  }
+
+  .page-header {
+    flex: 0 0 auto;
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid #dddddd;
+    display: flex;
+    align-items: center;
+    min-height: 3.75rem;
+
+    &.fuse-js-disclaimer {
+      align-items: center;
+      p {
+        max-width: 30rem;
+        line-height: 1.5rem;
+      }
+      .button-container {
+        display: flex;
+        flex-direction: column;
+        margin-left: 0.25rem;
+        button {
+          margin-bottom: 0.25rem;
+        }
+      }
+    }
+
+  }
+  .page-footer {
+    flex: 0 0 auto;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    min-height: 3.75rem;
+  }
+
+  .demo-container-header {
+    input {
+      padding: 0.25rem 0.5rem;
+      flex: 1 1 auto;
+      height: 1.5rem;
+    }
+    .sort-time {
+      margin-left: 1rem;
+      flex: 0 0 auto;
+      font-weight: 500;
+    }
+  }
+
+  .input-data-page-header {
+    .header-text {
+      flex: 1 1 0;
+    }
+    .button-battery {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-left: 0.5rem;
+      .size-input {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        input {
+          margin-left: 0.25rem;
+          width: 4rem;
+        }
+      }
+      button {
+        margin-top: 0.5rem;
+        flex: 0 0 auto;
+      }
+    }
+  }
+
+  .fuzzalytics-container {
+    flex: 1 1 0;
+    padding: 0.5rem 0;
+  }
+  .results-container {
+    flex: 1 1 auto;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+}
+

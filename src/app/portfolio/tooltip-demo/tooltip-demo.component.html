@@ -1,0 +1,43 @@
+<h2>Tooltip Demo</h2>
+<div class="demo-container">
+  <p>
+    <span>Tooltips try to stay in viewport. They can be added onto any element. For example hover </span>
+    <dwu-tooltip [text]="'some tooltip text'">
+      <a class="hover-text">here.</a>
+    </dwu-tooltip>
+  </p>
+  <p>
+    <span>Tooltips are typically used on icons like this: </span>
+    <dwu-tooltip
+      [text]="'Here\'s a really really really really really really really really really really really really really really really really really really really really really long tooltip.'"
+    >
+      <div class="material-icons">help</div>
+    </dwu-tooltip>
+  </p>
+  <p>
+    Tooltips be provided with templates that allow for more control over their appearance.
+  </p>
+  <p>
+    Tooltips near the edges will try to avoid spilling outside the viewport.
+  </p>
+  <div class="horizontal-container">
+    <dwu-tooltip [text]="'Tooltip shows on the right side of this icon.'">
+      <div><div class="material-icons">help</div></div>
+    </dwu-tooltip>
+    <dwu-tooltip [text]="'Tooltip shows on the left side of this icon.'">
+      <div><div class="material-icons">help</div></div>
+    </dwu-tooltip>
+  </div>
+</div>
+
+<ng-template #tooltipTemplate>
+  <div>
+    <div>tooltip using template!</div>
+    <div>new line!</div>
+    <div>
+      <div class="material-icons">
+        help
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,42 @@
+<div class="top-nav">
+  <div class="view-tabs">
+    <div
+      class="view-tab"
+      [routerLink]="['./overview']"
+      [routerLinkActive]="['active']"
+    >Overview</div>
+    <div
+      class="view-tab"
+      [routerLink]="['./classifiers']"
+      [routerLinkActive]="['active']"
+    >Classifiers</div>
+    <!-- <div
+      class="view-tab"
+      [routerLink]="['./data']"
+      [routerLinkActive]="['active']"
+    >Data</div> -->
+    <!-- <div
+      class="view-tab"
+      [routerLink]="['./images']"
+      [routerLinkActive]="['active']"
+    >Images</div> -->
+<!--     <div
+      class="view-tab"
+      [routerLink]="['./test-app']"
+      [routerLinkActive]="['active']"
+    >Test App</div> -->
+    <div
+      class="view-tab"
+      [routerLink]="['./set-up']"
+      [routerLinkActive]="['active']"
+    >Set Up</div>
+    <div
+      class="view-tab"
+      [routerLink]="['./settings']"
+      [routerLinkActive]="['active']"
+    >Settings</div>
+  </div>
+</div>
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>

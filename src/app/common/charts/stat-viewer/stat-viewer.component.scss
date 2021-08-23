@@ -1,0 +1,53 @@
+@import 'mixins';
+
+:host {
+    display: block;
+    table {
+      font-size: 0.75rem;
+      padding: 0.5rem 0.25rem;
+      tr {
+        padding: 0.125rem;
+        opacity: 0.3;
+        white-space: nowrap;
+        &.focused {
+          opacity: 1;
+        }
+      }
+      td {
+        padding: 0.125rem;
+      }
+    }
+    // .column-name {
+    //   padding-right: 0.25rem;
+    // }
+
+    .selected-stats {
+        padding: 0 1rem;
+        font-size: 0.75rem;
+        display: flex;
+        flex-wrap: wrap;
+        .stats-column-container {
+            display: flex;
+            padding: 0 1.25rem;
+            // &:not(:first-child) {
+            //     margin-left: 2.5rem;
+            // }
+            .stats-column {
+                display: flex;
+                flex-direction: column;
+                text-align: right;
+                flex-wrap: nowrap;
+                white-space: nowrap;
+                &:first-child {
+                    margin-right: 0.25rem;
+                }
+                &.stats {
+                    min-width: 3rem;
+                }
+                .first-val {
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,58 @@
+{
+  "Bristol": {
+    "dateStr": "8/19/21",
+    "cases": 5352,
+    "deaths": 146,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Kent": {
+    "dateStr": "8/19/21",
+    "cases": 19560,
+    "deaths": 368,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Newport": {
+    "dateStr": "8/19/21",
+    "cases": 7434,
+    "deaths": 42,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Out of RI": {
+    "dateStr": "8/19/21",
+    "cases": 0,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Providence": {
+    "dateStr": "8/19/21",
+    "cases": 102857,
+    "deaths": 2012,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 16867,
+    "deaths": 286,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Washington": {
+    "dateStr": "8/19/21",
+    "cases": 10725,
+    "deaths": 171,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "Fairfield": {
+    "dateStr": "8/19/21",
+    "cases": 104359,
+    "deaths": 2210,
+    "recovered": 0,
+    "new": 107,
+    "newDeaths": 5
+  },
+  "Hartford": {
+    "dateStr": "8/19/21",
+    "cases": 88969,
+    "deaths": 2453,
+    "recovered": 0,
+    "new": 139,
+    "newDeaths": 5
+  },
+  "Litchfield": {
+    "dateStr": "8/19/21",
+    "cases": 15288,
+    "deaths": 299,
+    "recovered": 0,
+    "new": 28,
+    "newDeaths": 1
+  },
+  "Middlesex": {
+    "dateStr": "8/19/21",
+    "cases": 13534,
+    "deaths": 377,
+    "recovered": 0,
+    "new": 21,
+    "newDeaths": 2
+  },
+  "New Haven": {
+    "dateStr": "8/19/21",
+    "cases": 96671,
+    "deaths": 2151,
+    "recovered": 0,
+    "new": 167,
+    "newDeaths": 5
+  },
+  "New London": {
+    "dateStr": "8/19/21",
+    "cases": 23907,
+    "deaths": 453,
+    "recovered": 0,
+    "new": 43,
+    "newDeaths": 1
+  },
+  "Out of CT": {
+    "dateStr": "8/19/21",
+    "cases": 0,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Tolland": {
+    "dateStr": "8/19/21",
+    "cases": 10121,
+    "deaths": 189,
+    "recovered": 0,
+    "new": 21,
+    "newDeaths": 1
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 1228,
+    "deaths": 52,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Windham": {
+    "dateStr": "8/19/21",
+    "cases": 11348,
+    "deaths": 197,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 1
+  }
+}

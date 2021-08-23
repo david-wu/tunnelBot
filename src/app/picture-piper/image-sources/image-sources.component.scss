@@ -1,0 +1,13 @@
+@import 'mixins';
+
+
+:host {
+  @include responsive-page;
+  .left-side {
+    @include full-file-explorer-container;
+    .view-tab {
+        @include light-mini-button;
+        padding: 0.25rem 1rem;
+    }
+  }
+}

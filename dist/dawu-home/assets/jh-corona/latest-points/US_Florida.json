@@ -1,0 +1,554 @@
+{
+  "Alachua": {
+    "dateStr": "8/19/21",
+    "cases": 31140,
+    "deaths": 285,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Baker": {
+    "dateStr": "8/19/21",
+    "cases": 4885,
+    "deaths": 62,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Bay": {
+    "dateStr": "8/19/21",
+    "cases": 27182,
+    "deaths": 396,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Bradford": {
+    "dateStr": "8/19/21",
+    "cases": 4117,
+    "deaths": 58,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Brevard": {
+    "dateStr": "8/19/21",
+    "cases": 60480,
+    "deaths": 914,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Broward": {
+    "dateStr": "8/19/21",
+    "cases": 298648,
+    "deaths": 3079,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Calhoun": {
+    "dateStr": "8/19/21",
+    "cases": 2294,
+    "deaths": 47,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Charlotte": {
+    "dateStr": "8/19/21",
+    "cases": 16403,
+    "deaths": 437,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Citrus": {
+    "dateStr": "8/19/21",
+    "cases": 14631,
+    "deaths": 463,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Clay": {
+    "dateStr": "8/19/21",
+    "cases": 26782,
+    "deaths": 352,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Collier": {
+    "dateStr": "8/19/21",
+    "cases": 45462,
+    "deaths": 551,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Columbia": {
+    "dateStr": "8/19/21",
+    "cases": 11331,
+    "deaths": 170,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "DeSoto": {
+    "dateStr": "8/19/21",
+    "cases": 5009,
+    "deaths": 98,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Dixie": {
+    "dateStr": "8/19/21",
+    "cases": 2088,
+    "deaths": 24,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Duval": {
+    "dateStr": "8/19/21",
+    "cases": 140536,
+    "deaths": 1489,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Escambia": {
+    "dateStr": "8/19/21",
+    "cases": 44115,
+    "deaths": 706,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Flagler": {
+    "dateStr": "8/19/21",
+    "cases": 10454,
+    "deaths": 114,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Franklin": {
+    "dateStr": "8/19/21",
+    "cases": 1738,
+    "deaths": 20,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Gadsden": {
+    "dateStr": "8/19/21",
+    "cases": 7053,
+    "deaths": 101,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Gilchrist": {
+    "dateStr": "8/19/21",
+    "cases": 2187,
+    "deaths": 44,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Glades": {
+    "dateStr": "8/19/21",
+    "cases": 1098,
+    "deaths": 19,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Gulf": {
+    "dateStr": "8/19/21",
+    "cases": 2546,
+    "deaths": 45,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Hamilton": {
+    "dateStr": "8/19/21",
+    "cases": 2023,
+    "deaths": 25,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Hardee": {
+    "dateStr": "8/19/21",
+    "cases": 4150,
+    "deaths": 45,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Hendry": {
+    "dateStr": "8/19/21",
+    "cases": 5608,
+    "deaths": 87,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Hernando": {
+    "dateStr": "8/19/21",
+    "cases": 20114,
+    "deaths": 482,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Highlands": {
+    "dateStr": "8/19/21",
+    "cases": 10710,
+    "deaths": 366,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Hillsborough": {
+    "dateStr": "8/19/21",
+    "cases": 183784,
+    "deaths": 1832,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Holmes": {
+    "dateStr": "8/19/21",
+    "cases": 2806,
+    "deaths": 52,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Indian River": {
+    "dateStr": "8/19/21",
+    "cases": 16489,
+    "deaths": 308,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Jackson": {
+    "dateStr": "8/19/21",
+    "cases": 8047,
+    "deaths": 158,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Jefferson": {
+    "dateStr": "8/19/21",
+    "cases": 1849,
+    "deaths": 28,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Lafayette": {
+    "dateStr": "8/19/21",
+    "cases": 1849,
+    "deaths": 26,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Lake": {
+    "dateStr": "8/19/21",
+    "cases": 40816,
+    "deaths": 664,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Lee": {
+    "dateStr": "8/19/21",
+    "cases": 91282,
+    "deaths": 1009,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Leon": {
+    "dateStr": "8/19/21",
+    "cases": 40767,
+    "deaths": 333,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Levy": {
+    "dateStr": "8/19/21",
+    "cases": 4813,
+    "deaths": 56,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Liberty": {
+    "dateStr": "8/19/21",
+    "cases": 1409,
+    "deaths": 17,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Madison": {
+    "dateStr": "8/19/21",
+    "cases": 2550,
+    "deaths": 45,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Manatee": {
+    "dateStr": "8/19/21",
+    "cases": 48672,
+    "deaths": 689,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Marion": {
+    "dateStr": "8/19/21",
+    "cases": 41340,
+    "deaths": 996,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Martin": {
+    "dateStr": "8/19/21",
+    "cases": 15934,
+    "deaths": 335,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Miami-Dade": {
+    "dateStr": "8/19/21",
+    "cases": 590769,
+    "deaths": 6472,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Monroe": {
+    "dateStr": "8/19/21",
+    "cases": 8656,
+    "deaths": 52,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Nassau": {
+    "dateStr": "8/19/21",
+    "cases": 12570,
+    "deaths": 127,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Okaloosa": {
+    "dateStr": "8/19/21",
+    "cases": 25635,
+    "deaths": 367,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Okeechobee": {
+    "dateStr": "8/19/21",
+    "cases": 5083,
+    "deaths": 90,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Orange": {
+    "dateStr": "8/19/21",
+    "cases": 184091,
+    "deaths": 1310,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Osceola": {
+    "dateStr": "8/19/21",
+    "cases": 58262,
+    "deaths": 529,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Out of FL": {
+    "dateStr": "8/19/21",
+    "cases": 0,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Palm Beach": {
+    "dateStr": "8/19/21",
+    "cases": 182525,
+    "deaths": 2883,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Pasco": {
+    "dateStr": "8/19/21",
+    "cases": 56872,
+    "deaths": 802,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Pinellas": {
+    "dateStr": "8/19/21",
+    "cases": 103251,
+    "deaths": 1671,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Polk": {
+    "dateStr": "8/19/21",
+    "cases": 93848,
+    "deaths": 1391,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Putnam": {
+    "dateStr": "8/19/21",
+    "cases": 9198,
+    "deaths": 160,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Santa Rosa": {
+    "dateStr": "8/19/21",
+    "cases": 22920,
+    "deaths": 291,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Sarasota": {
+    "dateStr": "8/19/21",
+    "cases": 41580,
+    "deaths": 844,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Seminole": {
+    "dateStr": "8/19/21",
+    "cases": 48022,
+    "deaths": 516,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "St. Johns": {
+    "dateStr": "8/19/21",
+    "cases": 31511,
+    "deaths": 221,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "St. Lucie": {
+    "dateStr": "8/19/21",
+    "cases": 35881,
+    "deaths": 657,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Sumter": {
+    "dateStr": "8/19/21",
+    "cases": 11287,
+    "deaths": 284,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Suwannee": {
+    "dateStr": "8/19/21",
+    "cases": 6746,
+    "deaths": 140,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Taylor": {
+    "dateStr": "8/19/21",
+    "cases": 3188,
+    "deaths": 49,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 3610,
+    "deaths": 3793,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Union": {
+    "dateStr": "8/19/21",
+    "cases": 2460,
+    "deaths": 74,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Volusia": {
+    "dateStr": "8/19/21",
+    "cases": 60567,
+    "deaths": 846,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Wakulla": {
+    "dateStr": "8/19/21",
+    "cases": 4605,
+    "deaths": 56,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Walton": {
+    "dateStr": "8/19/21",
+    "cases": 9669,
+    "deaths": 89,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Washington": {
+    "dateStr": "8/19/21",
+    "cases": 3401,
+    "deaths": 52,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  }
+}

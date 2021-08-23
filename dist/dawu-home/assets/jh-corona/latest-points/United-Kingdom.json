@@ -1,0 +1,90 @@
+{
+  "Anguilla": {
+    "dateStr": "8/19/21",
+    "cases": 154,
+    "deaths": 0,
+    "recovered": 111,
+    "new": 17,
+    "newDeaths": 0
+  },
+  "Bermuda": {
+    "dateStr": "8/19/21",
+    "cases": 2715,
+    "deaths": 33,
+    "recovered": 2503,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "British Virgin Islands": {
+    "dateStr": "8/19/21",
+    "cases": 2568,
+    "deaths": 37,
+    "recovered": 1914,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "Cayman Islands": {
+    "dateStr": "8/19/21",
+    "cases": 656,
+    "deaths": 2,
+    "recovered": 635,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Channel Islands": {
+    "dateStr": "8/19/21",
+    "cases": 10153,
+    "deaths": 93,
+    "recovered": 8322,
+    "new": 148,
+    "newDeaths": 1
+  },
+  "Falkland Islands (Malvinas)": {
+    "dateStr": "8/19/21",
+    "cases": 66,
+    "deaths": 0,
+    "recovered": 63,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Gibraltar": {
+    "dateStr": "8/19/21",
+    "cases": 5261,
+    "deaths": 96,
+    "recovered": 4670,
+    "new": 13,
+    "newDeaths": 0
+  },
+  "Isle of Man": {
+    "dateStr": "8/19/21",
+    "cases": 6167,
+    "deaths": 37,
+    "recovered": 4019,
+    "new": 55,
+    "newDeaths": 0
+  },
+  "Montserrat": {
+    "dateStr": "8/19/21",
+    "cases": 23,
+    "deaths": 1,
+    "recovered": 19,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Saint Helena, Ascension and Tristan da Cunha": {
+    "dateStr": "8/19/21",
+    "cases": 4,
+    "deaths": 1,
+    "recovered": 4,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Turks and Caicos Islands": {
+    "dateStr": "8/19/21",
+    "cases": 2588,
+    "deaths": 19,
+    "recovered": 2433,
+    "new": 20,
+    "newDeaths": 0
+  }
+}

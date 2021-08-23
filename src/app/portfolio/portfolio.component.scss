@@ -1,0 +1,18 @@
+@import 'mixins';
+
+:host {
+  @include responsive-page;
+  .page-container {
+    .left-side {
+      background-color: $eggshell-darker;
+      display: flex;
+      flex-direction: column;
+      dwu-file-explorer {
+        flex: 1 1 0;
+      }
+    }
+    .right-side {
+      // padding: 1rem 1.5rem;
+    }
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "Atlantic": {
+    "dateStr": "8/19/21",
+    "cases": 33223,
+    "deaths": 702,
+    "recovered": 0,
+    "new": 84,
+    "newDeaths": 0
+  },
+  "Bergen": {
+    "dateStr": "8/19/21",
+    "cases": 109069,
+    "deaths": 2916,
+    "recovered": 0,
+    "new": 150,
+    "newDeaths": 0
+  },
+  "Burlington": {
+    "dateStr": "8/19/21",
+    "cases": 46895,
+    "deaths": 893,
+    "recovered": 0,
+    "new": 117,
+    "newDeaths": 2
+  },
+  "Camden": {
+    "dateStr": "8/19/21",
+    "cases": 58581,
+    "deaths": 1350,
+    "recovered": 0,
+    "new": 129,
+    "newDeaths": 0
+  },
+  "Cape May": {
+    "dateStr": "8/19/21",
+    "cases": 10126,
+    "deaths": 212,
+    "recovered": 0,
+    "new": 41,
+    "newDeaths": 0
+  },
+  "Cumberland": {
+    "dateStr": "8/19/21",
+    "cases": 17920,
+    "deaths": 443,
+    "recovered": 0,
+    "new": 21,
+    "newDeaths": 0
+  },
+  "Essex": {
+    "dateStr": "8/19/21",
+    "cases": 98355,
+    "deaths": 3055,
+    "recovered": 0,
+    "new": 149,
+    "newDeaths": 1
+  },
+  "Gloucester": {
+    "dateStr": "8/19/21",
+    "cases": 32219,
+    "deaths": 653,
+    "recovered": 0,
+    "new": 76,
+    "newDeaths": 0
+  },
+  "Hudson": {
+    "dateStr": "8/19/21",
+    "cases": 91328,
+    "deaths": 2330,
+    "recovered": 0,
+    "new": 136,
+    "newDeaths": 0
+  },
+  "Hunterdon": {
+    "dateStr": "8/19/21",
+    "cases": 10426,
+    "deaths": 178,
+    "recovered": 0,
+    "new": 25,
+    "newDeaths": 0
+  },
+  "Mercer": {
+    "dateStr": "8/19/21",
+    "cases": 35478,
+    "deaths": 968,
+    "recovered": 0,
+    "new": 71,
+    "newDeaths": 1
+  },
+  "Middlesex": {
+    "dateStr": "8/19/21",
+    "cases": 96284,
+    "deaths": 2387,
+    "recovered": 0,
+    "new": 186,
+    "newDeaths": 1
+  },
+  "Monmouth": {
+    "dateStr": "8/19/21",
+    "cases": 81094,
+    "deaths": 1655,
+    "recovered": 0,
+    "new": 180,
+    "newDeaths": 0
+  },
+  "Morris": {
+    "dateStr": "8/19/21",
+    "cases": 52309,
+    "deaths": 1248,
+    "recovered": 0,
+    "new": 75,
+    "newDeaths": 0
+  },
+  "Ocean": {
+    "dateStr": "8/19/21",
+    "cases": 80725,
+    "deaths": 2201,
+    "recovered": 0,
+    "new": 202,
+    "newDeaths": 0
+  },
+  "Out of NJ": {
+    "dateStr": "8/19/21",
+    "cases": 0,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Passaic": {
+    "dateStr": "8/19/21",
+    "cases": 75540,
+    "deaths": 1956,
+    "recovered": 0,
+    "new": 121,
+    "newDeaths": 0
+  },
+  "Salem": {
+    "dateStr": "8/19/21",
+    "cases": 6462,
+    "deaths": 191,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "Somerset": {
+    "dateStr": "8/19/21",
+    "cases": 31611,
+    "deaths": 849,
+    "recovered": 0,
+    "new": 63,
+    "newDeaths": 0
+  },
+  "Sussex": {
+    "dateStr": "8/19/21",
+    "cases": 14649,
+    "deaths": 311,
+    "recovered": 0,
+    "new": 41,
+    "newDeaths": 1
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 4866,
+    "deaths": 1868,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Union": {
+    "dateStr": "8/19/21",
+    "cases": 74265,
+    "deaths": 1996,
+    "recovered": 0,
+    "new": 116,
+    "newDeaths": 1
+  },
+  "Warren": {
+    "dateStr": "8/19/21",
+    "cases": 10371,
+    "deaths": 242,
+    "recovered": 0,
+    "new": 28,
+    "newDeaths": 0
+  }
+}

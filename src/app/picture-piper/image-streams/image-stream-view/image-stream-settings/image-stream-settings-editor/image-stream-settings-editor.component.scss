@@ -1,0 +1,30 @@
+@import 'mixins';
+
+:host {
+  @include standard-demo-page;
+
+  .control-buttons {
+    .control-button {
+      @include light-mini-button;
+    }
+  }
+
+  .join-table {
+    display: flex;
+    align-items: center;
+    height: 25rem;
+    max-width: 60rem;
+    .file-explorer-container {
+      @include full-file-explorer-container;
+      height: 100%;
+      width: 50%;
+      &:not(:last-child) {
+        border-right: 1px solid $moss-green;
+      }
+      .view-tab {
+        @include light-mini-button;
+        padding: 0.25rem 1rem;
+      }
+    }
+  }
+}

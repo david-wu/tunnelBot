@@ -1,0 +1,28 @@
+
+<div class="top-nav" *ngIf="navVisible$ | async">
+  <div class="page-title-container">
+    <div>David's Page</div>
+  </div>
+  <div class="right-section">
+    <div class="nav-items-container">
+      <div
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/corona']"
+      >Corona</div>
+      <div
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/portfolio']"
+      >Projects</div>
+      <div
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/about-me']"
+      >About Me</div>
+    </div>
+  </div>
+</div>
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>

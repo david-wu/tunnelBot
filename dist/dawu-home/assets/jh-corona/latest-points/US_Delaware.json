@@ -1,0 +1,42 @@
+{
+  "Kent": {
+    "dateStr": "8/19/21",
+    "cases": 19646,
+    "deaths": 387,
+    "recovered": 0,
+    "new": 116,
+    "newDeaths": 0
+  },
+  "New Castle": {
+    "dateStr": "8/19/21",
+    "cases": 67965,
+    "deaths": 915,
+    "recovered": 0,
+    "new": 201,
+    "newDeaths": 1
+  },
+  "Out of DE": {
+    "dateStr": "8/19/21",
+    "cases": 0,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Sussex": {
+    "dateStr": "8/19/21",
+    "cases": 27821,
+    "deaths": 549,
+    "recovered": 0,
+    "new": 112,
+    "newDeaths": 1
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 493,
+    "deaths": 17,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  }
+}

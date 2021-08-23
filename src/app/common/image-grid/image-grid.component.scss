@@ -1,0 +1,35 @@
+@import 'mixins';
+
+:host {
+  height: 100%;
+  width: 100%;
+  .near-by-uploads {
+    flex: 1 1 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.tile {
+  padding: 1px;
+  position: relative;
+}
+
+.magnified-image-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 1rem;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0,0,0, 0.85);
+  img.magnified-image {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}

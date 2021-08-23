@@ -1,0 +1,50 @@
+@import 'variables';
+
+@mixin light-theme {
+  background-color: $eggshell-dark;
+  &:hover:not([disabled]) {
+    background-color: $laurel-green;
+  }
+  &.active:not([disabled]) {
+    background-color: $olive-green;
+    color: $lightest-green;
+  }
+  &[disabled] {
+    pointer-events: none;
+    opacity: 0.3;
+  }
+}
+
+@mixin dark-egg-theme {
+  background-color: $black-olive;
+  color: $lightest-green;
+  &:hover:not([disabled]) {
+    background-color: $granite;
+    color: $lightest-green;
+  }
+  &.active:not([disabled]) {
+    background-color: $eggshell-darker;
+    color: $black-olive;
+  }
+  &[disabled] {
+  pointer-events: none;
+  opacity: 0.3;
+  }
+}
+
+@mixin dark-theme {
+  background-color: $black-olive;
+  color: $lightest-green;
+  &:hover:not([disabled]) {
+  background-color: $army-green;
+  color: $lightest-green;
+  }
+  &.active:not([disabled]) {
+  background-color: $olive-green;
+  color: $lightest-green;
+  }
+  &[disabled] {
+  pointer-events: none;
+  opacity: 0.3;
+  }
+}

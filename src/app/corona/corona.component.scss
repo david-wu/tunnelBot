@@ -1,0 +1,62 @@
+@import 'mixins';
+
+:host {
+    @include responsive-page;
+    .page-container {
+        .left-side {
+            background-color: $eggshell-darker;
+            display: flex;
+            flex-direction: column;
+            dwu-file-explorer {
+                flex: 1 0 0;
+            }
+            .view-tabs {
+                padding: 0 0.25rem;
+                display: flex;
+                .view-tab {
+                    @include light-small-button;
+                    margin: 0 0.25rem;
+                    border-radius: 4px 4px 0 0;
+                    border: 1px solid $moss-green;
+                    border-bottom: none;
+                    flex: 1 1 0;
+                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .star {
+                        margin-right: 0.25rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.clickable {
+    padding: 0.25rem;
+    margin: -0.25rem;
+}
+
+.row-icon {
+    margin-right: 0.25rem;
+}
+.material-icons {
+    &.star {
+        font-size: 1.25rem;
+        opacity: 0.25;
+        &:hover {
+            opacity: 0.5;
+            color: $star-blue;
+        }
+        &.active {
+            opacity: 1;
+            color: $star-blue;
+        }
+    }
+    &.lock {
+        font-size: 1rem;
+        opacity: 0.5;
+    }
+}
+

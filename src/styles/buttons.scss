@@ -1,0 +1,58 @@
+@import 'themes';
+
+@mixin light-mini-button {
+  @include light-theme;
+  @include button-xs;
+}
+
+@mixin light-small-button {
+  @include light-theme;
+  @include button-sm;
+}
+@mixin dark-mini-button {
+  @include dark-theme;
+  @include button-xs;
+}
+@mixin dark-egg-button {
+  @include dark-egg-theme;
+  @include button-md;
+}
+
+@mixin dark-button {
+  @include dark-theme;
+  @include button-md;
+}
+
+@mixin button-xs {
+  min-width: 2rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+  white-space: nowrap;
+  user-select: none;
+  border: none;
+}
+
+@mixin button-sm {
+  min-width: 3rem;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+  white-space: nowrap;
+  user-select: none;
+  border: none;
+}
+
+@mixin button-md {
+  width: 8rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+  white-space: nowrap;
+  user-select: none;
+  border: none;
+}

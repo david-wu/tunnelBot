@@ -1,0 +1,49 @@
+<div class="string-container editing" [class.hidden]="!isEditing">
+  <div class="string-text-input-container">
+    <input
+      #stringInput
+      class="string-text-input"
+      type="text"
+      [ngModel]="editStr"
+      (ngModelChange)="onStrChange($event)"
+      [placeholder]="placeholder"
+      spellcheck="false"
+      autofocus
+    >
+    <div class="string-text space-maker">{{ editStr || placeholder }}</div>
+  </div>
+  <div class="control-buttons">
+    <div
+      class="control-button"
+      (click)="onSaveEdit()"
+      (mousedown)="preventBlur($event)"
+    >
+      <span class="material-icons control-icon">
+        save
+      </span>
+    </div>
+    <div
+      class="control-button"
+      (click)="onCancelEdit()"
+      (mousedown)="preventBlur($event)"
+    >
+      <span class="material-icons control-icon">
+        cancel
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="string-container" [class.hidden]="isEditing" (click)="onEdit()">
+  <div class="string-text" [class.is-placeholder]="!str">{{ str || placeholder }}</div>
+  <div class="control-buttons">
+    <div
+      class="control-button pale"
+    >
+      <span class="material-icons control-icon">
+        create
+      </span>
+    </div>
+  </div>
+</div>
+

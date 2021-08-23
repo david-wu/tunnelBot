@@ -1,0 +1,86 @@
+<div class="page-container">
+  <div class="left-side" [class.expanded]="leftSideExpanded">
+    <dwu-search-input
+      [searchText]="filterStr"
+      (searchTextChange)="onFilterStringChange($event)"
+      [placeholder]="'County, State, or Country'"
+    ></dwu-search-input>
+    <div class="view-tabs">
+      <div
+        class="view-tab"
+        [class.active]="selectedTab === Tab.ALL"
+        (click)="setSelectedTab(Tab.ALL)"
+      >
+        All
+      </div>
+      <div
+        class="view-tab"
+        [class.active]="selectedTab === Tab.SAVED"
+        (click)="setSelectedTab(Tab.SAVED)"
+      >
+        <div class="material-icons star active">
+          grade
+        </div>
+        <div>Saved</div>
+      </div>
+      <div
+        class="view-tab"
+        [class.active]="selectedTab === Tab.COMPARE"
+        (click)="setSelectedTab(Tab.COMPARE)"
+      >
+        <div>Compare</div>
+      </div>
+    </div>
+    <dwu-file-explorer
+      [rootFileId]="fileGroup.rootFileId"
+      [filesById]="fileGroup.filesById"
+      (filesByIdChange)="this.onFilesByIdChange($event)"
+      [fuzzFilterString]="filterStr"
+      [disableOpening]="this.selectedTab === Tab.SAVED"
+      [closedFileIds]="fileGroup.closedFileIds"
+      (closedFileIdsChange)="fileGroup.setClosedFileIds($event)"
+      [selectedFileIds]="(this.selectedTab === Tab.COMPARE) ? compareSelectedFileIds : fileGroup.selectedFileIds"
+      (selectedFileIdsChange)="onSelectedFileIdsChange($event)"
+      [rowIconTemplate]="rowIconTemplate"
+      [perfMode]="true"
+      [dragEnabled]="this.selectedTab === Tab.SAVED"
+      [multiFileSelect]="selectedTab === Tab.COMPARE"
+    ></dwu-file-explorer>
+    <div class="expander" (click)="leftSideExpanded = !leftSideExpanded;">
+      <span class="material-icons expander-icon" [class.flipped]="leftSideExpanded">
+        expand_more
+      </span>
+    </div>
+  </div>
+  <div class="right-side">
+    <ng-container  *ngIf="getSelectedFileIds() as selectedFileId">
+      <dwu-corona-file-viewer
+        [selectedFileIds]="getSelectedFileIds()"
+        [locationsByFileId]="locationsByFileId"
+        [filesById]="fileGroup.filesById"
+        [isComparing]="selectedTab === Tab.COMPARE"
+        [(disabledBarKeys)]="disabledBarKeys"
+        [(disabledNormalKeys)]="disabledNormalKeys"
+        [(isViewingNormalized)]="isViewingNormalized"
+        [(isViewingLineChart)]="isViewingLineChart"
+      ></dwu-corona-file-viewer>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #rowIconTemplate let-file="file">
+  <div
+    *ngIf="lockdownDataByLocation[locationsByFileId[file.id]]"
+    class="material-icons row-icon lock"
+  >
+    lock
+  </div>
+  <div
+    *ngIf="locationsByFileId[file.id]"
+    class="material-icons star clickable row-icon"
+    [class.active]="favoriteFileIds.has(file.id)"
+    (click)="toggleFavoriteFile(file, $event)"
+  >
+    grade
+  </div>
+</ng-template>

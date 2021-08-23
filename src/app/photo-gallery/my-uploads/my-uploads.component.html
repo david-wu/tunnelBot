@@ -1,0 +1,25 @@
+<ng-container *ngIf="user$ | async as user; else loginTemplate">
+  <div class="control-bar">
+    <div class="left-side">
+      <dwu-user-login></dwu-user-login>
+      <dwu-file-uploader
+        (fileChange)="onFileChange($event, user)"
+      ></dwu-file-uploader>
+    </div>
+    <div class="right-side">
+      <dwu-zoom-level-picker
+        [(zoomLevel)]="zoomLevel"
+      ></dwu-zoom-level-picker>
+    </div>
+  </div>
+  <dwu-image-grid
+    [files]="uploadedFiles$ | async"
+    [zoomLevel]="zoomLevel"
+    (deleteImage)="onDeleteImage($event, user)"
+  ></dwu-image-grid>
+</ng-container>
+<ng-template #loginTemplate>
+  <div class="login-container">
+    <dwu-user-login></dwu-user-login>
+  </div>
+</ng-template>

@@ -1,0 +1,146 @@
+{
+  "Androscoggin": {
+    "dateStr": "8/19/21",
+    "cases": 8655,
+    "deaths": 88,
+    "recovered": 0,
+    "new": 12,
+    "newDeaths": 0
+  },
+  "Aroostook": {
+    "dateStr": "8/19/21",
+    "cases": 2151,
+    "deaths": 56,
+    "recovered": 0,
+    "new": 16,
+    "newDeaths": 1
+  },
+  "Cumberland": {
+    "dateStr": "8/19/21",
+    "cases": 18000,
+    "deaths": 209,
+    "recovered": 0,
+    "new": 26,
+    "newDeaths": 3
+  },
+  "Franklin": {
+    "dateStr": "8/19/21",
+    "cases": 1457,
+    "deaths": 15,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Hancock": {
+    "dateStr": "8/19/21",
+    "cases": 1522,
+    "deaths": 41,
+    "recovered": 0,
+    "new": 17,
+    "newDeaths": 1
+  },
+  "Kennebec": {
+    "dateStr": "8/19/21",
+    "cases": 6892,
+    "deaths": 85,
+    "recovered": 0,
+    "new": 13,
+    "newDeaths": 2
+  },
+  "Knox": {
+    "dateStr": "8/19/21",
+    "cases": 1265,
+    "deaths": 7,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Lincoln": {
+    "dateStr": "8/19/21",
+    "cases": 1185,
+    "deaths": 3,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Out of ME": {
+    "dateStr": "8/19/21",
+    "cases": 0,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Oxford": {
+    "dateStr": "8/19/21",
+    "cases": 3801,
+    "deaths": 71,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 1
+  },
+  "Penobscot": {
+    "dateStr": "8/19/21",
+    "cases": 7017,
+    "deaths": 108,
+    "recovered": 0,
+    "new": 36,
+    "newDeaths": 1
+  },
+  "Piscataquis": {
+    "dateStr": "8/19/21",
+    "cases": 667,
+    "deaths": 7,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Sagadahoc": {
+    "dateStr": "8/19/21",
+    "cases": 1526,
+    "deaths": 12,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Somerset": {
+    "dateStr": "8/19/21",
+    "cases": 2449,
+    "deaths": 35,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 1
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 26,
+    "deaths": 3,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Waldo": {
+    "dateStr": "8/19/21",
+    "cases": 1383,
+    "deaths": 22,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Washington": {
+    "dateStr": "8/19/21",
+    "cases": 1029,
+    "deaths": 19,
+    "recovered": 0,
+    "new": 8,
+    "newDeaths": 1
+  },
+  "York": {
+    "dateStr": "8/19/21",
+    "cases": 14271,
+    "deaths": 143,
+    "recovered": 0,
+    "new": 30,
+    "newDeaths": 1
+  }
+}

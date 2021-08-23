@@ -1,0 +1,642 @@
+{
+  "Adjuntas": {
+    "dateStr": "8/19/21",
+    "cases": 498,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Aguada": {
+    "dateStr": "8/19/21",
+    "cases": 1934,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 25,
+    "newDeaths": 0
+  },
+  "Aguadilla": {
+    "dateStr": "8/19/21",
+    "cases": 2281,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 48,
+    "newDeaths": 0
+  },
+  "Aguas Buenas": {
+    "dateStr": "8/19/21",
+    "cases": 1320,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Aibonito": {
+    "dateStr": "8/19/21",
+    "cases": 755,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Anasco": {
+    "dateStr": "8/19/21",
+    "cases": 1079,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 8,
+    "newDeaths": 0
+  },
+  "Arecibo": {
+    "dateStr": "8/19/21",
+    "cases": 3331,
+    "deaths": 279,
+    "recovered": 0,
+    "new": 16,
+    "newDeaths": 0
+  },
+  "Arroyo": {
+    "dateStr": "8/19/21",
+    "cases": 340,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Barceloneta": {
+    "dateStr": "8/19/21",
+    "cases": 893,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 10,
+    "newDeaths": 0
+  },
+  "Barranquitas": {
+    "dateStr": "8/19/21",
+    "cases": 1321,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Bayamon": {
+    "dateStr": "8/19/21",
+    "cases": 11589,
+    "deaths": 591,
+    "recovered": 0,
+    "new": 94,
+    "newDeaths": 0
+  },
+  "Cabo Rojo": {
+    "dateStr": "8/19/21",
+    "cases": 1325,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 13,
+    "newDeaths": 0
+  },
+  "Caguas": {
+    "dateStr": "8/19/21",
+    "cases": 7026,
+    "deaths": 382,
+    "recovered": 0,
+    "new": 44,
+    "newDeaths": 0
+  },
+  "Camuy": {
+    "dateStr": "8/19/21",
+    "cases": 1381,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 12,
+    "newDeaths": 0
+  },
+  "Canovanas": {
+    "dateStr": "8/19/21",
+    "cases": 2267,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 37,
+    "newDeaths": 0
+  },
+  "Carolina": {
+    "dateStr": "8/19/21",
+    "cases": 9784,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 55,
+    "newDeaths": 0
+  },
+  "Catano": {
+    "dateStr": "8/19/21",
+    "cases": 1394,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 15,
+    "newDeaths": 0
+  },
+  "Cayey": {
+    "dateStr": "8/19/21",
+    "cases": 1436,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  },
+  "Ceiba": {
+    "dateStr": "8/19/21",
+    "cases": 471,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 8,
+    "newDeaths": 0
+  },
+  "Ciales": {
+    "dateStr": "8/19/21",
+    "cases": 822,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Cidra": {
+    "dateStr": "8/19/21",
+    "cases": 1458,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  },
+  "Coamo": {
+    "dateStr": "8/19/21",
+    "cases": 970,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Comerio": {
+    "dateStr": "8/19/21",
+    "cases": 785,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Corozal": {
+    "dateStr": "8/19/21",
+    "cases": 1702,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Culebra": {
+    "dateStr": "8/19/21",
+    "cases": 41,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Dorado": {
+    "dateStr": "8/19/21",
+    "cases": 2395,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 25,
+    "newDeaths": 0
+  },
+  "Fajardo": {
+    "dateStr": "8/19/21",
+    "cases": 1464,
+    "deaths": 103,
+    "recovered": 0,
+    "new": 19,
+    "newDeaths": 0
+  },
+  "Florida": {
+    "dateStr": "8/19/21",
+    "cases": 617,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Guanica": {
+    "dateStr": "8/19/21",
+    "cases": 286,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Guayama": {
+    "dateStr": "8/19/21",
+    "cases": 946,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Guayanilla": {
+    "dateStr": "8/19/21",
+    "cases": 441,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Guaynabo": {
+    "dateStr": "8/19/21",
+    "cases": 4981,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 48,
+    "newDeaths": 0
+  },
+  "Gurabo": {
+    "dateStr": "8/19/21",
+    "cases": 2440,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 25,
+    "newDeaths": 0
+  },
+  "Hatillo": {
+    "dateStr": "8/19/21",
+    "cases": 1377,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 19,
+    "newDeaths": 0
+  },
+  "Hormigueros": {
+    "dateStr": "8/19/21",
+    "cases": 545,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Humacao": {
+    "dateStr": "8/19/21",
+    "cases": 2307,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 13,
+    "newDeaths": 0
+  },
+  "Isabela": {
+    "dateStr": "8/19/21",
+    "cases": 1950,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 15,
+    "newDeaths": 0
+  },
+  "Jayuya": {
+    "dateStr": "8/19/21",
+    "cases": 392,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Juana Diaz": {
+    "dateStr": "8/19/21",
+    "cases": 1259,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 8,
+    "newDeaths": 0
+  },
+  "Juncos": {
+    "dateStr": "8/19/21",
+    "cases": 2451,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 8,
+    "newDeaths": 0
+  },
+  "Lajas": {
+    "dateStr": "8/19/21",
+    "cases": 542,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 12,
+    "newDeaths": 0
+  },
+  "Lares": {
+    "dateStr": "8/19/21",
+    "cases": 923,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 11,
+    "newDeaths": 0
+  },
+  "Las Marias": {
+    "dateStr": "8/19/21",
+    "cases": 301,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Las Piedras": {
+    "dateStr": "8/19/21",
+    "cases": 1774,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "Loiza": {
+    "dateStr": "8/19/21",
+    "cases": 1377,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 15,
+    "newDeaths": 0
+  },
+  "Luquillo": {
+    "dateStr": "8/19/21",
+    "cases": 889,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 14,
+    "newDeaths": 0
+  },
+  "Manati": {
+    "dateStr": "8/19/21",
+    "cases": 1617,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 21,
+    "newDeaths": 0
+  },
+  "Maricao": {
+    "dateStr": "8/19/21",
+    "cases": 128,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Maunabo": {
+    "dateStr": "8/19/21",
+    "cases": 399,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Mayaguez": {
+    "dateStr": "8/19/21",
+    "cases": 2865,
+    "deaths": 246,
+    "recovered": 0,
+    "new": 41,
+    "newDeaths": 0
+  },
+  "Moca": {
+    "dateStr": "8/19/21",
+    "cases": 1883,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 12,
+    "newDeaths": 0
+  },
+  "Morovis": {
+    "dateStr": "8/19/21",
+    "cases": 1574,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Naguabo": {
+    "dateStr": "8/19/21",
+    "cases": 1181,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 15,
+    "newDeaths": 0
+  },
+  "Naranjito": {
+    "dateStr": "8/19/21",
+    "cases": 1700,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 13,
+    "newDeaths": 0
+  },
+  "Orocovis": {
+    "dateStr": "8/19/21",
+    "cases": 948,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Out of PR": {
+    "dateStr": "8/19/21",
+    "cases": 1145,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Patillas": {
+    "dateStr": "8/19/21",
+    "cases": 391,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Penuelas": {
+    "dateStr": "8/19/21",
+    "cases": 624,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 14,
+    "newDeaths": 0
+  },
+  "Ponce": {
+    "dateStr": "8/19/21",
+    "cases": 3879,
+    "deaths": 186,
+    "recovered": 0,
+    "new": 25,
+    "newDeaths": 0
+  },
+  "Quebradillas": {
+    "dateStr": "8/19/21",
+    "cases": 1080,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 17,
+    "newDeaths": 0
+  },
+  "Rincon": {
+    "dateStr": "8/19/21",
+    "cases": 691,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 12,
+    "newDeaths": 0
+  },
+  "Rio Grande": {
+    "dateStr": "8/19/21",
+    "cases": 2440,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 25,
+    "newDeaths": 0
+  },
+  "Sabana Grande": {
+    "dateStr": "8/19/21",
+    "cases": 526,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 11,
+    "newDeaths": 0
+  },
+  "Salinas": {
+    "dateStr": "8/19/21",
+    "cases": 806,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 11,
+    "newDeaths": 0
+  },
+  "San German": {
+    "dateStr": "8/19/21",
+    "cases": 818,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 10,
+    "newDeaths": 0
+  },
+  "San Juan": {
+    "dateStr": "8/19/21",
+    "cases": 21036,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 142,
+    "newDeaths": 0
+  },
+  "San Lorenzo": {
+    "dateStr": "8/19/21",
+    "cases": 1878,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "San Sebastian": {
+    "dateStr": "8/19/21",
+    "cases": 1607,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 20,
+    "newDeaths": 0
+  },
+  "Santa Isabel": {
+    "dateStr": "8/19/21",
+    "cases": 527,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Toa Alta": {
+    "dateStr": "8/19/21",
+    "cases": 4344,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 28,
+    "newDeaths": 0
+  },
+  "Toa Baja": {
+    "dateStr": "8/19/21",
+    "cases": 4415,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 45,
+    "newDeaths": 0
+  },
+  "Trujillo Alto": {
+    "dateStr": "8/19/21",
+    "cases": 3396,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 23,
+    "newDeaths": 0
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 4834,
+    "deaths": 2715,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 13
+  },
+  "Utuado": {
+    "dateStr": "8/19/21",
+    "cases": 983,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 10,
+    "newDeaths": 0
+  },
+  "Vega Alta": {
+    "dateStr": "8/19/21",
+    "cases": 2065,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 38,
+    "newDeaths": 0
+  },
+  "Vega Baja": {
+    "dateStr": "8/19/21",
+    "cases": 3328,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 34,
+    "newDeaths": 0
+  },
+  "Vieques": {
+    "dateStr": "8/19/21",
+    "cases": 138,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Villalba": {
+    "dateStr": "8/19/21",
+    "cases": 805,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Yabucoa": {
+    "dateStr": "8/19/21",
+    "cases": 1206,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 8,
+    "newDeaths": 0
+  },
+  "Yauco": {
+    "dateStr": "8/19/21",
+    "cases": 940,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  }
+}

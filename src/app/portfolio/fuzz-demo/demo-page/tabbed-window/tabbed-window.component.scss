@@ -1,0 +1,43 @@
+
+:host {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  .tab-container {
+    user-select: none;
+    flex: 0 0 auto;
+    display: flex;
+    background-color: #e8e8e8;
+    .tab {
+      flex: 0 1 auto;
+      padding: 0.5rem 0.5rem;
+      border-right: 1px solid #dddddd;
+      background-color: #eeeeee;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      // https://stackoverflow.com/questions/37594018/styling-dots-on-text-overflow-ellipsis
+      font-size: 10px;
+      span {
+        font-size: 1rem;
+      }
+
+      &:hover {
+        background-color: #f8f8f8;
+      }
+      &.active {
+        flex: 0 0 auto;
+        background-color: #fdfdfd;
+      }
+    }
+  }
+  .active-tab-content-container {
+    flex: 1 1 auto;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+}

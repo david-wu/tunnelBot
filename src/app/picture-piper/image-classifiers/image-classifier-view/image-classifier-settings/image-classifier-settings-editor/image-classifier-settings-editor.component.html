@@ -1,0 +1,46 @@
+<div class="control-buttons">
+  <ng-container *ngIf="!isEditing">
+    <button class="control-button" (click)="startEdit()">Edit</button>
+  </ng-container>
+  <ng-container *ngIf="isEditing">
+    <button class="control-button" (click)="save()">Save</button>
+    <button class="control-button" (click)="stopEdit()">Cancel</button>
+  </ng-container>
+</div>
+
+<div class="join-table">
+  <div class="file-explorer-container">
+    <div class="explorer-title">Sources</div>
+    <dwu-search-input
+      [(searchText)]="imageSourcesFilterStr"
+    ></dwu-search-input>
+    <dwu-resource-list-view
+      [resourceConfig]="imageSourcesConfig"
+      [filterStr]="imageSourcesFilterStr"
+      [selectedResourceIds]="isEditing ? editImageSourceIds : selectedImageSourceIds"
+      (selectedResourceIdsChange)="onSelectedImageSourceIdsChange($event)"
+      [isMultiSelect]= "isEditing"
+    ></dwu-resource-list-view>
+    <!-- <dwu-resource-selector
+      class="file-explorer"
+      [resources]="imageSources$ | async"
+      [filterStr]="imageSourcesFilterStr"
+      [selectedResourceIds]="isEditing ? editImageSourceIds : selectedImageSourceIds"
+      (selectedResourceIdsChange)="onSelectedImageSourceIdsChange($event)"
+      [isMultiSelect]= "isEditing"
+    ></dwu-resource-selector> -->
+  </div>
+  <div class="file-explorer-container">
+    <div class="explorer-title">Classifiers</div>
+    <dwu-search-input
+      [(searchText)]="classifiersFilterStr"
+    ></dwu-search-input>
+    <dwu-resource-list-view
+      [resourceConfig]="classifiersConfig"
+      [filterStr]="classifiersFilterStr"
+      [selectedResourceIds]="isEditing ? editClassifierIds : selectedClassifierIds"
+      (selectedResourceIdsChange)="onSelectedClassifierIdsChange($event)"
+      [isMultiSelect]= "isEditing"
+    ></dwu-resource-list-view>
+  </div>
+</div>

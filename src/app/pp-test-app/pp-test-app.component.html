@@ -1,0 +1,30 @@
+<p>Welcome to Picture Piper Test App</p>
+<div class="camera-container">
+  <div class="camera-control-buttons">
+    <button
+      class="control-button"
+      (click)="onEnableCamera()"
+    >Enable Camera</button>
+    <button
+      class="control-button"
+      (click)="onDisableCamera()"
+    >Disable Camera</button>
+  </div>
+  <div class="video-container">
+    <video
+      #webCamEl
+      autoplay
+      playsinline
+      muted
+    ></video>
+  </div>
+</div>
+<label>
+  <input type="checkbox">
+  Save training images
+</label>
+<div *ngFor="let result of results">
+  {{ result.className }}: ({{ result.probability }})
+</div>
+<!-- <video [style.display]="'none'" #webCamEl autoplay playsinline muted width="224" height="224"></video> -->
+

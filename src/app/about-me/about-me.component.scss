@@ -1,0 +1,28 @@
+@import 'mixins';
+
+:host {
+  @include responsive-page;
+  .page-container {
+    padding-left: 1rem;
+    .contact-info {
+      padding: 0.5rem 0;
+    }
+    .footer {
+      padding-bottom: 15rem;
+    }
+  }
+  h3 {
+    padding: 0.75rem 0 0.25rem;
+  }
+  ul {
+    list-style-type: disc;
+    list-style-position: inside;
+    li {
+      margin: 0.5rem 0 0.5rem 1rem;
+    }
+  }
+  .img-md {
+    max-height: 20rem;
+    max-width: 100%;
+  }
+}

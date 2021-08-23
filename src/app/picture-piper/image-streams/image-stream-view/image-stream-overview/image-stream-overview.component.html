@@ -1,0 +1,26 @@
+<ng-container *ngIf="selectedImageStream$ | async as selectedImageStream">
+  <h3>
+    <dwu-input-string-editor
+      [str]="selectedImageStream.label || selectedImageStream.id"
+      (strChange)="onLabelChange(selectedImageStream.id, $event)"
+      [placeholder]="'set a stream name..'"
+    ></dwu-input-string-editor>
+  </h3>
+  <div class="description-editor">
+    <dwu-input-string-editor
+      [str]="selectedImageStream.description || ''"
+      (strChange)="onDescriptionChange(selectedImageStream.id, $event)"
+      [placeholder]="'set a description..'"
+    ></dwu-input-string-editor>
+  </div>
+  <div class="control-buttons">
+    <span class="delete-button">
+      delete
+    </span>
+  </div>
+  <div class="info-grid">
+    <div>id: {{ selectedImageStream.id }}</div>
+    <div>mostRecentImage: {{ selectedImageStream }}</div>
+    <div>upload count over time</div>
+  </div>
+</ng-container>

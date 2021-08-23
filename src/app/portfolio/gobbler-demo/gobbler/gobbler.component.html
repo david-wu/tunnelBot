@@ -1,0 +1,52 @@
+<div class="game-container">
+  <div class="game-menu">
+    <span>{{ gblGame.isP1Turn ? 'p1' : 'p2' }}</span>
+    <span>'s turn</span>
+    <button (click)="resetGame()">Reset</button>
+  </div>
+  <div class="game-body">
+
+    <div class="board-container">
+      <div *ngIf="gblGame.board as board" class="board">
+        <div *ngFor="let row of board.state; let rowIndex=index" class="row">
+          <div
+            *ngFor="let cell of row; let cellIndex=index"
+            class="cell"
+            [class.valid-move]="validMoves[rowIndex] && validMoves[rowIndex][cellIndex]"
+            (click)="makeMove(rowIndex, cellIndex)"
+          >
+            <dwu-gbl-piece
+              *ngFor="let piece of cell"
+              [piece]="piece"
+              [heldPiece]="heldPiece"
+            ></dwu-gbl-piece>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-bar">
+      <div class="pieces-container">
+        <div *ngIf="gblGame.p1Pieces as pieces" class="pieces">
+          <dwu-gbl-piece
+            *ngFor="let piece of pieces"
+            [piece]="piece"
+            [heldPiece]="heldPiece"
+            (click)="holdPiece(piece)"
+          ></dwu-gbl-piece>
+        </div>
+      </div>
+
+      <div class="pieces-container">
+        <div *ngIf="gblGame.p2Pieces as pieces" class="pieces">
+          <dwu-gbl-piece
+            *ngFor="let piece of pieces"
+            [piece]="piece"
+            [heldPiece]="heldPiece"
+            (click)="holdPiece(piece)"
+          ></dwu-gbl-piece>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

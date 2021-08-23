@@ -1,0 +1,41 @@
+<h2>
+  <div>Backyard Patio</div>
+  <dwu-zoom-level-picker
+    [(zoomLevel)]="zoomLevel"
+  ></dwu-zoom-level-picker>
+</h2>
+<div class="scroll-grid-container">
+  <dwu-virtual-scroll-grid
+    [tileIds]="tileIds"
+    [tileTemplate]="tileTemplate"
+    [tileOptions]="tileOptions"
+    [maxColumns]="zoomLevel"
+    [(alwaysUseMaxColumns)]="alwaysUseMaxColumns"
+    [(centeredTileId)]="centeredTileId"
+  ></dwu-virtual-scroll-grid>
+</div>
+
+<!-- <div *ngIf="magnifiedImage" class="magnified-image-container" (click)="magnifiedImage = undefined">
+  <img [src]="getLgSrc(magnifiedImage)" class="magnified-image">
+</div> -->
+
+<ng-template
+  #tileTemplate
+  let-scaledImageWidthStr="scaledImageWidthStr"
+  let-scaledImageHeightStr="scaledImageHeightStr"
+  let-tileId="tileId"
+  let-targetTileOption="targetTileOption"
+>
+  <div
+    class="tile"
+    [style.width]="scaledImageWidthStr"
+    [style.height]="scaledImageHeightStr"
+    (click)="centeredTileId = tileId; zoomLevel = 1;"
+  >
+    <img
+      [src]="getImgSrc(tileId, targetTileOption.maxWidth)"
+      class="grid-image"
+    >
+  </div>
+</ng-template>
+

@@ -1,0 +1,49 @@
+<div class="top-nav">
+  <div class="page-title-container" [routerLink]="['./']">
+    <div>Picture Piper</div>
+  </div>
+  <div class="right-section">
+    <div class="nav-items-container" *ngIf="user$ | async">
+      <div
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        [routerLink]="['image-streams']"
+      >Streams</div>
+      <div
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        [routerLink]="['image-classifiers']"
+      >Classifiers</div>
+      <div
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        [routerLink]="['image-sources']"
+      >Sources</div>
+
+<!--       <div
+        class="nav-item"
+        [routerLinkActive]="['active']"
+        [routerLink]="['effects']"
+      >Effects</div> -->
+      <dwu-user-login></dwu-user-login>
+    </div>
+  </div>
+</div>
+<div
+  class="main-content"
+  *ngIf="user$ | async; else loginTemplate"
+>
+  <router-outlet></router-outlet>
+</div>
+
+<ng-template #loginTemplate>
+  <div class="login-page">
+    <h3>
+      Welcome to the Picture Piper Platform!
+    </h3>
+    <p>
+      Please sign in to continue.
+    </p>
+    <dwu-user-login></dwu-user-login>
+  </div>
+</ng-template>

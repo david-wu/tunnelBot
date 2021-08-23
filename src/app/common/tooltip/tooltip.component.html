@@ -1,0 +1,17 @@
+<ng-content></ng-content>
+
+<ng-template #defaultTemplate>
+  <div *ngIf="text" class="default-template">
+    <div class="text-container">
+      {{ text }}
+    </div>
+    <div class="text-space-maker">
+      {{ text }}
+    </div>
+  </div>
+  <div *ngIf="template" class="default-template">
+    <ng-container
+       *ngTemplateOutlet="template">
+    </ng-container>
+  </div>
+</ng-template>

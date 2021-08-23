@@ -1,0 +1,32 @@
+<img
+  *ngIf="src; else loader"
+  [src]="src"
+  class="grid-image"
+>
+
+<div class="overlay" [class.is-visible]="isFocused && !hideOverlay">
+  <div class="corner upper-left"></div>
+  <div class="corner upper-right"></div>
+  <div class="corner bottom-right"></div>
+  <div class="corner bottom-left"></div>
+  <div class="icon upper-left" (click)="onSelect($event)">
+    <i class="material-icons">check_box_outline_blank</i>
+  </div>
+  <div class="icon upper-right" (click)="onDelete($event)">
+    <i class="material-icons">delete</i>
+  </div>
+  <div class="icon bottom-left" (click)="onDownload($event)">
+    <i class="material-icons">cloud_download</i>
+  </div>
+  <div class="icon bottom-right" (click)="onZoomIn($event)">
+    <i class="material-icons">zoom_in</i>
+  </div>
+
+</div>
+
+<ng-template #loader>
+  <div class="loader-container centered">
+    <div class="dwu-loader"></div>
+  </div>
+</ng-template>
+

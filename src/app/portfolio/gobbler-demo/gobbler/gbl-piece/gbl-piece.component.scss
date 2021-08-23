@@ -1,0 +1,40 @@
+@import 'mixins';
+
+.piece-container {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  .piece {
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.8;
+    &.held {
+      border: 2px solid black;
+    }
+    &.size-1 {
+      height: 35%;
+      width: 35%;
+    }
+    &.size-2 {
+      height: 50%;
+      width: 50%;
+    }
+    &.size-3 {
+      height: 65%;
+      width: 65%;
+    }
+    &.size-4 {
+      height: 80%;
+      width: 80%;
+    }
+    &.p1 {
+      background-color: blue;
+    }
+    &.p2 {
+      background-color: red;
+    }
+  }
+}

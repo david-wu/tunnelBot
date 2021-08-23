@@ -1,0 +1,93 @@
+
+@import 'mixins';
+
+:host {
+  background-color: $eggshell-darker;
+  overflow: auto;
+  overflow-x: hidden;
+  display: flex;
+}
+
+.viewport {
+  flex: 1 1 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.file-row {
+  user-select: none;
+  height: 1.5rem;
+  transition: height 75ms linear, color 75ms linear;
+  &.odd {
+    background-color: $eggshell-light;
+  }
+  &.even {
+    background-color: $eggshell-dark;
+  }
+  &.selected {
+    background-color: $olive-green;
+    color: $lightest-green;
+    transition: height 75ms linear;
+  }
+  &:hover:not(.selected):not(.dragging) {
+    background-color: $laurel-green;
+  }
+  &.being-dragged {
+    color: rgba(0,0,0,0);
+    border: 2px dashed $army-green;
+    border-radius: 5px;
+  }
+  &.hidden {
+    height: 0;
+    padding: 0;
+    color: rgba(0,0,0,0);
+  }
+
+  .dragula-container {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    > * {
+      flex: 0 0 auto;
+    }
+    .material-icons {
+      user-select: none;
+      font-size: 1rem;
+      &.arrow {
+        // make click target bigger
+        padding: 0.25rem;
+        margin: -0.25rem;
+        transition: transform 75ms linear;
+        transform: rotate(90deg);
+        &.closed {
+          transform: rotate(0);
+        }
+      }
+      &.dragula-handle {
+        height: 1.5rem;
+        line-height: 1.5rem;
+        touch-action: none;
+        padding: 0 0.5rem;
+        margin: 0 -0.5rem 0 0;
+        font-size: 1.25rem;
+        cursor: grab;
+      }
+    }
+    .space-maker {
+      width: 1rem;
+    }
+    .file-label {
+      flex: 1 1 0;
+      margin-left: 0.25rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.clickable {
+  cursor: pointer;
+}

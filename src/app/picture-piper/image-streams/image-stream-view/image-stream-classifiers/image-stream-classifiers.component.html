@@ -1,0 +1,8 @@
+<p>
+  Run your stream through the selected classifiers
+</p>
+<dwu-image-stream-classifiers-editor
+  *ngIf="selectedImageStream$ | async as selectedImageStream"
+  [imageStream]="selectedImageStream"
+  (onSave)="onSave(selectedImageStream.id, $event)"
+></dwu-image-stream-classifiers-editor>

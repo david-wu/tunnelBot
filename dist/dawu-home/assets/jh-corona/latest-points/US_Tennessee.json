@@ -1,0 +1,778 @@
+{
+  "Anderson": {
+    "dateStr": "8/19/21",
+    "cases": 9635,
+    "deaths": 182,
+    "recovered": 0,
+    "new": 53,
+    "newDeaths": 0
+  },
+  "Bedford": {
+    "dateStr": "8/19/21",
+    "cases": 7231,
+    "deaths": 135,
+    "recovered": 0,
+    "new": 27,
+    "newDeaths": 0
+  },
+  "Benton": {
+    "dateStr": "8/19/21",
+    "cases": 1908,
+    "deaths": 42,
+    "recovered": 0,
+    "new": 14,
+    "newDeaths": 0
+  },
+  "Bledsoe": {
+    "dateStr": "8/19/21",
+    "cases": 2479,
+    "deaths": 13,
+    "recovered": 0,
+    "new": 8,
+    "newDeaths": 0
+  },
+  "Blount": {
+    "dateStr": "8/19/21",
+    "cases": 17690,
+    "deaths": 210,
+    "recovered": 0,
+    "new": 89,
+    "newDeaths": 0
+  },
+  "Bradley": {
+    "dateStr": "8/19/21",
+    "cases": 16812,
+    "deaths": 159,
+    "recovered": 0,
+    "new": 83,
+    "newDeaths": 1
+  },
+  "Campbell": {
+    "dateStr": "8/19/21",
+    "cases": 4613,
+    "deaths": 64,
+    "recovered": 0,
+    "new": 19,
+    "newDeaths": 0
+  },
+  "Cannon": {
+    "dateStr": "8/19/21",
+    "cases": 2101,
+    "deaths": 32,
+    "recovered": 0,
+    "new": 11,
+    "newDeaths": 0
+  },
+  "Carroll": {
+    "dateStr": "8/19/21",
+    "cases": 4093,
+    "deaths": 85,
+    "recovered": 0,
+    "new": 39,
+    "newDeaths": 1
+  },
+  "Carter": {
+    "dateStr": "8/19/21",
+    "cases": 7561,
+    "deaths": 171,
+    "recovered": 0,
+    "new": 90,
+    "newDeaths": 0
+  },
+  "Cheatham": {
+    "dateStr": "8/19/21",
+    "cases": 5073,
+    "deaths": 56,
+    "recovered": 0,
+    "new": 29,
+    "newDeaths": 0
+  },
+  "Chester": {
+    "dateStr": "8/19/21",
+    "cases": 2579,
+    "deaths": 54,
+    "recovered": 0,
+    "new": 32,
+    "newDeaths": 1
+  },
+  "Claiborne": {
+    "dateStr": "8/19/21",
+    "cases": 3569,
+    "deaths": 78,
+    "recovered": 0,
+    "new": 37,
+    "newDeaths": 0
+  },
+  "Clay": {
+    "dateStr": "8/19/21",
+    "cases": 1164,
+    "deaths": 31,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  },
+  "Cocke": {
+    "dateStr": "8/19/21",
+    "cases": 5250,
+    "deaths": 102,
+    "recovered": 0,
+    "new": 74,
+    "newDeaths": 0
+  },
+  "Coffee": {
+    "dateStr": "8/19/21",
+    "cases": 7603,
+    "deaths": 125,
+    "recovered": 0,
+    "new": 89,
+    "newDeaths": 0
+  },
+  "Crockett": {
+    "dateStr": "8/19/21",
+    "cases": 2557,
+    "deaths": 53,
+    "recovered": 0,
+    "new": 26,
+    "newDeaths": 1
+  },
+  "Cumberland": {
+    "dateStr": "8/19/21",
+    "cases": 7811,
+    "deaths": 147,
+    "recovered": 0,
+    "new": 58,
+    "newDeaths": 0
+  },
+  "Davidson": {
+    "dateStr": "8/19/21",
+    "cases": 99078,
+    "deaths": 986,
+    "recovered": 0,
+    "new": 488,
+    "newDeaths": 2
+  },
+  "DeKalb": {
+    "dateStr": "8/19/21",
+    "cases": 3078,
+    "deaths": 57,
+    "recovered": 0,
+    "new": 16,
+    "newDeaths": 0
+  },
+  "Decatur": {
+    "dateStr": "8/19/21",
+    "cases": 1805,
+    "deaths": 39,
+    "recovered": 0,
+    "new": 16,
+    "newDeaths": 0
+  },
+  "Dickson": {
+    "dateStr": "8/19/21",
+    "cases": 7771,
+    "deaths": 122,
+    "recovered": 0,
+    "new": 75,
+    "newDeaths": 1
+  },
+  "Dyer": {
+    "dateStr": "8/19/21",
+    "cases": 6104,
+    "deaths": 112,
+    "recovered": 0,
+    "new": 59,
+    "newDeaths": 0
+  },
+  "Fayette": {
+    "dateStr": "8/19/21",
+    "cases": 5882,
+    "deaths": 86,
+    "recovered": 0,
+    "new": 32,
+    "newDeaths": 0
+  },
+  "Fentress": {
+    "dateStr": "8/19/21",
+    "cases": 2679,
+    "deaths": 50,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  },
+  "Franklin": {
+    "dateStr": "8/19/21",
+    "cases": 5873,
+    "deaths": 92,
+    "recovered": 0,
+    "new": 48,
+    "newDeaths": 0
+  },
+  "Gibson": {
+    "dateStr": "8/19/21",
+    "cases": 7918,
+    "deaths": 154,
+    "recovered": 0,
+    "new": 85,
+    "newDeaths": 0
+  },
+  "Giles": {
+    "dateStr": "8/19/21",
+    "cases": 4424,
+    "deaths": 101,
+    "recovered": 0,
+    "new": 17,
+    "newDeaths": 0
+  },
+  "Grainger": {
+    "dateStr": "8/19/21",
+    "cases": 2963,
+    "deaths": 51,
+    "recovered": 0,
+    "new": 26,
+    "newDeaths": 0
+  },
+  "Greene": {
+    "dateStr": "8/19/21",
+    "cases": 9040,
+    "deaths": 169,
+    "recovered": 0,
+    "new": 101,
+    "newDeaths": 4
+  },
+  "Grundy": {
+    "dateStr": "8/19/21",
+    "cases": 1994,
+    "deaths": 35,
+    "recovered": 0,
+    "new": 13,
+    "newDeaths": 0
+  },
+  "Hamblen": {
+    "dateStr": "8/19/21",
+    "cases": 9875,
+    "deaths": 179,
+    "recovered": 0,
+    "new": 82,
+    "newDeaths": 0
+  },
+  "Hamilton": {
+    "dateStr": "8/19/21",
+    "cases": 50785,
+    "deaths": 537,
+    "recovered": 0,
+    "new": 258,
+    "newDeaths": 2
+  },
+  "Hancock": {
+    "dateStr": "8/19/21",
+    "cases": 724,
+    "deaths": 13,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  },
+  "Hardeman": {
+    "dateStr": "8/19/21",
+    "cases": 4007,
+    "deaths": 66,
+    "recovered": 0,
+    "new": 26,
+    "newDeaths": 0
+  },
+  "Hardin": {
+    "dateStr": "8/19/21",
+    "cases": 4058,
+    "deaths": 70,
+    "recovered": 0,
+    "new": 30,
+    "newDeaths": 0
+  },
+  "Hawkins": {
+    "dateStr": "8/19/21",
+    "cases": 7123,
+    "deaths": 124,
+    "recovered": 0,
+    "new": 63,
+    "newDeaths": 0
+  },
+  "Haywood": {
+    "dateStr": "8/19/21",
+    "cases": 3040,
+    "deaths": 66,
+    "recovered": 0,
+    "new": 14,
+    "newDeaths": 1
+  },
+  "Henderson": {
+    "dateStr": "8/19/21",
+    "cases": 4185,
+    "deaths": 80,
+    "recovered": 0,
+    "new": 19,
+    "newDeaths": 0
+  },
+  "Henry": {
+    "dateStr": "8/19/21",
+    "cases": 4007,
+    "deaths": 76,
+    "recovered": 0,
+    "new": 44,
+    "newDeaths": 0
+  },
+  "Hickman": {
+    "dateStr": "8/19/21",
+    "cases": 3302,
+    "deaths": 49,
+    "recovered": 0,
+    "new": 46,
+    "newDeaths": 0
+  },
+  "Houston": {
+    "dateStr": "8/19/21",
+    "cases": 1353,
+    "deaths": 34,
+    "recovered": 0,
+    "new": 22,
+    "newDeaths": 0
+  },
+  "Humphreys": {
+    "dateStr": "8/19/21",
+    "cases": 2233,
+    "deaths": 32,
+    "recovered": 0,
+    "new": 22,
+    "newDeaths": 0
+  },
+  "Jackson": {
+    "dateStr": "8/19/21",
+    "cases": 1476,
+    "deaths": 37,
+    "recovered": 0,
+    "new": 10,
+    "newDeaths": 0
+  },
+  "Jefferson": {
+    "dateStr": "8/19/21",
+    "cases": 7101,
+    "deaths": 130,
+    "recovered": 0,
+    "new": 66,
+    "newDeaths": 0
+  },
+  "Johnson": {
+    "dateStr": "8/19/21",
+    "cases": 2624,
+    "deaths": 39,
+    "recovered": 0,
+    "new": 12,
+    "newDeaths": 0
+  },
+  "Knox": {
+    "dateStr": "8/19/21",
+    "cases": 57013,
+    "deaths": 677,
+    "recovered": 0,
+    "new": 249,
+    "newDeaths": 2
+  },
+  "Lake": {
+    "dateStr": "8/19/21",
+    "cases": 1767,
+    "deaths": 31,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "Lauderdale": {
+    "dateStr": "8/19/21",
+    "cases": 3773,
+    "deaths": 50,
+    "recovered": 0,
+    "new": 62,
+    "newDeaths": 0
+  },
+  "Lawrence": {
+    "dateStr": "8/19/21",
+    "cases": 6758,
+    "deaths": 102,
+    "recovered": 0,
+    "new": 35,
+    "newDeaths": 0
+  },
+  "Lewis": {
+    "dateStr": "8/19/21",
+    "cases": 1868,
+    "deaths": 29,
+    "recovered": 0,
+    "new": 13,
+    "newDeaths": 0
+  },
+  "Lincoln": {
+    "dateStr": "8/19/21",
+    "cases": 5003,
+    "deaths": 69,
+    "recovered": 0,
+    "new": 47,
+    "newDeaths": 0
+  },
+  "Loudon": {
+    "dateStr": "8/19/21",
+    "cases": 6792,
+    "deaths": 74,
+    "recovered": 0,
+    "new": 27,
+    "newDeaths": 1
+  },
+  "Macon": {
+    "dateStr": "8/19/21",
+    "cases": 4039,
+    "deaths": 79,
+    "recovered": 0,
+    "new": 38,
+    "newDeaths": 1
+  },
+  "Madison": {
+    "dateStr": "8/19/21",
+    "cases": 13531,
+    "deaths": 257,
+    "recovered": 0,
+    "new": 102,
+    "newDeaths": 5
+  },
+  "Marion": {
+    "dateStr": "8/19/21",
+    "cases": 3748,
+    "deaths": 51,
+    "recovered": 0,
+    "new": 53,
+    "newDeaths": 0
+  },
+  "Marshall": {
+    "dateStr": "8/19/21",
+    "cases": 4888,
+    "deaths": 65,
+    "recovered": 0,
+    "new": 54,
+    "newDeaths": 0
+  },
+  "Maury": {
+    "dateStr": "8/19/21",
+    "cases": 15114,
+    "deaths": 183,
+    "recovered": 0,
+    "new": 89,
+    "newDeaths": 0
+  },
+  "McMinn": {
+    "dateStr": "8/19/21",
+    "cases": 7460,
+    "deaths": 108,
+    "recovered": 0,
+    "new": 43,
+    "newDeaths": 0
+  },
+  "McNairy": {
+    "dateStr": "8/19/21",
+    "cases": 3350,
+    "deaths": 57,
+    "recovered": 0,
+    "new": 26,
+    "newDeaths": 0
+  },
+  "Meigs": {
+    "dateStr": "8/19/21",
+    "cases": 1589,
+    "deaths": 25,
+    "recovered": 0,
+    "new": 17,
+    "newDeaths": 0
+  },
+  "Monroe": {
+    "dateStr": "8/19/21",
+    "cases": 6685,
+    "deaths": 98,
+    "recovered": 0,
+    "new": 74,
+    "newDeaths": 0
+  },
+  "Montgomery": {
+    "dateStr": "8/19/21",
+    "cases": 23753,
+    "deaths": 238,
+    "recovered": 0,
+    "new": 139,
+    "newDeaths": 1
+  },
+  "Moore": {
+    "dateStr": "8/19/21",
+    "cases": 1150,
+    "deaths": 19,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Morgan": {
+    "dateStr": "8/19/21",
+    "cases": 2813,
+    "deaths": 41,
+    "recovered": 0,
+    "new": 8,
+    "newDeaths": 0
+  },
+  "Obion": {
+    "dateStr": "8/19/21",
+    "cases": 5010,
+    "deaths": 99,
+    "recovered": 0,
+    "new": 27,
+    "newDeaths": 1
+  },
+  "Out of TN": {
+    "dateStr": "8/19/21",
+    "cases": 20912,
+    "deaths": 106,
+    "recovered": 0,
+    "new": 130,
+    "newDeaths": 0
+  },
+  "Overton": {
+    "dateStr": "8/19/21",
+    "cases": 3300,
+    "deaths": 63,
+    "recovered": 0,
+    "new": 32,
+    "newDeaths": 0
+  },
+  "Perry": {
+    "dateStr": "8/19/21",
+    "cases": 1186,
+    "deaths": 29,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "Pickett": {
+    "dateStr": "8/19/21",
+    "cases": 826,
+    "deaths": 24,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Polk": {
+    "dateStr": "8/19/21",
+    "cases": 2351,
+    "deaths": 25,
+    "recovered": 0,
+    "new": 10,
+    "newDeaths": 0
+  },
+  "Putnam": {
+    "dateStr": "8/19/21",
+    "cases": 12689,
+    "deaths": 184,
+    "recovered": 0,
+    "new": 88,
+    "newDeaths": 0
+  },
+  "Rhea": {
+    "dateStr": "8/19/21",
+    "cases": 4955,
+    "deaths": 83,
+    "recovered": 0,
+    "new": 64,
+    "newDeaths": 0
+  },
+  "Roane": {
+    "dateStr": "8/19/21",
+    "cases": 7202,
+    "deaths": 117,
+    "recovered": 0,
+    "new": 38,
+    "newDeaths": 2
+  },
+  "Robertson": {
+    "dateStr": "8/19/21",
+    "cases": 10907,
+    "deaths": 145,
+    "recovered": 0,
+    "new": 64,
+    "newDeaths": 0
+  },
+  "Rutherford": {
+    "dateStr": "8/19/21",
+    "cases": 47996,
+    "deaths": 462,
+    "recovered": 0,
+    "new": 241,
+    "newDeaths": 4
+  },
+  "Scott": {
+    "dateStr": "8/19/21",
+    "cases": 3430,
+    "deaths": 49,
+    "recovered": 0,
+    "new": 19,
+    "newDeaths": 0
+  },
+  "Sequatchie": {
+    "dateStr": "8/19/21",
+    "cases": 1982,
+    "deaths": 30,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  },
+  "Sevier": {
+    "dateStr": "8/19/21",
+    "cases": 15226,
+    "deaths": 187,
+    "recovered": 0,
+    "new": 81,
+    "newDeaths": 1
+  },
+  "Shelby": {
+    "dateStr": "8/19/21",
+    "cases": 116088,
+    "deaths": 1806,
+    "recovered": 0,
+    "new": 818,
+    "newDeaths": 16
+  },
+  "Smith": {
+    "dateStr": "8/19/21",
+    "cases": 3097,
+    "deaths": 40,
+    "recovered": 0,
+    "new": 34,
+    "newDeaths": 0
+  },
+  "Stewart": {
+    "dateStr": "8/19/21",
+    "cases": 1490,
+    "deaths": 28,
+    "recovered": 0,
+    "new": 12,
+    "newDeaths": 0
+  },
+  "Sullivan": {
+    "dateStr": "8/19/21",
+    "cases": 19372,
+    "deaths": 327,
+    "recovered": 0,
+    "new": 156,
+    "newDeaths": 0
+  },
+  "Sumner": {
+    "dateStr": "8/19/21",
+    "cases": 27498,
+    "deaths": 367,
+    "recovered": 0,
+    "new": 215,
+    "newDeaths": 1
+  },
+  "Tipton": {
+    "dateStr": "8/19/21",
+    "cases": 8714,
+    "deaths": 109,
+    "recovered": 0,
+    "new": 67,
+    "newDeaths": 1
+  },
+  "Trousdale": {
+    "dateStr": "8/19/21",
+    "cases": 2680,
+    "deaths": 22,
+    "recovered": 0,
+    "new": 15,
+    "newDeaths": 0
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 25630,
+    "deaths": 207,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Unicoi": {
+    "dateStr": "8/19/21",
+    "cases": 2233,
+    "deaths": 51,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Union": {
+    "dateStr": "8/19/21",
+    "cases": 2080,
+    "deaths": 35,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "Van Buren": {
+    "dateStr": "8/19/21",
+    "cases": 934,
+    "deaths": 23,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Warren": {
+    "dateStr": "8/19/21",
+    "cases": 5972,
+    "deaths": 87,
+    "recovered": 0,
+    "new": 31,
+    "newDeaths": 0
+  },
+  "Washington": {
+    "dateStr": "8/19/21",
+    "cases": 16416,
+    "deaths": 259,
+    "recovered": 0,
+    "new": 129,
+    "newDeaths": 0
+  },
+  "Wayne": {
+    "dateStr": "8/19/21",
+    "cases": 3214,
+    "deaths": 36,
+    "recovered": 0,
+    "new": 19,
+    "newDeaths": 0
+  },
+  "Weakley": {
+    "dateStr": "8/19/21",
+    "cases": 4605,
+    "deaths": 70,
+    "recovered": 0,
+    "new": 30,
+    "newDeaths": 0
+  },
+  "White": {
+    "dateStr": "8/19/21",
+    "cases": 4037,
+    "deaths": 75,
+    "recovered": 0,
+    "new": 29,
+    "newDeaths": 0
+  },
+  "Williamson": {
+    "dateStr": "8/19/21",
+    "cases": 31945,
+    "deaths": 229,
+    "recovered": 0,
+    "new": 151,
+    "newDeaths": 1
+  },
+  "Wilson": {
+    "dateStr": "8/19/21",
+    "cases": 21466,
+    "deaths": 262,
+    "recovered": 0,
+    "new": 145,
+    "newDeaths": 0
+  }
+}

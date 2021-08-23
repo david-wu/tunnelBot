@@ -1,0 +1,14 @@
+<ng-container *ngIf="selectedImageSource$ | async as selectedImageSource">
+  <h3>
+    {{ selectedImageSource.label || selectedImageSource.id }}
+  </h3>
+  <p>
+    Quick web test app
+  </p>
+  <div class="phone-demo">
+    <router-outlet></router-outlet>
+  </div>
+  <p>
+    <a [routerLink]="['/pp/pp-test-app']">Click here to go to the full-size app</a>
+  </p>
+</ng-container>

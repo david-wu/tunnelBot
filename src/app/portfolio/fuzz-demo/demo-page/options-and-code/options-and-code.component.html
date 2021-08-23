@@ -1,0 +1,32 @@
+<form [formGroup]="optionsFormGroup" class="options-form">
+  <label class="input-container">
+    <span>caseSensitive</span>
+    <input formControlName="caseSensitive" type="checkbox">
+  </label>
+  <label class="input-container">
+    <span>skipFilter</span>
+    <input formControlName="skipFilter" type="checkbox">
+  </label>
+  <label class="input-container">
+    <span>skipSort</span>
+    <input formControlName="skipSort" type="checkbox">
+  </label>
+  <label class="input-container">
+    <span>filterThreshold</span>
+    <input formControlName="filterThreshold" type="number" min="0" max="1" step="0.1">
+  </label>
+  <div class="input-container">
+    <span>Decorator</span>
+    <div class="radio-button-group">
+      <label class="radio-button-label">
+        <input type="radio" [value]="DecoratorPair.BOLD" formControlName="decoratorPair">
+        <div>bold</div>
+      </label>
+      <label class="radio-button-label">
+        <input type="radio" [value]="DecoratorPair.ITALIC" formControlName="decoratorPair">
+        <div>italic</div>
+      </label>
+    </div>
+  </div>
+</form>
+<pre class="code code-fills-container"><code #codeEl></code></pre>

@@ -1,0 +1,11 @@
+@import 'mixins';
+
+:host {
+  @include standard-demo-page;
+  .chart-container {
+    max-width: 40rem;
+    max-height: 20rem;
+    width: 100%;
+    height: 20rem;
+  }
+}

@@ -1,0 +1,8 @@
+<div class="page-container">
+  <div class="right-side">
+    <h3>Poe</h3>
+    <textarea [ngModel]="rawJson" (ngModelChange)="onJsonChange($event)" rows="20" cols="100"></textarea>
+    <div>{{ jsonParseError }}</div>
+
+  </div>
+</div>

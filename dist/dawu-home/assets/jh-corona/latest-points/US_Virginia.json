@@ -1,0 +1,1082 @@
+{
+  "Accomack": {
+    "dateStr": "8/19/21",
+    "cases": 3127,
+    "deaths": 47,
+    "recovered": 0,
+    "new": 24,
+    "newDeaths": 0
+  },
+  "Albemarle": {
+    "dateStr": "8/19/21",
+    "cases": 6230,
+    "deaths": 85,
+    "recovered": 0,
+    "new": 26,
+    "newDeaths": 0
+  },
+  "Alexandria": {
+    "dateStr": "8/19/21",
+    "cases": 12526,
+    "deaths": 141,
+    "recovered": 0,
+    "new": 36,
+    "newDeaths": 0
+  },
+  "Alleghany": {
+    "dateStr": "8/19/21",
+    "cases": 1451,
+    "deaths": 50,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Amelia": {
+    "dateStr": "8/19/21",
+    "cases": 1030,
+    "deaths": 36,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  },
+  "Amherst": {
+    "dateStr": "8/19/21",
+    "cases": 3227,
+    "deaths": 41,
+    "recovered": 0,
+    "new": 20,
+    "newDeaths": 0
+  },
+  "Appomattox": {
+    "dateStr": "8/19/21",
+    "cases": 1753,
+    "deaths": 26,
+    "recovered": 0,
+    "new": 14,
+    "newDeaths": 0
+  },
+  "Arlington": {
+    "dateStr": "8/19/21",
+    "cases": 16203,
+    "deaths": 259,
+    "recovered": 0,
+    "new": 39,
+    "newDeaths": 0
+  },
+  "Augusta": {
+    "dateStr": "8/19/21",
+    "cases": 6518,
+    "deaths": 83,
+    "recovered": 0,
+    "new": 82,
+    "newDeaths": 1
+  },
+  "Bath": {
+    "dateStr": "8/19/21",
+    "cases": 282,
+    "deaths": 12,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Bedford": {
+    "dateStr": "8/19/21",
+    "cases": 7236,
+    "deaths": 111,
+    "recovered": 0,
+    "new": 27,
+    "newDeaths": 0
+  },
+  "Bland": {
+    "dateStr": "8/19/21",
+    "cases": 737,
+    "deaths": 10,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Botetourt": {
+    "dateStr": "8/19/21",
+    "cases": 2859,
+    "deaths": 38,
+    "recovered": 0,
+    "new": 10,
+    "newDeaths": 0
+  },
+  "Bristol": {
+    "dateStr": "8/19/21",
+    "cases": 1748,
+    "deaths": 39,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Brunswick": {
+    "dateStr": "8/19/21",
+    "cases": 1430,
+    "deaths": 25,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  },
+  "Buchanan": {
+    "dateStr": "8/19/21",
+    "cases": 1703,
+    "deaths": 47,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "Buckingham": {
+    "dateStr": "8/19/21",
+    "cases": 2219,
+    "deaths": 33,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Buena Vista": {
+    "dateStr": "8/19/21",
+    "cases": 954,
+    "deaths": 22,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Campbell": {
+    "dateStr": "8/19/21",
+    "cases": 5403,
+    "deaths": 109,
+    "recovered": 0,
+    "new": 19,
+    "newDeaths": 0
+  },
+  "Caroline": {
+    "dateStr": "8/19/21",
+    "cases": 2997,
+    "deaths": 42,
+    "recovered": 0,
+    "new": 13,
+    "newDeaths": 0
+  },
+  "Carroll": {
+    "dateStr": "8/19/21",
+    "cases": 2913,
+    "deaths": 81,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  },
+  "Charles City": {
+    "dateStr": "8/19/21",
+    "cases": 546,
+    "deaths": 16,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Charlotte": {
+    "dateStr": "8/19/21",
+    "cases": 935,
+    "deaths": 21,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Charlottesville": {
+    "dateStr": "8/19/21",
+    "cases": 4242,
+    "deaths": 58,
+    "recovered": 0,
+    "new": 12,
+    "newDeaths": 0
+  },
+  "Chesapeake": {
+    "dateStr": "8/19/21",
+    "cases": 23237,
+    "deaths": 311,
+    "recovered": 0,
+    "new": 99,
+    "newDeaths": 0
+  },
+  "Chesterfield": {
+    "dateStr": "8/19/21",
+    "cases": 30868,
+    "deaths": 458,
+    "recovered": 0,
+    "new": 164,
+    "newDeaths": 1
+  },
+  "Clarke": {
+    "dateStr": "8/19/21",
+    "cases": 1045,
+    "deaths": 21,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Colonial Heights": {
+    "dateStr": "8/19/21",
+    "cases": 1948,
+    "deaths": 62,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  },
+  "Covington": {
+    "dateStr": "8/19/21",
+    "cases": 632,
+    "deaths": 14,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Craig": {
+    "dateStr": "8/19/21",
+    "cases": 371,
+    "deaths": 6,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Culpeper": {
+    "dateStr": "8/19/21",
+    "cases": 5005,
+    "deaths": 69,
+    "recovered": 0,
+    "new": 15,
+    "newDeaths": 0
+  },
+  "Cumberland": {
+    "dateStr": "8/19/21",
+    "cases": 557,
+    "deaths": 10,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Danville": {
+    "dateStr": "8/19/21",
+    "cases": 4810,
+    "deaths": 148,
+    "recovered": 0,
+    "new": 26,
+    "newDeaths": 1
+  },
+  "Dickenson": {
+    "dateStr": "8/19/21",
+    "cases": 1066,
+    "deaths": 19,
+    "recovered": 0,
+    "new": 11,
+    "newDeaths": 0
+  },
+  "Dinwiddie": {
+    "dateStr": "8/19/21",
+    "cases": 2380,
+    "deaths": 46,
+    "recovered": 0,
+    "new": 16,
+    "newDeaths": 0
+  },
+  "Emporia": {
+    "dateStr": "8/19/21",
+    "cases": 716,
+    "deaths": 42,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Essex": {
+    "dateStr": "8/19/21",
+    "cases": 840,
+    "deaths": 11,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Fairfax": {
+    "dateStr": "8/19/21",
+    "cases": 80909,
+    "deaths": 1128,
+    "recovered": 0,
+    "new": 189,
+    "newDeaths": 0
+  },
+  "Fairfax City": {
+    "dateStr": "8/19/21",
+    "cases": 584,
+    "deaths": 20,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Falls Church": {
+    "dateStr": "8/19/21",
+    "cases": 446,
+    "deaths": 10,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Fauquier": {
+    "dateStr": "8/19/21",
+    "cases": 5234,
+    "deaths": 71,
+    "recovered": 0,
+    "new": 18,
+    "newDeaths": 0
+  },
+  "Floyd": {
+    "dateStr": "8/19/21",
+    "cases": 985,
+    "deaths": 23,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  },
+  "Fluvanna": {
+    "dateStr": "8/19/21",
+    "cases": 2029,
+    "deaths": 21,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Franklin": {
+    "dateStr": "8/19/21",
+    "cases": 4466,
+    "deaths": 83,
+    "recovered": 0,
+    "new": 18,
+    "newDeaths": 0
+  },
+  "Franklin City": {
+    "dateStr": "8/19/21",
+    "cases": 1217,
+    "deaths": 33,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Frederick": {
+    "dateStr": "8/19/21",
+    "cases": 8767,
+    "deaths": 104,
+    "recovered": 0,
+    "new": 33,
+    "newDeaths": 0
+  },
+  "Fredericksburg": {
+    "dateStr": "8/19/21",
+    "cases": 2312,
+    "deaths": 25,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Galax": {
+    "dateStr": "8/19/21",
+    "cases": 1220,
+    "deaths": 53,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Giles": {
+    "dateStr": "8/19/21",
+    "cases": 1425,
+    "deaths": 24,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  },
+  "Gloucester": {
+    "dateStr": "8/19/21",
+    "cases": 2652,
+    "deaths": 53,
+    "recovered": 0,
+    "new": 10,
+    "newDeaths": 0
+  },
+  "Goochland": {
+    "dateStr": "8/19/21",
+    "cases": 1602,
+    "deaths": 24,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Grayson": {
+    "dateStr": "8/19/21",
+    "cases": 1588,
+    "deaths": 40,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  },
+  "Greene": {
+    "dateStr": "8/19/21",
+    "cases": 1465,
+    "deaths": 22,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "Greensville": {
+    "dateStr": "8/19/21",
+    "cases": 1629,
+    "deaths": 26,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Halifax": {
+    "dateStr": "8/19/21",
+    "cases": 3059,
+    "deaths": 80,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Hampton": {
+    "dateStr": "8/19/21",
+    "cases": 11817,
+    "deaths": 184,
+    "recovered": 0,
+    "new": 70,
+    "newDeaths": 0
+  },
+  "Hanover": {
+    "dateStr": "8/19/21",
+    "cases": 9187,
+    "deaths": 170,
+    "recovered": 0,
+    "new": 43,
+    "newDeaths": 0
+  },
+  "Harrisonburg": {
+    "dateStr": "8/19/21",
+    "cases": 6697,
+    "deaths": 95,
+    "recovered": 0,
+    "new": 11,
+    "newDeaths": 0
+  },
+  "Henrico": {
+    "dateStr": "8/19/21",
+    "cases": 28041,
+    "deaths": 643,
+    "recovered": 0,
+    "new": 126,
+    "newDeaths": 0
+  },
+  "Henry": {
+    "dateStr": "8/19/21",
+    "cases": 4959,
+    "deaths": 124,
+    "recovered": 0,
+    "new": 14,
+    "newDeaths": 0
+  },
+  "Highland": {
+    "dateStr": "8/19/21",
+    "cases": 123,
+    "deaths": 1,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Hopewell": {
+    "dateStr": "8/19/21",
+    "cases": 2982,
+    "deaths": 80,
+    "recovered": 0,
+    "new": 17,
+    "newDeaths": 0
+  },
+  "Isle of Wight": {
+    "dateStr": "8/19/21",
+    "cases": 3474,
+    "deaths": 70,
+    "recovered": 0,
+    "new": 17,
+    "newDeaths": 0
+  },
+  "James City": {
+    "dateStr": "8/19/21",
+    "cases": 5195,
+    "deaths": 73,
+    "recovered": 0,
+    "new": 42,
+    "newDeaths": 0
+  },
+  "King George": {
+    "dateStr": "8/19/21",
+    "cases": 1844,
+    "deaths": 20,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  },
+  "King William": {
+    "dateStr": "8/19/21",
+    "cases": 1393,
+    "deaths": 16,
+    "recovered": 0,
+    "new": 11,
+    "newDeaths": 0
+  },
+  "King and Queen": {
+    "dateStr": "8/19/21",
+    "cases": 442,
+    "deaths": 9,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  },
+  "Lancaster": {
+    "dateStr": "8/19/21",
+    "cases": 818,
+    "deaths": 18,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "Lee": {
+    "dateStr": "8/19/21",
+    "cases": 2571,
+    "deaths": 49,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  },
+  "Lexington": {
+    "dateStr": "8/19/21",
+    "cases": 1245,
+    "deaths": 33,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Loudoun": {
+    "dateStr": "8/19/21",
+    "cases": 29581,
+    "deaths": 284,
+    "recovered": 0,
+    "new": 52,
+    "newDeaths": 0
+  },
+  "Louisa": {
+    "dateStr": "8/19/21",
+    "cases": 2183,
+    "deaths": 35,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Lunenburg": {
+    "dateStr": "8/19/21",
+    "cases": 839,
+    "deaths": 17,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Lynchburg": {
+    "dateStr": "8/19/21",
+    "cases": 8012,
+    "deaths": 157,
+    "recovered": 0,
+    "new": 21,
+    "newDeaths": 0
+  },
+  "Madison": {
+    "dateStr": "8/19/21",
+    "cases": 661,
+    "deaths": 16,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Manassas": {
+    "dateStr": "8/19/21",
+    "cases": 4445,
+    "deaths": 48,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "Manassas Park": {
+    "dateStr": "8/19/21",
+    "cases": 1240,
+    "deaths": 12,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Martinsville": {
+    "dateStr": "8/19/21",
+    "cases": 1700,
+    "deaths": 79,
+    "recovered": 0,
+    "new": 11,
+    "newDeaths": 0
+  },
+  "Mathews": {
+    "dateStr": "8/19/21",
+    "cases": 655,
+    "deaths": 14,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Mecklenburg": {
+    "dateStr": "8/19/21",
+    "cases": 2604,
+    "deaths": 69,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Middlesex": {
+    "dateStr": "8/19/21",
+    "cases": 629,
+    "deaths": 23,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Montgomery": {
+    "dateStr": "8/19/21",
+    "cases": 9743,
+    "deaths": 98,
+    "recovered": 0,
+    "new": 30,
+    "newDeaths": 0
+  },
+  "Nelson": {
+    "dateStr": "8/19/21",
+    "cases": 951,
+    "deaths": 13,
+    "recovered": 0,
+    "new": 8,
+    "newDeaths": 0
+  },
+  "New Kent": {
+    "dateStr": "8/19/21",
+    "cases": 1705,
+    "deaths": 20,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "Newport News": {
+    "dateStr": "8/19/21",
+    "cases": 15987,
+    "deaths": 244,
+    "recovered": 0,
+    "new": 105,
+    "newDeaths": 0
+  },
+  "Norfolk": {
+    "dateStr": "8/19/21",
+    "cases": 19640,
+    "deaths": 281,
+    "recovered": 0,
+    "new": 82,
+    "newDeaths": 0
+  },
+  "Northampton": {
+    "dateStr": "8/19/21",
+    "cases": 849,
+    "deaths": 37,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Northumberland": {
+    "dateStr": "8/19/21",
+    "cases": 839,
+    "deaths": 21,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Norton": {
+    "dateStr": "8/19/21",
+    "cases": 352,
+    "deaths": 7,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Nottoway": {
+    "dateStr": "8/19/21",
+    "cases": 2079,
+    "deaths": 55,
+    "recovered": 0,
+    "new": 10,
+    "newDeaths": 0
+  },
+  "Orange": {
+    "dateStr": "8/19/21",
+    "cases": 2440,
+    "deaths": 40,
+    "recovered": 0,
+    "new": 10,
+    "newDeaths": 0
+  },
+  "Out of VA": {
+    "dateStr": "8/19/21",
+    "cases": 0,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Page": {
+    "dateStr": "8/19/21",
+    "cases": 2300,
+    "deaths": 61,
+    "recovered": 0,
+    "new": 18,
+    "newDeaths": 0
+  },
+  "Patrick": {
+    "dateStr": "8/19/21",
+    "cases": 1518,
+    "deaths": 47,
+    "recovered": 0,
+    "new": 12,
+    "newDeaths": 0
+  },
+  "Petersburg": {
+    "dateStr": "8/19/21",
+    "cases": 4247,
+    "deaths": 92,
+    "recovered": 0,
+    "new": 18,
+    "newDeaths": 0
+  },
+  "Pittsylvania": {
+    "dateStr": "8/19/21",
+    "cases": 6089,
+    "deaths": 86,
+    "recovered": 0,
+    "new": 23,
+    "newDeaths": 0
+  },
+  "Poquoson": {
+    "dateStr": "8/19/21",
+    "cases": 968,
+    "deaths": 18,
+    "recovered": 0,
+    "new": 4,
+    "newDeaths": 0
+  },
+  "Portsmouth": {
+    "dateStr": "8/19/21",
+    "cases": 9974,
+    "deaths": 207,
+    "recovered": 0,
+    "new": 40,
+    "newDeaths": 0
+  },
+  "Powhatan": {
+    "dateStr": "8/19/21",
+    "cases": 2104,
+    "deaths": 17,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Prince Edward": {
+    "dateStr": "8/19/21",
+    "cases": 2284,
+    "deaths": 37,
+    "recovered": 0,
+    "new": 11,
+    "newDeaths": 1
+  },
+  "Prince George": {
+    "dateStr": "8/19/21",
+    "cases": 3973,
+    "deaths": 33,
+    "recovered": 0,
+    "new": 14,
+    "newDeaths": 0
+  },
+  "Prince William": {
+    "dateStr": "8/19/21",
+    "cases": 47954,
+    "deaths": 514,
+    "recovered": 0,
+    "new": 87,
+    "newDeaths": 0
+  },
+  "Pulaski": {
+    "dateStr": "8/19/21",
+    "cases": 2986,
+    "deaths": 70,
+    "recovered": 0,
+    "new": 14,
+    "newDeaths": 0
+  },
+  "Radford": {
+    "dateStr": "8/19/21",
+    "cases": 2368,
+    "deaths": 29,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "Rappahannock": {
+    "dateStr": "8/19/21",
+    "cases": 391,
+    "deaths": 3,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Richmond": {
+    "dateStr": "8/19/21",
+    "cases": 1534,
+    "deaths": 16,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Richmond City": {
+    "dateStr": "8/19/21",
+    "cases": 18720,
+    "deaths": 281,
+    "recovered": 0,
+    "new": 65,
+    "newDeaths": 0
+  },
+  "Roanoke": {
+    "dateStr": "8/19/21",
+    "cases": 9185,
+    "deaths": 150,
+    "recovered": 0,
+    "new": 34,
+    "newDeaths": 0
+  },
+  "Roanoke City": {
+    "dateStr": "8/19/21",
+    "cases": 9346,
+    "deaths": 203,
+    "recovered": 0,
+    "new": 35,
+    "newDeaths": 0
+  },
+  "Rockbridge": {
+    "dateStr": "8/19/21",
+    "cases": 1637,
+    "deaths": 48,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Rockingham": {
+    "dateStr": "8/19/21",
+    "cases": 7260,
+    "deaths": 115,
+    "recovered": 0,
+    "new": 14,
+    "newDeaths": 0
+  },
+  "Russell": {
+    "dateStr": "8/19/21",
+    "cases": 2474,
+    "deaths": 40,
+    "recovered": 0,
+    "new": 17,
+    "newDeaths": 0
+  },
+  "Salem": {
+    "dateStr": "8/19/21",
+    "cases": 2429,
+    "deaths": 50,
+    "recovered": 0,
+    "new": 10,
+    "newDeaths": 0
+  },
+  "Scott": {
+    "dateStr": "8/19/21",
+    "cases": 2073,
+    "deaths": 61,
+    "recovered": 0,
+    "new": 17,
+    "newDeaths": 0
+  },
+  "Shenandoah": {
+    "dateStr": "8/19/21",
+    "cases": 4585,
+    "deaths": 136,
+    "recovered": 0,
+    "new": 17,
+    "newDeaths": 0
+  },
+  "Smyth": {
+    "dateStr": "8/19/21",
+    "cases": 3201,
+    "deaths": 96,
+    "recovered": 0,
+    "new": 21,
+    "newDeaths": 0
+  },
+  "Southampton": {
+    "dateStr": "8/19/21",
+    "cases": 2045,
+    "deaths": 58,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Spotsylvania": {
+    "dateStr": "8/19/21",
+    "cases": 11141,
+    "deaths": 126,
+    "recovered": 0,
+    "new": 26,
+    "newDeaths": 0
+  },
+  "Stafford": {
+    "dateStr": "8/19/21",
+    "cases": 12545,
+    "deaths": 85,
+    "recovered": 0,
+    "new": 41,
+    "newDeaths": 0
+  },
+  "Staunton": {
+    "dateStr": "8/19/21",
+    "cases": 2651,
+    "deaths": 71,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  },
+  "Suffolk": {
+    "dateStr": "8/19/21",
+    "cases": 8746,
+    "deaths": 196,
+    "recovered": 0,
+    "new": 23,
+    "newDeaths": 0
+  },
+  "Surry": {
+    "dateStr": "8/19/21",
+    "cases": 463,
+    "deaths": 9,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Sussex": {
+    "dateStr": "8/19/21",
+    "cases": 1278,
+    "deaths": 23,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  },
+  "Tazewell": {
+    "dateStr": "8/19/21",
+    "cases": 4016,
+    "deaths": 77,
+    "recovered": 0,
+    "new": 13,
+    "newDeaths": 0
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 3,
+    "deaths": 140,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Virginia Beach": {
+    "dateStr": "8/19/21",
+    "cases": 40020,
+    "deaths": 426,
+    "recovered": 0,
+    "new": 200,
+    "newDeaths": 1
+  },
+  "Warren": {
+    "dateStr": "8/19/21",
+    "cases": 3412,
+    "deaths": 64,
+    "recovered": 0,
+    "new": 19,
+    "newDeaths": 0
+  },
+  "Washington": {
+    "dateStr": "8/19/21",
+    "cases": 5459,
+    "deaths": 115,
+    "recovered": 0,
+    "new": 30,
+    "newDeaths": 0
+  },
+  "Waynesboro": {
+    "dateStr": "8/19/21",
+    "cases": 2553,
+    "deaths": 39,
+    "recovered": 0,
+    "new": 10,
+    "newDeaths": 0
+  },
+  "Westmoreland": {
+    "dateStr": "8/19/21",
+    "cases": 1374,
+    "deaths": 27,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Williamsburg": {
+    "dateStr": "8/19/21",
+    "cases": 863,
+    "deaths": 14,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  },
+  "Winchester": {
+    "dateStr": "8/19/21",
+    "cases": 3096,
+    "deaths": 49,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Wise": {
+    "dateStr": "8/19/21",
+    "cases": 3623,
+    "deaths": 107,
+    "recovered": 0,
+    "new": 27,
+    "newDeaths": 0
+  },
+  "Wythe": {
+    "dateStr": "8/19/21",
+    "cases": 3126,
+    "deaths": 82,
+    "recovered": 0,
+    "new": 31,
+    "newDeaths": 0
+  },
+  "York": {
+    "dateStr": "8/19/21",
+    "cases": 4203,
+    "deaths": 60,
+    "recovered": 0,
+    "new": 12,
+    "newDeaths": 0
+  }
+}

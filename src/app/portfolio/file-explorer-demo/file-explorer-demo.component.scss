@@ -1,0 +1,9 @@
+@import 'mixins';
+
+:host {
+  @include standard-demo-page;
+  dwu-file-explorer {
+    height: 15rem;
+    width: 10rem;
+  }
+}

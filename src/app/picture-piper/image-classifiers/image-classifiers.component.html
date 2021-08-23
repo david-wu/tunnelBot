@@ -1,0 +1,40 @@
+<div
+  *ngIf="user$ | async; else loginTemplate"
+  class="page-container"
+>
+  <div
+    class="left-side"
+    [class.expanded]="leftSideExpanded"
+  >
+    <div class="control-buttons">
+      <dwu-resource-create-button
+        class="wide-button-container"
+        [buttonLabel]="'+ New Classifier'"
+        [resourceConfig]="imageClassifiersConfig"
+      ></dwu-resource-create-button>
+      <div
+        class="icon-button"
+        [routerLink]="['intro']"
+        [routerLinkActive]="['active']"
+      >
+        <span class="material-icons">help</span>
+      </div>
+    </div>
+    <dwu-search-input
+      [(searchText)]="filterStr"
+      [placeholder]="'search..'"
+    ></dwu-search-input>
+    <dwu-resource-list-view
+      [resourceConfig]="imageClassifiersConfig"
+      [selectedResourceId]="selectedImageClassifierId$ | async"
+      (selectedResourceIdChange)="onSelectedImageClassifierIdChange($event)"
+      [filterStr]="filterStr"
+    ></dwu-resource-list-view>
+  </div>
+  <div class="right-side">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<ng-template #loginTemplate>
+  login
+</ng-template>

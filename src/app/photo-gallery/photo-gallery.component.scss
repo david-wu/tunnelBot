@@ -1,0 +1,28 @@
+@import 'mixins';
+
+:host {
+  @include responsive-page;
+  .page-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  .nav-items-container {
+    @include nav-items-container;
+    background-color: $black-olive;
+    padding-top: 0.25rem;
+    height: 2.25rem;
+    margin: 0;
+  }
+  .page-content {
+    flex: 1 1 0;
+  }
+}
+
+.page-content {
+  background-color: $eggshell;
+}

@@ -1,0 +1,11 @@
+<h3>Images</h3>
+<ng-container *ngIf="selectedImageSourceId$ | async as selectedImageSourceId">
+  <p>id: {{ selectedImageSourceId }}</p>
+  <h3>Direct Upload</h3>
+  <dwu-image-source-uploader
+    [selectedImageSourceId]="selectedImageSourceId"
+  ></dwu-image-source-uploader>
+  <dwu-image-source-images
+    [selectedImageSourceId]="selectedImageSourceId"
+  ></dwu-image-source-images>
+</ng-container>

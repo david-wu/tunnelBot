@@ -1,0 +1,24 @@
+<div class="page-container">
+  <div class="left-side" [class.expanded]="leftSideExpanded">
+    <dwu-search-input [(searchText)]="filterStr" [placeholder]="'search..'"></dwu-search-input>
+    <dwu-file-explorer
+      [rootFileId]="fileGroup.rootFileId"
+      [filesById]="fileGroup.filesById"
+      (filesByIdChange)="fileGroup.filesById = $event"
+      [fuzzFilterString]="filterStr"
+      [closedFileIds]="fileGroup.closedFileIds"
+      (closedFileIdsChange)="fileGroup.setClosedFileIds($event)"
+      [selectedFileIds]="fileGroup.selectedFileIds"
+      (selectedFileIdsChange)="onSelectedFileIdsChange($event)"
+      [perfMode]="true"
+    ></dwu-file-explorer>
+    <div class="expander" (click)="leftSideExpanded = !leftSideExpanded;">
+        <span class="material-icons expander-icon" [class.flipped]="leftSideExpanded">
+            expand_more
+        </span>
+    </div>
+  </div>
+  <div class="right-side">
+    <router-outlet></router-outlet>
+  </div>
+</div>

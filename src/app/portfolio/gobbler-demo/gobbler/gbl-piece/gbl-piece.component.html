@@ -1,0 +1,9 @@
+<div class="piece-container">
+  <div
+    class="piece"
+    [class.held]="heldPiece === piece"
+    [class.p1]="piece.player === 'p1'"
+    [class.p2]="piece.player === 'p2'"
+    [ngClass]="'size-'+piece.value"
+  ></div>
+</div>

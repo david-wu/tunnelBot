@@ -1,0 +1,7 @@
+@import 'mixins';
+
+// use dwu-code-snippet instead of :host
+// component uses ViewEncapsulation.None to apply monokai.css styles
+dwu-code-snippet {
+  display: block;
+}

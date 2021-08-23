@@ -1,0 +1,90 @@
+{
+  "French Guiana": {
+    "dateStr": "8/19/21",
+    "cases": 32426,
+    "deaths": 201,
+    "recovered": 9995,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "French Polynesia": {
+    "dateStr": "8/19/21",
+    "cases": 35743,
+    "deaths": 245,
+    "recovered": 19599,
+    "new": 1416,
+    "newDeaths": 10
+  },
+  "Guadeloupe": {
+    "dateStr": "8/19/21",
+    "cases": 35283,
+    "deaths": 346,
+    "recovered": 2250,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Martinique": {
+    "dateStr": "8/19/21",
+    "cases": 32002,
+    "deaths": 243,
+    "recovered": 104,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Mayotte": {
+    "dateStr": "8/19/21",
+    "cases": 20176,
+    "deaths": 175,
+    "recovered": 2964,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "New Caledonia": {
+    "dateStr": "8/19/21",
+    "cases": 134,
+    "deaths": 0,
+    "recovered": 58,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Reunion": {
+    "dateStr": "8/19/21",
+    "cases": 46754,
+    "deaths": 310,
+    "recovered": 35563,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Saint Barthelemy": {
+    "dateStr": "8/19/21",
+    "cases": 1336,
+    "deaths": 2,
+    "recovered": 462,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Saint Pierre and Miquelon": {
+    "dateStr": "8/19/21",
+    "cases": 30,
+    "deaths": 0,
+    "recovered": 26,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "St Martin": {
+    "dateStr": "8/19/21",
+    "cases": 2713,
+    "deaths": 39,
+    "recovered": 1399,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Wallis and Futuna": {
+    "dateStr": "8/19/21",
+    "cases": 445,
+    "deaths": 7,
+    "recovered": 438,
+    "new": 0,
+    "newDeaths": 0
+  }
+}

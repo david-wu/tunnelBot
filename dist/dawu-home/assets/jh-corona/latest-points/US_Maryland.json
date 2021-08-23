@@ -1,0 +1,210 @@
+{
+  "Allegany": {
+    "dateStr": "8/19/21",
+    "cases": 7332,
+    "deaths": 215,
+    "recovered": 0,
+    "new": 25,
+    "newDeaths": 0
+  },
+  "Anne Arundel": {
+    "dateStr": "8/19/21",
+    "cases": 45974,
+    "deaths": 674,
+    "recovered": 0,
+    "new": 86,
+    "newDeaths": 0
+  },
+  "Baltimore": {
+    "dateStr": "8/19/21",
+    "cases": 68416,
+    "deaths": 1702,
+    "recovered": 0,
+    "new": 105,
+    "newDeaths": 1
+  },
+  "Baltimore City": {
+    "dateStr": "8/19/21",
+    "cases": 55031,
+    "deaths": 1272,
+    "recovered": 0,
+    "new": 105,
+    "newDeaths": 1
+  },
+  "Calvert": {
+    "dateStr": "8/19/21",
+    "cases": 4498,
+    "deaths": 87,
+    "recovered": 0,
+    "new": 13,
+    "newDeaths": 1
+  },
+  "Caroline": {
+    "dateStr": "8/19/21",
+    "cases": 2444,
+    "deaths": 31,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "Carroll": {
+    "dateStr": "8/19/21",
+    "cases": 9854,
+    "deaths": 259,
+    "recovered": 0,
+    "new": 17,
+    "newDeaths": 0
+  },
+  "Cecil": {
+    "dateStr": "8/19/21",
+    "cases": 6830,
+    "deaths": 161,
+    "recovered": 0,
+    "new": 19,
+    "newDeaths": 0
+  },
+  "Charles": {
+    "dateStr": "8/19/21",
+    "cases": 11845,
+    "deaths": 218,
+    "recovered": 0,
+    "new": 39,
+    "newDeaths": 0
+  },
+  "Dorchester": {
+    "dateStr": "8/19/21",
+    "cases": 3104,
+    "deaths": 65,
+    "recovered": 0,
+    "new": 23,
+    "newDeaths": 0
+  },
+  "Frederick": {
+    "dateStr": "8/19/21",
+    "cases": 20861,
+    "deaths": 348,
+    "recovered": 0,
+    "new": 61,
+    "newDeaths": 0
+  },
+  "Garrett": {
+    "dateStr": "8/19/21",
+    "cases": 2147,
+    "deaths": 66,
+    "recovered": 0,
+    "new": 11,
+    "newDeaths": 0
+  },
+  "Harford": {
+    "dateStr": "8/19/21",
+    "cases": 17461,
+    "deaths": 306,
+    "recovered": 0,
+    "new": 35,
+    "newDeaths": 1
+  },
+  "Howard": {
+    "dateStr": "8/19/21",
+    "cases": 20109,
+    "deaths": 263,
+    "recovered": 0,
+    "new": 27,
+    "newDeaths": 0
+  },
+  "Kent": {
+    "dateStr": "8/19/21",
+    "cases": 1418,
+    "deaths": 51,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Montgomery": {
+    "dateStr": "8/19/21",
+    "cases": 74209,
+    "deaths": 1642,
+    "recovered": 0,
+    "new": 139,
+    "newDeaths": 2
+  },
+  "Out of MD": {
+    "dateStr": "8/19/21",
+    "cases": 0,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Prince George's": {
+    "dateStr": "8/19/21",
+    "cases": 89642,
+    "deaths": 1616,
+    "recovered": 0,
+    "new": 175,
+    "newDeaths": 0
+  },
+  "Queen Anne's": {
+    "dateStr": "8/19/21",
+    "cases": 3157,
+    "deaths": 56,
+    "recovered": 0,
+    "new": 11,
+    "newDeaths": 1
+  },
+  "Somerset": {
+    "dateStr": "8/19/21",
+    "cases": 2723,
+    "deaths": 42,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "St. Mary's": {
+    "dateStr": "8/19/21",
+    "cases": 6630,
+    "deaths": 136,
+    "recovered": 0,
+    "new": 42,
+    "newDeaths": 0
+  },
+  "Talbot": {
+    "dateStr": "8/19/21",
+    "cases": 2297,
+    "deaths": 46,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 7,
+    "deaths": 145,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Washington": {
+    "dateStr": "8/19/21",
+    "cases": 15286,
+    "deaths": 338,
+    "recovered": 0,
+    "new": 54,
+    "newDeaths": 1
+  },
+  "Wicomico": {
+    "dateStr": "8/19/21",
+    "cases": 8391,
+    "deaths": 181,
+    "recovered": 0,
+    "new": 34,
+    "newDeaths": 0
+  },
+  "Worcester": {
+    "dateStr": "8/19/21",
+    "cases": 3982,
+    "deaths": 107,
+    "recovered": 0,
+    "new": 21,
+    "newDeaths": 0
+  }
+}

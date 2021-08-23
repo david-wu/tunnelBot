@@ -1,0 +1,431 @@
+@import 'variables';
+@import 'themes';
+@import 'buttons';
+
+@mixin base-corona-dashboard {
+  display: block;
+  padding-bottom: 2rem;
+  .chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .chart-header {
+      width: 100%;
+      display: flex;
+      padding: 0 1.5rem;
+      align-items: flex-end;
+      flex-direction: column;
+
+      .radio-button-container{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+
+        .radio-buttons {
+          @include radio-button-container;
+          &:not(:first-child) {
+            margin-left: 1rem;
+          }
+          &.chart {
+            .radio-button {
+              min-width: auto;
+              padding: 3px;
+              display: flex;
+              flex-direction: column;
+              .material-icons {
+                flex: 1 0 auto;
+                font-size: 1.25rem;
+              }
+            }
+          }
+          .radio-button {
+            margin-top: 0.5rem;
+          }
+        }
+      }
+      dwu-stat-viewer {
+        display: flex;
+        justify-content: flex-end;
+        flex: 1 0 auto;
+        margin-top: 1rem;
+      }
+    }
+    .overview.chart {
+      height: 12.5rem;
+      width: 100%;
+    }
+    dwu-chart-legend {
+      flex: 0 0 auto;
+      margin-top: 0.25rem;
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+@mixin radio-button-container {
+  display: flex;
+  .radio-button {
+    @include light-mini-button;
+    @include shadow;
+    &:first-child {
+      border-radius: 5px 0 0 5px;
+    }
+    &:last-child {
+      border-radius: 0 5px 5px 0;
+    }
+  }
+}
+
+@mixin shadow {
+  transition-duration: box-shadow 25ms, transform, 25ms;
+  box-shadow: 1px 1px 2px 0 $lighter-gray;
+  transform: translateY(0);
+  &:active {
+    transform: translateY(1px);
+    box-shadow: none;
+  }
+  &.active {
+    transform: translateY(1px);
+    box-shadow: none;
+  }
+}
+
+@mixin standard-demo-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.25rem;
+  .demo-container {
+  flex: 1 1 0;
+  padding-bottom: 5rem;
+  h3 {
+    margin-top: 1rem;
+  }
+  p {
+    margin-top: 1rem;
+  }
+  dwu-code-snippet {
+    margin: 0.5rem 1rem;
+    max-width: 40rem;
+  }
+  img {
+    max-width: 100%;
+  }
+  }
+}
+
+@mixin narrow-page {
+  div.page-container {
+    flex-direction: column;
+    .left-side {
+      box-shadow: 2px 2px 4px 0 $lighter-gray;
+      flex: 0 0 auto;
+      height: 13.25rem;
+      width: 100%;
+      max-width: none;
+      // min-width: none;
+      transition: height 50ms;
+      &.expanded {
+        height: 75%;
+      }
+      .expander {
+        @include dark-theme;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 3.5rem;
+        height: 1rem;
+        border: 1px solid $moss-green;
+        border-radius: 5px 5px 0 0 ;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        .expander-icon {
+          font-size: 16px;
+          &.flipped {
+            transform: rotate(180deg);
+          }
+        }
+
+      }
+    }
+  }
+}
+@mixin responsive-page {
+  display:block;
+  height: 100%;
+  width: 100%;
+
+  @media screen and (max-width: 750px) {
+    @include narrow-page;
+  }
+
+  // media checks entire page's width, this has issues when rendering the entier app in a smaller window
+  &.narrow-mode {
+    @include narrow-page;
+  }
+
+  .page-container {
+    @include page-container;
+  }
+}
+
+@mixin page-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+
+  .left-side {
+    position: relative;
+    flex: 1 1 0;
+    overflow: hidden;
+    max-width: 27.5%;
+    min-width: 20rem;
+    .expander {
+      display: none;
+    }
+  }
+  .right-side {
+    flex: 1 1 0;
+    overflow: auto;
+    position: relative;
+  }
+}
+
+// @mixin light-mini-button {
+//   @include light-theme;
+//   @include button-xs;
+// }
+
+// @mixin light-small-button {
+//   @include light-theme;
+//   @include button-sm;
+// }
+// @mixin dark-mini-button {
+//   @include dark-theme;
+//   @include button-xs;
+// }
+// @mixin dark-egg-button {
+//   @include dark-egg-theme;
+//   @include button-md;
+// }
+
+// @mixin dark-button {
+//   @include dark-theme;
+//   @include button-md;
+// }
+
+// @mixin button-xs {
+//   min-width: 2rem;
+//   padding: 0.25rem 0.5rem;
+//   font-size: 1rem;
+//   cursor: pointer;
+//   text-align: center;
+//   outline: none;
+//   white-space: nowrap;
+//   user-select: none;
+//   border: none;
+// }
+
+// @mixin button-sm {
+//   min-width: 3rem;
+//   padding: 0.25rem 0.5rem;
+//   cursor: pointer;
+//   text-align: center;
+//   outline: none;
+//   white-space: nowrap;
+//   user-select: none;
+//   border: none;
+// }
+
+// @mixin button-md {
+//   width: 8rem;
+//   padding: 0.5rem;
+//   cursor: pointer;
+//   text-align: center;
+//   outline: none;
+//   white-space: nowrap;
+//   user-select: none;
+//   border: none;
+// }
+
+// @mixin light-theme {
+//   background-color: $eggshell-dark;
+//   &:hover:not([disabled]) {
+//     background-color: $laurel-green;
+//   }
+//   &.active:not([disabled]) {
+//     background-color: $olive-green;
+//     color: $lightest-green;
+//   }
+//   &[disabled] {
+//     pointer-events: none;
+//     opacity: 0.3;
+//   }
+// }
+
+// @mixin dark-egg-theme {
+//   background-color: $black-olive;
+//   color: $lightest-green;
+//   &:hover:not([disabled]) {
+//     background-color: $granite;
+//     color: $lightest-green;
+//   }
+//   &.active:not([disabled]) {
+//     background-color: $eggshell-darker;
+//     color: $black-olive;
+//   }
+//   &[disabled] {
+//   pointer-events: none;
+//   opacity: 0.3;
+//   }
+// }
+
+// @mixin dark-theme {
+//   background-color: $black-olive;
+//   color: $lightest-green;
+//   &:hover:not([disabled]) {
+//   background-color: $army-green;
+//   color: $lightest-green;
+//   }
+//   &.active:not([disabled]) {
+//   background-color: $olive-green;
+//   color: $lightest-green;
+//   }
+//   &[disabled] {
+//   pointer-events: none;
+//   opacity: 0.3;
+//   }
+// }
+
+@mixin top-nav-page {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .main-content {
+    flex: 1 1 0;
+    overflow: auto;
+  }
+}
+
+@mixin respond-to($media) {
+  @if $media == small {
+  @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == medium {
+  @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == wide {
+  @media only screen and (min-width: $break-large) { @content; }
+  }
+}
+
+@mixin browser-demo {
+  @include phone-demo;
+  height: 60rem;
+  width: 82.5rem;
+  transform: translate(-16.5rem, -12rem) scale(0.6, 0.6);
+}
+
+@mixin phone-demo {
+    // margin-top: 1.5rem;
+  margin-bottom: -20rem;
+  margin-right: -11rem;
+  height: 50rem;
+  width: 27.5rem;
+  transform: translate(-5.5rem, -10rem) scale(0.6, 0.6);
+  color: $basically-black;
+  background-color: $white;
+
+  position: relative;
+  // margin: auto;
+  border: 16px black solid;
+  border-top-width: 40px;
+  border-bottom-width: 60px;
+  border-radius: 36px;
+  &:before {
+    content: '';
+    display: block;
+    width: 5rem;
+    height: 5px;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #333;
+    border-radius: 10px;
+  }
+  &:after {
+    content: '';
+    display: block;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 50%;
+    bottom: -65px;
+    transform: translate(-50%, -50%);
+    background: #333;
+    border-radius: 50%;
+  }
+}
+
+@mixin nav-items-container {
+  flex: 0 0 auto;
+  display: flex;
+  height: 2rem;
+  margin: 0 0.25rem;
+  justify-content: center;
+  .nav-item {
+    @include dark-button;
+    flex: 0 1 auto;
+    margin: 0 0.25rem;
+    border-radius: 4px 4px 0 0;
+  }
+}
+
+@mixin full-file-explorer-container {
+  background-color: $eggshell-darker;
+  display: flex;
+  flex-direction: column;
+  .explorer-title {
+    text-align: center;
+    font-size: 1.25rem;
+    padding-top: 0.5rem;
+  }
+  .control-buttons {
+    @include control-buttons;
+  }
+  .file-explorer {
+    flex: 1 1 0;
+  }
+}
+
+@mixin control-buttons {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  .wide-button-container {
+    flex: 1 1 0;
+  }
+  .control-button {
+    @include light-mini-button;
+  }
+  .wide-button {
+    flex: 1 1 0;
+    @include light-mini-button;
+  }
+  .icon-button {
+    flex: 0 0 auto;
+    @include light-mini-button;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    .material-icons {
+      font-size: 1rem;
+    }
+  }
+}

@@ -1,0 +1,68 @@
+<h2>Virtual Scroll Grid Demo</h2>
+<div class="demo-container">
+  <p>
+    VirtualScrollGrid is useful for displaying a large number of tiles.  Tile elements are not mounted onto the DOM until they are scrolled into the viewport.  This allows for lazy loading of resources and improves render times.
+  </p>
+  <p>
+    The width and height of the tiles automatically adjusted to fill the virtualScrollGridComponent's area.  This can be used to load lower resolution images when higher resolution images are not required.
+  </p>
+  <div class="input-section">
+    <label>
+      <span>maxColumns:</span>
+      <input
+        type="number"
+        [(ngModel)]="maxColumns"
+        min="1"
+        step="1"
+      >
+    </label>
+  </div>
+  <div class="input-section">
+    <label>
+      <span>alwaysUseMaxColumns:</span>
+      <input
+        type="checkbox"
+        [(ngModel)]="alwaysUseMaxColumns"
+      >
+    </label>
+  </div>
+  <div class="input-section">
+    <div>centeredTileId: {{ centeredTileId }}</div>
+  </div>
+  <div class="scroll-demo-container">
+    <dwu-virtual-scroll-grid
+      [tileIds]="tileIds"
+      [tileTemplate]="tileTemplate"
+      [tileOptions]="tileOptions"
+      [maxColumns]="maxColumns"
+      [(alwaysUseMaxColumns)]="alwaysUseMaxColumns"
+      [(centeredTileId)]="centeredTileId"
+    ></dwu-virtual-scroll-grid>
+  </div>
+  <h3>Usage</h3>
+  <!-- <dwu-code-snippet [snippet]="lineChartHtml"></dwu-code-snippet>
+  <dwu-code-snippet [snippet]="lineChartJs"></dwu-code-snippet> -->
+</div>
+
+<ng-template
+  #tileTemplate
+  let-scaledImageWidthStr="scaledImageWidthStr"
+  let-scaledImageHeightStr="scaledImageHeightStr"
+  let-tileId="tileId"
+  let-targetTileOption="targetTileOption"
+>
+  <div
+    class="tile"
+    [style.width]="scaledImageWidthStr"
+    [style.height]="scaledImageHeightStr"
+    (click)="centeredTileId = tileId; maxColumns = 1;"
+  >
+    <img
+      [src]="getImgSrc(tileId, targetTileOption.maxWidth)"
+      class="grid-image"
+    >
+    <div class="tile-id">{{tileId}}</div>
+    <div class="img-size">{{targetTileOption.maxWidth}}px</div>
+  </div>
+</ng-template>
+

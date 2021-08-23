@@ -1,0 +1,49 @@
+@import 'mixins';
+@import 'variables';
+
+:host {
+    @include top-nav-page;
+    .main-content {
+        color: $basically-black;
+        background-color: $white;
+    }
+    .top-nav {
+        display: flex;
+        background-color: $black-olive;
+        color: $lightest-green;
+        height: 2.5rem;
+        .page-title-container {
+            flex: 0 0 auto;
+            padding: 0.5rem 1.25rem;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            @include respond-to(small) {
+              display: none;
+            }
+        }
+
+        .right-section {
+            flex: 1 1 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+            .nav-items-container {
+                display: flex;
+                justify-content: flex-end;
+                margin: 0 3rem;
+                @include respond-to(small) {
+                  margin: 0 0.25rem;
+                  justify-content: center;
+                }
+                .nav-item {
+                    flex: 0 1 auto;
+                    @include dark-button;
+                    margin: 0 0.25rem;
+                    border-radius: 4px 4px 0 0;
+                }
+            }
+        }
+    }
+}

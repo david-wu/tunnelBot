@@ -1,0 +1,698 @@
+{
+  "Alcona": {
+    "dateStr": "8/19/21",
+    "cases": 784,
+    "deaths": 35,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Alger": {
+    "dateStr": "8/19/21",
+    "cases": 526,
+    "deaths": 7,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Allegan": {
+    "dateStr": "8/19/21",
+    "cases": 11699,
+    "deaths": 164,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Alpena": {
+    "dateStr": "8/19/21",
+    "cases": 2436,
+    "deaths": 66,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Antrim": {
+    "dateStr": "8/19/21",
+    "cases": 1707,
+    "deaths": 34,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Arenac": {
+    "dateStr": "8/19/21",
+    "cases": 1253,
+    "deaths": 29,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Baraga": {
+    "dateStr": "8/19/21",
+    "cases": 839,
+    "deaths": 40,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Barry": {
+    "dateStr": "8/19/21",
+    "cases": 6175,
+    "deaths": 72,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Bay": {
+    "dateStr": "8/19/21",
+    "cases": 11574,
+    "deaths": 358,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Benzie": {
+    "dateStr": "8/19/21",
+    "cases": 1318,
+    "deaths": 38,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Berrien": {
+    "dateStr": "8/19/21",
+    "cases": 16031,
+    "deaths": 302,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Branch": {
+    "dateStr": "8/19/21",
+    "cases": 5343,
+    "deaths": 98,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Calhoun": {
+    "dateStr": "8/19/21",
+    "cases": 15119,
+    "deaths": 324,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Cass": {
+    "dateStr": "8/19/21",
+    "cases": 5712,
+    "deaths": 78,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Charlevoix": {
+    "dateStr": "8/19/21",
+    "cases": 1844,
+    "deaths": 26,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Cheboygan": {
+    "dateStr": "8/19/21",
+    "cases": 1987,
+    "deaths": 50,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Chippewa": {
+    "dateStr": "8/19/21",
+    "cases": 2602,
+    "deaths": 35,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Clare": {
+    "dateStr": "8/19/21",
+    "cases": 2577,
+    "deaths": 87,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Clinton": {
+    "dateStr": "8/19/21",
+    "cases": 7926,
+    "deaths": 95,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Crawford": {
+    "dateStr": "8/19/21",
+    "cases": 1026,
+    "deaths": 14,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Delta": {
+    "dateStr": "8/19/21",
+    "cases": 4282,
+    "deaths": 95,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Dickinson": {
+    "dateStr": "8/19/21",
+    "cases": 2855,
+    "deaths": 74,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Eaton": {
+    "dateStr": "8/19/21",
+    "cases": 10530,
+    "deaths": 212,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Emmet": {
+    "dateStr": "8/19/21",
+    "cases": 2490,
+    "deaths": 43,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Federal Correctional Institution (FCI)": {
+    "dateStr": "8/19/21",
+    "cases": 320,
+    "deaths": 5,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Genesee": {
+    "dateStr": "8/19/21",
+    "cases": 43035,
+    "deaths": 991,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Gladwin": {
+    "dateStr": "8/19/21",
+    "cases": 2357,
+    "deaths": 61,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Gogebic": {
+    "dateStr": "8/19/21",
+    "cases": 1509,
+    "deaths": 53,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Grand Traverse": {
+    "dateStr": "8/19/21",
+    "cases": 6781,
+    "deaths": 101,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Gratiot": {
+    "dateStr": "8/19/21",
+    "cases": 4184,
+    "deaths": 121,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Hillsdale": {
+    "dateStr": "8/19/21",
+    "cases": 4585,
+    "deaths": 96,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Houghton": {
+    "dateStr": "8/19/21",
+    "cases": 3236,
+    "deaths": 43,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Huron": {
+    "dateStr": "8/19/21",
+    "cases": 4197,
+    "deaths": 84,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Ingham": {
+    "dateStr": "8/19/21",
+    "cases": 25878,
+    "deaths": 400,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Ionia": {
+    "dateStr": "8/19/21",
+    "cases": 6559,
+    "deaths": 81,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Iosco": {
+    "dateStr": "8/19/21",
+    "cases": 2108,
+    "deaths": 77,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Iron": {
+    "dateStr": "8/19/21",
+    "cases": 1088,
+    "deaths": 53,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Isabella": {
+    "dateStr": "8/19/21",
+    "cases": 6493,
+    "deaths": 101,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Jackson": {
+    "dateStr": "8/19/21",
+    "cases": 16583,
+    "deaths": 299,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Kalamazoo": {
+    "dateStr": "8/19/21",
+    "cases": 24324,
+    "deaths": 407,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Kalkaska": {
+    "dateStr": "8/19/21",
+    "cases": 1215,
+    "deaths": 29,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Kent": {
+    "dateStr": "8/19/21",
+    "cases": 75960,
+    "deaths": 875,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Keweenaw": {
+    "dateStr": "8/19/21",
+    "cases": 177,
+    "deaths": 2,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Lake": {
+    "dateStr": "8/19/21",
+    "cases": 662,
+    "deaths": 17,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Lapeer": {
+    "dateStr": "8/19/21",
+    "cases": 9539,
+    "deaths": 207,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Leelanau": {
+    "dateStr": "8/19/21",
+    "cases": 1304,
+    "deaths": 20,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Lenawee": {
+    "dateStr": "8/19/21",
+    "cases": 9749,
+    "deaths": 174,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Livingston": {
+    "dateStr": "8/19/21",
+    "cases": 17549,
+    "deaths": 199,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Luce": {
+    "dateStr": "8/19/21",
+    "cases": 492,
+    "deaths": 5,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Mackinac": {
+    "dateStr": "8/19/21",
+    "cases": 740,
+    "deaths": 4,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Macomb": {
+    "dateStr": "8/19/21",
+    "cases": 103346,
+    "deaths": 2517,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Manistee": {
+    "dateStr": "8/19/21",
+    "cases": 1284,
+    "deaths": 24,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Marquette": {
+    "dateStr": "8/19/21",
+    "cases": 5162,
+    "deaths": 65,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Mason": {
+    "dateStr": "8/19/21",
+    "cases": 2269,
+    "deaths": 40,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Mecosta": {
+    "dateStr": "8/19/21",
+    "cases": 3306,
+    "deaths": 38,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Menominee": {
+    "dateStr": "8/19/21",
+    "cases": 2257,
+    "deaths": 44,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Michigan Department of Corrections (MDOC)": {
+    "dateStr": "8/19/21",
+    "cases": 26925,
+    "deaths": 155,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Midland": {
+    "dateStr": "8/19/21",
+    "cases": 7822,
+    "deaths": 97,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Missaukee": {
+    "dateStr": "8/19/21",
+    "cases": 1539,
+    "deaths": 29,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Monroe": {
+    "dateStr": "8/19/21",
+    "cases": 15983,
+    "deaths": 268,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Montcalm": {
+    "dateStr": "8/19/21",
+    "cases": 6225,
+    "deaths": 116,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Montmorency": {
+    "dateStr": "8/19/21",
+    "cases": 666,
+    "deaths": 20,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Muskegon": {
+    "dateStr": "8/19/21",
+    "cases": 16874,
+    "deaths": 375,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Newaygo": {
+    "dateStr": "8/19/21",
+    "cases": 5011,
+    "deaths": 70,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Oakland": {
+    "dateStr": "8/19/21",
+    "cases": 123712,
+    "deaths": 2493,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Oceana": {
+    "dateStr": "8/19/21",
+    "cases": 2840,
+    "deaths": 60,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Ogemaw": {
+    "dateStr": "8/19/21",
+    "cases": 1847,
+    "deaths": 44,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Ontonagon": {
+    "dateStr": "8/19/21",
+    "cases": 500,
+    "deaths": 22,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Osceola": {
+    "dateStr": "8/19/21",
+    "cases": 1999,
+    "deaths": 31,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Oscoda": {
+    "dateStr": "8/19/21",
+    "cases": 705,
+    "deaths": 31,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Otsego": {
+    "dateStr": "8/19/21",
+    "cases": 2392,
+    "deaths": 41,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Ottawa": {
+    "dateStr": "8/19/21",
+    "cases": 33934,
+    "deaths": 447,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Out of MI": {
+    "dateStr": "8/19/21",
+    "cases": 2890,
+    "deaths": 16,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Presque Isle": {
+    "dateStr": "8/19/21",
+    "cases": 1086,
+    "deaths": 34,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Roscommon": {
+    "dateStr": "8/19/21",
+    "cases": 1935,
+    "deaths": 55,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Saginaw": {
+    "dateStr": "8/19/21",
+    "cases": 22221,
+    "deaths": 636,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Sanilac": {
+    "dateStr": "8/19/21",
+    "cases": 4325,
+    "deaths": 126,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Schoolcraft": {
+    "dateStr": "8/19/21",
+    "cases": 463,
+    "deaths": 5,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Shiawassee": {
+    "dateStr": "8/19/21",
+    "cases": 6705,
+    "deaths": 110,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "St. Clair": {
+    "dateStr": "8/19/21",
+    "cases": 18874,
+    "deaths": 457,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "St. Joseph": {
+    "dateStr": "8/19/21",
+    "cases": 6483,
+    "deaths": 104,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Tuscola": {
+    "dateStr": "8/19/21",
+    "cases": 5839,
+    "deaths": 176,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 409,
+    "deaths": 12,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Van Buren": {
+    "dateStr": "8/19/21",
+    "cases": 7487,
+    "deaths": 138,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Washtenaw": {
+    "dateStr": "8/19/21",
+    "cases": 27606,
+    "deaths": 307,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Wayne": {
+    "dateStr": "8/19/21",
+    "cases": 172254,
+    "deaths": 5243,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Wexford": {
+    "dateStr": "8/19/21",
+    "cases": 2952,
+    "deaths": 48,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  }
+}

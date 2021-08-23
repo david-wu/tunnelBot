@@ -1,0 +1,26 @@
+<ng-container *ngIf="selectedImageSource$ | async as selectedImageSource">
+  <h3>
+    <dwu-input-string-editor
+      [str]="selectedImageSource.label || selectedImageSource.id"
+      (strChange)="onLabelChange(selectedImageSource.id, $event)"
+      [placeholder]="'set a source name..'"
+    ></dwu-input-string-editor>
+  </h3>
+  <div class="description-editor">
+    <dwu-input-string-editor
+      [str]="selectedImageSource.description || ''"
+      (strChange)="onDescriptionChange(selectedImageSource.id, $event)"
+      [placeholder]="'set a description..'"
+    ></dwu-input-string-editor>
+  </div>
+  <div class="control-buttons">
+    <span class="delete-button">
+      delete
+    </span>
+  </div>
+  <div class="info-grid">
+    <div>id: {{ selectedImageSource.id }}</div>
+    <div>mostRecentImage: {{ selectedImageSource }}</div>
+    <div>upload count over time</div>
+  </div>
+</ng-container>

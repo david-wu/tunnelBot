@@ -1,0 +1,37 @@
+<h3>Setup Agent</h3>
+<p>
+  The image source token grants write access to this image source.  Make sure not to share these tokens in public repositories.  Regenerate the token if you believe it may have been compromised.
+</p>
+<div class="helper-container">
+  <ng-container *ngIf="selectedImageSourceId$ | async as selectedImageSourceId">
+    <div class="file-explorer-container">
+      <div class="control-buttons">
+        <div
+          (click)="generateImageSourceToken(selectedImageSourceId)"
+          class="wide-button"
+          [attr.disabled]="(isGeneratingToken$ | async) ? true : null"
+        >Regenerate Token</div>
+      </div>
+      <dwu-search-input
+        [(searchText)]="filterStr"
+        [placeholder]="'search..'"
+      ></dwu-search-input>
+      <dwu-image-source-tokens-list
+        class="file-explorer"
+        [imageSourceId]="selectedImageSourceId"
+        [filterStr]="filterStr"
+        (selectToken)="onSelectToken($event)"
+      ></dwu-image-source-tokens-list>
+    </div>
+    <div class="right-side">
+      <ng-container *ngIf="selectedToken; else noSelectedTokenTemplate">
+        <dwu-code-snippet [snippet]="getUsage(selectedImageSourceId)"></dwu-code-snippet>
+        <dwu-code-snippet [snippet]="getSecretJson(selectedImageSourceId)"></dwu-code-snippet>
+      </ng-container>
+      <ng-template #noSelectedTokenTemplate>
+        Select a token for setup instructions
+      </ng-template>
+    </div>
+  </ng-container>
+
+</div>

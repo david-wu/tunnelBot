@@ -1,0 +1,138 @@
+{
+  "Apache": {
+    "dateStr": "8/19/21",
+    "cases": 12141,
+    "deaths": 443,
+    "recovered": 0,
+    "new": 45,
+    "newDeaths": 1
+  },
+  "Cochise": {
+    "dateStr": "8/19/21",
+    "cases": 12744,
+    "deaths": 301,
+    "recovered": 0,
+    "new": 39,
+    "newDeaths": 0
+  },
+  "Coconino": {
+    "dateStr": "8/19/21",
+    "cases": 19354,
+    "deaths": 337,
+    "recovered": 0,
+    "new": 56,
+    "newDeaths": 0
+  },
+  "Gila": {
+    "dateStr": "8/19/21",
+    "cases": 7745,
+    "deaths": 240,
+    "recovered": 0,
+    "new": 29,
+    "newDeaths": 0
+  },
+  "Graham": {
+    "dateStr": "8/19/21",
+    "cases": 5885,
+    "deaths": 89,
+    "recovered": 0,
+    "new": 21,
+    "newDeaths": 0
+  },
+  "Greenlee": {
+    "dateStr": "8/19/21",
+    "cases": 662,
+    "deaths": 11,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "La Paz": {
+    "dateStr": "8/19/21",
+    "cases": 2641,
+    "deaths": 81,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Maricopa": {
+    "dateStr": "8/19/21",
+    "cases": 616348,
+    "deaths": 10614,
+    "recovered": 0,
+    "new": 2386,
+    "newDeaths": 2
+  },
+  "Mohave": {
+    "dateStr": "8/19/21",
+    "cases": 27207,
+    "deaths": 822,
+    "recovered": 0,
+    "new": 124,
+    "newDeaths": 0
+  },
+  "Navajo": {
+    "dateStr": "8/19/21",
+    "cases": 17913,
+    "deaths": 565,
+    "recovered": 0,
+    "new": 57,
+    "newDeaths": 0
+  },
+  "Out of AZ": {
+    "dateStr": "8/19/21",
+    "cases": 0,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Pima": {
+    "dateStr": "8/19/21",
+    "cases": 124237,
+    "deaths": 2473,
+    "recovered": 0,
+    "new": 401,
+    "newDeaths": 1
+  },
+  "Pinal": {
+    "dateStr": "8/19/21",
+    "cases": 60359,
+    "deaths": 933,
+    "recovered": 0,
+    "new": 222,
+    "newDeaths": 0
+  },
+  "Santa Cruz": {
+    "dateStr": "8/19/21",
+    "cases": 8369,
+    "deaths": 184,
+    "recovered": 0,
+    "new": 14,
+    "newDeaths": 0
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 35,
+    "deaths": 42,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Yavapai": {
+    "dateStr": "8/19/21",
+    "cases": 22463,
+    "deaths": 560,
+    "recovered": 0,
+    "new": 82,
+    "newDeaths": 0
+  },
+  "Yuma": {
+    "dateStr": "8/19/21",
+    "cases": 38403,
+    "deaths": 856,
+    "recovered": 0,
+    "new": 63,
+    "newDeaths": 0
+  }
+}

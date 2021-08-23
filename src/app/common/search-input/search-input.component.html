@@ -1,0 +1,20 @@
+<div class="input-container">
+  <span class="material-icons search-icon">
+    search
+  </span>
+  <span
+    *ngIf="searchText"
+    class="material-icons cancel-icon"
+    (click)="searchTextChange.emit('')"
+  >
+    highlight_off
+  </span>
+  <input
+    type="text"
+    [ngModel]="searchText"
+    (ngModelChange)="searchTextChange.emit($event)"
+    [placeholder]="placeholder"
+    spellcheck="false"
+    autofocus
+  >
+</div>

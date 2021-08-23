@@ -1,0 +1,386 @@
+{
+  "Abbeville": {
+    "dateStr": "8/19/21",
+    "cases": 2793,
+    "deaths": 42,
+    "recovered": 0,
+    "new": 10,
+    "newDeaths": 0
+  },
+  "Aiken": {
+    "dateStr": "8/19/21",
+    "cases": 20435,
+    "deaths": 235,
+    "recovered": 0,
+    "new": 121,
+    "newDeaths": 2
+  },
+  "Allendale": {
+    "dateStr": "8/19/21",
+    "cases": 1043,
+    "deaths": 16,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Anderson": {
+    "dateStr": "8/19/21",
+    "cases": 25939,
+    "deaths": 544,
+    "recovered": 0,
+    "new": 124,
+    "newDeaths": 1
+  },
+  "Bamberg": {
+    "dateStr": "8/19/21",
+    "cases": 1698,
+    "deaths": 55,
+    "recovered": 0,
+    "new": 10,
+    "newDeaths": 0
+  },
+  "Barnwell": {
+    "dateStr": "8/19/21",
+    "cases": 2888,
+    "deaths": 60,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 1
+  },
+  "Beaufort": {
+    "dateStr": "8/19/21",
+    "cases": 20900,
+    "deaths": 221,
+    "recovered": 0,
+    "new": 130,
+    "newDeaths": 1
+  },
+  "Berkeley": {
+    "dateStr": "8/19/21",
+    "cases": 21810,
+    "deaths": 216,
+    "recovered": 0,
+    "new": 187,
+    "newDeaths": 4
+  },
+  "Calhoun": {
+    "dateStr": "8/19/21",
+    "cases": 1423,
+    "deaths": 37,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Charleston": {
+    "dateStr": "8/19/21",
+    "cases": 50878,
+    "deaths": 535,
+    "recovered": 0,
+    "new": 349,
+    "newDeaths": 2
+  },
+  "Cherokee": {
+    "dateStr": "8/19/21",
+    "cases": 6878,
+    "deaths": 162,
+    "recovered": 0,
+    "new": 17,
+    "newDeaths": 0
+  },
+  "Chester": {
+    "dateStr": "8/19/21",
+    "cases": 4736,
+    "deaths": 83,
+    "recovered": 0,
+    "new": 26,
+    "newDeaths": 1
+  },
+  "Chesterfield": {
+    "dateStr": "8/19/21",
+    "cases": 5462,
+    "deaths": 114,
+    "recovered": 0,
+    "new": 11,
+    "newDeaths": 0
+  },
+  "Clarendon": {
+    "dateStr": "8/19/21",
+    "cases": 4023,
+    "deaths": 114,
+    "recovered": 0,
+    "new": 10,
+    "newDeaths": 0
+  },
+  "Colleton": {
+    "dateStr": "8/19/21",
+    "cases": 4257,
+    "deaths": 139,
+    "recovered": 0,
+    "new": 21,
+    "newDeaths": 2
+  },
+  "Darlington": {
+    "dateStr": "8/19/21",
+    "cases": 9283,
+    "deaths": 185,
+    "recovered": 0,
+    "new": 24,
+    "newDeaths": 0
+  },
+  "Dillon": {
+    "dateStr": "8/19/21",
+    "cases": 4873,
+    "deaths": 87,
+    "recovered": 0,
+    "new": 18,
+    "newDeaths": 0
+  },
+  "Dorchester": {
+    "dateStr": "8/19/21",
+    "cases": 22538,
+    "deaths": 237,
+    "recovered": 0,
+    "new": 215,
+    "newDeaths": 0
+  },
+  "Edgefield": {
+    "dateStr": "8/19/21",
+    "cases": 3475,
+    "deaths": 44,
+    "recovered": 0,
+    "new": 15,
+    "newDeaths": 0
+  },
+  "Fairfield": {
+    "dateStr": "8/19/21",
+    "cases": 2741,
+    "deaths": 83,
+    "recovered": 0,
+    "new": 14,
+    "newDeaths": 0
+  },
+  "Florence": {
+    "dateStr": "8/19/21",
+    "cases": 19930,
+    "deaths": 434,
+    "recovered": 0,
+    "new": 113,
+    "newDeaths": 1
+  },
+  "Georgetown": {
+    "dateStr": "8/19/21",
+    "cases": 7549,
+    "deaths": 147,
+    "recovered": 0,
+    "new": 24,
+    "newDeaths": 0
+  },
+  "Greenville": {
+    "dateStr": "8/19/21",
+    "cases": 81851,
+    "deaths": 1056,
+    "recovered": 0,
+    "new": 260,
+    "newDeaths": 1
+  },
+  "Greenwood": {
+    "dateStr": "8/19/21",
+    "cases": 8921,
+    "deaths": 175,
+    "recovered": 0,
+    "new": 49,
+    "newDeaths": 0
+  },
+  "Hampton": {
+    "dateStr": "8/19/21",
+    "cases": 2262,
+    "deaths": 54,
+    "recovered": 0,
+    "new": 16,
+    "newDeaths": 0
+  },
+  "Horry": {
+    "dateStr": "8/19/21",
+    "cases": 47004,
+    "deaths": 632,
+    "recovered": 0,
+    "new": 198,
+    "newDeaths": 5
+  },
+  "Jasper": {
+    "dateStr": "8/19/21",
+    "cases": 2985,
+    "deaths": 50,
+    "recovered": 0,
+    "new": 20,
+    "newDeaths": 0
+  },
+  "Kershaw": {
+    "dateStr": "8/19/21",
+    "cases": 9054,
+    "deaths": 151,
+    "recovered": 0,
+    "new": 58,
+    "newDeaths": 3
+  },
+  "Lancaster": {
+    "dateStr": "8/19/21",
+    "cases": 12040,
+    "deaths": 178,
+    "recovered": 0,
+    "new": 63,
+    "newDeaths": 0
+  },
+  "Laurens": {
+    "dateStr": "8/19/21",
+    "cases": 8042,
+    "deaths": 173,
+    "recovered": 0,
+    "new": 22,
+    "newDeaths": 0
+  },
+  "Lee": {
+    "dateStr": "8/19/21",
+    "cases": 2103,
+    "deaths": 66,
+    "recovered": 0,
+    "new": 1,
+    "newDeaths": 0
+  },
+  "Lexington": {
+    "dateStr": "8/19/21",
+    "cases": 40171,
+    "deaths": 506,
+    "recovered": 0,
+    "new": 279,
+    "newDeaths": 3
+  },
+  "Marion": {
+    "dateStr": "8/19/21",
+    "cases": 4048,
+    "deaths": 110,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 1
+  },
+  "Marlboro": {
+    "dateStr": "8/19/21",
+    "cases": 3811,
+    "deaths": 62,
+    "recovered": 0,
+    "new": 15,
+    "newDeaths": 0
+  },
+  "McCormick": {
+    "dateStr": "8/19/21",
+    "cases": 1107,
+    "deaths": 28,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Newberry": {
+    "dateStr": "8/19/21",
+    "cases": 5677,
+    "deaths": 111,
+    "recovered": 0,
+    "new": 32,
+    "newDeaths": 1
+  },
+  "Oconee": {
+    "dateStr": "8/19/21",
+    "cases": 11021,
+    "deaths": 148,
+    "recovered": 0,
+    "new": 80,
+    "newDeaths": 0
+  },
+  "Orangeburg": {
+    "dateStr": "8/19/21",
+    "cases": 10765,
+    "deaths": 259,
+    "recovered": 0,
+    "new": 37,
+    "newDeaths": 0
+  },
+  "Out of SC": {
+    "dateStr": "8/19/21",
+    "cases": 0,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Pickens": {
+    "dateStr": "8/19/21",
+    "cases": 20990,
+    "deaths": 321,
+    "recovered": 0,
+    "new": 110,
+    "newDeaths": 3
+  },
+  "Richland": {
+    "dateStr": "8/19/21",
+    "cases": 54531,
+    "deaths": 610,
+    "recovered": 0,
+    "new": 199,
+    "newDeaths": 5
+  },
+  "Saluda": {
+    "dateStr": "8/19/21",
+    "cases": 1956,
+    "deaths": 51,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  },
+  "Spartanburg": {
+    "dateStr": "8/19/21",
+    "cases": 46049,
+    "deaths": 843,
+    "recovered": 0,
+    "new": 154,
+    "newDeaths": 2
+  },
+  "Sumter": {
+    "dateStr": "8/19/21",
+    "cases": 12579,
+    "deaths": 214,
+    "recovered": 0,
+    "new": 44,
+    "newDeaths": 0
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 5,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Union": {
+    "dateStr": "8/19/21",
+    "cases": 3482,
+    "deaths": 84,
+    "recovered": 0,
+    "new": 16,
+    "newDeaths": 0
+  },
+  "Williamsburg": {
+    "dateStr": "8/19/21",
+    "cases": 4502,
+    "deaths": 107,
+    "recovered": 0,
+    "new": 6,
+    "newDeaths": 0
+  },
+  "York": {
+    "dateStr": "8/19/21",
+    "cases": 35928,
+    "deaths": 408,
+    "recovered": 0,
+    "new": 137,
+    "newDeaths": 1
+  }
+}

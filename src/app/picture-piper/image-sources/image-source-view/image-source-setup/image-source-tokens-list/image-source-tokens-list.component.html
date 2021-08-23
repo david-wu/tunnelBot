@@ -1,0 +1,16 @@
+<ng-container *ngIf="imageTokens$ | async as imageTokens">
+<!--   <div *ngFor="let imageToken of imageTokens">
+    <div>{{ getTokenLabel(imageToken) }}</div>
+    <div>{{ imageToken.createdAt.toDate() }}</div>
+  </div>
+ -->
+  <dwu-file-explorer
+    [rootFileId]="fileGroup.rootFileId"
+    [filesById]="fileGroup.filesById"
+    (filesByIdChange)="fileGroup.filesById = $event"
+    [fuzzFilterString]="filterStr"
+    [selectedFileIds]="selectedFileIds"
+    (selectedFileIdsChange)="onSelectedFileIds($event)"
+    [perfMode]="true"
+  ></dwu-file-explorer>
+</ng-container>

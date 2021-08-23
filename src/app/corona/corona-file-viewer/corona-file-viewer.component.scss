@@ -1,0 +1,63 @@
+@import 'mixins';
+
+:host {
+  display: block;
+  position: relative;
+  padding-bottom: 5rem;
+  .loading-overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transition: background-color cubic-bezier(0.1, 0.5, 0.1, 0.5) 100ms;
+    background-color: rgba(255, 255, 255, 0);
+    &.active {
+      background-color: rgba(255, 255, 255, 0.65);
+    }
+  }
+}
+
+.header {
+  display: flex;
+  padding: 0.75rem 1rem 0.25rem;
+  flex-direction: column;
+  font-size: 1rem;
+  .header-main {
+    display: flex;
+    align-items: center;
+    .download-link {
+      margin-left: 0.25rem;
+      text-decoration: none;
+      .download-icon {
+        font-size: 1.25rem;
+        color: $granite;
+        display: block;
+      }
+    }
+  }
+  .population {
+    font-size: 0.75rem;
+    color: $granite;
+    display: flex;
+    .population-count {
+      margin-left: 0.25rem;
+    }
+  }
+}
+
+.loader {
+  visibility: hidden;
+  margin-left: 0.25rem;
+  &.visible {
+    visibility: visible;
+  }
+  .hour-glass {
+    font-size: 1rem;
+  }
+}
+
+dwu-latest-points-viewer {
+  display: block;
+  padding: 0.5rem 1rem;
+}

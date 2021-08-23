@@ -1,0 +1,45 @@
+@import 'mixins';
+
+:host {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .control-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .left-side {
+      flex: 1 1 0;
+      display: flex;
+      align-items: center;
+      dwu-user-login, dwu-file-uploader {
+        margin-left: 0.5rem;
+        display: block;
+      }
+      .file-picker-icon-container{
+        display: inline-block;
+        height: 28px;
+        padding: 0.125rem;
+        cursor: pointer;
+        user-select: none;
+        // margin: 0.25rem;
+        .file-picker-icon {
+          @include light-theme;
+          border-radius: 0.125rem;
+        }
+      }
+    }
+    .right-side {
+      flex: 0 0 auto;
+      dwu-zoom-level-picker {
+        display: block;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+
+.login-container {
+  padding: 1rem;
+}

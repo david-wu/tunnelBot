@@ -1,0 +1,530 @@
+{
+  "Acadia": {
+    "dateStr": "8/19/21",
+    "cases": 8840,
+    "deaths": 218,
+    "recovered": 0,
+    "new": 115,
+    "newDeaths": 0
+  },
+  "Allen": {
+    "dateStr": "8/19/21",
+    "cases": 3926,
+    "deaths": 95,
+    "recovered": 0,
+    "new": 43,
+    "newDeaths": 0
+  },
+  "Ascension": {
+    "dateStr": "8/19/21",
+    "cases": 18896,
+    "deaths": 194,
+    "recovered": 0,
+    "new": 89,
+    "newDeaths": 3
+  },
+  "Assumption": {
+    "dateStr": "8/19/21",
+    "cases": 3100,
+    "deaths": 41,
+    "recovered": 0,
+    "new": 18,
+    "newDeaths": 0
+  },
+  "Avoyelles": {
+    "dateStr": "8/19/21",
+    "cases": 5806,
+    "deaths": 136,
+    "recovered": 0,
+    "new": 117,
+    "newDeaths": 0
+  },
+  "Beauregard": {
+    "dateStr": "8/19/21",
+    "cases": 4448,
+    "deaths": 86,
+    "recovered": 0,
+    "new": 49,
+    "newDeaths": 1
+  },
+  "Bienville": {
+    "dateStr": "8/19/21",
+    "cases": 2040,
+    "deaths": 85,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  },
+  "Bossier": {
+    "dateStr": "8/19/21",
+    "cases": 17899,
+    "deaths": 330,
+    "recovered": 0,
+    "new": 122,
+    "newDeaths": 2
+  },
+  "Caddo": {
+    "dateStr": "8/19/21",
+    "cases": 33536,
+    "deaths": 798,
+    "recovered": 0,
+    "new": 216,
+    "newDeaths": 1
+  },
+  "Calcasieu": {
+    "dateStr": "8/19/21",
+    "cases": 28495,
+    "deaths": 493,
+    "recovered": 0,
+    "new": 209,
+    "newDeaths": 3
+  },
+  "Caldwell": {
+    "dateStr": "8/19/21",
+    "cases": 1461,
+    "deaths": 30,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "Cameron": {
+    "dateStr": "8/19/21",
+    "cases": 744,
+    "deaths": 8,
+    "recovered": 0,
+    "new": 5,
+    "newDeaths": 0
+  },
+  "Catahoula": {
+    "dateStr": "8/19/21",
+    "cases": 1481,
+    "deaths": 40,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 1
+  },
+  "Claiborne": {
+    "dateStr": "8/19/21",
+    "cases": 1712,
+    "deaths": 57,
+    "recovered": 0,
+    "new": 11,
+    "newDeaths": 0
+  },
+  "Concordia": {
+    "dateStr": "8/19/21",
+    "cases": 2670,
+    "deaths": 64,
+    "recovered": 0,
+    "new": 17,
+    "newDeaths": 0
+  },
+  "De Soto": {
+    "dateStr": "8/19/21",
+    "cases": 3868,
+    "deaths": 89,
+    "recovered": 0,
+    "new": 55,
+    "newDeaths": 0
+  },
+  "East Baton Rouge": {
+    "dateStr": "8/19/21",
+    "cases": 55593,
+    "deaths": 969,
+    "recovered": 0,
+    "new": 331,
+    "newDeaths": 3
+  },
+  "East Carroll": {
+    "dateStr": "8/19/21",
+    "cases": 1341,
+    "deaths": 28,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "East Feliciana": {
+    "dateStr": "8/19/21",
+    "cases": 4120,
+    "deaths": 128,
+    "recovered": 0,
+    "new": 30,
+    "newDeaths": 0
+  },
+  "Evangeline": {
+    "dateStr": "8/19/21",
+    "cases": 4724,
+    "deaths": 102,
+    "recovered": 0,
+    "new": 66,
+    "newDeaths": 1
+  },
+  "Franklin": {
+    "dateStr": "8/19/21",
+    "cases": 3515,
+    "deaths": 112,
+    "recovered": 0,
+    "new": 52,
+    "newDeaths": 0
+  },
+  "Grant": {
+    "dateStr": "8/19/21",
+    "cases": 3058,
+    "deaths": 60,
+    "recovered": 0,
+    "new": 49,
+    "newDeaths": 0
+  },
+  "Iberia": {
+    "dateStr": "8/19/21",
+    "cases": 10594,
+    "deaths": 182,
+    "recovered": 0,
+    "new": 129,
+    "newDeaths": 3
+  },
+  "Iberville": {
+    "dateStr": "8/19/21",
+    "cases": 5199,
+    "deaths": 112,
+    "recovered": 0,
+    "new": 41,
+    "newDeaths": 0
+  },
+  "Jackson": {
+    "dateStr": "8/19/21",
+    "cases": 2385,
+    "deaths": 57,
+    "recovered": 0,
+    "new": 17,
+    "newDeaths": 1
+  },
+  "Jefferson": {
+    "dateStr": "8/19/21",
+    "cases": 62338,
+    "deaths": 989,
+    "recovered": 0,
+    "new": 449,
+    "newDeaths": 3
+  },
+  "Jefferson Davis": {
+    "dateStr": "8/19/21",
+    "cases": 3947,
+    "deaths": 103,
+    "recovered": 0,
+    "new": 24,
+    "newDeaths": 0
+  },
+  "LaSalle": {
+    "dateStr": "8/19/21",
+    "cases": 2209,
+    "deaths": 39,
+    "recovered": 0,
+    "new": 21,
+    "newDeaths": 0
+  },
+  "Lafayette": {
+    "dateStr": "8/19/21",
+    "cases": 33405,
+    "deaths": 335,
+    "recovered": 0,
+    "new": 301,
+    "newDeaths": 3
+  },
+  "Lafourche": {
+    "dateStr": "8/19/21",
+    "cases": 15342,
+    "deaths": 242,
+    "recovered": 0,
+    "new": 156,
+    "newDeaths": 1
+  },
+  "Lincoln": {
+    "dateStr": "8/19/21",
+    "cases": 5782,
+    "deaths": 100,
+    "recovered": 0,
+    "new": 35,
+    "newDeaths": 0
+  },
+  "Livingston": {
+    "dateStr": "8/19/21",
+    "cases": 21125,
+    "deaths": 264,
+    "recovered": 0,
+    "new": 139,
+    "newDeaths": 4
+  },
+  "Madison": {
+    "dateStr": "8/19/21",
+    "cases": 1819,
+    "deaths": 46,
+    "recovered": 0,
+    "new": 16,
+    "newDeaths": 0
+  },
+  "Morehouse": {
+    "dateStr": "8/19/21",
+    "cases": 3789,
+    "deaths": 84,
+    "recovered": 0,
+    "new": 36,
+    "newDeaths": 0
+  },
+  "Natchitoches": {
+    "dateStr": "8/19/21",
+    "cases": 5011,
+    "deaths": 104,
+    "recovered": 0,
+    "new": 60,
+    "newDeaths": 0
+  },
+  "Orleans": {
+    "dateStr": "8/19/21",
+    "cases": 41428,
+    "deaths": 861,
+    "recovered": 0,
+    "new": 302,
+    "newDeaths": 5
+  },
+  "Ouachita": {
+    "dateStr": "8/19/21",
+    "cases": 25139,
+    "deaths": 490,
+    "recovered": 0,
+    "new": 204,
+    "newDeaths": 1
+  },
+  "Out of LA": {
+    "dateStr": "8/19/21",
+    "cases": 0,
+    "deaths": 0,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Plaquemines": {
+    "dateStr": "8/19/21",
+    "cases": 3400,
+    "deaths": 31,
+    "recovered": 0,
+    "new": 17,
+    "newDeaths": 1
+  },
+  "Pointe Coupee": {
+    "dateStr": "8/19/21",
+    "cases": 3416,
+    "deaths": 76,
+    "recovered": 0,
+    "new": 23,
+    "newDeaths": 0
+  },
+  "Rapides": {
+    "dateStr": "8/19/21",
+    "cases": 17267,
+    "deaths": 365,
+    "recovered": 0,
+    "new": 272,
+    "newDeaths": 0
+  },
+  "Red River": {
+    "dateStr": "8/19/21",
+    "cases": 1062,
+    "deaths": 42,
+    "recovered": 0,
+    "new": 9,
+    "newDeaths": 0
+  },
+  "Richland": {
+    "dateStr": "8/19/21",
+    "cases": 3329,
+    "deaths": 62,
+    "recovered": 0,
+    "new": 34,
+    "newDeaths": 0
+  },
+  "Sabine": {
+    "dateStr": "8/19/21",
+    "cases": 3588,
+    "deaths": 67,
+    "recovered": 0,
+    "new": 59,
+    "newDeaths": 0
+  },
+  "St. Bernard": {
+    "dateStr": "8/19/21",
+    "cases": 5884,
+    "deaths": 67,
+    "recovered": 0,
+    "new": 53,
+    "newDeaths": 1
+  },
+  "St. Charles": {
+    "dateStr": "8/19/21",
+    "cases": 7916,
+    "deaths": 107,
+    "recovered": 0,
+    "new": 52,
+    "newDeaths": 0
+  },
+  "St. Helena": {
+    "dateStr": "8/19/21",
+    "cases": 1187,
+    "deaths": 12,
+    "recovered": 0,
+    "new": 3,
+    "newDeaths": 0
+  },
+  "St. James": {
+    "dateStr": "8/19/21",
+    "cases": 2857,
+    "deaths": 57,
+    "recovered": 0,
+    "new": 44,
+    "newDeaths": 0
+  },
+  "St. John the Baptist": {
+    "dateStr": "8/19/21",
+    "cases": 5452,
+    "deaths": 149,
+    "recovered": 0,
+    "new": 57,
+    "newDeaths": 0
+  },
+  "St. Landry": {
+    "dateStr": "8/19/21",
+    "cases": 11814,
+    "deaths": 279,
+    "recovered": 0,
+    "new": 91,
+    "newDeaths": 2
+  },
+  "St. Martin": {
+    "dateStr": "8/19/21",
+    "cases": 7320,
+    "deaths": 127,
+    "recovered": 0,
+    "new": 55,
+    "newDeaths": 1
+  },
+  "St. Mary": {
+    "dateStr": "8/19/21",
+    "cases": 7418,
+    "deaths": 170,
+    "recovered": 0,
+    "new": 67,
+    "newDeaths": 3
+  },
+  "St. Tammany": {
+    "dateStr": "8/19/21",
+    "cases": 37472,
+    "deaths": 586,
+    "recovered": 0,
+    "new": 344,
+    "newDeaths": 0
+  },
+  "Tangipahoa": {
+    "dateStr": "8/19/21",
+    "cases": 20023,
+    "deaths": 390,
+    "recovered": 0,
+    "new": 149,
+    "newDeaths": 9
+  },
+  "Tensas": {
+    "dateStr": "8/19/21",
+    "cases": 419,
+    "deaths": 8,
+    "recovered": 0,
+    "new": 2,
+    "newDeaths": 0
+  },
+  "Terrebonne": {
+    "dateStr": "8/19/21",
+    "cases": 16288,
+    "deaths": 258,
+    "recovered": 0,
+    "new": 230,
+    "newDeaths": 2
+  },
+  "Unassigned": {
+    "dateStr": "8/19/21",
+    "cases": 7913,
+    "deaths": 237,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Union": {
+    "dateStr": "8/19/21",
+    "cases": 3182,
+    "deaths": 89,
+    "recovered": 0,
+    "new": 35,
+    "newDeaths": 1
+  },
+  "Vermilion": {
+    "dateStr": "8/19/21",
+    "cases": 8308,
+    "deaths": 143,
+    "recovered": 0,
+    "new": 114,
+    "newDeaths": 1
+  },
+  "Vernon": {
+    "dateStr": "8/19/21",
+    "cases": 4473,
+    "deaths": 125,
+    "recovered": 0,
+    "new": 55,
+    "newDeaths": 1
+  },
+  "Washington": {
+    "dateStr": "8/19/21",
+    "cases": 6490,
+    "deaths": 159,
+    "recovered": 0,
+    "new": 113,
+    "newDeaths": 0
+  },
+  "Webster": {
+    "dateStr": "8/19/21",
+    "cases": 5347,
+    "deaths": 120,
+    "recovered": 0,
+    "new": 61,
+    "newDeaths": 0
+  },
+  "West Baton Rouge": {
+    "dateStr": "8/19/21",
+    "cases": 3986,
+    "deaths": 67,
+    "recovered": 0,
+    "new": 25,
+    "newDeaths": 0
+  },
+  "West Carroll": {
+    "dateStr": "8/19/21",
+    "cases": 1432,
+    "deaths": 43,
+    "recovered": 0,
+    "new": 7,
+    "newDeaths": 0
+  },
+  "West Feliciana": {
+    "dateStr": "8/19/21",
+    "cases": 1424,
+    "deaths": 36,
+    "recovered": 0,
+    "new": 0,
+    "newDeaths": 0
+  },
+  "Winn": {
+    "dateStr": "8/19/21",
+    "cases": 2033,
+    "deaths": 50,
+    "recovered": 0,
+    "new": 18,
+    "newDeaths": 2
+  }
+}

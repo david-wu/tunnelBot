@@ -1,0 +1,12 @@
+<dwu-file-explorer
+  [rootFileId]="fileGroup.rootFileId"
+  [filesById]="fileGroup.filesById"
+  (filesByIdChange)="fileGroup.filesById = $event"
+  [fuzzFilterString]="filterStr"
+  [closedFileIds]="fileGroup.closedFileIds"
+  (closedFileIdsChange)="fileGroup.setClosedFileIds($event)"
+  [selectedFileIds]="resourceIds"
+  (selectedFileIdsChange)="onSelectedFileIdsChange($event)"
+  [perfMode]="true"
+  [multiFileSelect]="isMultiSelect"
+></dwu-file-explorer>

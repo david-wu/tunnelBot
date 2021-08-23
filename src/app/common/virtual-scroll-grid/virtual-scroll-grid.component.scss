@@ -1,0 +1,19 @@
+@import 'mixins';
+
+:host {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+
+  cdk-virtual-scroll-viewport {
+    display: block;
+    flex: 1 1 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  .upload-file-container-row {
+    display: flex;
+    // justify-content: center;
+  }
+}

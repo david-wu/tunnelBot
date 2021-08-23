@@ -1,0 +1,10 @@
+<dwu-resource-selector
+  class="file-explorer"
+  [resources]="resourceList$ | async"
+  [filterStr]="filterStr"
+  [selectedResourceId]="selectedResourceId"
+  (selectedResourceIdChange)="onSelectedImageSourceIdChange($event)"
+  [isMultiSelect]="isMultiSelect"
+  [selectedResourceIds]="selectedResourceIds"
+  (selectedResourceIdsChange)="onSelectedResourceIdsChange($event)"
+></dwu-resource-selector>

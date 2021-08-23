@@ -1,0 +1,26 @@
+
+@import 'mixins';
+
+:host {
+  display: inline-block;
+  line-height: inherit;
+  vertical-align: text-top;
+}
+
+.default-template {
+  padding: 0.25rem;
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px solid;
+  border-radius: 0.25rem;
+}
+
+.text-container {
+  max-width: 15rem;
+}
+.text-space-maker {
+  max-width: 15rem;
+  height: 0;
+  visibility: hidden;
+  white-space: nowrap;
+  overflow: hidden;
+}

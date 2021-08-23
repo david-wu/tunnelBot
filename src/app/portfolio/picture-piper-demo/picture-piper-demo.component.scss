@@ -1,0 +1,50 @@
+
+@import 'mixins';
+@import 'variables';
+
+:host {
+  @include standard-demo-page;
+  height: 100%;
+  .picture-piper-demo-app {
+    margin-top: 1.5rem;
+    @include browser-demo;
+    // margin-bottom: -20rem;
+    // margin-right: -11rem;
+    // height: 50rem;
+    // width: 27.5rem;
+    // transform: translate(-5.5rem, -10rem) scale(0.6, 0.6);
+    // color: $basically-black;
+    // background-color: $white;
+
+    // position: relative;
+    // // margin: auto;
+    // border: 16px black solid;
+    // border-top-width: 40px;
+    // border-bottom-width: 60px;
+    // border-radius: 36px;
+    // &:before {
+    //   content: '';
+    //   display: block;
+    //   width: 5rem;
+    //   height: 5px;
+    //   position: absolute;
+    //   top: -20px;
+    //   left: 50%;
+    //   transform: translate(-50%, -50%);
+    //   background: #333;
+    //   border-radius: 10px;
+    // }
+    // &:after {
+    //   content: '';
+    //   display: block;
+    //   width: 35px;
+    //   height: 35px;
+    //   position: absolute;
+    //   left: 50%;
+    //   bottom: -65px;
+    //   transform: translate(-50%, -50%);
+    //   background: #333;
+    //   border-radius: 50%;
+    // }
+  }
+}

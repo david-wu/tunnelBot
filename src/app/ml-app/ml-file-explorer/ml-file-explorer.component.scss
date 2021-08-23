@@ -1,0 +1,9 @@
+@import 'mixins';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  dwu-file-explorer {
+    flex: 1 1 0;
+  }
+}

@@ -1,0 +1,52 @@
+<div *ngIf="!selectedFileIds" class="header">
+  <div class="header-main">--</div>
+</div>
+
+<div *ngIf="selectedFileIds && selectedFileIds.size" class="header">
+  <div class="header-main">
+    <div>{{ getHeaderText() }}</div>
+    <div class="loader" [class.visible]="isLoading$ | async">
+      <span class="material-icons hour-glass">
+        hourglass_empty
+      </span>
+    </div>
+  </div>
+  <div class="population">
+    <div>Total Population:</div>
+    <div
+      *ngIf="totalPopulation$ | async as population"
+      class="population-count"
+    >{{ population.toLocaleString() }}</div>
+  </div>
+</div>
+
+<ng-container>
+  <dwu-corona-compare-dashboard
+    *ngIf="isComparing && latestCoronaFilesWithFileId$ | async as latestCoronaFilesWithFileId"
+    [coronaFilesWithFileId]="latestCoronaFilesWithFileId"
+    [filesById]="filesById"
+    [populationsByFileId]="populationsByFileId$ | async"
+  ></dwu-corona-compare-dashboard>
+
+  <dwu-corona-dashboard
+    *ngIf="!isComparing && firstCoronaFile$ | async as coronaFile"
+    [lockdownInfo]="getFirstSelectedFileLockdownInfo()"
+    [coronaFile]="coronaFile"
+    [population]="totalPopulation$ | async"
+    [disabledBarKeys]="disabledBarKeys"
+    (disabledBarKeysChange)="disabledBarKeysChange.emit($event)"
+    [disabledNormalKeys]="disabledNormalKeys"
+    (disabledNormalKeysChange)="disabledNormalKeysChange.emit($event)"
+    [isViewingNormalized]="isViewingNormalized"
+    (isViewingNormalizedChange)="isViewingNormalizedChange.emit($event)"
+    [isViewingLineChart]="isViewingLineChart"
+    (isViewingLineChartChange)="isViewingLineChartChange.emit($event)"
+  ></dwu-corona-dashboard>
+</ng-container>
+
+<dwu-latest-points-viewer
+  *ngIf="(locationsWithLatestPointData$ | async)?.length"
+  [locations]="locationsWithLatestPointData$ | async"
+></dwu-latest-points-viewer>
+
+<div class="loading-overlay active" [class.active]="isLoading$ | async"></div>

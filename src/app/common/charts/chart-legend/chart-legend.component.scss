@@ -1,0 +1,37 @@
+@import 'mixins';
+
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    flex-wrap: wrap;
+    .key-set {
+        @include shadow;
+        margin: 0 0.5rem 0.5rem 0.5rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        background-color: $eggshell;
+        padding: 0.25rem 0.5rem;
+        border-radius: 5px;
+        &:hover {
+            .key-color {
+                transform: scale(1.2);
+            }
+        }
+
+        .key-color {
+            border: 1px solid;
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 2px;
+            transition: transform 25ms, background-color 25ms;
+            transform: scale(1);
+        }
+        .key-label {
+            margin-left: 0.25rem;
+            font-size: 14px;
+        }
+    }
+}

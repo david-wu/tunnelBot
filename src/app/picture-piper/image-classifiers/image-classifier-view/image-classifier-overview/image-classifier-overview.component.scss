@@ -1,0 +1,21 @@
+@import 'mixins';
+
+:host {
+  @include standard-demo-page;
+  .description-editor {
+    margin-top: 0.5rem;
+  }
+  .control-buttons {
+    margin-top: 0.25rem;
+    .delete-button {
+      @include light-mini-button;
+      display: inline-block;
+    }
+  }
+  .info-grid {
+    margin-top: 0.5rem;
+  }
+  p {
+    margin: 1rem 0;
+  }
+}
