@@ -4,7 +4,7 @@
     "dev": "forever runApp.js"
   },
   "dependencies": {
-    "axios": "^0.16.1",
+    "axios": "^0.21.1",
     "babel": "^6.5.2",
     "babel-loader": "^6.2.7",
     "babel-plugin-transform-class": "^0.3.0",
