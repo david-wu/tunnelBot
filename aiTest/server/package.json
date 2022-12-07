@@ -17,7 +17,7 @@
     "cors": "^2.8.1",
     "dockerode": "^2.3.1",
     "execp": "0.0.1",
-    "express": "^4.14.1",
+    "express": "^4.17.3",
     "express-session": "^1.15.3",
     "google-auth-library": "^0.10.0",
     "guid": "0.0.12",
